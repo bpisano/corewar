@@ -6,7 +6,7 @@
 #    By: bpisano <marvin@le-101.fr>                 +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/03/15 18:40:16 by bpisano      #+#   ##    ##    #+#        #
-#    Updated: 2018/09/24 17:43:26 by bpisano     ###    #+. /#+    ###.fr      #
+#    Updated: 2018/09/24 17:48:18 by bpisano     ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -19,8 +19,8 @@ OBJECTS = $(SRC:.c=.o)
 
 LIB = libft.a
 
-HEADS = -I ./includes			\
-		-I ./libft/includes		\
+HEADS = -I ./compiler/includes			\
+		-I ./libft/includes				\
 
 FLAGS = -Wall -Werror -Wextra
 
