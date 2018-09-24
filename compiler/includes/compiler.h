@@ -19,8 +19,8 @@
 
 typedef struct		s_bin
 {
-	int		**bin;
-	size_t	size;
+	int				**bin;
+	size_t			size;
 }					t_bin
 
 #endif
