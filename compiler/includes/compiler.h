@@ -23,6 +23,7 @@
 
 int		*new_bin();
 int		add_to_bin(int **bin, int b);
+int		*str_to_bin(char *str);
 void	free_binary(int **bin);
 
 #endif
