@@ -1,41 +1,29 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   compiler.h                                       .::    .:/ .      .::   */
+/*   error.c                                          .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*   By: bpisano <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/09/24 17:57:34 by bpisano      #+#   ##    ##    #+#       */
-/*   Updated: 2018/09/24 18:52:26 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Created: 2018/09/24 19:34:47 by bpisano      #+#   ##    ##    #+#       */
+/*   Updated: 2018/09/24 19:35:07 by bpisano     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
+#include "compiler.h"
 
-#ifndef COMPILER_H
-# define COMPILER_H
+static void		error(char *desc)
+{
+	ft_printf("ERROR: %s\n", desc);
+}
 
-#include "libft.h"
-
-/*
- ** ERROR
-*/
-
-void	display_error(int error);
-
-/*
- ** BINARY
-*/
-
-char	*new_bin();
-char	add_to_bin(char **bin, char b);
-char	add_str_to_bin(char **bin, char *str);
-void	free_binary(char **bin);
-
-/*
- ** READ_FILE
-*/
-
-char**  ReadFile(char *filename);
-
-#endif
+void			display_error(int error)
+{
+	if (error == 1)
+		error("Misssing champion name");
+	else if (error == 2)
+		error("Missing champion description");
+	else
+		ft_putstr("ERROR\n");
+}
