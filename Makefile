@@ -6,7 +6,7 @@
 #    By: bpisano <marvin@le-101.fr>                 +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/03/15 18:40:16 by bpisano      #+#   ##    ##    #+#        #
-#    Updated: 2018/09/24 17:48:18 by bpisano     ###    #+. /#+    ###.fr      #
+#    Updated: 2018/09/24 18:17:48 by bpisano     ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -14,6 +14,7 @@
 NAME = asm
 
 SRC = compiler/sources/main.c			\
+	  compiler/sources/binary_gestion.c	\
 
 OBJECTS = $(SRC:.c=.o)
 

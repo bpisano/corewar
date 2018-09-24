@@ -4,5 +4,6 @@
 *.swp
 *.trace
 *.cor
+*.dSYM/
 asm
 corewar

@@ -17,10 +17,12 @@
 
 #include "libft.h"
 
-typedef struct		s_bin
-{
-	int				**bin;
-	size_t			size;
-}					t_bin
+/*
+ ** BINARY
+*/
+
+int		*new_bin();
+int		add_to_bin(int **bin, int b);
+void	free_binary(int **bin);
 
 #endif
