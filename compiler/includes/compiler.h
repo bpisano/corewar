@@ -21,14 +21,15 @@
  ** BINARY
 */
 
-int		*new_bin();
-int		add_to_bin(int **bin, int b);
-int		*str_to_bin(char *str);
-void	free_binary(int **bin);
+char	*new_bin();
+char	add_to_bin(char **bin, char b);
+char	add_str_to_bin(char **bin, char *str);
+void	free_binary(char **bin);
 
 /*
  ** READ_FILE
 */
+
 char**  ReadFile(char *filename);
 
 #endif

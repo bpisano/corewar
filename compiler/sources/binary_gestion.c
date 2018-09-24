@@ -14,29 +14,40 @@
 
 #include "compiler.h"
 
-int		*new_bin()
+char	*new_bin()
 {
-	int		*new;
+	char	*new;
 	
-	if (!(new = (int *)malloc(sizeof(int))))
+	if (!(new = (char *)malloc(sizeof(char))))
 		return (NULL);
 	new[0] = 0;
 	return (new);
 }
 
-int		add_to_bin(int **bin, int b)
+char	add_to_bin(char **bin, char b)
 {
 	int		oldSize;
 	
 	oldSize = (*bin)[0];
-	if (!(*bin = (int *)realloc(*bin, sizeof(int) * (oldSize + 1))))
+	if (!(*bin = (char *)realloc(*bin, sizeof(b) * (oldSize + 1))))
 		return (0);
 	(*bin)[0] = oldSize + 1;
 	(*bin)[oldSize + 1] = b;
 	return (1);
 }
 
-void 	free_binary(int **binary)
+char	add_str_to_bin(char **bin, char *str)
+{
+	int		i;
+	
+	i = -1;
+	while (str[++i])
+		if (!add_to_bin(bin, str[i]))
+			return (0);
+	return (1);
+}
+
+void 	free_binary(char **binary)
 {
 	free(*binary);
 }
