@@ -6,14 +6,14 @@
 #    By: bpisano <marvin@le-101.fr>                 +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/03/15 18:40:16 by bpisano      #+#   ##    ##    #+#        #
-#    Updated: 2018/09/24 17:38:09 by bpisano     ###    #+. /#+    ###.fr      #
+#    Updated: 2018/09/24 17:43:26 by bpisano     ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
 
 NAME = asm
 
-SRC = sources/main.c			\
+SRC = compiler/sources/main.c			\
 
 OBJECTS = $(SRC:.c=.o)
 
