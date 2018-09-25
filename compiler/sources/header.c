@@ -6,7 +6,7 @@
 /*   By: bpisano <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/09/25 10:55:54 by bpisano      #+#   ##    ##    #+#       */
-/*   Updated: 2018/09/25 10:55:51 by bpisano     ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/25 11:12:02 by bpisano     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -34,7 +34,7 @@ static void		free_split(char ***split)
 	free(*split);
 }
 
-char	*header_type(char *str, char *name)
+static char		*header_type(char *str, char *name)
 {
 	int		name_len;
 	char	**split;
@@ -57,7 +57,7 @@ char	*header_type(char *str, char *name)
 	return (sub);
 }
 
-int		add_head_to_bin(int **bin, char **file)
+int				add_head_to_bin(int **bin, char **file_lines)
 {
 	int		i;
 	char	*name;
@@ -66,17 +66,17 @@ int		add_head_to_bin(int **bin, char **file)
 	i = -1;
 	name = NULL;
 	com = NULL;
-	while (file[++i] && (!name || !com))
+	while (file_lines[++i] && (!name || !com))
 	{
-		if (name = header_type(file[i], ".name") && !name)
+		if (name = header_type(file_lines[i], ".name") && !name)
 			add_str_to_bin(bin, name);
-		else if (desc = header_type(file[i], ".comment") && !com)
+		else if (desc = header_type(file_lines[i], ".comment") && !com)
 			add_str_to_bin(bin, com);
 		else
 		{
 			name == NULL ? name : free(name);
 			com == NULL ? desc : free(com);
-			return (0);
+			return (1);
 		}
 	}
 	free(name);
