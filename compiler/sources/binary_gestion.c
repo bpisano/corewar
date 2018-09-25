@@ -5,19 +5,18 @@
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: bpisano <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/09/24 17:55:13 by bpisano      #+#   ##    ##    #+#       */
-/*   Updated: 2018/09/24 17:51:15 by bpisano     ###    #+. /#+    ###.fr     */
+/*   Created: 2018/09/25 10:55:54 by bpisano      #+#   ##    ##    #+#       */
+/*   Updated: 2018/09/24 19:19:53 by bpisano     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-
 #include "compiler.h"
 
-char	*new_bin()
+char	*new_bin(void)
 {
 	char	*new;
-	
+
 	if (!(new = (char *)malloc(sizeof(char))))
 		return (NULL);
 	new[0] = 0;
@@ -26,20 +25,20 @@ char	*new_bin()
 
 char	add_to_bin(char **bin, char b)
 {
-	int		oldSize;
-	
-	oldSize = (*bin)[0];
-	if (!(*bin = (char *)realloc(*bin, sizeof(b) * (oldSize + 1))))
+	int		old_size;
+
+	old_size = (*bin)[0];
+	if (!(*bin = (char *)realloc(*bin, sizeof(b) * (old_size + 1))))
 		return (0);
-	(*bin)[0] = oldSize + 1;
-	(*bin)[oldSize + 1] = b;
+	(*bin)[0] = old_size + 1;
+	(*bin)[old_size + 1] = b;
 	return (1);
 }
 
 char	add_str_to_bin(char **bin, char *str)
 {
 	int		i;
-	
+
 	i = -1;
 	while (str[++i])
 		if (!add_to_bin(bin, str[i]))
@@ -47,7 +46,7 @@ char	add_str_to_bin(char **bin, char *str)
 	return (1);
 }
 
-void 	free_binary(char **binary)
+void	free_binary(char **binary)
 {
 	free(*binary);
 }

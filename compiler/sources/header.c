@@ -16,7 +16,7 @@
 static int		split_len(char **split)
 {
 	int		i;
-	
+
 	i = -1;
 	while (split[++i])
 		;
@@ -26,9 +26,8 @@ static int		split_len(char **split)
 static void		free_split(char ***split)
 {
 	int		i;
-	
+
 	i = -1;
-	
 	while ((*split)[++i])
 		free((*split)[i]);
 	free(*split);
@@ -39,7 +38,7 @@ static char		*header_type(char *str, char *name)
 	int		name_len;
 	char	**split;
 	char	*sub;
-	
+
 	split = ft_strsplit(' ', str);
 	if (split_len(split) != 2)
 	{
@@ -50,7 +49,7 @@ static char		*header_type(char *str, char *name)
 		(name_len = ft_strlen(split[1])) < 3)
 	{
 		free_split(&split);
-		return (NULL);	
+		return (NULL);
 	}
 	sub = ft_strsub(split[1], 1, name_len - 2);
 	free_split(&split);
@@ -62,16 +61,16 @@ int				add_head_to_bin(int **bin, char **file_lines)
 	int		i;
 	char	*name;
 	char	*com;
-	
+
 	i = -1;
 	name = NULL;
 	com = NULL;
 	while (file_lines[++i] && (!name || !com))
 	{
 		if (name = header_type(file_lines[i], ".name") && !name)
-			add_str_to_bin(bin, name);
+			continue ;
 		else if (desc = header_type(file_lines[i], ".comment") && !com)
-			add_str_to_bin(bin, com);
+			continue ;
 		else
 		{
 			name == NULL ? name : free(name);
@@ -79,6 +78,8 @@ int				add_head_to_bin(int **bin, char **file_lines)
 			return (1);
 		}
 	}
+	add_str_to_bin(bin, name);
+	add_str_to_bin(bin, com);
 	free(name);
 	free(com);
 	return (0);
