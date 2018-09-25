@@ -21,9 +21,13 @@ static void		error_desc(char *desc)
 void			display_error(int error)
 {
 	if (error == 1)
-		error_desc("Misssing champion name");
+		error_desc("Missing champion name");
 	else if (error == 2)
 		error_desc("Missing champion description");
+	else if (error == 3)
+		error_desc("Incorrect file name");
+	else if (error == 4)
+		error_desc("Cannot allocate new binary");
 	else
 		ft_putstr("ERROR\n");
 }

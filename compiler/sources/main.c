@@ -14,31 +14,52 @@
 
 #include "compiler.h"
 
+static int		compile_file_lines(char **file_lines, char **bin)
+{
+	int		error;
+	
+	if ((error = add_head_to_bin(bin, file_lines)))
+	{
+		display_error(error);
+		return (0);
+	}
+	return (1);
+}
+
+static int		verify_file(char *file_name)
+{
+	char	**file_lines;
+	char	*bin;
+	
+	if (!(file_lines = read_file(file_name)))
+	{
+		display_error(3);
+		return (0);
+	}
+	if (!(bin = new_bin()))
+	{
+		display_error(4);
+		free_file_lines(&file_lines);
+		return (0);
+	}
+	if (!compile_file_lines(file_lines, &bin))
+	{
+		free_file_lines(&file_lines);
+		free_binary(&bin);
+		return (0);
+	}
+	return (1);
+}
+
 int		main(int argc, char **argv)
 {
 	int 	i;
-	char	*bin;
-	char	**file_lines;
-	int		comp_error;
 	
 	i = 0;
 	while (++i < argc)
 	{
-		if (!(file_lines = read_file(argv[i])))
-		{
-			display_error(3);
-			continue ;
-		}
-		if (!(bin = new_bin()))
-		{
-			display_error(4);
-			continue ;
-		}
-		if ((comp_error = add_head_to_bin(&bin, file_lines)) != 0)
-		{
-			display_error(comp_error);
-			continue;
-		}
+		if (!verify_file(argv[i]))
+			return (0);
 	}
 	return (0);
 }

@@ -59,23 +59,25 @@ static char		*header_type(char *str, char *name)
 int				add_head_to_bin(char **bin, char **file_lines)
 {
 	int		i;
+	int		error;
 	char	*name;
 	char	*com;
 
 	i = -1;
-	name = NULL;
-	com = NULL;
-	while (file_lines[++i] && (!name || !com))
+	while (file_lines[++i] && !(name && com))
 	{
+		printf("%s\n", file_lines[i]);
 		if ((name = header_type(file_lines[i], ".name")) && !name)
 			continue ;
 		else if ((com = header_type(file_lines[i], ".comment")) && !com)
 			continue ;
 		else
 		{
+			printf("%s, %s\n", name, com);
+			error = name == NULL ? 1 : 2;
 			name == NULL ? name : free(name);
 			com == NULL ? com : free(com);
-			return (1);
+			return (error);
 		}
 	}
 	add_str_to_bin(bin, name);
