@@ -82,7 +82,6 @@ int				add_head_to_bin(int **bin, char **file_lines)
 	i = -1;
 	name = NULL;
 	com = NULL;
-	init_head(&head);
 	while (file_lines[++i])
 	{
 		if (!name && (name = header_type(file_lines[i], NAME_CMD_STRING)))
@@ -92,7 +91,9 @@ int				add_head_to_bin(int **bin, char **file_lines)
 		else
 			return (handle_error(&name, &com));
 	}
-	
+	set_head_name(&head, name);
+	set_head_comment(&head, com);
+	set_head_to_bin(bin, head);
 	free(name);
 	free(com);
 	return (0);

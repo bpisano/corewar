@@ -6,7 +6,7 @@
 #    By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/03/15 18:40:16 by bpisano      #+#   ##    ##    #+#        #
-#    Updated: 2018/09/25 16:52:53 by bpisano     ###    #+. /#+    ###.fr      #
+#    Updated: 2018/09/25 19:02:53 by bpisano     ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -16,8 +16,10 @@ NAME = asm
 SRC = compiler/sources/main.c			\
 	  compiler/sources/error.c			\
 	  compiler/sources/binary_gestion.c	\
+	  compiler/sources/file_manager.c	\
 	  compiler/sources/read_file.c		\
 	  compiler/sources/header.c			\
+	  compiler/sources/header_manager.c	\
 
 OBJECTS = $(SRC:.c=.o)
 
@@ -45,7 +47,7 @@ $(NAME): $(LIB) $(OBJECTS)
 
 %.o : %.c
 	@echo "Compiling $(notdir $@)\033[500D\033[42C$(RED)[KO]$(END)"
-	@gcc $(FLAGS) $(HEADS) -o $@ -c $?
+	@gcc $(HEADS) -o $@ -c $?
 	@echo "\033[1A\033[500D\033[42C$(GREEN)[DONE]$(END)"
 
 clean:

@@ -24,27 +24,16 @@ int		*new_bin(void)
 	return (new);
 }
 
-int		add_num_to_bin(int **bin, size_t params, ...)
+int		add_int_to_bin(int **bin, int n)
 {
-	int		i;
 	int		old_size;
-	va_list	args;
-
-	i = -1;
-	va_start(args, params);
-	while (++i < (int)params)
-	{
-		old_size = (*bin)[0];
-		if (!(*bin = (int *)realloc(*bin, sizeof(int) * (old_size + 2))))
-		{
-			va_end(args);
-			return (0);
-		}
-		(*bin)[0] = old_size + 1;
-		(*bin)[old_size + 1] = va_arg(args, int);
-		(*bin)[old_size + 2] = 0;
-	}
-	va_end(args);
+	
+	old_size = (*bin)[0];
+	if (!(*bin = (int *)realloc(*bin, sizeof(int) * (old_size + 3))))
+		return (0);
+	(*bin)[0] = old_size + 1;
+	(*bin)[old_size + 1] = n;
+	(*bin)[old_size + 2] = 0;
 	return (1);
 }
 
@@ -64,4 +53,28 @@ int		add_str_to_bin(int **bin, char *str)
 void	free_binary(int **binary)
 {
 	free(*binary);
+}
+
+int		add_num_to_bin(int **bin, size_t params, ...)
+{
+	int		i;
+	int		old_size;
+	va_list	args;
+
+	i = -1;
+	va_start(args, params);
+	while (++i < (int)params)
+	{
+		old_size = (*bin)[0];
+		if (!(*bin = (int *)realloc(*bin, sizeof(int) * (old_size + 3))))
+		{
+			va_end(args);
+			return (0);
+		}
+		(*bin)[0] = old_size + 1;
+		(*bin)[old_size + 1] = va_arg(args, int);
+		(*bin)[old_size + 2] = 0;
+	}
+	va_end(args);
+	return (1);
 }

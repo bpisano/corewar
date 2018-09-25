@@ -30,21 +30,29 @@ void	display_error(int error);
 
 int		*new_bin();
 int		add_num_to_bin(int **bin, size_t params, ...);
+int		add_int_to_bin(int **bin, int n);
 int		add_str_to_bin(int **bin, char *str);
 void	free_binary(int **bin);
 
 /*
- ** READ_FILE
+ ** FILE
 */
 
 char	**read_file(char *filename);
 void	free_file_lines(char ***tab);
 
 /*
+ **
+*/
+
+char	*file_name(char *arg);
+int		write_bin(int *bin, char *file_name);
+
+/*
  ** HEADER
 */
 
-void	init_head(t_head *head);
+t_head	*new_head(void);
 void	set_head_name(t_head *head, char *name);
 void	set_head_comment(t_head *head, char *com);
 void	set_head_to_bin(int **bin, t_head head);

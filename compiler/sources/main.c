@@ -27,8 +27,9 @@ static int		compile_file_lines(char **file_lines, int **bin)
 	free_binary(bin);
 	
 	int i = -1;
-	while (++i < (*bin)[0])
-		printf("hex: %d\n", (*bin)[i]);
+	while (++i <= (*bin)[0])
+		printf("hex: %#x\n", (*bin)[i]);
+	printf("%d\n", write_bin(*bin, "test.cor"));
 	return (1);
 }
 

@@ -13,17 +13,22 @@
 
 #include "compiler.h"
 
-void	init_head(t_head *head)
+t_head	*new_head(void)
 {
-	head->magic = COREWAR_EXEC_MAGIC;
+	t_head	*new;
+
+	if (!(new = (t_head *)malloc(sizeof(t_head *))))
+		return (NULL);
+	new->magic = COREWAR_EXEC_MAGIC;
+	return (new);
 }
 
 void	set_head_name(t_head *head, char *name)
 {
 	int		i;
 
+	ft_bzero(head->prog_name, PROG_NAME_LENGTH);
 	i = -1;
-	ft_bzero(head->prog_name, PROG_NAME_LENGTH + 1);
 	while (name[++i])
 		head->prog_name[i] = name[i];
 }
@@ -32,9 +37,9 @@ void	set_head_comment(t_head *head, char *com)
 {
 	int		i;
 
+	ft_bzero(head->comment, COMMENT_LENGTH);
 	i = -1;
-	ft_bzero(head->comment, COMMENT_LENGTH + 1);
-	while (name[++i])
+	while (com[++i])
 		head->comment[i] = com[i];
 }
 
@@ -45,8 +50,8 @@ void	set_head_to_bin(int **bin, t_head head)
 	add_num_to_bin(bin, 1, COREWAR_EXEC_MAGIC);
 	i = -1;
 	while (++i < PROG_NAME_LENGTH)
-		add_num_to_bin(bin, 1, head.prog_name[i]);
+		add_int_to_bin(bin, head.prog_name[i]);
 	i = -1;
 	while (++i < COMMENT_LENGTH)
-		add_num_to_bin(bin, 1, head.comment[i]);
+		add_int_to_bin(bin, head.comment[i]);
 }
