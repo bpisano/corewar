@@ -1,47 +1,34 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   compiler.h                                       .::    .:/ .      .::   */
+/*   read_file.c                                      .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/09/24 17:57:34 by bpisano      #+#   ##    ##    #+#       */
-/*   Updated: 2018/09/25 12:20:16 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Created: 2018/09/24 17:48:29 by anamsell     #+#   ##    ##    #+#       */
+/*   Updated: 2018/09/25 12:20:27 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
+#include "compiler.h"
 
-#ifndef COMPILER_H
-# define COMPILER_H
+char	**read_file(char *filename)
+{
+	int		fd;
+	int		i;
+	char	**str;
 
-#include "libft.h"
-
-/*
- ** ERROR
-*/
-
-void	display_error(int error);
-
-/*
- ** BINARY
-*/
-
-char	*new_bin();
-char	add_to_bin(char **bin, char b);
-char	add_str_to_bin(char **bin, char *str);
-void	free_binary(char **bin);
-
-/*
- ** READ_FILE
-*/
-
-char	**read_file(char *filename);
-
-/*
- ** HEADER
-*/
-
-int		add_head_to_bin(int **bin, char **file_lines);
-
-#endif
+	i = 0;
+	if ((fd = open(filename, O_RDONLY)) < 0)
+		return (0);
+	if (!(str = (char **)malloc(sizeof(char *))))
+		return (0);
+	while (get_next_line(fd, str + i) > 0)
+	{
+		i++;
+		str = realloc(str, (i + 1) * sizeof(char *));
+	}
+	str[i] = 0;
+	return (str);
+}
