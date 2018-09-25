@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/09/24 17:57:34 by bpisano      #+#   ##    ##    #+#       */
-/*   Updated: 2018/09/25 12:34:34 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/25 13:00:20 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -37,6 +37,7 @@ void	free_binary(char **bin);
 */
 
 char	**read_file(char *filename);
+void	free_file_lines(char ***tab);
 
 /*
  ** HEADER

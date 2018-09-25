@@ -6,12 +6,25 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/09/24 17:48:29 by anamsell     #+#   ##    ##    #+#       */
-/*   Updated: 2018/09/25 12:20:27 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/25 12:58:36 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "compiler.h"
+
+void	free_file_lines(char ***tab)
+{
+	int		i;
+
+	i = 0;
+	while (tab[0][i])
+	{
+		free(tab[0][i]);
+		i++;
+	}
+	free(tab[0]);
+}
 
 char	**read_file(char *filename)
 {
