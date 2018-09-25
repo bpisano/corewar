@@ -92,7 +92,7 @@ int				add_head_to_bin(int **bin, char **file_lines)
 	}
 	add_num_to_bin(bin, 4, 0x00, 0xea, 0x83, 0xf3);
 	add_str_to_bin(bin, name);
-	add_str_to_bin(bin, com);ad
+	add_str_to_bin(bin, com);
 	free(name);
 	free(com);
 	return (0);

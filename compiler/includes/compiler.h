@@ -29,8 +29,8 @@ void	display_error(int error);
 */
 
 int		*new_bin();
-char	add_num_to_bin(int **bin, size_t params, ...);
-char	add_str_to_bin(int **bin, char *str);
+int		add_num_to_bin(int **bin, size_t params, ...);
+int		add_str_to_bin(int **bin, char *str);
 void	free_binary(int **bin);
 
 /*

@@ -35,7 +35,7 @@ int		add_num_to_bin(int **bin, size_t params, ...)
 	while (++i < (int)params)
 	{
 		old_size = (*bin)[0];
-		if (!(*bin = (char *)realloc(*bin, sizeof(char) * (old_size + 2))))
+		if (!(*bin = (int *)realloc(*bin, sizeof(int) * (old_size + 2))))
 		{
 			va_end(args);
 			return (0);
