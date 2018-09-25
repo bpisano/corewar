@@ -23,11 +23,13 @@ void			display_error(int error)
 	if (error == 1)
 		error_desc("Missing champion name");
 	else if (error == 2)
-		error_desc("Missing champion description");
+		error_desc("Missing champion comment");
 	else if (error == 3)
 		error_desc("Incorrect file name");
 	else if (error == 4)
 		error_desc("Cannot allocate new binary");
+	else if (error == 5)
+		error_desc("Too much header parameters");
 	else
 		ft_putstr("ERROR\n");
 }

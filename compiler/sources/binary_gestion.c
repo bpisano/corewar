@@ -39,6 +39,8 @@ char	add_str_to_bin(char **bin, char *str)
 {
 	int		i;
 
+	if (!str)
+		return (0);
 	i = -1;
 	while (str[++i])
 		if (!add_to_bin(bin, str[i]))
