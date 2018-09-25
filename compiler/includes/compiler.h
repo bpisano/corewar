@@ -44,6 +44,11 @@ void	free_file_lines(char ***tab);
  ** HEADER
 */
 
+void	init_head(t_head *head);
+void	set_head_name(t_head *head, char *name);
+void	set_head_comment(t_head *head, char *com);
+void	set_head_to_bin(int **bin, t_head head);
+
 int		add_head_to_bin(int **bin, char **file_lines);
 
 #endif
