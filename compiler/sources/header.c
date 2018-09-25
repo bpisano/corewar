@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   header.c                                         .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: bpisano <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
+/*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/09/25 10:55:54 by bpisano      #+#   ##    ##    #+#       */
-/*   Updated: 2018/09/25 11:12:02 by bpisano     ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/25 12:37:30 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -39,7 +39,7 @@ static char		*header_type(char *str, char *name)
 	char	**split;
 	char	*sub;
 
-	split = ft_strsplit(' ', str);
+	split = ft_strsplit(str, ' ');
 	if (split_len(split) != 2)
 	{
 		free_split(&split);
@@ -56,7 +56,7 @@ static char		*header_type(char *str, char *name)
 	return (sub);
 }
 
-int				add_head_to_bin(int **bin, char **file_lines)
+int				add_head_to_bin(char **bin, char **file_lines)
 {
 	int		i;
 	char	*name;
@@ -67,14 +67,14 @@ int				add_head_to_bin(int **bin, char **file_lines)
 	com = NULL;
 	while (file_lines[++i] && (!name || !com))
 	{
-		if (name = header_type(file_lines[i], ".name") && !name)
+		if ((name = header_type(file_lines[i], ".name")) && !name)
 			continue ;
-		else if (desc = header_type(file_lines[i], ".comment") && !com)
+		else if ((com = header_type(file_lines[i], ".comment")) && !com)
 			continue ;
 		else
 		{
 			name == NULL ? name : free(name);
-			com == NULL ? desc : free(com);
+			com == NULL ? com : free(com);
 			return (1);
 		}
 	}

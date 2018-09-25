@@ -6,7 +6,7 @@
 #    By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/03/15 18:40:16 by bpisano      #+#   ##    ##    #+#        #
-#    Updated: 2018/09/24 19:23:07 by anamsell    ###    #+. /#+    ###.fr      #
+#    Updated: 2018/09/25 12:35:35 by anamsell    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -14,8 +14,10 @@
 NAME = asm
 
 SRC = compiler/sources/main.c			\
+	  compiler/sources/error.c			\
 	  compiler/sources/binary_gestion.c	\
-	  compiler/sources/read_file.c
+	  compiler/sources/read_file.c		\
+	  compiler/sources/header.c			\
 
 OBJECTS = $(SRC:.c=.o)
 

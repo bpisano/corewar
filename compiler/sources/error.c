@@ -3,17 +3,17 @@
 /*                                                              /             */
 /*   error.c                                          .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: bpisano <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
+/*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/09/24 19:34:47 by bpisano      #+#   ##    ##    #+#       */
-/*   Updated: 2018/09/24 19:35:07 by bpisano     ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/25 12:36:04 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "compiler.h"
 
-static void		error(char *desc)
+static void		error_desc(char *desc)
 {
 	ft_printf("ERROR: %s\n", desc);
 }
@@ -21,9 +21,9 @@ static void		error(char *desc)
 void			display_error(int error)
 {
 	if (error == 1)
-		error("Misssing champion name");
+		error_desc("Misssing champion name");
 	else if (error == 2)
-		error("Missing champion description");
+		error_desc("Missing champion description");
 	else
 		ft_putstr("ERROR\n");
 }
