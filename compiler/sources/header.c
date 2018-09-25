@@ -46,7 +46,7 @@ static char		*header_type(char *str, char *name)
 		return (NULL);
 	}
 	if (ft_strcmp(split[0], name) != 0 ||
-		(name_len = ft_strlen(split[1])) < 3) ||
+		(name_len = ft_strlen(split[1])) < 3 ||
 		!(split[1][0] == '\"' && split[1][name_len - 1] == '\"'))
 	{
 		free_split(&split);
@@ -72,7 +72,7 @@ static int		handle_error(char **name, char **com)
 	return (error);
 }
 
-int				add_head_to_bin(char **bin, char **file_lines)
+int				add_head_to_bin(int **bin, char **file_lines)
 {
 	int		i;
 	char	*name;
@@ -83,15 +83,16 @@ int				add_head_to_bin(char **bin, char **file_lines)
 	com = NULL;
 	while (file_lines[++i])
 	{
-		if (!name && (name = header_type(file_lines[i], ".name")))
+		if (!name && (name = header_type(file_lines[i], NAME_CMD_STRING)))
 			continue ;
-		else if (!com && (com = header_type(file_lines[i], ".comment")))
+		else if (!com && (com = header_type(file_lines[i], COMMENT_CMD_STRING)))
 			continue ;
 		else
 			return (handle_error(&name, &com));
 	}
+	add_num_to_bin(bin, 4, 0x00, 0xea, 0x83, 0xf3);
 	add_str_to_bin(bin, name);
-	add_str_to_bin(bin, com);
+	add_str_to_bin(bin, com);ad
 	free(name);
 	free(com);
 	return (0);

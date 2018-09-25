@@ -14,7 +14,7 @@
 
 #include "compiler.h"
 
-static int		compile_file_lines(char **file_lines, char **bin)
+static int		compile_file_lines(char **file_lines, int **bin)
 {
 	int		error;
 	
@@ -23,13 +23,19 @@ static int		compile_file_lines(char **file_lines, char **bin)
 		display_error(error);
 		return (0);
 	}
+	free_file_lines(&file_lines);
+	free_binary(bin);
+	
+	int i = -1;
+	while (++i < (*bin)[0])
+		printf("hex: %d\n", (*bin)[i]);
 	return (1);
 }
 
 static int		verify_file(char *file_name)
 {
 	char	**file_lines;
-	char	*bin;
+	int		*bin;
 	
 	if (!(file_lines = read_file(file_name)))
 	{

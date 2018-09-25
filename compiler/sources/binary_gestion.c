@@ -13,29 +13,42 @@
 
 #include "compiler.h"
 
-char	*new_bin(void)
+int		*new_bin(void)
 {
-	char	*new;
+	int		*new;
 
-	if (!(new = (char *)malloc(sizeof(char))))
+	if (!(new = (int *)malloc(sizeof(int) * 2)))
 		return (NULL);
 	new[0] = 0;
+	new[1] = 0;
 	return (new);
 }
 
-char	add_to_bin(char **bin, char b)
+int		add_num_to_bin(int **bin, size_t params, ...)
 {
+	int		i;
 	int		old_size;
+	va_list	args;
 
-	old_size = (*bin)[0];
-	if (!(*bin = (char *)realloc(*bin, sizeof(b) * (old_size + 1))))
-		return (0);
-	(*bin)[0] = old_size + 1;
-	(*bin)[old_size + 1] = b;
+	i = -1;
+	va_start(args, params);
+	while (++i < (int)params)
+	{
+		old_size = (*bin)[0];
+		if (!(*bin = (char *)realloc(*bin, sizeof(char) * (old_size + 2))))
+		{
+			va_end(args);
+			return (0);
+		}
+		(*bin)[0] = old_size + 1;
+		(*bin)[old_size + 1] = va_arg(args, int);
+		(*bin)[old_size + 2] = 0;
+	}
+	va_end(args);
 	return (1);
 }
 
-char	add_str_to_bin(char **bin, char *str)
+int		add_str_to_bin(int **bin, char *str)
 {
 	int		i;
 
@@ -43,12 +56,12 @@ char	add_str_to_bin(char **bin, char *str)
 		return (0);
 	i = -1;
 	while (str[++i])
-		if (!add_to_bin(bin, str[i]))
+		if (!add_num_to_bin(bin, 1, str[i]))
 			return (0);
 	return (1);
 }
 
-void	free_binary(char **binary)
+void	free_binary(int **binary)
 {
 	free(*binary);
 }

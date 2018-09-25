@@ -16,6 +16,7 @@
 # define COMPILER_H
 
 #include "libft.h"
+#include "op.h"
 
 /*
  ** ERROR
@@ -28,9 +29,9 @@ void	display_error(int error);
 */
 
 char	*new_bin();
-char	add_to_bin(char **bin, char b);
-char	add_str_to_bin(char **bin, char *str);
-void	free_binary(char **bin);
+char	add_num_to_bin(int **bin, size_t params, ...);
+char	add_str_to_bin(int **bin, char *str);
+void	free_binary(int **bin);
 
 /*
  ** READ_FILE
@@ -43,6 +44,6 @@ void	free_file_lines(char ***tab);
  ** HEADER
 */
 
-int		add_head_to_bin(char **bin, char **file_lines);
+int		add_head_to_bin(int **bin, char **file_lines);
 
 #endif
