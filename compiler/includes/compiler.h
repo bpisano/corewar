@@ -36,6 +36,12 @@ void	free_binary(char **bin);
  ** READ_FILE
 */
 
-char**  ReadFile(char *filename);
+char	**ReadFile(char *filename);
+
+/*
+ ** HEADER
+*/
+
+int		add_head_to_bin(int **bin, char **file_lines);
 
 #endif
