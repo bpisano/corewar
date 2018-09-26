@@ -11,14 +11,13 @@
 /*                                                        /                   */
 /* ************************************************************************** */
 
-
 #include "compiler.h"
 
 static int		compile_file_lines(char **file_lines, int **bin)
 {
 	int		error;
 	t_head	head;
-	
+
 	if ((error = set_header(&head, file_lines)))
 	{
 		display_error(error);
@@ -34,7 +33,7 @@ static int		verify_file(char *file_name)
 {
 	char	**file_lines;
 	int		*bin;
-	
+
 	if (!(file_lines = read_file(file_name)))
 	{
 		display_error(3);
@@ -55,10 +54,10 @@ static int		verify_file(char *file_name)
 	return (1);
 }
 
-int		main(int argc, char **argv)
+int				main(int argc, char **argv)
 {
-	int 	i;
-	
+	int		i;
+
 	i = 0;
 	while (++i < argc)
 	{

@@ -27,7 +27,7 @@ int		*new_bin(void)
 int		add_int_to_bin(int **bin, int n)
 {
 	int		old_size;
-	
+
 	old_size = (*bin)[0];
 	if (!(*bin = (int *)realloc(*bin, sizeof(int) * (old_size + 3))))
 		return (0);

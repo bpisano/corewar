@@ -35,20 +35,31 @@ static void		free_split(char ***split)
 
 static char		*header_type(char *str, char *type)
 {
-	int		i;
-	int		begin;
-	char	*type_name;
-	
-	i = -1;
-	while (str[++i] == type[i])
-		;
-	
+	char	**split;
+	char	*trim_type;
+
+	split = ft_strsplit(str, '\"');
+	if (split_len(split) != 2)
+	{
+		free_split(&split);
+		return (NULL);
+	}
+	trim_type = ft_strtrim(split[0]);
+	if (ft_strcmp(type, trim_type) != 0)
+	{
+		free(trim_type);
+		return (NULL);
+	}
+	free(trim_type);
+	free(split[0]);
+	free(split);
+	return (split[1]);
 }
 
 static int		handle_error(char **name, char **com)
 {
 	int		error;
-	
+
 	if (!*name)
 		error = 1;
 	else if (!*com)
@@ -78,6 +89,7 @@ int				set_header(t_head *head, char **file_lines)
 		else
 			return (handle_error(&name, &com));
 	}
+	head->magic = COREWAR_EXEC_MAGIC;
 	set_head_name(head, name);
 	set_head_comment(head, com);
 	free(name);
