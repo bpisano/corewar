@@ -42,21 +42,19 @@ char	**read_file(char *filename);
 void	free_file_lines(char ***tab);
 
 /*
- **
+ ** WRITE
 */
 
 char	*file_name(char *arg);
+int		write_header(t_head head, char *file_name);
 int		write_bin(int *bin, char *file_name);
 
 /*
  ** HEADER
 */
 
-t_head	*new_head(void);
 void	set_head_name(t_head *head, char *name);
 void	set_head_comment(t_head *head, char *com);
-void	set_head_to_bin(int **bin, t_head head);
-
-int		add_head_to_bin(int **bin, char **file_lines);
+int		set_header(t_head *head, char **file_lines);
 
 #endif

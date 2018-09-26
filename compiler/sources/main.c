@@ -17,19 +17,16 @@
 static int		compile_file_lines(char **file_lines, int **bin)
 {
 	int		error;
+	t_head	head;
 	
-	if ((error = add_head_to_bin(bin, file_lines)))
+	if ((error = set_header(&head, file_lines)))
 	{
 		display_error(error);
 		return (0);
 	}
 	free_file_lines(&file_lines);
 	free_binary(bin);
-	
-	int i = -1;
-	while (++i <= (*bin)[0])
-		printf("hex: %#x\n", (*bin)[i]);
-	printf("%d\n", write_bin(*bin, "test.cor"));
+	printf("%d\n", write_header(head, "test.cor"));
 	return (1);
 }
 
