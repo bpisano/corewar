@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   op.h                                             .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: bpisano <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
+/*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/09/25 16:50:13 by bpisano      #+#   ##    ##    #+#       */
-/*   Updated: 2018/09/25 16:50:21 by bpisano     ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/26 16:46:31 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -74,4 +74,26 @@ typedef struct		s_head
 	char			comment[COMMENT_LENGTH + 1];
 }					t_head;
 
+typedef	struct		s_arg
+{
+	char			arg1;
+	char			arg2;
+	char			arg3;
+}					t_arg;
+
+typedef	struct		s_op
+{
+	char*			name;
+	int				nbr_arg;
+	t_arg			arg;
+	int				opcode;
+	char			codage_octal;
+	int				dir_size;
+
+}					t_op;
+
+typedef	struct		s_label
+{
+	
+}					t_label;
 #endif
