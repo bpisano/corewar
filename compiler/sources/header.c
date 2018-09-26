@@ -33,28 +33,16 @@ static void		free_split(char ***split)
 	free(*split);
 }
 
-static char		*header_type(char *str, char *name)
+static char		*header_type(char *str, char *type)
 {
-	int		name_len;
-	char	**split;
-	char	*sub;
-
-	split = ft_strsplit(str, ' ');
-	if (split_len(split) != 2)
-	{
-		free_split(&split);
-		return (NULL);
-	}
-	if (ft_strcmp(split[0], name) != 0 ||
-		(name_len = ft_strlen(split[1])) < 3 ||
-		!(split[1][0] == '\"' && split[1][name_len - 1] == '\"'))
-	{
-		free_split(&split);
-		return (NULL);
-	}
-	sub = ft_strsub(split[1], 1, name_len - 2);
-	free_split(&split);
-	return (sub);
+	int		i;
+	int		begin;
+	char	*type_name;
+	
+	i = -1;
+	while (str[++i] == type[i])
+		;
+	
 }
 
 static int		handle_error(char **name, char **com)
@@ -72,12 +60,11 @@ static int		handle_error(char **name, char **com)
 	return (error);
 }
 
-int				add_head_to_bin(int **bin, char **file_lines)
+int				set_header(t_head *head, char **file_lines)
 {
 	int		i;
 	char	*name;
 	char	*com;
-	t_head	head;
 
 	i = -1;
 	name = NULL;
@@ -91,9 +78,8 @@ int				add_head_to_bin(int **bin, char **file_lines)
 		else
 			return (handle_error(&name, &com));
 	}
-	set_head_name(&head, name);
-	set_head_comment(&head, com);
-	set_head_to_bin(bin, head);
+	set_head_name(head, name);
+	set_head_comment(head, com);
 	free(name);
 	free(com);
 	return (0);
