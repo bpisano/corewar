@@ -15,14 +15,17 @@
 
 static int		compile_file_lines(char **file_lines, int **bin)
 {
-	int		error;
+	int		prog_start;
 	t_head	head;
 
-	if ((error = set_header(&head, file_lines)))
+	if ((prog_start = set_header(&head, file_lines)) < 0)
 	{
-		display_error(error);
+		display_error(prog_start);
 		return (0);
 	}
+	int i = prog_start - 1;
+	while (file_lines[++i])
+		printf("%s\n", file_lines[i]);
 	free_file_lines(&file_lines);
 	free_binary(bin);
 	printf("%d\n", write_header(head, "test.cor"));

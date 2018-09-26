@@ -61,11 +61,11 @@ static int		handle_error(char **name, char **com)
 	int		error;
 
 	if (!*name)
-		error = 1;
+		error = -1;
 	else if (!*com)
-		error = 2;
+		error = -2;
 	else
-		error = 5;
+		error = -3;
 	*name == NULL ? name : free(*name);
 	*com == NULL ? com : free(*com);
 	return (error);
@@ -80,7 +80,7 @@ int				set_header(t_head *head, char **file_lines)
 	i = -1;
 	name = NULL;
 	com = NULL;
-	while (file_lines[++i])
+	while (file_lines[++i] && !(name && com))
 	{
 		if (!name && (name = header_type(file_lines[i], NAME_CMD_STRING)))
 			continue ;
@@ -94,5 +94,5 @@ int				set_header(t_head *head, char **file_lines)
 	set_head_comment(head, com);
 	free(name);
 	free(com);
-	return (0);
+	return (i);
 }
