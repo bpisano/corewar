@@ -6,7 +6,7 @@
 #    By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/03/15 18:40:16 by bpisano      #+#   ##    ##    #+#        #
-#    Updated: 2018/09/25 19:02:53 by bpisano     ###    #+. /#+    ###.fr      #
+#    Updated: 2018/09/26 12:44:28 by anamsell    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -20,6 +20,7 @@ SRC = compiler/sources/main.c			\
 	  compiler/sources/read_file.c		\
 	  compiler/sources/header.c			\
 	  compiler/sources/header_manager.c	\
+	  compiler/sources/core_text.c		\
 
 OBJECTS = $(SRC:.c=.o)
 
