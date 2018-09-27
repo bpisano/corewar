@@ -6,21 +6,22 @@
 #    By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/03/15 18:40:16 by bpisano      #+#   ##    ##    #+#        #
-#    Updated: 2018/09/26 12:44:28 by anamsell    ###    #+. /#+    ###.fr      #
+#    Updated: 2018/09/27 15:58:01 by bpisano     ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
 
 NAME = asm
 
-SRC = compiler/sources/main.c			\
-	  compiler/sources/error.c			\
-	  compiler/sources/binary_gestion.c	\
-	  compiler/sources/file_manager.c	\
-	  compiler/sources/read_file.c		\
-	  compiler/sources/header.c			\
-	  compiler/sources/header_manager.c	\
-	  compiler/sources/core_text.c		\
+SRC = compiler/sources/main.c				\
+	  compiler/sources/error.c				\
+	  compiler/sources/binary_gestion.c		\
+	  compiler/sources/file_manager.c		\
+	  compiler/sources/read_file.c			\
+	  compiler/sources/comment_cleaner.c	\
+	  compiler/sources/header.c				\
+	  compiler/sources/header_manager.c		\
+	  compiler/sources/core_text.c			\
 
 OBJECTS = $(SRC:.c=.o)
 

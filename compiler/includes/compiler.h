@@ -37,6 +37,8 @@ void	free_bin(t_bin *bin);
 
 char	**read_file(char *filename);
 void	free_file_lines(char ***tab);
+int		is_comment(char *str);
+char	*no_comment(char *str);
 
 /*
  ** WRITE
