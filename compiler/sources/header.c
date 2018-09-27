@@ -48,6 +48,7 @@ static char		*header_type(char *str, char *type)
 	if (ft_strcmp(type, trim_type) != 0)
 	{
 		free(trim_type);
+		free_split(&split);
 		return (NULL);
 	}
 	free(trim_type);

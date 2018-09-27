@@ -17,13 +17,10 @@ void	free_file_lines(char ***tab)
 {
 	int		i;
 
-	i = 0;
-	while (tab[0][i])
-	{
-		free(tab[0][i]);
-		i++;
-	}
-	free(tab[0]);
+	i = -1;
+	while ((*tab)[++i])
+		free((*tab)[i]);
+	free(*tab);
 }
 
 char	**read_file(char *filename)
@@ -31,17 +28,23 @@ char	**read_file(char *filename)
 	int		fd;
 	int		i;
 	char	**str;
+	char	*line;
 
-	i = 0;
+	i = -1;
 	if ((fd = open(filename, O_RDONLY)) < 0)
 		return (0);
 	if (!(str = (char **)malloc(sizeof(char *))))
 		return (0);
-	while (get_next_line(fd, str + i) > 0)
+	while (get_next_line(fd, &line) > 0)
 	{
-		i++;
-		str = realloc(str, (i + 1) * sizeof(char *));
+		if (ft_str_is_empty(line))
+		{
+			free(line);
+			continue ;
+		}
+		str[++i] = line;
+		str = realloc(str, (i + 2) * sizeof(char *));
 	}
-	str[i] = 0;
+	str[i + 1] = 0;
 	return (str);
 }
