@@ -13,14 +13,12 @@
 
 #include "compiler.h"
 
-int		*new_bin(void)
+int		*init_bin(t_bin *bin)
 {
-	int		*new;
-
-	if (!(new = (int *)malloc(sizeof(int) * 2)))
+	if (!(bin->bin = (int *)malloc(sizeof(int))))
 		return (NULL);
-	new[0] = 0;
-	new[1] = 0;
+	bin->bin[0] = 0;
+	bin->size = 
 	return (new);
 }
 

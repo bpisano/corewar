@@ -102,6 +102,6 @@ typedef	struct		s_label
 typedef	struct		s_bin
 {
 	int				*bin;
-	int				size;
+	size_t			size;
 }					t_bin;
 #endif
