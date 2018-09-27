@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/09/25 16:50:13 by bpisano      #+#   ##    ##    #+#       */
-/*   Updated: 2018/09/26 16:46:31 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/27 14:19:20 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -83,7 +83,7 @@ typedef	struct		s_arg
 
 typedef	struct		s_op
 {
-	char*			name;
+	char			*name;
 	int				nbr_arg;
 	t_arg			arg;
 	int				opcode;
@@ -94,6 +94,14 @@ typedef	struct		s_op
 
 typedef	struct		s_label
 {
-	
+	char			*name;
+	int				pos;
+	struct s_label	*next;
 }					t_label;
+
+typedef	struct		s_bin
+{
+	int				*bin;
+	int				size;
+}					t_bin;
 #endif
