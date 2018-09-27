@@ -27,9 +27,12 @@ void	display_error(int error);
  ** BINARY
 */
 
-int		init_bin(t_bin *bin);
-int		add_int_to_bin(t_bin *bin, int n, size_t size);
-void	free_bin(t_bin *bin);
+int		**new_bin();
+int		bin_len(int **bin);
+int		add_bin_line(int ***bin);
+int		add_bin_int(int ***bin, int n, size_t oct);
+void	free_bin(int ***bin);
+void	print_bin(int **bin);
 
 /*
  ** FILE
