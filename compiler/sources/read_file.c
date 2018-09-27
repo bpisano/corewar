@@ -23,6 +23,13 @@ void	free_file_lines(char ***tab)
 	free(*tab);
 }
 
+static	int		line_is_comment(char *line)
+{
+	if (!line)
+		return (0);
+	return (line[0] == COMMENT_CHAR);
+}
+
 char	**read_file(char *filename)
 {
 	int		fd;
@@ -37,7 +44,7 @@ char	**read_file(char *filename)
 		return (0);
 	while (get_next_line(fd, &line) > 0)
 	{
-		if (ft_str_is_empty(line))
+		if (ft_str_is_empty(line) || line_is_comment(line))
 		{
 			free(line);
 			continue ;
