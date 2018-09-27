@@ -27,11 +27,9 @@ void	display_error(int error);
  ** BINARY
 */
 
-int		*new_bin();
-int		add_num_to_bin(int **bin, size_t params, ...);
-int		add_int_to_bin(int **bin, int n);
-int		add_str_to_bin(int **bin, char *str);
-void	free_binary(int **bin);
+int		init_bin(t_bin *bin);
+int		add_int_to_bin(t_bin *bin, int n, size_t size);
+void	free_bin(t_bin *bin);
 
 /*
  ** FILE

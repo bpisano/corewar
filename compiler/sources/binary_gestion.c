@@ -13,66 +13,31 @@
 
 #include "compiler.h"
 
-int		*init_bin(t_bin *bin)
+int		init_bin(t_bin *bin)
 {
 	if (!(bin->bin = (int *)malloc(sizeof(int))))
-		return (NULL);
+		return (0);
 	bin->bin[0] = 0;
-	bin->size = 
-	return (new);
+	bin->size = 0;
+	return (1);
 }
 
-int		add_int_to_bin(int **bin, int n)
+int		add_int_to_bin(t_bin *bin, int n, size_t size)
 {
-	int		old_size;
-
-	old_size = (*bin)[0];
-	if (!(*bin = (int *)realloc(*bin, sizeof(int) * (old_size + 3))))
+	if (!size)
+		return (1);
+	if (!add_int_to_bin(bin, n >> 8, size - 1))
 		return (0);
-	(*bin)[0] = old_size + 1;
-	(*bin)[old_size + 1] = n;
-	(*bin)[old_size + 2] = 0;
-	return (1);
-}
-
-int		add_str_to_bin(int **bin, char *str)
-{
-	int		i;
-
-	if (!str)
+	if (!(bin->bin = (int *)realloc(bin->bin, sizeof(int) * (bin->size + 2))))
 		return (0);
-	i = -1;
-	while (str[++i])
-		if (!add_num_to_bin(bin, 1, str[i]))
-			return (0);
+	bin->bin[bin->size] = n & 0xff;
+	bin->bin[bin->size + 1] = 0;
+	bin->size++;
 	return (1);
 }
 
-void	free_binary(int **binary)
+void	free_bin(t_bin *bin)
 {
-	free(*binary);
-}
-
-int		add_num_to_bin(int **bin, size_t params, ...)
-{
-	int		i;
-	int		old_size;
-	va_list	args;
-
-	i = -1;
-	va_start(args, params);
-	while (++i < (int)params)
-	{
-		old_size = (*bin)[0];
-		if (!(*bin = (int *)realloc(*bin, sizeof(int) * (old_size + 3))))
-		{
-			va_end(args);
-			return (0);
-		}
-		(*bin)[0] = old_size + 1;
-		(*bin)[old_size + 1] = va_arg(args, int);
-		(*bin)[old_size + 2] = 0;
-	}
-	va_end(args);
-	return (1);
+	free(bin->bin);
+	bin->size = 0;
 }
