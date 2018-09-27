@@ -13,31 +13,85 @@
 
 #include "compiler.h"
 
-int		init_bin(t_bin *bin)
+int		**new_bin()
 {
-	if (!(bin->bin = (int *)malloc(sizeof(int))))
+	int		**new;
+
+	if (!(new = (int **)malloc(sizeof(int *))))
+		return (NULL);
+	new[0] = 0;
+	add_bin_line(&new);
+	return (new);
+}
+
+int		bin_len(int **bin)
+{
+	int		i;
+	
+	i = -1;
+	while (bin[++i])
+		;
+	return (i);
+}
+
+int		add_bin_line(int ***bin)
+{
+	int		len;
+	int		*line;
+	
+	len = bin_len(*bin);
+	if (!(*bin = (int **)realloc(*bin, sizeof(int *) * (len + 1))))
 		return (0);
-	bin->bin[0] = 0;
-	bin->size = 0;
+	if (!((*bin)[len] = (int *)malloc(sizeof(int))))
+		return (0);
+	(*bin)[len][0] = 0;
+	(*bin)[len + 1] = 0;
 	return (1);
 }
 
-int		add_int_to_bin(t_bin *bin, int n, size_t size)
+int		add_bin_int(int ***bin, int n, size_t oct)
 {
-	if (!size)
+	int		col;
+	int		old_size;
+	int		**line;
+	
+	if (!oct)
 		return (1);
-	if (!add_int_to_bin(bin, n >> 8, size - 1))
+	col = bin_len(*bin) - 1;
+	add_bin_int(bin, n >> 8, oct - 1);
+	line = &((*bin)[col]);
+	old_size = (*line)[0];
+	if (!(*line = (int *)realloc(*line, sizeof(int) * (old_size + 3))))
 		return (0);
-	if (!(bin->bin = (int *)realloc(bin->bin, sizeof(int) * (bin->size + 2))))
-		return (0);
-	bin->bin[bin->size] = n & 0xff;
-	bin->bin[bin->size + 1] = 0;
-	bin->size++;
+	(*line)[old_size + 1] = n & 0xff;
+	(*line)[old_size + 2] = 0;
+	(*line)[0] = old_size + 1;
 	return (1);
 }
 
-void	free_bin(t_bin *bin)
+void	free_bin(int ***bin)
 {
-	free(bin->bin);
-	bin->size = 0;
+	int		i;
+	int		len;
+	
+	i = -1;
+	len = bin_len(*bin);
+	while ((*bin)[++i])
+		free((*bin)[i]);
+	free(*bin);
+}
+
+void	print_bin(int **bin)
+{
+	int		y;
+	int		x;
+	
+	y = -1;
+	while (bin[++y])
+	{
+		x = 0;
+		while (++x < bin[y][0] + 1)
+			printf("%#0x ", bin[y][x]);
+		printf("\n");
+	}
 }

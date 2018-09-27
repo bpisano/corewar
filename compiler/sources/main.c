@@ -13,7 +13,7 @@
 
 #include "compiler.h"
 
-static int		write_to_files(t_head head, t_bin *bin, char *file_name)
+static int		write_to_files(t_head head, int ***bin, char *file_name)
 {
 	if (!write_header(head, "test.cor"))
 	{
@@ -24,7 +24,7 @@ static int		write_to_files(t_head head, t_bin *bin, char *file_name)
 	return (1);
 }
 
-static int		compile_file_lines(char **file_lines, t_bin *bin, char *name)
+static int		compile_file_lines(char **file_lines, int ***bin, char *name)
 {
 	int		prog_start;
 	t_head	head;
@@ -41,14 +41,14 @@ static int		compile_file_lines(char **file_lines, t_bin *bin, char *name)
 static int		verify_file(char *file_name)
 {
 	char	**file_lines;
-	t_bin	bin;
+	int		**bin;
 
 	if (!(file_lines = read_file(file_name)))
 	{
 		display_error(3);
 		return (0);
 	}
-	if (!init_bin(&bin))
+	if (!(bin = new_bin()))
 	{
 		display_error(4);
 		free_file_lines(&file_lines);
@@ -70,8 +70,15 @@ int				main(int argc, char **argv)
 	i = 0;
 	while (++i < argc)
 	{
-		if (!verify_file(argv[i]))
-			return (0);
+		//if (!verify_file(argv[i]))
+			//return (0);
 	}
+	int		**bin;
+	
+	bin = new_bin();
+	add_bin_int(&bin, 0x0a, 2);
+	add_bin_line(&bin);
+	add_bin_int(&bin, 0x0f, 2);
+	print_bin(bin);
 	return (0);
 }
