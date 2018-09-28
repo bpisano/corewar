@@ -6,7 +6,7 @@
 #    By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/03/15 18:40:16 by bpisano      #+#   ##    ##    #+#        #
-#    Updated: 2018/09/28 13:57:16 by bpisano     ###    #+. /#+    ###.fr      #
+#    Updated: 2018/09/28 14:21:07 by bpisano     ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -18,10 +18,11 @@ SRC = compiler/sources/main.c				\
 	  compiler/sources/binary_gestion.c		\
 	  compiler/sources/file_manager.c		\
 	  compiler/sources/read_file.c			\
-	  compiler/sources/str_cleaner.c	\
+	  compiler/sources/str_cleaner.c		\
 	  compiler/sources/header.c				\
 	  compiler/sources/header_manager.c		\
 	  compiler/sources/core_text.c			\
+	  compiler/sources/cmd_manager.c		\
 
 OBJECTS = $(SRC:.c=.o)
 

@@ -61,10 +61,12 @@ void	set_head_comment(t_head *head, char *com);
 int		set_header(t_head *head, char **file_lines);
 
 /*
- ** core_text
+ ** COMPILER
 */
 
 int     ft_somestrchr(char *str1, char *str2);
 
+char	***new_cmd_lines();
+int		add_cmd_line(char ****cmd_lines);
 
 #endif
