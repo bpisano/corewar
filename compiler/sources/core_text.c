@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/09/25 17:16:20 by anamsell     #+#   ##    ##    #+#       */
-/*   Updated: 2018/09/26 16:46:21 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/28 14:05:30 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -28,7 +28,7 @@ t_op	*struct_tab(void)
 {
 	t_op	*op_tab;
 
-	if (!(op_tab = malloc(17 * sizeof(t_op))))
+	if (!(op_tab = malloc(16 * sizeof(t_op))))
 		return (0);
 	op_tab[0] = (t_op){"live", 1, {T_DIR, 0, 0}, 1, 0, 4};
 	op_tab[1] = (t_op){"ld", 2, {T_DIR | T_IND, T_REG, 0}, 2, 1, 4};
@@ -49,22 +49,35 @@ t_op	*struct_tab(void)
 	return (struct_tab2(op_tab));
 }
 
-int		core_text(int **bin, char **file_lines)
+
+
+int		core_text(int ***bin, char **file_lines)
 {
 	int		i;
-	int		j;
 	char	***file;
 	t_op	*op_tab;
 
 	op_tab = struct_tab();
 	i = -1;
+	if (!(file = malloc(sizeof(char**))))
+		return (-1)
 	while (file_lines[++i])
+	{
 		if (!(file[i] = ft_strsplit(file_lines[i], ' ')))
-			return (0);
+			return (-1);
+		if (!(file = realloc(sizeof(char **) * i + 2)))
+			return (-1)
+	}
+	file[i] = 0;
 	i = -1;
-	while (file[++i] && (j = -1))
-		while (file[i][j++])
-			;
-	
-	return (0);
+	while (file[++i])
+		if (is_op(file[i][0], op_tab))
+			handle_op(file[i], op_tab, &bin[0][i]);
+		else if (!(ft_somestrchr(file[i][0], LABEL_CHARS))
+			return (6);
+		else if ((is_op(file[i][1], op_tab)))
+			handle_op(file[i] + 1, op_tab, &bin[0][1]);
+		else
+			return(6);
+	return (handle_label(file, bin));
 }
