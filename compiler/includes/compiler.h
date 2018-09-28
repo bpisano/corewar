@@ -42,6 +42,7 @@ char	**read_file(char *filename);
 void	free_file_lines(char ***tab);
 int		is_comment(char *str);
 char	*no_comment(char *str);
+void	str_replace(char **str, char c, char rep);
 
 /*
  ** WRITE

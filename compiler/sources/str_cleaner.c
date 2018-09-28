@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   comment_cleaner.c                                .::    .:/ .      .::   */
+/*   str_cleaner.c                                    .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: bpisano <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/09/27 18:21:30 by bpisano      #+#   ##    ##    #+#       */
-/*   Updated: 2018/09/27 16:12:00 by bpisano     ###    #+. /#+    ###.fr     */
+/*   Created: 2018/09/28 13:35:15 by bpisano      #+#   ##    ##    #+#       */
+/*   Updated: 2018/09/27 19:09:33 by bpisano     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -34,4 +34,16 @@ char			*no_comment(char *str)
 	free(str);
 	free(new);
 	return (trim);
+}
+
+void			str_replace(char **str, char c, char rep)
+{
+	int		i;
+	
+	if (!str)
+		return ;
+	i = -1;
+	while ((*str)[++i])
+		if ((*str)[i] == c)
+			(*str)[i] = rep;
 }

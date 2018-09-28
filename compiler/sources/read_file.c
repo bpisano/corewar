@@ -50,6 +50,7 @@ char	**read_file(char *filename)
 			continue ;
 		}
 		str[++i] = no_comment(line);
+		str_replace(&(str[i]), '\t', ' ');
 		str = realloc(str, sizeof(char *) * (i + 2));
 	}
 	str[i + 1] = 0;
