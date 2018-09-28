@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/09/25 16:50:13 by bpisano      #+#   ##    ##    #+#       */
-/*   Updated: 2018/09/27 14:19:20 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/27 20:20:41 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -99,9 +99,4 @@ typedef	struct		s_label
 	struct s_label	*next;
 }					t_label;
 
-typedef	struct		s_bin
-{
-	int				*bin;
-	size_t			size;
-}					t_bin;
 #endif

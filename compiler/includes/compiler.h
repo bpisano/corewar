@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/09/24 17:57:34 by bpisano      #+#   ##    ##    #+#       */
-/*   Updated: 2018/09/25 13:00:20 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/27 22:24:56 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -59,5 +59,12 @@ int		write_bin(int *bin, char *file_name);
 void	set_head_name(t_head *head, char *name);
 void	set_head_comment(t_head *head, char *com);
 int		set_header(t_head *head, char **file_lines);
+
+/*
+ ** core_text
+*/
+
+int     ft_somestrchr(char *str1, char *str2);
+
 
 #endif
