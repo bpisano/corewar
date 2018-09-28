@@ -24,6 +24,12 @@
 void	display_error(int error);
 
 /*
+ ** MEMORY
+*/
+
+void	free_split(char ***split);
+
+/*
  ** BINARY
 */
 
@@ -59,7 +65,6 @@ int		write_bin(int *bin, char *file_name);
 void	set_head_name(t_head *head, char *name);
 void	set_head_comment(t_head *head, char *com);
 int		set_header(t_head *head, char **file_lines);
-void	free_split(char ***split);
 
 /*
  ** COMPILER
