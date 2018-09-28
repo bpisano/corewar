@@ -23,16 +23,18 @@ char	***new_cmd_lines()
 	return (new);
 }
 
-int		add_cmd_line(char ****cmd_lines)
-{
-	int		len;
+int		add_cmd_line(char ****cmd_lines, char *line)
+{	
+	char	**split;
 	
-	len = -1;
-	while ((*cmd_lines)[++i])
-		;
-	if (!(*cmd_lines = (char ***)realloc(sizeof(char **) * (len + 2))))
+	if (!(split = ft_strsplit(line, ' ')))
 		return (0);
-	(*cmd_lines)[len + 1] = 0;
+	if (!(*cmd_lines = (char ***)realloc(sizeof(char **) * 2)))
+	{
+		free_split(&split);
+		return (0);
+	}
+	(*cmd_lines)[len + 1] = split;
 	(*cmd_lines)[len + 2] = 0;
 	return (1);
 }
