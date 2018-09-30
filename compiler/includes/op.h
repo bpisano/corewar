@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/09/25 16:50:13 by bpisano      #+#   ##    ##    #+#       */
-/*   Updated: 2018/09/27 20:20:41 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/30 16:42:06 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -66,6 +66,8 @@ typedef char		t_arg_type;
 # define COMMENT_LENGTH			(2048)
 # define COREWAR_EXEC_MAGIC		0xea83f3
 
+# define LAB_NUMB				300
+
 typedef struct		s_head
 {
 	unsigned int	magic;
@@ -94,9 +96,10 @@ typedef	struct		s_op
 
 typedef	struct		s_label
 {
+	struct s_label	*next;
 	char			*name;
 	int				pos;
-	struct s_label	*next;
+	
 }					t_label;
 
 #endif

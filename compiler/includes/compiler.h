@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/09/24 17:57:34 by bpisano      #+#   ##    ##    #+#       */
-/*   Updated: 2018/09/27 22:24:56 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/30 16:51:13 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -75,4 +75,7 @@ int     ft_somestrchr(char *str1, char *str2);
 char	***new_cmd_lines();
 int		add_cmd_line(char ****cmd_lines);
 
+
+int    add_lab_list(char *name, int pos, int **bin, t_label *lab);
+int     fill_bin_lab(int *bin, char **line, t_label lab, int pos);
 #endif

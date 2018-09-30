@@ -6,7 +6,7 @@
 #    By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/03/15 18:40:16 by bpisano      #+#   ##    ##    #+#        #
-#    Updated: 2018/09/28 14:35:40 by bpisano     ###    #+. /#+    ###.fr      #
+#    Updated: 2018/09/30 16:48:55 by anamsell    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -24,6 +24,7 @@ SRC = compiler/sources/main.c				\
 	  compiler/sources/header_manager.c		\
 	  compiler/sources/core_text.c			\
 	  compiler/sources/cmd_manager.c		\
+	  compiler/sources/fnct.c				\
 
 OBJECTS = $(SRC:.c=.o)
 

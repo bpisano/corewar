@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/09/25 17:16:20 by anamsell     #+#   ##    ##    #+#       */
-/*   Updated: 2018/09/28 14:05:30 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/09/30 16:51:17 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -49,7 +49,51 @@ t_op	*struct_tab(void)
 	return (struct_tab2(op_tab));
 }
 
+void	handle_op(char **file, t_op *op_tab, int ***bin)
+{
+}
 
+int		is_op(char *str, t_op *op_tab)
+{
+	int		i;
+
+	i = -1;
+	while (++i < 16)
+		if (!ft_strcmp(op_tab[i].name, str))
+			return (1);
+	return (0);
+}
+
+int		handle_label(char ***file, int **bin, t_op *op_tab)
+{
+	t_label	lab;
+	int		i;
+	int		j;
+	int		pos;
+
+	i = -1;
+	pos = 0;
+	lab.name= 0;
+	while (file[++i][0])
+	{
+		if (!is_op(file[i][0], op_tab))
+			if (!(add_lab_list(file[i][0], pos, bin, &lab)))
+				return (-1);
+		pos += bin[i + 1][0];
+	}
+	i = 0;
+	j = 0;
+	pos = 0;
+	while (bin[0][0] >= ++i && !(j = 0))
+	{
+		while (bin[i][0] >= ++j)
+			if (bin[i][j] == LAB_NUMB)
+				if (!fill_bin_lab(&(bin[i][j]), file[i - 1], lab, pos))
+					return (-6);
+		pos += bin[i][0];
+	}
+	return (0);
+}
 
 int		core_text(int ***bin, char **file_lines)
 {
@@ -59,25 +103,21 @@ int		core_text(int ***bin, char **file_lines)
 
 	op_tab = struct_tab();
 	i = -1;
-	if (!(file = malloc(sizeof(char**))))
-		return (-1)
+	if (!(file = new_cmd_lines()))
+		return (-1);
 	while (file_lines[++i])
-	{
-		if (!(file[i] = ft_strsplit(file_lines[i], ' ')))
+		if (!add_cmd_line(&&(file[i]), file_lines[i]))
 			return (-1);
-		if (!(file = realloc(sizeof(char **) * i + 2)))
-			return (-1)
-	}
 	file[i] = 0;
 	i = -1;
 	while (file[++i])
 		if (is_op(file[i][0], op_tab))
-			handle_op(file[i], op_tab, &bin[0][i]);
-		else if (!(ft_somestrchr(file[i][0], LABEL_CHARS))
+			handle_op(file[i], op_tab, bin);
+		else if (!(ft_somestrchr(file[i][0], LABEL_CHARS)))
 			return (6);
 		else if ((is_op(file[i][1], op_tab)))
-			handle_op(file[i] + 1, op_tab, &bin[0][1]);
+			handle_op(file[i] + 1, op_tab, bin);
 		else
 			return(6);
-	return (handle_label(file, bin));
+	return (handle_label(file, *bin, op_tab));
 }
