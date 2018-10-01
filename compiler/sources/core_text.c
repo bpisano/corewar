@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/09/25 17:16:20 by anamsell     #+#   ##    ##    #+#       */
-/*   Updated: 2018/09/30 16:51:17 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/01 12:27:48 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -47,10 +47,6 @@ t_op	*struct_tab(void)
 	op_tab[10] = (t_op){"sti", 3,
 	{T_REG, T_REG | T_DIR | T_IND, T_DIR | T_REG}, 11, 1, 2};
 	return (struct_tab2(op_tab));
-}
-
-void	handle_op(char **file, t_op *op_tab, int ***bin)
-{
 }
 
 int		is_op(char *str, t_op *op_tab)
@@ -112,12 +108,14 @@ int		core_text(int ***bin, char **file_lines)
 	i = -1;
 	while (file[++i])
 		if (is_op(file[i][0], op_tab))
-			handle_op(file[i], op_tab, bin);
+			if (!handle_op(file[i], op_tab, bin))
+				return (6);
 		else if (!(ft_somestrchr(file[i][0], LABEL_CHARS)))
 			return (6);
 		else if ((is_op(file[i][1], op_tab)))
-			handle_op(file[i] + 1, op_tab, bin);
-		else
-			return(6);
+			if (!handle_op(file[i] + 1, op_tab, bin))
+				return (6);
+		else if (file[i][1])
+			return (6);
 	return (handle_label(file, *bin, op_tab));
 }
