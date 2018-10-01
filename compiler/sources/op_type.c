@@ -59,7 +59,7 @@ int				param_bin(int op_code)
 		return (REG_CODE);
 	else if (op_code == T_DIR || op_code == T_LAB)
 		return (DIR_CODE);
-	else if (op_code == IND_CODE)
+	else if (op_code == T_IND)
 		return (IND_CODE);
 	else if (op_code == 0)
 		return (0);
