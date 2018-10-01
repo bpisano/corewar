@@ -47,7 +47,7 @@ int     fill_bin_lab(int *bin, char **line, t_label lab, int pos)
     int     i;
 
     i = 0;
-    while (!(line[i][0] == 'DIRECT_CHAR' && line[i][1] == 'LABEL_CHAR'))
+    while (!(line[i][0] == DIRECT_CHAR && line[i][1] == LABEL_CHAR))
         i++;
     while (lab.name)
     {

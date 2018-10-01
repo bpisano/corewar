@@ -19,7 +19,7 @@ static int		is_reg(char *op)
 		return (0);
 	if (!ft_str_is_numeric(op + 1))
 		return (0);
-	return (ft_atoi(op + 1) >= 0 && ft_atoi(op + 1) <= REG_NUMBER);
+	return (ft_atoi(op + 1) > 0 && ft_atoi(op + 1) <= REG_NUMBER);
 }
 
 static int		is_lab(char *op)

@@ -20,14 +20,20 @@ static int		write_to_files(t_head head, int ***bin, char *file_name)
 	return (1);
 }
 
-static int		compile_lines(char ***file_lines, int ***bin, char *name)
+static int		compile_lines(char **file_lines, int ***bin, char *name)
 {
 	int		prog_start;
+	int		comp_error;
 	t_head	head;
 
-	if ((prog_start = set_header(&head, *file_lines)) < 0)
+	if ((prog_start = set_header(&head, file_lines)) < 0)
 	{
 		display_error(prog_start);
+		return (0);
+	}
+	if (!(comp_error = core_text(bin, file_lines + prog_start)))
+	{
+		display_error(comp_error);
 		return (0);
 	}
 	return (write_to_files(head, bin, name));
@@ -64,7 +70,7 @@ int				main(int argc, char **argv)
 			free_file_lines(&file_lines);
 			return (0);
 		}
-		if (!compile_lines(&file_lines, &bin, argv[i]))
+		if (!compile_lines(file_lines, &bin, argv[i]))
 		{
 			free_bin(&bin);
 			free_file_lines(&file_lines);
@@ -73,5 +79,6 @@ int				main(int argc, char **argv)
 	}
 	free_bin(&bin);
 	free_file_lines(&file_lines);
+	ft_printf("Successfuly compiled.\n");
 	return (0);
 }

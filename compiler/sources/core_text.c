@@ -102,9 +102,12 @@ int		core_text(int ***bin, char **file_lines)
 	if (!(file = new_cmd_lines()))
 		return (-1);
 	while (file_lines[++i])
-		if (!add_cmd_line(&file + i, file_lines[i]))
+	{
+		if (!add_cmd_line(&file, file_lines[i]))
 			return (-1);
-	file[i] = 0;
+	}
+	//file[i] = 0;
+	/*
 	i = -1;
 	while (file[++i])
 		if (is_op(file[i][0], op_tab))
@@ -117,5 +120,6 @@ int		core_text(int ***bin, char **file_lines)
 				return (6);
 		else if (file[i][1])
 			return (6);
-	return (handle_label(file, *bin, op_tab));
+	return (handle_label(file, *bin, op_tab));*/
+	return (1);
 }

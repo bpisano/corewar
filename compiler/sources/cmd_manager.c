@@ -14,7 +14,17 @@
 
 #include "compiler.h"
 
-char	***new_cmd_lines()
+static int		cmd_len(char ***cmd)
+{
+	int		i;
+
+	i = -1;
+	while (cmd[++i])
+		;
+	return (i);
+}
+
+char			***new_cmd_lines()
 {
 	char	***new;
 	
@@ -24,18 +34,20 @@ char	***new_cmd_lines()
 	return (new);
 }
 
-int		add_cmd_line(char ****cmd_lines, char *line)
+int				add_cmd_line(char ****cmd_lines, char *line)
 {	
+	int		len;
 	char	**split;
 	
 	if (!(split = ft_strsplit(line, ' ')))
 		return (0);
-	if (!(*cmd_lines = (char ***)realloc(*cmd_lines, sizeof(char **) * 2)))
+	len = cmd_len(*cmd_lines);
+	if (!(*cmd_lines = realloc(*cmd_lines, sizeof(char **) * (len + 1))))
 	{
 		free_split(&split);
 		return (0);
 	}
-	(*cmd_lines)[0] = split;
-	(*cmd_lines)[1] = 0;
+	(*cmd_lines)[len] = split;
+	(*cmd_lines)[len + 1] = 0;
 	return (1);
 }

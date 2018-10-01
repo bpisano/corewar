@@ -70,6 +70,7 @@ int		set_header(t_head *head, char **file_lines);
  ** COMPILER
 */
 
+int		core_text(int ***bin, char **file_lines);
 int     ft_somestrchr(char *str1, char *str2);
 
 char	***new_cmd_lines();
