@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/09/25 16:50:13 by bpisano      #+#   ##    ##    #+#       */
-/*   Updated: 2018/09/30 16:42:06 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/01 16:12:34 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -76,18 +76,11 @@ typedef struct		s_head
 	char			comment[COMMENT_LENGTH + 1];
 }					t_head;
 
-typedef	struct		s_arg
-{
-	char			arg1;
-	char			arg2;
-	char			arg3;
-}					t_arg;
-
 typedef	struct		s_op
 {
 	char			*name;
 	int				nbr_arg;
-	t_arg			arg;
+	char			arg[3];
 	int				opcode;
 	char			codage_octal;
 	int				dir_size;
