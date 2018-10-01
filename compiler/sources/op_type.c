@@ -61,7 +61,5 @@ int				param_bin(int op_code)
 		return (DIR_CODE);
 	else if (op_code == T_IND)
 		return (IND_CODE);
-	else if (op_code == 0)
-		return (0);
-	return (-1);
+	return (0);
 }
