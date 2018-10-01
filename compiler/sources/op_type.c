@@ -52,3 +52,14 @@ int				op_type(char *op)
 		return (T_LAB);
 	return (0);
 }
+
+int				param_bin(int op_code)
+{
+	if (op_code == T_REG)
+		return (REG_CODE);
+	else if (op_code == T_DIR || op_code == T_LAB)
+		return (DIR_CODE);
+	else if (op_code == IND_CODE)
+		return (IND_CODE);
+	return (0);
+}

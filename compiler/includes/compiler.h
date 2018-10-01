@@ -81,4 +81,6 @@ int		add_lab_list(char *name, int pos, int **bin, t_label *lab);
 int		fill_bin_lab(int *bin, char **line, t_label lab, int pos);
 
 int		op_type(char *op);
+int		param_bin(int op_code);
+
 #endif
