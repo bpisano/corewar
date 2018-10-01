@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/09/27 20:06:22 by anamsell     #+#   ##    ##    #+#       */
-/*   Updated: 2018/09/30 16:41:41 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/01 15:22:04 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -47,7 +47,7 @@ int     fill_bin_lab(int *bin, char **line, t_label lab, int pos)
     int     i;
 
     i = 0;
-    while (!(line[i][0] == '%' && line[i][1] == ':'))
+    while (!(line[i][0] == 'DIRECT_CHAR' && line[i][1] == 'LABEL_CHAR'))
         i++;
     while (lab.name)
     {
