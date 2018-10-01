@@ -76,6 +76,8 @@ char	***new_cmd_lines();
 int		add_cmd_line(char ****cmd_lines, char *line);
 
 
-int    add_lab_list(char *name, int pos, int **bin, t_label *lab);
-int     fill_bin_lab(int *bin, char **line, t_label lab, int pos);
+int		add_lab_list(char *name, int pos, int **bin, t_label *lab);
+int		fill_bin_lab(int *bin, char **line, t_label lab, int pos);
+
+int		op_type(char *op);
 #endif
