@@ -17,7 +17,7 @@ static int		is_reg(char *op)
 {	
 	if (op[0] != 'r' || ft_strlen(op) < 2)
 		return (0);
-	if (!ft_str_is_numeric(op + 1))
+	if (!ft_str_is_numeric(op + 1) || op[1] == '0')
 		return (0);
 	return (ft_atoi(op + 1) > 0 && ft_atoi(op + 1) <= REG_NUMBER);
 }
@@ -37,7 +37,7 @@ static int		is_dir(char *op)
 {
 	if (ft_strlen(op) < 2)
 		return (0);
-	return (op[0] == DIRECT_CHAR && ft_str_is_numeric(op + 1));
+	return (op[0] == DIRECT_CHAR && ft_str_is_numeric(op + 1) && op[1] != '0');
 }
 
 int				op_type(char *op)
