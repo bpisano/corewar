@@ -106,7 +106,7 @@ int		core_text(int ***bin, char **file_lines)
 	if (!(file = new_cmd_lines()))
 		return (-1);
 	while (file_lines[++i])
-		if (!add_cmd_line(&&(file[i]), file_lines[i]))
+		if (!add_cmd_line(&file + i, file_lines[i]))
 			return (-1);
 	file[i] = 0;
 	i = -1;

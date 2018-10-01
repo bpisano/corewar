@@ -73,7 +73,7 @@ int		set_header(t_head *head, char **file_lines);
 int     ft_somestrchr(char *str1, char *str2);
 
 char	***new_cmd_lines();
-int		add_cmd_line(char ****cmd_lines);
+int		add_cmd_line(char ****cmd_lines, char *line);
 
 
 int    add_lab_list(char *name, int pos, int **bin, t_label *lab);

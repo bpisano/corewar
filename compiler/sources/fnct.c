@@ -30,14 +30,14 @@ int    add_lab_list(char *name, int pos, int **bin, t_label *lab)
 {
     while (lab->name)
     {
-        if (!(strcmp(name, lab->name)))
+        if (!(ft_strcmp(name, lab->name)))
             return (1);
         lab = lab->next;
     }
     lab->name = name;
     lab->pos = pos;
     if (!(lab->next = malloc(sizeof(lab))))
-        return (0)
+        return (0);
     lab->next->name = 0;
     return (1);
 }
@@ -53,10 +53,10 @@ int     fill_bin_lab(int *bin, char **line, t_label lab, int pos)
     {
         if (!(ft_strcmp(lab.name, &line[i][2])))
         {
-            bin = lab.pos - pos;
+            *bin = lab.pos - pos;
             return (1);
         }
-        lab = lab.next;
+        lab = *lab.next;
     }
     return (0);
 }
