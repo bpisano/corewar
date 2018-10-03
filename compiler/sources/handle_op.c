@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/01 12:16:30 by anamsell     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/01 19:17:05 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/01 19:28:41 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -40,20 +40,21 @@ int		handle_op2(char **file, t_op op, int ***bin)
 	add_bin_int(bin, op.opcode, 1);
 	file++;
 	if (ft_strlen(*file) != op.nbr_arg)
-		return (-6);
-	if (op.codage_octale)
+		return (6);
+	if (op.codage_octal)
 		add_bin_int(bin, 0, 1);
 	while (++j < op.nbr_arg)
 	{
 		if (!(i = op_type(file[j]) & op.arg[j]))
 			return (6);
-		add_arg_bin(bin, i, file[j], op.dir_size);
+		add_arg_bin(bin, file[j], i, op.dir_size);
 		tot_line = (tot_line << 2) | param_bin(i);
 	}
 	while (j++ < 4)
 		tot_line = tot_line << 2;
-	if (op.codage_octale)
-		bin[0][bin_len(bin) - 1][1] = tot_line;
+	if (op.codage_octal)
+		bin[0][bin_len(*bin) - 1][1] = tot_line;
+	return (0);
 }
 
 int		handle_op(char **file, t_op *op_tab, int ***bin)
@@ -63,6 +64,6 @@ int		handle_op(char **file, t_op *op_tab, int ***bin)
 	i = -1;
 	while (++i <= 15)
 		if (!ft_strcmp(op_tab[i].name, file[0]))
-			return (handle_op2(file + 1), op_tab[i],bin);
-	return (0);
+			return (handle_op2(file + 1, op_tab[i], bin));
+	return (1);
 }

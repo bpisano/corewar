@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/09/25 10:48:27 by bpisano      #+#   ##    ##    #+#       */
-/*   Updated: 2018/09/25 12:34:18 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/01 19:36:44 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -17,6 +17,7 @@ static int		write_to_files(t_head head, int ***bin, char *file_name)
 {
 	if (!write_header(head, "test.cor"))
 		return (0);
+	print_bin(*bin);
 	return (1);
 }
 
@@ -31,7 +32,7 @@ static int		compile_lines(char **file_lines, int ***bin, char *name)
 		display_error(prog_start);
 		return (0);
 	}
-	if (!(comp_error = core_text(bin, file_lines + prog_start)))
+	if ((comp_error = core_text(bin, file_lines + prog_start)))
 	{
 		display_error(comp_error);
 		return (0);
