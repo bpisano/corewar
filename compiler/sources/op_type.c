@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   op_type.c                                        .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: bpisano <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
+/*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/01 12:37:51 by bpisano      #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/01 12:38:25 by bpisano     ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/03 16:21:01 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -26,7 +26,7 @@ static int		is_lab(char *op)
 {
 	if (ft_strlen(op) < 3)
 		return (0);
-	if (op[1] != DIRECT_CHAR || op[2] != LABEL_CHAR)
+	if (op[0] != DIRECT_CHAR || op[1] != LABEL_CHAR)
 		return (0);
 	if (!ft_somestrchr(op + 2, LABEL_CHARS))
 		return (0);
@@ -37,7 +37,7 @@ static int		is_dir(char *op)
 {
 	if (ft_strlen(op) < 2)
 		return (0);
-	return (op[0] == DIRECT_CHAR && ft_str_is_numeric(op + 1) && op[1] != '0');
+	return (op[0] == DIRECT_CHAR && ft_str_is_numeric(op + 1) && op[1] != 0);
 }
 
 int				op_type(char *op)
@@ -49,7 +49,7 @@ int				op_type(char *op)
 	else if (ft_str_is_numeric(op))
 		return (T_IND);
 	else if (is_lab(op))
-		return (T_LAB);
+		return (T_DIR);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/09/24 17:57:34 by bpisano      #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/01 19:22:04 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/03 16:32:50 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -83,5 +83,6 @@ int		handle_op(char **file, t_op *op_tab, int ***bin);
 
 int		op_type(char *op);
 int		param_bin(int op_code);
+int		is_label(char *str);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/09/25 17:16:20 by anamsell     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/01 19:39:13 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/03 16:33:47 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -105,20 +105,25 @@ int		core_text(int ***bin, char **file_lines)
 	{
 		if (!add_cmd_line(&file, file_lines[i]))
 			return (-1);
-		printf("%s\n", file[i][0]);
 	}
 	i = -1;
 	while (file[++i])
 	{
+		printf("LIGNE\n");
 		if (is_op(file[i][0], op_tab))
 		{
+			printf("op\n");
 			if (handle_op(file[i], op_tab, bin))
 				return (6);
 		}
-		else if (!(ft_somestrchr(file[i][0], LABEL_CHARS)))
+		else if (!is_label(file[i][0]))
+		{
+			printf("somestrchr\n");
 			return (6);
+		}
 		else if ((is_op(file[i][1], op_tab)))
 		{
+			printf("op + 1\n");
 			if (handle_op(file[i] + 1, op_tab, bin))
 				return (6);
 		}

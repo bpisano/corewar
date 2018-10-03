@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/01 12:16:30 by anamsell     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/01 19:28:41 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/03 16:09:20 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -28,6 +28,16 @@ void	add_arg_bin(int ***bin, char *arg, int i, int oct)
 		add_bin_int(bin, ft_atoi(arg), IND_SIZE / 2);
 }
 
+int		ft_tablen(char **tab)
+{
+	int		i;
+
+	i = -1;
+	while (tab[++i])
+		;
+	return (i);
+}
+
 int		handle_op2(char **file, t_op op, int ***bin)
 {
 	int     i;
@@ -38,15 +48,22 @@ int		handle_op2(char **file, t_op op, int ***bin)
 	j = -1;
 	add_bin_line(bin);
 	add_bin_int(bin, op.opcode, 1);
-	file++;
-	if (ft_strlen(*file) != op.nbr_arg)
+	if (ft_tablen(file) != op.nbr_arg)
+	{
+		printf("len\n");
 		return (6);
+	}
 	if (op.codage_octal)
 		add_bin_int(bin, 0, 1);
 	while (++j < op.nbr_arg)
 	{
+		printf("new arg\n");
 		if (!(i = op_type(file[j]) & op.arg[j]))
+		{
+			printf("%d\n",op_type(file[j]));
+			printf("mauvais type de %d eme argument\n", j + 1);
 			return (6);
+		}
 		add_arg_bin(bin, file[j], i, op.dir_size);
 		tot_line = (tot_line << 2) | param_bin(i);
 	}

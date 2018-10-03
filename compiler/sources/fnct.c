@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/09/27 20:06:22 by anamsell     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/01 19:28:44 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/03 16:39:18 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -16,7 +16,7 @@
 int     ft_somestrchr(char *str1, char *str2)
 {
 	int     i;
-	
+
 	i = -1;
 
 	while (str1[++i])
@@ -59,4 +59,17 @@ int     fill_bin_lab(int *bin, char **line, t_label lab, int pos)
 		lab = *lab.next;
 	}
 	return (0);
+}
+
+int		is_label(char *str)
+{
+	int		i;
+
+	i = -1;
+	while (str[++i] != ':' && str[i])
+		if (!(ft_strchr(LABEL_CHARS, str[i])))
+			return (0);
+	if (str[i] != ':' || i == 0 || str[i + 1] != 0)
+		return (0);
+	return (1);
 }
