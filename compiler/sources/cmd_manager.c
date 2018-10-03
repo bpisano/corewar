@@ -51,3 +51,15 @@ int				add_cmd_line(char ****cmd_lines, char *line)
 	(*cmd_lines)[len + 1] = 0;
 	return (1);
 }
+
+void			free_cmd(char ****cmd)
+{
+	int		i;
+	
+	if (!(*cmd))
+		return ;
+	i = -1;
+	while ((*cmd)[++i])
+		free_split(&((*cmd)[i]));
+	free(*cmd);
+}
