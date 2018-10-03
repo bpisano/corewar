@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/09/27 20:06:22 by anamsell     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/03 16:39:18 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/03 17:13:27 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -72,4 +72,9 @@ int		is_label(char *str)
 	if (str[i] != ':' || i == 0 || str[i + 1] != 0)
 		return (0);
 	return (1);
+}
+
+void	free_lab(t_label lab)
+{
+
 }

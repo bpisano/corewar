@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/09/25 17:16:20 by anamsell     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/03 16:33:47 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/03 17:13:32 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -70,13 +70,14 @@ int		handle_label(char ***file, int **bin, t_op *op_tab)
 	i = -1;
 	pos = 0;
 	lab.name= 0;
-	while (file[++i][0])
+	while (file[++i])
 	{
 		if (!is_op(file[i][0], op_tab))
 			if (!(add_lab_list(file[i][0], pos, bin, &lab)))
 				return (-1);
 		pos += bin[i + 1][0];
 	}
+	printf("Bon APRES list\n");
 	i = 0;
 	j = 0;
 	pos = 0;
@@ -130,5 +131,7 @@ int		core_text(int ***bin, char **file_lines)
 		else if (file[i][1])
 			return (6);
 	}
-	return (handle_label(file, *bin, op_tab));
+	i  = handle_label(file, *bin, op_tab);
+	free(op_tab);
+	return (i);
 }

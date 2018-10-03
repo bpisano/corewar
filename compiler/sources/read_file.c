@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/09/24 17:48:29 by anamsell     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/01 19:28:50 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/03 17:06:52 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -17,6 +17,8 @@ void	free_file_lines(char ***tab)
 {
 	int		i;
 
+	if (!(*tab))
+		return ;
 	i = -1;
 	while ((*tab)[++i])
 		free((*tab)[i]);
