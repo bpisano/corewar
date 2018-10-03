@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/09/25 10:55:54 by bpisano      #+#   ##    ##    #+#       */
-/*   Updated: 2018/09/25 12:34:14 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/03 17:38:42 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -96,7 +96,7 @@ void	print_bin(int **bin)
 	{
 		x = 0;
 		while (++x < bin[y][0] + 1)
-			printf("%#0x ", bin[y][x]);
+			printf("%0#4x ", bin[y][x]);
 		printf("\n");
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/09/25 17:16:20 by anamsell     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/03 17:13:32 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/03 17:52:48 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -41,7 +41,7 @@ t_op	*struct_tab(void)
 	T_DIR, T_REG}, 7, 1, 4};
 	op_tab[7] = (t_op){"xor", 3,
 	{T_REG | T_IND | T_DIR, T_REG | T_IND | T_DIR, T_REG}, 8, 1, 4};
-	op_tab[8] = (t_op){"zjmp", 1, T_DIR, 9, 0, 2};
+	op_tab[8] = (t_op){"zjmp", 1, {T_DIR, 0, 0}, 9, 0, 2};
 	op_tab[9] = (t_op){"ldi", 3,
 	{T_REG | T_DIR | T_IND, T_DIR | T_REG, T_REG}, 10, 1, 2};
 	op_tab[10] = (t_op){"sti", 3,
@@ -77,7 +77,6 @@ int		handle_label(char ***file, int **bin, t_op *op_tab)
 				return (-1);
 		pos += bin[i + 1][0];
 	}
-	printf("Bon APRES list\n");
 	i = 0;
 	j = 0;
 	pos = 0;
@@ -89,6 +88,7 @@ int		handle_label(char ***file, int **bin, t_op *op_tab)
 					return (-6);
 		pos += bin[i][0];
 	}
+	free_lab(&lab);
 	return (0);
 }
 
@@ -133,5 +133,6 @@ int		core_text(int ***bin, char **file_lines)
 	}
 	i  = handle_label(file, *bin, op_tab);
 	free(op_tab);
+	free_cmd(&file);
 	return (i);
 }

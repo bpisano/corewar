@@ -6,7 +6,7 @@
 #    By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/03/15 18:40:16 by bpisano      #+#   ##    ##    #+#        #
-#    Updated: 2018/10/01 19:28:36 by anamsell    ###    #+. /#+    ###.fr      #
+#    Updated: 2018/10/03 17:26:37 by anamsell    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -27,6 +27,7 @@ SRC = compiler/sources/main.c				\
 	  compiler/sources/op_type.c			\
 	  compiler/sources/fnct.c				\
 	  compiler/sources/handle_op.c			\
+	  compiler/sources/free_lab.c			\
 
 OBJECTS = $(SRC:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/01 12:16:30 by anamsell     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/03 16:09:20 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/03 17:51:54 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -70,7 +70,7 @@ int		handle_op2(char **file, t_op op, int ***bin)
 	while (j++ < 4)
 		tot_line = tot_line << 2;
 	if (op.codage_octal)
-		bin[0][bin_len(*bin) - 1][1] = tot_line;
+		bin[0][bin_len(*bin) - 1][2] = tot_line;
 	return (0);
 }
 

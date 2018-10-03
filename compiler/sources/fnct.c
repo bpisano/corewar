@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/09/27 20:06:22 by anamsell     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/03 17:13:27 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/03 17:55:13 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -53,6 +53,7 @@ int     fill_bin_lab(int *bin, char **line, t_label lab, int pos)
 	{
 		if (!(ft_strcmp(lab.name, &line[i][2])))
 		{
+			printf("lab pos : %d  pos : %d\n", lab.pos, pos);
 			*bin = lab.pos - pos;
 			return (1);
 		}
@@ -72,9 +73,4 @@ int		is_label(char *str)
 	if (str[i] != ':' || i == 0 || str[i + 1] != 0)
 		return (0);
 	return (1);
-}
-
-void	free_lab(t_label lab)
-{
-
 }
