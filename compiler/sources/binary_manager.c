@@ -68,7 +68,7 @@ int		add_bin_int(int ***bin, int n, size_t oct)
 	old_size = (*line)[0];
 	if (!(*line = (int *)realloc(*line, sizeof(int) * (old_size + 3))))
 		return (0);
-	(*line)[old_size + 1] = n & 0xff;
+	add_bin_pos(&((*line)[old_size + 1]), n, 1);
 	(*line)[old_size + 2] = 0;
 	(*line)[0] = old_size + 1;
 	return (1);

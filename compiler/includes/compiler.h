@@ -37,6 +37,7 @@ int		**new_bin();
 int		bin_len(int **bin);
 int		add_bin_line(int ***bin);
 int		add_bin_int(int ***bin, int n, size_t oct);
+void			add_bin_pos(int *bin, int n, size_t oct);
 void	free_bin(int ***bin);
 void	print_bin(int **bin);
 

@@ -6,7 +6,7 @@
 #    By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/03/15 18:40:16 by bpisano      #+#   ##    ##    #+#        #
-#    Updated: 2018/10/03 17:26:37 by anamsell    ###    #+. /#+    ###.fr      #
+#    Updated: 2018/10/04 16:29:42 by bpisano     ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -16,7 +16,8 @@ NAME = asm
 SRC = compiler/sources/main.c				\
 	  compiler/sources/free_split.c			\
 	  compiler/sources/error.c				\
-	  compiler/sources/binary_gestion.c		\
+	  compiler/sources/binary_manager.c		\
+	  compiler/sources/binary_manager_2.c	\
 	  compiler/sources/file_manager.c		\
 	  compiler/sources/read_file.c			\
 	  compiler/sources/str_cleaner.c		\
