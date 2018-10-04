@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/09/25 17:16:20 by anamsell     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/04 14:35:09 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/04 18:42:55 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -60,35 +60,31 @@ int		is_op(char *str, t_op *op_tab)
 	return (0);
 }
 
-int		handle_label(char ***file, int **bin, t_op *op_tab)
+int		handle_label(char ***file, int **bin, t_op *op_tab, t_lab **lab)
 {
-	t_label	lab;
+	t_label	label;
 	int		i;
 	int		j;
+	int		k;
 	int		pos;
 
 	i = -1;
 	pos = 0;
-	lab.name= 0;
+	label.name= 0;
 	while (file[++i])
 	{
 		if (!is_op(file[i][0], op_tab))
-			if (!(add_lab       _list(file[i][0], pos, bin, &lab)))
+			if (!(add_lab_list(file[i][0], pos, bin, &label)))
 				return (-1);
 		pos += bin[i + 1][0];
 	}
-	i = 0;
-	j = 0;
+	i = -1;
 	pos = 0;
-	while (bin[0][0] >= ++i && !(j = 0))
+	while (file[++i] && !(j = 0))
 	{
-		while (bin[i][0] >= ++j)
-			if (bin[i][j] == LAB_NUMB)
-				if (!fill_bin_lab(&(bin[i][j]), file[i - 1], lab, pos))
-					return (-6);
 		pos += bin[i][0];
 	}
-	free_lab(&lab);
+	free_lab(&label);
 	return (0);
 }
 
@@ -97,7 +93,11 @@ int		core_text(int ***bin, char **file_lines)
 	int		i;
 	char	***file;
 	t_op	*op_tab;
+	t_lab	**lab;
 
+	if (!(lab = malloc(sizeof(t_lab *))))
+		return (-1);
+	*lab = NULL;
 	op_tab = struct_tab();
 	i = -1;
 	if (!(file = new_cmd_lines()))
@@ -114,7 +114,7 @@ int		core_text(int ***bin, char **file_lines)
 		if (is_op(file[i][0], op_tab))
 		{
 			printf("op\n");
-			if (handle_op(file[i], op_tab, bin))
+			if (handle_op(file[i], op_tab, bin, &lab))
 				return (6);
 		}
 		else if (!is_label(file[i][0]))
@@ -125,13 +125,13 @@ int		core_text(int ***bin, char **file_lines)
 		else if ((is_op(file[i][1], op_tab)))
 		{
 			printf("op + 1\n");
-			if (handle_op(file[i] + 1, op_tab, bin))
+			if (handle_op(file[i] + 1, op_tab, bin, &lab))
 				return (6);
 		}
 		else if (file[i][1])
 			return (6);
 	}
-	i  = handle_label(file, *bin, op_tab);
+	i  = handle_label(file, *bin, op_tab, lab);
 	free(op_tab);
 	free_cmd(&file);
 	return (i);

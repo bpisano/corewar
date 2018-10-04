@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/09/25 16:50:13 by bpisano      #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/03 16:30:49 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/04 18:26:23 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -94,5 +94,12 @@ typedef	struct		s_label
 	int				pos;
 	
 }					t_label;
+
+typedef	struct		s_lab
+{
+	char			*name;
+	int				oct;
+	int				*pos;
+}					t_lab;
 
 #endif

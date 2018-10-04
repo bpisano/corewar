@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/09/27 20:06:22 by anamsell     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/04 13:17:24 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/04 16:25:25 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -43,13 +43,33 @@ int    add_lab_list(char *name, int pos, int **bin, t_label *lab)
 	return (1);
 }
 
+char	nbr_lab(char **line)
+{
+	int		i;
+	char 	a;
+
+	i = 0;
+	a = 0;
+	while (line[++i])
+		if (line[i][0] == DIRECT_CHAR && line[i][1] == LABEL_CHAR)
+			a++;
+	return (a);
+}		
+
 int     fill_bin_lab(int *bin, char **line, t_label lab, int pos)
 {
 	int     i;
 
 	i = 0;
-	while (!(line[i][0] == DIRECT_CHAR && line[i][1] == LABEL_CHAR))
-		i++;
+	if (nbr_lab(line) == 1)
+	{
+		i = ft_tablen(line);
+		while (!(line[i][0] == DIRECT_CHAR && line[i][1] == LABEL_CHAR))
+			i--;
+	}
+	else
+		while (!(line[i][0] == DIRECT_CHAR && line[i][1] == LABEL_CHAR))
+			i++;
 	while (lab.name)
 	{
 		printf("ok\n");
@@ -69,10 +89,10 @@ int		is_label(char *str)
 	int		i;
 
 	i = -1;
-	while (str[++i] != ':' && str[i])
+	while (str[++i] != LABEL_CHAR && str[i])
 		if (!(ft_strchr(LABEL_CHARS, str[i])))
 			return (0);
-	if (str[i] != ':' || i == 0 || str[i + 1] != 0)
+	if (str[i] != LABEL_CHAR || i == 0 || str[i + 1] != 0)
 		return (0);
 	return (1);
 }
