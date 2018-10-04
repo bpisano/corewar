@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/09/27 20:06:22 by anamsell     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/03 17:55:13 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/04 13:17:24 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -35,6 +35,7 @@ int    add_lab_list(char *name, int pos, int **bin, t_label *lab)
 		lab = lab->next;
 	}
 	lab->name = name;
+	lab->name[ft_strlen(lab->name) - 1] = 0;
 	lab->pos = pos;
 	if (!(lab->next = malloc(sizeof(lab))))
 		return (0);
@@ -51,9 +52,10 @@ int     fill_bin_lab(int *bin, char **line, t_label lab, int pos)
 		i++;
 	while (lab.name)
 	{
+		printf("ok\n");
 		if (!(ft_strcmp(lab.name, &line[i][2])))
 		{
-			printf("lab pos : %d  pos : %d\n", lab.pos, pos);
+			printf("lab pos  %d  pos  %d\n", lab.pos, pos);
 			*bin = lab.pos - pos;
 			return (1);
 		}

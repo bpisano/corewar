@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/01 12:16:30 by anamsell     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/03 17:51:54 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/04 13:56:14 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -20,7 +20,15 @@ void	add_arg_bin(int ***bin, char *arg, int i, int oct)
 	else if (2 & i)
 	{
 		if (arg[1] == LABEL_CHAR)
-			add_bin_int(bin, LAB_NUMB, REG_SIZE / 2);
+		{
+			add_bin_int(bin, LAB_NUMB, 1);
+			add_bin_int(bin, LAB_NUMB, 1);
+			if (oct == 4)
+			{
+				add_bin_int(bin, LAB_NUMB, 1);
+				add_bin_int(bin, LAB_NUMB, 1);
+			}
+		}
 		else
 			add_bin_int(bin, ft_atoi(arg + 1), oct);
 	}
@@ -57,7 +65,6 @@ int		handle_op2(char **file, t_op op, int ***bin)
 		add_bin_int(bin, 0, 1);
 	while (++j < op.nbr_arg)
 	{
-		printf("new arg\n");
 		if (!(i = op_type(file[j]) & op.arg[j]))
 		{
 			printf("%d\n",op_type(file[j]));
