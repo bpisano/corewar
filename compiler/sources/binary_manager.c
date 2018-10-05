@@ -13,7 +13,7 @@
 
 #include "compiler.h"
 
-int		**new_bin()
+int		**new_bin(void)
 {
 	int		**new;
 

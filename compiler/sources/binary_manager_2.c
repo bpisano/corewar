@@ -5,8 +5,8 @@
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: bpisano <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/10/04 16:29:52 by bpisano      #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/04 16:30:07 by bpisano     ###    #+. /#+    ###.fr     */
+/*   Created: 2018/10/05 13:17:00 by bpisano      #+#   ##    ##    #+#       */
+/*   Updated: 2018/10/04 16:53:53 by bpisano     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -28,7 +28,7 @@ static int		oct_size(int n)
 void			add_bin_pos(int *bin, int n, size_t oct)
 {
 	int		i;
-	
+
 	if (!oct)
 		return ;
 	add_bin_pos(bin + 1, n >> 8, oct - 1);

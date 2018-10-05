@@ -11,7 +11,6 @@
 /*                                                        /                   */
 /* ************************************************************************** */
 
-
 #include "compiler.h"
 
 static int		cmd_len(char ***cmd)
@@ -24,10 +23,10 @@ static int		cmd_len(char ***cmd)
 	return (i);
 }
 
-char			***new_cmd_lines()
+char			***new_cmd_lines(void)
 {
 	char	***new;
-	
+
 	if (!(new = (char ***)malloc(sizeof(char **))))
 		return (NULL);
 	new[0] = 0;
@@ -35,10 +34,10 @@ char			***new_cmd_lines()
 }
 
 int				add_cmd_line(char ****cmd_lines, char *line)
-{	
+{
 	int		len;
 	char	**split;
-	
+
 	if (!(split = ft_strsplit(line, ' ')))
 		return (0);
 	len = cmd_len(*cmd_lines);
@@ -55,7 +54,7 @@ int				add_cmd_line(char ****cmd_lines, char *line)
 void			free_cmd(char ****cmd)
 {
 	int		i;
-	
+
 	if (!(*cmd))
 		return ;
 	i = -1;

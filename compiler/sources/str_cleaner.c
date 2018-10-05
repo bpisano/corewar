@@ -39,7 +39,7 @@ char			*no_comment(char *str)
 void			str_replace(char **str, char c, char rep)
 {
 	int		i;
-	
+
 	if (!str)
 		return ;
 	i = -1;

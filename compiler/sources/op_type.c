@@ -14,7 +14,7 @@
 #include "compiler.h"
 
 static int		is_reg(char *op)
-{	
+{
 	if (op[0] != 'r' || ft_strlen(op) < 2)
 		return (0);
 	if (!ft_str_is_numeric(op + 1) || op[1] == '0')

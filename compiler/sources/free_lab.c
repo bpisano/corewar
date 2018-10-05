@@ -17,7 +17,7 @@ void	free_lab1(t_label *lab)
 {
 	if (lab->name)
 		free_lab1(lab->next);
-    free(lab);
+	free(lab);
 }
 
 void	free_lab(t_label *lab)

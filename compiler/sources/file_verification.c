@@ -16,7 +16,7 @@
 static int	match_pattern(char *str)
 {
 	int		i;
-	
+
 	i = 0;
 	if (ft_str_is_empty(str) || ft_strlen(str) == 0)
 		return (0);
@@ -48,7 +48,7 @@ int			have_separator_at_last(char *line)
 {
 	char	*trim;
 	int		last_char;
-	
+
 	trim = ft_strtrim(line);
 	last_char = ft_strlen(trim) - 1;
 	if (trim[last_char] == SEPARATOR_CHAR)
@@ -86,25 +86,14 @@ int			verify_syntax(char **line)
 {
 	int		i;
 	char	**split;
-	
-	
+
 	*line = no_comment(*line);
 	if (have_only_label(*line, &i))
-	{
-		printf("[OK] -%s-\n", *line);
 		return (1);
-	}
 	if (have_separator_at_last(*line + i))
-	{
-		printf("[FAIL 1] -%s-\n", *line);
 		return (0);
-	}
 	if (!arguments_are_correct_formatted(*line + i))
-	{
-		printf("[FAIL 2] -%s-\n", *line);
 		return (0);
-	}
-	printf("[OK] -%s-\n", *line);
 	str_replace(line, SEPARATOR_CHAR, ' ');
 	return (1);
 }
