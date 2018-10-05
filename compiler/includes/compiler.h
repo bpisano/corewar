@@ -54,6 +54,7 @@ void	str_replace(char **str, char c, char rep);
 int		corewar_alpha(char c);
 int		str_start_by(char *str, char *start);
 int		label_offset(char *str);
+int		have_two_separator(char *line);
 int		verify_syntax(char **line);
 
 /*

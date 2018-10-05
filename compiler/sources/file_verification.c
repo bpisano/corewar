@@ -90,6 +90,8 @@ int			verify_syntax(char **line)
 	*line = no_comment(*line);
 	if (have_only_label(*line, &i))
 		return (1);
+	if (have_two_separator(*line))
+		return (0);
 	if (have_separator_at_last(*line + i))
 		return (0);
 	if (!arguments_are_correct_formatted(*line + i))

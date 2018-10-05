@@ -43,3 +43,16 @@ int		label_offset(char *str)
 		return (i + 1);
 	return (0);
 }
+
+int		have_two_separator(char *line)
+{
+	int		i;
+
+	if (ft_strlen(line) < 2)
+		return (0);
+	i = 0;
+	while (line[++i])
+		if (line[i - 1] == SEPARATOR_CHAR && line[i] == SEPARATOR_CHAR)
+			return (1);
+	return (0);
+}
