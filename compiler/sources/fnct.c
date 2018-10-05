@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/09/27 20:06:22 by anamsell     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/04 16:25:25 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/05 17:08:03 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -26,60 +26,55 @@ int     ft_somestrchr(char *str1, char *str2)
 }
 
 
-int    add_lab_list(char *name, int pos, int **bin, t_label *lab)
+int    add_lab_list(char *name, int pos, int **bin, t_label **label)
 {
-	while (lab->name)
+	while (label[0])
 	{
-		if (!(ft_strcmp(name, lab->name)))
+		if (!(ft_strcmp(name, label[0]->name)))
 			return (1);
-		lab = lab->next;
+		label[0] = label[0]->next;
 	}
-	lab->name = name;
-	lab->name[ft_strlen(lab->name) - 1] = 0;
-	lab->pos = pos;
-	if (!(lab->next = malloc(sizeof(lab))))
+	if (!(label[0] = malloc(sizeof(t_label))))
 		return (0);
-	lab->next->name = 0;
+	label[0]->name = name;
+	printf ("%s\n", label[0]->name);
+	label[0]->name[ft_strlen(label[0]->name) - 1] = 0;
+	label[0]->pos = pos;
+	label[0]->next = 0;
 	return (1);
 }
 
-char	nbr_lab(char **line)
+int		fill_bin_lab2(t_label *label, t_lab *lab, int pos)
 {
 	int		i;
-	char 	a;
 
 	i = 0;
-	a = 0;
-	while (line[++i])
-		if (line[i][0] == DIRECT_CHAR && line[i][1] == LABEL_CHAR)
-			a++;
-	return (a);
-}		
+	printf ("%s\n",lab->name);
+	while (label->name)
+	{
+		printf("\n%s\n",label->name);
+		if (label->name == lab->name)
+		{
+			add_bin_pos(lab->pos, label->pos - pos, lab->oct);
+			return (0);
+		}
+		label = label->next;
+	}
+	return (1);
+}
 
-int     fill_bin_lab(int *bin, char **line, t_label lab, int pos)
+int		fill_bin_lab(int *bin, t_label *label, t_lab **lab, int pos)
 {
 	int     i;
 
-	i = 0;
-	if (nbr_lab(line) == 1)
+	i = -1;
+	while (lab[++i])
 	{
-		i = ft_tablen(line);
-		while (!(line[i][0] == DIRECT_CHAR && line[i][1] == LABEL_CHAR))
-			i--;
-	}
-	else
-		while (!(line[i][0] == DIRECT_CHAR && line[i][1] == LABEL_CHAR))
-			i++;
-	while (lab.name)
-	{
-		printf("ok\n");
-		if (!(ft_strcmp(lab.name, &line[i][2])))
+		if (lab[i]->pos == bin)
 		{
-			printf("lab pos  %d  pos  %d\n", lab.pos, pos);
-			*bin = lab.pos - pos;
-			return (1);
+			printf("label : %s, lab : %s\n",label->next->name, lab[i]->name);
+			return (fill_bin_lab2(label, lab[i], pos));
 		}
-		lab = *lab.next;
 	}
 	return (0);
 }

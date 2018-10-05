@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/01 12:16:30 by anamsell     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/04 18:31:09 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/05 15:46:57 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -38,15 +38,7 @@ void	add_arg_bin(int ***bin, char *arg, int i, int oct)
 	else if (2 & i)
 	{
 		if (arg[1] == LABEL_CHAR)
-		{
-			add_bin_int(bin, LAB_NUMB, 1);
-			add_bin_int(bin, LAB_NUMB, 1);
-			if (oct == 4)
-			{
-				add_bin_int(bin, LAB_NUMB, 1);
-				add_bin_int(bin, LAB_NUMB, 1);
-			}
-		}
+			add_bin_int(bin, 0, oct);
 		else
 			add_bin_int(bin, ft_atoi(arg + 1), oct);
 	}
