@@ -37,7 +37,7 @@ int		**new_bin();
 int		bin_len(int **bin);
 int		add_bin_line(int ***bin);
 int		add_bin_int(int ***bin, int n, size_t oct);
-void			add_bin_pos(int *bin, int n, size_t oct);
+void	add_bin_pos(int *bin, int n, size_t oct);
 void	free_bin(int ***bin);
 void	print_bin(int **bin);
 
@@ -45,11 +45,16 @@ void	print_bin(int **bin);
  ** FILE
 */
 
-char	**read_file(char *filename);
+char	**read_file(int fd);
 void	free_file_lines(char ***tab);
 int		is_comment(char *str);
 char	*no_comment(char *str);
 void	str_replace(char **str, char c, char rep);
+
+int		corewar_alpha(char c);
+int		str_start_by(char *str, char *start);
+int		label_offset(char *str);
+int		verify_syntax(char **line);
 
 /*
  ** WRITE
@@ -76,7 +81,7 @@ int     ft_somestrchr(char *str1, char *str2);
 
 char	***new_cmd_lines();
 int		add_cmd_line(char ****cmd_lines, char *line);
-void			free_cmd(char ****cmd);
+void	free_cmd(char ****cmd);
 
 int		add_lab_list(char *name, int pos, int **bin, t_label *lab);
 int		fill_bin_lab(int *bin, char **line, t_label lab, int pos);

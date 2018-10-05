@@ -42,9 +42,16 @@ static int		compile_lines(char **file_lines, int ***bin, char *name)
 
 static int		verify_file(char *file_name, char ***file_lines, int ***bin)
 {
-	if (!(*file_lines = read_file(file_name)))
+	int		fd;
+	
+	if ((fd = open(file_name, O_RDONLY)) < 0)
 	{
 		display_error(3);
+		return (0);
+	}
+	if (!(*file_lines = read_file(fd)))
+	{
+		display_error(5);
 		return (0);
 	}
 	if (!(*bin = new_bin()))

@@ -30,6 +30,8 @@ void			display_error(int error)
 		error_desc("Incorrect file name");
 	else if (error == 4)
 		error_desc("Cannot allocate new binary");
+	else if (error == 5)
+		error_desc("Incorrect syntax");
 	else
 		ft_putstr("ERROR\n");
 }

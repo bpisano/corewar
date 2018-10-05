@@ -1,49 +1,45 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   str_cleaner.c                                    .::    .:/ .      .::   */
+/*   file_verification_2.c                            .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: bpisano <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/10/05 10:54:47 by bpisano      #+#   ##    ##    #+#       */
-/*   Updated: 2018/09/28 13:57:39 by bpisano     ###    #+. /#+    ###.fr     */
+/*   Created: 2018/10/05 12:58:01 by bpisano      #+#   ##    ##    #+#       */
+/*   Updated: 2018/10/05 12:58:12 by bpisano     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "compiler.h"
 
-char			*no_comment(char *str)
+int		corewar_alpha(char c)
 {
-	int		i;
-	int		in_quote;
-	char	*new;
-	char	*trim;
-
-	i = -1;
-	in_quote = 0;
-	while (str[++i])
-	{
-		if (str[i] == '\"')
-			in_quote = in_quote == 0 ? 1 : 0;
-		else if (str[i] == COMMENT_CHAR && !in_quote)
-			break ;
-	}
-	new = ft_strsub(str, 0, i);
-	trim = ft_strtrim(new);
-	free(str);
-	free(new);
-	return (trim);
+	return (c == LABEL_CHAR || c == DIRECT_CHAR || ft_strchr(LABEL_CHARS, c));
 }
 
-void			str_replace(char **str, char c, char rep)
+int		str_start_by(char *str, char *start)
 {
 	int		i;
-	
-	if (!str)
-		return ;
+
+	if (!str || !start)
+		return (0);
 	i = -1;
-	while ((*str)[++i])
-		if ((*str)[i] == c)
-			(*str)[i] = rep;
+	while (str[++i] && start[i])
+		if (str[i] != start[i])
+			return (0);
+	return (start[i] == 0);
+}
+
+int		label_offset(char *str)
+{
+	int		i;
+
+	i = -1;
+	while (str[++i] != LABEL_CHAR)
+		if (!ft_strchr(LABEL_CHARS, str[i]))
+			return (0);
+	if (str[i] == LABEL_CHAR && i > 0)
+		return (i + 1);
+	return (0);
 }

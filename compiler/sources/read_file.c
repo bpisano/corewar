@@ -32,16 +32,13 @@ int		is_comment(char *str)
 	return (str[0] == COMMENT_CHAR);
 }
 
-char	**read_file(char *filename)
+char	**read_file(int fd)
 {
-	int		fd;
 	int		i;
 	char	**str;
 	char	*line;
 
 	i = -1;
-	if ((fd = open(filename, O_RDONLY)) < 0)
-		return (0);
 	if (!(str = (char **)malloc(sizeof(char *))))
 		return (0);
 	while (get_next_line(fd, &line) > 0)
@@ -51,9 +48,15 @@ char	**read_file(char *filename)
 			free(line);
 			continue ;
 		}
-		str[++i] = no_comment(line);
-		str_replace(&(str[i]), '\t', ' ');
-		str = realloc(str, sizeof(char *) * (i + 2));
+		if (!verify_syntax(&line))
+		{
+			free(line);
+			free_file_lines(&str);
+			return (NULL);
+		}
+		str = (char **)realloc(str, sizeof(char *) * (++i + 2));
+		str[i] = line;
+		str[i + 1] = 0;
 	}
 	str[i + 1] = 0;
 	return (str);
