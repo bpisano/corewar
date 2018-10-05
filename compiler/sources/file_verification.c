@@ -97,5 +97,6 @@ int			verify_syntax(char **line)
 	if (!arguments_are_correct_formatted(*line + i))
 		return (0);
 	str_replace(line, SEPARATOR_CHAR, ' ');
+	str_replace(line, '\t', ' ');
 	return (1);
 }
