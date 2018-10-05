@@ -48,7 +48,7 @@ char	**read_file(int fd)
 			free(line);
 			continue ;
 		}
-		if (!verify_syntax(&line, &str, i))
+		if (!verify_syntax(&line))
 		{
 			free(line);
 			free_file_lines(&str);
