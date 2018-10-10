@@ -17,7 +17,7 @@ void	free_label(t_label *lab)
 {
 	if (lab)
 	{
-		free_label(lab->next);
+		//free_label(lab->next);
 		free(lab);
 	}
 }

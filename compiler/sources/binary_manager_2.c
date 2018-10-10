@@ -13,18 +13,6 @@
 
 #include "compiler.h"
 
-static int		oct_size(int n)
-{
-	int		i;
-	int		oct;
-
-	i = 0;
-	oct = n;
-	while ((oct = oct >> 8) > 0)
-		i++;
-	return (i);
-}
-
 void			add_bin_pos(int *bin, int n, size_t oct)
 {
 	int		i;
@@ -33,7 +21,7 @@ void			add_bin_pos(int *bin, int n, size_t oct)
 		return ;
 	add_bin_pos(bin + 1, n, oct - 1);
 	i = -1;
-	while (++i < oct_size(n) - 1)
+	while (++i < oct - 1)
 		n = n >> 8;
 	bin[0] = n & 0xff;
 }
