@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/09/24 17:57:34 by bpisano      #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/05 16:43:54 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/09 19:58:47 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -84,8 +84,8 @@ char	***new_cmd_lines();
 int		add_cmd_line(char ****cmd_lines, char *line);
 void	free_cmd(char ****cmd);
 
-int     add_lab_list(char *name, int pos, int **bin, t_label **label);
-int		fill_bin_lab(int *bin, t_label *label, t_lab **lab, int pos);
+int     add_lab_list(char *name, int pos, int **bin, t_label ***label);
+int		fill_bin_lab(int *bin, t_label **label, t_lab **lab, int pos);
 int		handle_op(char **file, t_op *op_tab, int ***bin, t_lab ***lab);
 
 int		op_type(char *op);

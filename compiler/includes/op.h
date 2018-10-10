@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/09/25 16:50:13 by bpisano      #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/04 18:26:23 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/09 19:47:22 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -89,7 +89,6 @@ typedef	struct		s_op
 
 typedef	struct		s_label
 {
-	struct s_label	*next;
 	char			*name;
 	int				pos;
 	

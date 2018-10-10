@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/01 12:16:30 by anamsell     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/05 15:46:57 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/10 13:22:47 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -54,7 +54,7 @@ int		*good_bin(int ***bin, int oct)
 	while (bin[0][i])
 		i++;
 	i--;
-	return (&bin[0][i][bin[0][i][0] - oct]);
+	return (&bin[0][i][bin[0][i][0] - oct + 1]);
 }
 
 int		handle_op2(char **file, t_op op, int ***bin, t_lab ***lab)

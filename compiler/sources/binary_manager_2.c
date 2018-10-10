@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   binary_manager_2.c                               .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: bpisano <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
+/*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/05 13:17:00 by bpisano      #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/04 16:53:53 by bpisano     ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/10 12:39:16 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -20,7 +20,7 @@ static int		oct_size(int n)
 
 	i = 0;
 	oct = n;
-	while ((oct = oct >> 8))
+	while ((oct = oct >> 8) > 0)
 		i++;
 	return (i);
 }
@@ -29,7 +29,7 @@ void			add_bin_pos(int *bin, int n, size_t oct)
 {
 	int		i;
 
-	if (!oct)
+	if (oct <= 0)
 		return ;
 	add_bin_pos(bin + 1, n >> 8, oct - 1);
 	i = -1;
