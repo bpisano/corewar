@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/09/27 20:06:22 by anamsell     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/10 14:31:22 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/10 14:49:47 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -49,6 +49,7 @@ int		fill_bin_lab2(t_label **label, t_lab *lab, int pos)
 	int		i;
 
 	i = -1;
+	printf("%s\n",lab->name);
 	while (label[++i])
 	{
 		if (!ft_strcmp(label[i]->name, lab->name))

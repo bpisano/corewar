@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/09/25 17:16:20 by anamsell     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/10 14:33:31 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/10 14:47:04 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -77,13 +77,12 @@ int		handle_label(char ***file, int **bin, t_op *op_tab, t_lab **lab)
 		if (!is_op(file[i][0], op_tab))
 			if (!(add_lab_list(file[i][0], pos, bin, &label)))
 				return (-1);
-		pos += bin[i + 1][0];
+		pos += bin[i][0];
 	}
 	i = -1;
 	pos = 0;
 	while (bin[++i] && !(j = 0))
 	{
-		printf("%d\n",bin[i][0]);
 		while (bin[i][0] >= ++j)
 			if (fill_bin_lab(&bin[i][j], label, lab, pos))
 				return (4);
