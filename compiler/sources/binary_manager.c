@@ -17,12 +17,8 @@ int		**new_bin(void)
 {
 	int		**new;
 
-	if (!(new = (int **)malloc(sizeof(int *) * 2)))
+	if (!(new = (int **)ft_memalloc(sizeof(int *))))
 		return (NULL);
-	if (!(new[0] = (int *)malloc(sizeof(int) * 2)))
-		return (NULL);
-	ft_bzero(new[0], 2);
-	new[1] = 0;
 	return (new);
 }
 
@@ -44,10 +40,8 @@ int		add_bin_line(int ***bin)
 	len = bin_len(*bin);
 	if (!(*bin = (int **)realloc(*bin, sizeof(int *) * (len + 2))))
 		return (0);
-	if (!(line = (int *)malloc(sizeof(int) * 2)))
+	if (!(line = (int *)ft_memalloc(sizeof(int) * 2)))
 		return (0);
-	line[0] = 0;
-	line[1] = 0;
 	(*bin)[len] = line;
 	(*bin)[len + 1] = 0;
 	return (1);
