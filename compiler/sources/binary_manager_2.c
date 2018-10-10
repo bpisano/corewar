@@ -31,7 +31,7 @@ void			add_bin_pos(int *bin, int n, size_t oct)
 
 	if (oct <= 0)
 		return ;
-	add_bin_pos(bin + 1, n >> 8, oct - 1);
+	add_bin_pos(bin + 1, n, oct - 1);
 	i = -1;
 	while (++i < oct_size(n) - 1)
 		n = n >> 8;
