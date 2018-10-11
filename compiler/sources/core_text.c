@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/09/25 17:16:20 by anamsell     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/10 14:47:04 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/11 16:59:51 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -60,42 +60,31 @@ int		is_op(char *str, t_op *op_tab)
 	return (0);
 }
 
-int		handle_label(char ***file, int **bin, t_op *op_tab, t_lab **lab)
+int		handle_label(t_pos data, int **bin, t_op *op_tab, t_lab **lab)
 {
 	t_label	**label;
-	int		i;
-	int		j;
 	int		k;
 	int		pos;
 
-	i = -1;
+	data.i = -1;
 	pos = 0;
 	if (!(label = ft_memalloc(sizeof(t_label *))))
 		return (-1);
-	while (file[++i])
+	while (file[++data.i])
 	{
-		if (!is_op(file[i][0], op_tab))
-			if (!(add_lab_list(file[i][0], pos, bin, &label)))
+		if (!is_op(file[data.i][0], op_tab))
+			if (!(add_lab_list(file[data.i][0], pos, bin, &label)))
 				return (-1);
-		pos += bin[i][0];
+		pos += bin[data.i][0];
 	}
-	i = -1;
-	pos = 0;
-	while (bin[++i] && !(j = 0))
-	{
-		while (bin[i][0] >= ++j)
-			if (fill_bin_lab(&bin[i][j], label, lab, pos))
-				return (4);
-		pos += bin[i][0];
-	}
+	data.i = -1;
 	//free_label(label);
 	return (0);
 }
 
 int		core_text(int ***bin, char **file_lines)
 {
-	int		i;
-	char	***file;
+	t_pos	data;
 	t_op	*op_tab;
 	t_lab	**lab;
 
@@ -103,41 +92,42 @@ int		core_text(int ***bin, char **file_lines)
 		return (-1);
 	*lab = NULL;
 	op_tab = struct_tab();
-	i = -1;
-	if (!(file = new_cmd_lines()))
+	data.i = -1;
+	if (!(data.file = new_cmd_lines()))
 		return (-1);
-	while (file_lines[++i])
+	while (file_lines[++data.i])
 	{
-		if (!add_cmd_line(&file, file_lines[i]))
+		if (!add_cmd_line(&(data.file), file_lines[data.i]))
 			return (-1);
 	}
-	i = -1;
-	while (file[++i])
+	data.i = -1;
+	while (data.file[++data.i] && !(data.j = 0))
 	{
 		printf("LIGNE\n");
-		if (is_op(file[i][0], op_tab))
+		if (is_op(data.file[data.i][0], op_tab))
 		{
 			printf("op\n");
-			if (handle_op(file[i], op_tab, bin, &lab))
-				return (2);
+			if (handle_op(data, op_tab, bin, &lab))
+				return (-1);
 		}
-		else if (!is_label(file[i][0]))
+		else if (!is_label(data.file[data.i][0]))
 		{
-			printf("somestrchr\n");
+//			printf("somestrchr\n");
 			return (1);
 		}
-		else if ((is_op(file[i][1], op_tab)))
+		else if ((is_op(data.file[data.i][1], op_tab)))
 		{
-			printf("op + 1\n");
-			if (handle_op(file[i] + 1, op_tab, bin, &lab))
-				return (3);
+			data.j += 1;
+			printf("op 2\n");
+			if (handle_op(data, op_tab, bin, &lab))
+				return (-1);
 		}
-		else if (file[i][1])
+		else if (data.file[data.i][1])
 			return (4);
 	}
-	i = 0;
-	i  = handle_label(file, *bin, op_tab, lab);
+	data.i = 0;
+	data.i  = handle_label(data, *bin, op_tab, lab);
 	free(op_tab);
-	free_cmd(&file);
-	return (i);
+	free_cmd(&(data.file));
+	return (data.i);
 }

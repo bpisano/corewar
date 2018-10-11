@@ -6,18 +6,21 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/01 12:16:30 by anamsell     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/10 14:36:13 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/11 16:52:34 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "compiler.h"
 
-char	add_label(char *name, int size, t_lab ***lab, int *pos)
+char	add_label(t_pos data, int size, t_lab ***lab)
 {
 	int		i;
+	char	*name;
 
+	name = &data.file[data.i][data.j][2];
 	i = -1;
+	printf("			%s\n", name);
 	while (lab[0][++i])
 		;
 	if (!(lab[0] = realloc(*lab, (i + 2) * sizeof(t_lab *))))
@@ -26,7 +29,8 @@ char	add_label(char *name, int size, t_lab ***lab, int *pos)
 		return (0);
 	lab[0][i]->name = name;
 	lab[0][i]->oct = size;
-	lab[0][i]->pos = pos;
+	lab[0][i]->i = data.i;
+	lab[0][i]->j = data.j;
 	lab[0][i + 1] = 0;
 	return (0);
 }
@@ -46,7 +50,7 @@ void	add_arg_bin(int ***bin, char *arg, int i, int oct)
 		add_bin_int(bin, ft_atoi(arg), IND_SIZE / 2);
 }
 
-int		*good_bin(int ***bin, int oct)
+/*int		*good_bin(int ***bin, int oct)
 {
 	int		i;
 
@@ -55,54 +59,55 @@ int		*good_bin(int ***bin, int oct)
 		i++;
 	i--;
 	return (&bin[0][i][bin[0][i][0] - oct + 1]);
-}
+}*/
 
-int		handle_op2(char **file, t_op op, int ***bin, t_lab ***lab)
+int		handle_op2(t_pos data, t_op op, int ***bin, t_lab ***lab)
 {
 	int     i;
-	int		j;
 	int		tot_line;
+	int		k;
 
 	tot_line = 0;
-	j = -1;
+	k = -1;
 	add_bin_line(bin);
 	add_bin_int(bin, op.opcode, 1);
-	if (ft_tablen(file) != op.nbr_arg)
+	if (ft_tablen(&data.file[data.i][data.j + 1]) != op.nbr_arg)
 	{
 		printf("len\n");
 		return (6);
 	}
 	if (op.codage_octal)
 		add_bin_int(bin, 0, 1);
-	while (++j < op.nbr_arg)
+	while (++data.j < op.nbr_arg && (++k > -1))
 	{
-		if (!(i = op_type(file[j]) & op.arg[j]))
+		if (!(i = op_type(data.file[data.i][data.j]) & op.arg[k]))
 		{
-			printf("%d\n",op_type(file[j]));
-			printf("mauvais type de %d eme argument\n", j + 1);
+			printf("%d\n",op_type(data.file[data.i][data.j]));
+			printf("mauvais type de %d eme argument\n", data.j + 1);
 			return (6);
 		}
-		add_arg_bin(bin, file[j], i, op.dir_size);
-		if (file[j][1] == LABEL_CHAR)
-			if (add_label(&file[j][2], op.dir_size, lab,
-			good_bin(bin, op.dir_size)))
+		add_arg_bin(bin, data.file[data.i][data.j], i, op.dir_size);
+		printf("%d\n",data.j);
+		if (data.file[data.i][data.j][1] == LABEL_CHAR)
+			if (add_label(data, op.dir_size, lab))
 				return (-1);
 		tot_line = (tot_line << 2) | param_bin(i);
 	}
-	while (j++ < 4)
+	printf("\n");
+	while (data.j++ < 4)
 		tot_line = tot_line << 2;
 	if (op.codage_octal)
 		bin[0][bin_len(*bin) - 1][2] = tot_line;
 	return (0);
 }
 
-int		handle_op(char **file, t_op *op_tab, int ***bin, t_lab ***lab)
+int		handle_op(t_pos data, t_op *op_tab, int ***bin, t_lab ***lab)
 {
 	int		i;
 
 	i = -1;
 	while (++i <= 15)
-		if (!ft_strcmp(op_tab[i].name, file[0]))
-			return (handle_op2(file + 1, op_tab[i], bin, lab));
+		if (!ft_strcmp(op_tab[i].name, data.file[data.i][data.j]))
+			return (handle_op2(data, op_tab[i], bin, lab));
 	return (1);
 }
