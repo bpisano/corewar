@@ -6,19 +6,18 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/09/27 20:06:22 by anamsell     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/12 10:58:22 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/12 14:44:26 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "compiler.h"
 
-int     ft_somestrchr(char *str1, char *str2)
+int		ft_somestrchr(char *str1, char *str2)
 {
-	int     i;
+	int		i;
 
 	i = -1;
-
 	while (str1[++i])
 		if (!ft_strchr(str2, str1[i]))
 			return (0);
@@ -38,13 +37,14 @@ int		fill_bin_lab(t_label **label, t_lab *lab, int **bin)
 	while (label[++i])
 		if (!ft_strcmp(label[i]->name, lab->name))
 		{
-			add_bin_pos(&bin[lab->i_for_bin][lab->pos], label[i]->pos - tot, lab->oct);
+			add_bin_pos(&bin[lab->i_for_bin][lab->pos], label[i]->pos - tot,
+			lab->oct);
 			return (0);
 		}
 	return (1);
 }
 
-int    add_lab_list(char *name, int pos, int **bin, t_label ***label)
+int		add_lab_list(char *name, int pos, int **bin, t_label ***label)
 {
 	int		i;
 

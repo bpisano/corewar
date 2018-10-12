@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/01 12:16:30 by anamsell     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/12 11:02:53 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/12 14:48:10 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -38,7 +38,6 @@ char	add_label(t_pos data, int size, t_lab ***lab, int pos)
 
 void	add_arg_bin(int ***bin, char *arg, int i, int oct)
 {
-	printf("add arg bin : %s\n", arg);
 	if (1 & i)
 		add_bin_int(bin, ft_atoi(arg + 1), 1);
 	else if (2 & i)
@@ -54,7 +53,7 @@ void	add_arg_bin(int ***bin, char *arg, int i, int oct)
 
 int		handle_op2(t_pos data, t_op op, int ***bin, t_lab ***lab)
 {
-	int     i;
+	int		i;
 	int		tot_line;
 	int		k;
 
@@ -72,13 +71,12 @@ int		handle_op2(t_pos data, t_op op, int ***bin, t_lab ***lab)
 			return (6);
 		add_arg_bin(bin, data.file[data.i][data.j], i, op.dir_size);
 		if (data.file[data.i][data.j][1] == LABEL_CHAR)
-		{
-			if (add_label(data, op.dir_size, lab, bin[0][data.i + data.decal][0]))
+			if (add_label(data, op.dir_size, lab, bin[0][data.i +
+			data.decal][0]))
 				return (-1);
-		}
 		tot_line = (tot_line << 2) | param_bin(i);
 	}
-	while (k++< 4)
+	while (k++ < 4)
 		tot_line = tot_line << 2;
 	if (op.codage_octal)
 		bin[0][bin_len(*bin) - 1][2] = tot_line;
