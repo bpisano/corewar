@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/09/25 16:50:13 by bpisano      #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/11 16:52:27 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/12 11:02:29 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -18,11 +18,9 @@
 # define REG_SIZE				4
 # define DIR_SIZE				REG_SIZE
 
-
 # define REG_CODE				1
 # define DIR_CODE				2
 # define IND_CODE				3
-
 
 # define MAX_ARGS_NUMBER		4
 # define MAX_PLAYERS			4
@@ -47,20 +45,12 @@
 # define NBR_LIVE				21
 # define MAX_CHECKS				10
 
-/*
-**
-*/
-
 typedef char		t_arg_type;
 
 # define T_REG					1
 # define T_DIR					2
 # define T_IND					4
 # define T_LAB					8
-
-/*
-**
-*/
 
 # define PROG_NAME_LENGTH		(128)
 # define COMMENT_LENGTH			(2048)
@@ -91,7 +81,7 @@ typedef	struct		s_label
 {
 	char			*name;
 	int				pos;
-	
+
 }					t_label;
 
 typedef	struct		s_lab
@@ -99,7 +89,9 @@ typedef	struct		s_lab
 	char			*name;
 	int				oct;
 	int				i;
+	int				i_for_bin;
 	int				j;
+	int				pos;
 }					t_lab;
 
 typedef	struct		s_pos
@@ -107,5 +99,6 @@ typedef	struct		s_pos
 	char			***file;
 	int				i;
 	int				j;
+	int				decal;
 }					t_pos;
 #endif

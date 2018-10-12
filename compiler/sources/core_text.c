@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/09/25 17:16:20 by anamsell     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/11 16:59:51 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/12 12:01:45 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -68,16 +68,23 @@ int		handle_label(t_pos data, int **bin, t_op *op_tab, t_lab **lab)
 
 	data.i = -1;
 	pos = 0;
+	data.j = 0;
 	if (!(label = ft_memalloc(sizeof(t_label *))))
 		return (-1);
-	while (file[++data.i])
+	while (data.file[++data.i])
 	{
-		if (!is_op(file[data.i][0], op_tab))
-			if (!(add_lab_list(file[data.i][0], pos, bin, &label)))
+		if (!is_op(data.file[data.i][0], op_tab))
+			if (!(add_lab_list(data.file[data.i][0], pos, bin, &label)))
 				return (-1);
-		pos += bin[data.i][0];
+		if (!data.file[data.i][1])
+			data.j--;
+		else
+			pos += bin[data.i + data.j][0];
 	}
 	data.i = -1;
+	while (lab[++data.i])
+		if ((data.j = fill_bin_lab(label, lab[data.i], bin)))
+			return (data.j);
 	//free_label(label);
 	return (0);
 }
@@ -92,6 +99,7 @@ int		core_text(int ***bin, char **file_lines)
 		return (-1);
 	*lab = NULL;
 	op_tab = struct_tab();
+	data.decal = 0;
 	data.i = -1;
 	if (!(data.file = new_cmd_lines()))
 		return (-1);
@@ -102,29 +110,25 @@ int		core_text(int ***bin, char **file_lines)
 	}
 	data.i = -1;
 	while (data.file[++data.i] && !(data.j = 0))
-	{
-		printf("LIGNE\n");
 		if (is_op(data.file[data.i][0], op_tab))
 		{
 			printf("op\n");
 			if (handle_op(data, op_tab, bin, &lab))
-				return (-1);
+				return (1);
 		}
 		else if (!is_label(data.file[data.i][0]))
-		{
-//			printf("somestrchr\n");
-			return (1);
-		}
-		else if ((is_op(data.file[data.i][1], op_tab)))
+			return (-1);
+		else if (!data.file[data.i][1])
+			data.decal -= 1;
+		else if (is_op(data.file[data.i][1], op_tab))
 		{
 			data.j += 1;
-			printf("op 2\n");
+			printf("op:2\n");
 			if (handle_op(data, op_tab, bin, &lab))
 				return (-1);
 		}
-		else if (data.file[data.i][1])
-			return (4);
-	}
+		else
+			return (-1);
 	data.i = 0;
 	data.i  = handle_label(data, *bin, op_tab, lab);
 	free(op_tab);

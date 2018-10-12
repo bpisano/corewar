@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/09/27 20:06:22 by anamsell     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/11 16:41:33 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/12 10:58:22 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -25,6 +25,24 @@ int     ft_somestrchr(char *str1, char *str2)
 	return (1);
 }
 
+int		fill_bin_lab(t_label **label, t_lab *lab, int **bin)
+{
+	int		i;
+	int		tot;
+
+	i = -1;
+	tot = 0;
+	while (++i < lab->i_for_bin)
+		tot += bin[i][0];
+	i = -1;
+	while (label[++i])
+		if (!ft_strcmp(label[i]->name, lab->name))
+		{
+			add_bin_pos(&bin[lab->i_for_bin][lab->pos], label[i]->pos - tot, lab->oct);
+			return (0);
+		}
+	return (1);
+}
 
 int    add_lab_list(char *name, int pos, int **bin, t_label ***label)
 {
@@ -33,45 +51,16 @@ int    add_lab_list(char *name, int pos, int **bin, t_label ***label)
 	i = -1;
 	while (label[0][++i])
 		;
-	printf("aaaa\n");
 	if (!(*label = realloc(*label, sizeof(t_label*) * (i + 2))))
 		return (0);
-	printf("aaaa\n");
+	if (!(label[0][i] = malloc(sizeof(t_label))))
+		return (0);
 	label[0][i]->name = name;
 	label[0][i]->name[ft_strlen(label[0][i]->name) - 1] = 0;
 	label[0][i]->pos = pos;
 	label[0][i + 1] = 0;
 	printf("%s\n", label[0][i]->name);
 	return (1);
-}
-
-int		fill_bin_lab2(t_label **label, t_lab *lab, int pos)
-{
-	int		i;
-
-	i = -1;
-	printf("%s\n",lab->name);
-	while (label[++i])
-	{
-		printf("\n%s\n",label[i]->name);
-		if (label[i]->name == lab->name)
-		{
-			add_bin_pos(lab->pos, label[i]->pos - pos, lab->oct);
-			return (0);
-		}
-	}
-	return (1);
-}
-
-int		fill_bin_lab(int *bin, t_label **label, t_lab **lab, int pos)
-{
-	int     i;
-
-	i = -1;
-	while (lab[++i])
-		if (lab[i]->pos == bin)
-			return (fill_bin_lab2(label, lab[i], pos));
-	return (0);
 }
 
 int		is_label(char *str)
