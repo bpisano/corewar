@@ -19,7 +19,7 @@ static int		write_to_files(t_head head, int ***bin, char *file_name)
 	int		fd;
 	
 	comp_name = cor_name(file_name);
-	if ((fd = open(comp_name, O_RDWR | O_CREAT)) < 0)
+	if ((fd = open(comp_name, O_RDWR | O_CREAT | O_TRUNC, 0777)) < 0)
 	{
 		display_error(3);
 		return (0);
