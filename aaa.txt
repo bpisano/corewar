@@ -1,4 +1,4 @@
-.name "yo"
+.name "yo5"
 .comment "to"
 
 l2: 	sti r1, %:l2, %4

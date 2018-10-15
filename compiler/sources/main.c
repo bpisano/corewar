@@ -27,7 +27,7 @@ static int		write_to_files(t_head head, int ***bin, char *file_name)
 	write_header(head, fd);
 	write_bin(*bin, fd);
 	print_bin(*bin);
-	ft_printf("Successfuly compiled in %s.\n", comp_name);
+	ft_printf("Successfuly compiled in %s\n", comp_name);
 	free(comp_name);
 	return (1);
 }
