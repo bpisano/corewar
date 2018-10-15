@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/09/25 17:16:20 by anamsell     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/15 12:33:30 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/15 15:15:55 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -39,7 +39,7 @@ int		handle_label(t_pos data, int **bin, t_op *op_tab, t_lab **lab)
 	{
 		if (!is_op(data.file[data.i][0], op_tab))
 			if (!(add_lab_list(data.file[data.i][0], pos, bin, &label)))
-				return (4);
+				return (free_struct_label(label,4));
 		if (!data.file[data.i][1])
 			data.j--;
 		else
@@ -48,8 +48,8 @@ int		handle_label(t_pos data, int **bin, t_op *op_tab, t_lab **lab)
 	data.i = -1;
 	while (lab[++data.i])
 		if ((data.j = fill_bin_lab(label, lab[data.i], bin)))
-			return (data.j);
-	return (0);
+			return (free_struct_label(label, data.j));
+	return (free_struct_label(label, 0));
 }
 
 int		core_text(int ***bin, char **file_lines)

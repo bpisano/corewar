@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/09/24 17:57:34 by bpisano      #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/15 12:25:24 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/15 17:39:44 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -96,6 +96,7 @@ void	free_label(t_label *lab);
 int		is_op(char *str, t_op *op_tab);
 int		ft_str_is_number(char *str);
 t_op	*initialisation(t_lab ***lab, t_pos *data, char **file_lines);
-int				free_struct(t_pos data, t_op *op, t_lab **lab, int i);
+int		free_struct(t_pos data, t_op *op, t_lab **lab, int i);
+int	    free_struct_label(t_label **label, int i);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/15 11:14:34 by bpisano      #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/15 14:06:18 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/15 15:30:49 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -38,5 +38,16 @@ int				free_struct(t_pos data, t_op *op, t_lab **lab, int i)
 	while (lab[++data.i])
 		free(lab[data.i]);
 	free(lab);
+	return (i);
+}
+
+int				free_struct_label(t_label **label, int i)
+{
+	int		j;
+
+	j = -1;
+	while (label[++j])
+		free(label[j]);
+	free(label);
 	return (i);
 }
