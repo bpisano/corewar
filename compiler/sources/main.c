@@ -18,7 +18,7 @@ static int		write_to_files(t_head head, int ***bin, char *file_name)
 	char	*comp_name;
 	int		fd;
 	
-	comp_name = "test.cor";
+	comp_name = cor_name(file_name);
 	if ((fd = open(comp_name, O_RDWR | O_CREAT)) < 0)
 	{
 		display_error(3);
@@ -27,6 +27,8 @@ static int		write_to_files(t_head head, int ***bin, char *file_name)
 	write_header(head, fd);
 	write_bin(*bin, fd);
 	print_bin(*bin);
+	ft_printf("Successfuly compiled in %s.\n", comp_name);
+	free(comp_name);
 	return (1);
 }
 
@@ -97,6 +99,5 @@ int				main(int argc, char **argv)
 	}
 	free_bin(&bin);
 	free_file_lines(&file_lines);
-	ft_printf("Successfuly compiled.\n");
 	return (0);
 }

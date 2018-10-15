@@ -13,21 +13,22 @@
 
 #include "compiler.h"
 
-char			*file_name(char *arg)
+char			*cor_name(char *str)
 {
 	int		i;
-	char	**split;
-
-	split = ft_strsplit(arg, '.');
+	int		dot_offset;
+	char	*cor;
+	
 	i = -1;
-	while (split[++i])
-	{
-		if (i == 0)
-			continue ;
-		free(split[i]);
-	}
-	free(split);
-	return (split[0]);
+	dot_offset = 0;
+	while (str[++i])
+		if (str[i] == '.')
+			dot_offset = i;
+	if (!(cor = ft_strnew(dot_offset + 3)))
+		return (NULL);
+	ft_strncpy(cor, str, dot_offset);
+	ft_strcpy(cor + dot_offset, ".cor");
+	return (cor);
 }
 
 static void		write_int(int fd, int n, size_t size)

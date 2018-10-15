@@ -62,7 +62,7 @@ int		verify_syntax(char **line);
  ** WRITE
 */
 
-char	*file_name(char *arg);
+char	*cor_name(char *str);
 void	write_header(t_head head, int fd);
 void	write_bin(int **bin, int fd);
 
