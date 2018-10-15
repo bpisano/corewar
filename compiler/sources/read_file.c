@@ -27,9 +27,14 @@ void	free_file_lines(char ***tab)
 
 int		is_comment(char *str)
 {
+	int		i;
+
 	if (!str)
 		return (0);
-	return (str[0] == COMMENT_CHAR);
+	i = -1;
+	while (ft_isspace(str[++i]))
+		;
+	return (str[i] == COMMENT_CHAR);
 }
 
 char	**read_file(int fd)
