@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/09/27 20:06:22 by anamsell     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/12 14:44:26 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/15 11:12:39 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -59,7 +59,6 @@ int		add_lab_list(char *name, int pos, int **bin, t_label ***label)
 	label[0][i]->name[ft_strlen(label[0][i]->name) - 1] = 0;
 	label[0][i]->pos = pos;
 	label[0][i + 1] = 0;
-	printf("%s\n", label[0][i]->name);
 	return (1);
 }
 
