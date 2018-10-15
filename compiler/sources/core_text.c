@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/09/25 17:16:20 by anamsell     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/15 11:27:25 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/15 12:33:30 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -64,22 +64,21 @@ int		core_text(int ***bin, char **file_lines)
 		if (is_op(data.file[data.i][0], op_tab))
 		{
 			if (handle_op(data, op_tab, bin, &lab))
-				return (5);
+				return (free_struct(data, op_tab, lab, 5));
 		}
 		else if (!is_label(data.file[data.i][0]))
-			return (5);
+			return (free_struct(data, op_tab, lab, 5));
 		else if (!data.file[data.i][1])
 			data.decal -= 1;
 		else if (is_op(data.file[data.i][1], op_tab))
 		{
 			data.j += 1;
 			if (handle_op(data, op_tab, bin, &lab))
-				return (5);
+				return (free_struct(data, op_tab, lab, 5));
 		}
 		else
-			return (5);
+			return (free_struct(data, op_tab, lab, 5));
 	data.i = handle_label(data, *bin, op_tab, lab);
-	free(op_tab);
-	free_cmd(&(data.file));
+	free_struct(data, op_tab, lab, 5);
 	return (data.i);
 }
