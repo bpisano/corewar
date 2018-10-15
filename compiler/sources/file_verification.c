@@ -23,7 +23,7 @@ static int	match_pattern(char *str)
 		return (0);
 	while (ft_isspace(str[i]) && str[i])
 		i++;
-	while ((corewar_alpha(str[i]) || str[i] == '-' || str[i] == '-') && str[i])
+	while ((corewar_alpha(str[i]) || str[i] == '-' || str[i] == '+') && str[i])
 		i++;
 	while (ft_isspace(str[i]) && str[i])
 		i++;
@@ -88,7 +88,6 @@ int			verify_syntax(char **line)
 	int		i;
 	char	**split;
 	
-	printf("%s\n", *line);
 	*line = no_comment(*line);
 	if (have_only_label(*line, &i))
 		return (1);

@@ -1,8 +1,7 @@
 .name "yo"
 .comment "to"
 
-l2: 	sti r1, %:l2, %-1
+l2: 	sti r1, %:l2, -4
 		and r1, %0, r1
 
 live: 	live %:live
-		zjmp %:live
