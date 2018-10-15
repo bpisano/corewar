@@ -35,6 +35,7 @@ void	free_split(char ***split);
 
 int		**new_bin();
 int		bin_len(int **bin);
+int		bin_size(int **bin);
 int		add_bin_line(int ***bin);
 int		add_bin_int(int ***bin, int n, size_t oct);
 void	add_bin_pos(int *bin, int n, size_t oct);
@@ -62,8 +63,8 @@ int		verify_syntax(char **line);
 */
 
 char	*file_name(char *arg);
-int		write_header(t_head head, char *file_name);
-int		write_bin(int *bin, char *file_name);
+void	write_header(t_head head, int fd);
+void	write_bin(int **bin, int fd);
 
 /*
  ** HEADER

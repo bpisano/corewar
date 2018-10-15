@@ -15,8 +15,17 @@
 
 static int		write_to_files(t_head head, int ***bin, char *file_name)
 {
-	if (!write_header(head, "test.cor"))
+	char	*comp_name;
+	int		fd;
+	
+	comp_name = "test.cor";
+	if ((fd = open(comp_name, O_RDWR | O_CREAT)) < 0)
+	{
+		display_error(3);
 		return (0);
+	}
+	write_header(head, fd);
+	write_bin(*bin, fd);
 	print_bin(*bin);
 	return (1);
 }
@@ -37,6 +46,7 @@ static int		compile_lines(char **file_lines, int ***bin, char *name)
 		display_error(comp_error);
 		return (0);
 	}
+	head.prog_size = bin_size(*bin);
 	return (write_to_files(head, bin, name));
 }
 

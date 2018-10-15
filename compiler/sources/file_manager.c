@@ -41,32 +41,31 @@ static void		write_int(int fd, int n, size_t size)
 	write(fd, &number, 1);
 }
 
-int				write_header(t_head head, char *file_name)
+void			write_header(t_head head, int fd)
 {
 	int		i;
-	int		fd;
 
-	if ((fd = open(file_name, O_RDWR | O_CREAT)) < 0)
-		return (0);
 	write_int(fd, head.magic, 4);
 	i = -1;
 	while (++i < PROG_NAME_LENGTH)
 		write_int(fd, head.prog_name[i], 1);
+	write_int(fd, head.prog_size, 8);
 	i = -1;
 	while (++i < COMMENT_LENGTH)
 		write_int(fd, head.comment[i], 1);
-	return (1);
 }
 
-int				write_bin(int *bin, char *file_name)
+void			write_bin(int **bin, int fd)
 {
-	int		i;
-	int		fd;
-
-	if ((fd = open(file_name, O_RDWR | O_CREAT)) < 0)
-		return (0);
-	i = 0;
-	while (++i <= bin[0])
-		write_int(fd, bin[i], 1);
-	return (1);
+	int		y;
+	int		x;
+	
+	write_int(fd, 0, 4);
+	y = -1;
+	while (bin[++y])
+	{
+		x = -1;
+		while (++x < bin[y][0])
+			write_int(fd, bin[y][x + 1], 1);
+	}
 }

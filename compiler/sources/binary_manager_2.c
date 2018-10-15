@@ -13,7 +13,7 @@
 
 #include "compiler.h"
 
-void			add_bin_pos(int *bin, int n, size_t oct)
+void	add_bin_pos(int *bin, int n, size_t oct)
 {
 	int		i;
 
@@ -24,4 +24,16 @@ void			add_bin_pos(int *bin, int n, size_t oct)
 	while (++i < oct - 1)
 		n = n >> 8;
 	bin[0] = n & 0xff;
+}
+
+int		bin_size(int **bin)
+{
+	int		i;
+	int		size;
+	
+	i = -1;
+	size = 0;
+	while (bin[++i])
+		size += bin[i][0];
+	return (size);
 }

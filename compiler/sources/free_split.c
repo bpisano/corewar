@@ -25,7 +25,6 @@ void			free_split(char ***split)
 
 int				free_struct(t_pos data, t_op *op, t_lab **lab, int i)
 {
-	printf("ok\n");
 	free(op);
 	data.i = -1;
 	while (data.file[++data.i] && (data.j = -1))
