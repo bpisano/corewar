@@ -35,9 +35,17 @@ static int		is_lab(char *op)
 
 static int		is_dir(char *op)
 {
+	int		i;
+	
 	if (ft_strlen(op) < 2)
 		return (0);
-	return (op[0] == DIRECT_CHAR && ft_str_is_numeric(op + 1) && op[1] != 0);
+	if ((op[1] == '+' || op[1] == '-') && ft_strlen(op) < 3)
+		return (0);
+	if (op[1] == '+' || op[1] == '-')
+		i = 2;
+	else
+		i = 1;
+	return (op[0] == DIRECT_CHAR && ft_str_is_numeric(op + i));
 }
 
 int				op_type(char *op)

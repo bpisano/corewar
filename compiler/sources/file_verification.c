@@ -5,11 +5,12 @@
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: bpisano <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/10/05 10:54:47 by bpisano      #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/04 19:17:32 by bpisano     ###    #+. /#+    ###.fr     */
+/*   Created: 2018/10/15 11:14:34 by bpisano      #+#   ##    ##    #+#       */
+/*   Updated: 2018/10/05 15:13:48 by bpisano     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
+
 
 #include "compiler.h"
 
@@ -22,7 +23,7 @@ static int	match_pattern(char *str)
 		return (0);
 	while (ft_isspace(str[i]) && str[i])
 		i++;
-	while (corewar_alpha(str[i]) && str[i])
+	while ((corewar_alpha(str[i]) || str[i] == '-' || str[i] == '-') && str[i])
 		i++;
 	while (ft_isspace(str[i]) && str[i])
 		i++;
@@ -86,7 +87,8 @@ int			verify_syntax(char **line)
 {
 	int		i;
 	char	**split;
-
+	
+	printf("%s\n", *line);
 	*line = no_comment(*line);
 	if (have_only_label(*line, &i))
 		return (1);
