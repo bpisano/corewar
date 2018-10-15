@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/01 12:37:51 by bpisano      #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/03 16:21:01 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/15 11:53:29 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -54,7 +54,7 @@ int				op_type(char *op)
 		return (T_REG);
 	else if (is_dir(op))
 		return (T_DIR);
-	else if (ft_str_is_numeric(op))
+	else if (ft_str_is_number(op))
 		return (T_IND);
 	else if (is_lab(op))
 		return (T_DIR);

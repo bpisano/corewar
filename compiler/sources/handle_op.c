@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/01 12:16:30 by anamsell     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/12 14:48:10 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/15 11:41:44 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -48,7 +48,7 @@ void	add_arg_bin(int ***bin, char *arg, int i, int oct)
 			add_bin_int(bin, ft_atoi(arg + 1), oct);
 	}
 	else
-		add_bin_int(bin, ft_atoi(arg), IND_SIZE / 2);
+		add_bin_int(bin, ft_atoi(arg), IND_SIZE);
 }
 
 int		handle_op2(t_pos data, t_op op, int ***bin, t_lab ***lab)

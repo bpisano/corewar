@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/09/25 17:16:20 by anamsell     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/12 14:42:13 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/15 11:27:25 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -34,12 +34,12 @@ int		handle_label(t_pos data, int **bin, t_op *op_tab, t_lab **lab)
 	pos = 0;
 	data.j = 0;
 	if (!(label = ft_memalloc(sizeof(t_label *))))
-		return (-1);
+		return (4);
 	while (data.file[++data.i])
 	{
 		if (!is_op(data.file[data.i][0], op_tab))
 			if (!(add_lab_list(data.file[data.i][0], pos, bin, &label)))
-				return (-1);
+				return (4);
 		if (!data.file[data.i][1])
 			data.j--;
 		else
@@ -59,25 +59,25 @@ int		core_text(int ***bin, char **file_lines)
 	t_lab	**lab;
 
 	if (!(op_tab = initialisation(&lab, &data, file_lines)))
-		return (-1);
+		return (4);
 	while (data.file[++data.i] && !(data.j = 0))
 		if (is_op(data.file[data.i][0], op_tab))
 		{
 			if (handle_op(data, op_tab, bin, &lab))
-				return (1);
+				return (5);
 		}
 		else if (!is_label(data.file[data.i][0]))
-			return (-1);
+			return (5);
 		else if (!data.file[data.i][1])
 			data.decal -= 1;
 		else if (is_op(data.file[data.i][1], op_tab))
 		{
 			data.j += 1;
 			if (handle_op(data, op_tab, bin, &lab))
-				return (-1);
+				return (5);
 		}
 		else
-			return (-1);
+			return (5);
 	data.i = handle_label(data, *bin, op_tab, lab);
 	free(op_tab);
 	free_cmd(&(data.file));
