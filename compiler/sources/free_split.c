@@ -17,9 +17,14 @@ void			free_split(char ***split)
 {
 	int		i;
 
+	if (!(*split))
+		return ;
 	i = -1;
 	while ((*split)[++i])
+	{
+		printf("ok\n");
 		free((*split)[i]);
+	}
 	free(*split);
 }
 

@@ -13,18 +13,6 @@
 
 #include "compiler.h"
 
-void	free_file_lines(char ***tab)
-{
-	int		i;
-
-	if (!(*tab))
-		return ;
-	i = -1;
-	while ((*tab)[++i])
-		free((*tab)[i]);
-	free(*tab);
-}
-
 int		is_comment(char *str)
 {
 	int		i;
@@ -40,11 +28,11 @@ int		is_comment(char *str)
 char	**read_file(int fd)
 {
 	int		i;
-	char	**str;
+	char	**file_lines;
 	char	*line;
 
 	i = -1;
-	if (!(str = (char **)malloc(sizeof(char *))))
+	if (!(file_lines = (char **)ft_memalloc(sizeof(char *))))
 		return (0);
 	while (get_next_line(fd, &line) > 0)
 	{
@@ -53,16 +41,18 @@ char	**read_file(int fd)
 			free(line);
 			continue ;
 		}
+		printf("%s\n", line);
 		if (!verify_syntax(&line))
 		{
+			printf("lol\n");
 			free(line);
-			free_file_lines(&str);
+			free_split(&file_lines);
 			return (NULL);
 		}
-		str = (char **)realloc(str, sizeof(char *) * (++i + 2));
-		str[i] = line;
-		str[i + 1] = 0;
+		printf("%s\n", line);
+		file_lines = (char **)realloc(file_lines, sizeof(char *) * (++i + 2));
+		file_lines[i] = line;
+		file_lines[i + 1] = 0;
 	}
-	str[i + 1] = 0;
-	return (str);
+	return (file_lines);
 }

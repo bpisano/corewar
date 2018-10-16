@@ -87,17 +87,17 @@ int				main(int argc, char **argv)
 	{
 		if (!verify_file(argv[i], &file_lines, &bin))
 		{
-			free_file_lines(&file_lines);
+			free_split(&file_lines);
 			return (0);
 		}
 		if (!compile_lines(file_lines, &bin, argv[i]))
 		{
 			free_bin(&bin);
-			free_file_lines(&file_lines);
+			free_split(&file_lines);
 			return (0);
 		}
 	}
 	free_bin(&bin);
-	free_file_lines(&file_lines);
+	free_split(&file_lines);
 	return (0);
 }

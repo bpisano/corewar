@@ -5,11 +5,12 @@
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: bpisano <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/10/15 11:14:34 by bpisano      #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/05 15:13:48 by bpisano     ###    #+. /#+    ###.fr     */
+/*   Created: 2018/10/16 12:07:31 by bpisano      #+#   ##    ##    #+#       */
+/*   Updated: 2018/10/15 11:44:27 by bpisano     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
+
 
 
 #include "compiler.h"
@@ -91,6 +92,7 @@ int			verify_syntax(char **line)
 	*line = no_comment(*line);
 	if (have_only_label(*line, &i))
 		return (1);
+	printf("verify\n");
 	if (have_two_separator(*line))
 		return (0);
 	if (have_separator_at_last(*line + i))
