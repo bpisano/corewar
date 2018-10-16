@@ -41,15 +41,12 @@ char	**read_file(int fd)
 			free(line);
 			continue ;
 		}
-		printf("%s\n", line);
 		if (!verify_syntax(&line))
 		{
-			printf("lol\n");
 			free(line);
 			free_split(&file_lines);
 			return (NULL);
 		}
-		printf("%s\n", line);
 		file_lines = (char **)realloc(file_lines, sizeof(char *) * (++i + 2));
 		file_lines[i] = line;
 		file_lines[i + 1] = 0;
