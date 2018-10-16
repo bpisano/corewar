@@ -56,7 +56,7 @@ static int		verify_file(char *file_name, char ***file_lines, int ***bin)
 {
 	int		fd;
 
-	if ((fd = open(file_name, O_RDONLY)) < 0)
+	if ((fd = open(file_name, O_RDWR)) < 0)
 	{
 		display_error(3);
 		return (0);
