@@ -77,6 +77,8 @@ int				set_header(t_head *head, char **file_lines)
 			continue ;
 		else if (!com && (com = header_type(file_lines[i], COMMENT_CMD_STRING)))
 			continue ;
+		else if (ft_emptychar(file_lines[i]))
+			continue ;
 		else
 			return (handle_error(&name, &com));
 	}
