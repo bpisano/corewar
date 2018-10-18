@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/09/24 17:57:34 by bpisano      #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/15 17:39:44 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/18 18:17:23 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -16,6 +16,54 @@
 
 # include "libft.h"
 # include "op.h"
+
+/*
+ ** STRUCTURE
+*/
+
+typedef struct		s_head
+{
+	unsigned int	magic;
+	char			prog_name[PROG_NAME_LENGTH + 1];
+	unsigned int	prog_size;
+	char			comment[COMMENT_LENGTH + 1];
+}					t_head;
+
+typedef	struct		s_op
+{
+	char			*name;
+	int				nbr_arg;
+	char			arg[3];
+	int				opcode;
+	char			codage_octal;
+	int				dir_size;
+
+}					t_op;
+
+typedef	struct		s_label
+{
+	char			*name;
+	int				pos;
+
+}					t_label;
+
+typedef	struct		s_lab
+{
+	char			*name;
+	int				oct;
+	int				i;
+	int				i_for_bin;
+	int				j;
+	int				pos;
+}					t_lab;
+
+typedef	struct		s_pos
+{
+	char			***file;
+	int				i;
+	int				j;
+	int				decal;
+}					t_pos;
 
 /*
  ** ERROR
