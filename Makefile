@@ -6,7 +6,7 @@
 #    By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/03/15 18:40:16 by bpisano      #+#   ##    ##    #+#        #
-#    Updated: 2018/10/16 17:13:22 by bpisano     ###    #+. /#+    ###.fr      #
+#    Updated: 2018/10/18 18:05:48 by bpisano     ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -20,7 +20,6 @@ SRC = compiler/sources/main.c				\
 	  compiler/sources/binary_manager_2.c	\
 	  compiler/sources/file_manager.c		\
 	  compiler/sources/read_file.c			\
-	  compiler/sources/ft_emptychar.c		\
 	  compiler/sources/file_verification.c	\
 	  compiler/sources/file_verification_2.c\
 	  compiler/sources/str_cleaner.c		\

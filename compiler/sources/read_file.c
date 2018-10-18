@@ -27,16 +27,6 @@ static int		add_line(char ***file_lines, char *line)
 	return (1);
 }
 
-static char		*empty_str(void)
-{
-	char	*str;
-	
-	if (!(str = ft_strnew(1)))
-		return (NULL);
-	str[0] = EMPTY_CHAR;
-	return (str);
-}
-
 int		is_comment(char *str)
 {
 	int		i;
@@ -63,7 +53,6 @@ char	**read_file(int fd)
 		if (ft_str_is_empty(line) || is_comment(line))
 		{
 			free(line);
-			add_line(&file_lines, empty_str());
 			continue ;
 		}
 		if (!verify_syntax(&line))

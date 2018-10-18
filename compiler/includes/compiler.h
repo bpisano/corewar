@@ -17,8 +17,6 @@
 # include "libft.h"
 # include "op.h"
 
-# define EMPTY_CHAR 57
-
 /*
  ** ERROR
 */
@@ -79,8 +77,6 @@ int		set_header(t_head *head, char **file_lines);
 /*
  ** COMPILER
 */
-
-int		ft_emptychar(char *str);
 
 int		core_text(int ***bin, char **file_lines);
 int     ft_somestrchr(char *str1, char *str2);
