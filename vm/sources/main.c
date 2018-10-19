@@ -12,7 +12,7 @@
 /* ************************************************************************** */
 
 #include "vm.h"
-
+/*
 int		error(int i)
 {
 	if (i == 0)
@@ -39,12 +39,12 @@ int		init(char **argv, t_vm)
 		if (is_flag(argv[i]))
 	}
 }
-
+*/
 int		main(int argc, char **argv)
 {
-	t_vm	vm;
+	//t_vm	vm;
 
-	(void)argc;
-	if (!init(argv, &vm))
+	//(void)argc;
+	//if (!init(argv, &vm))
 		return (0);	
 }

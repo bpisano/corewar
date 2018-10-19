@@ -19,6 +19,8 @@
 
 typedef struct		s_pro
 {
+	int				id;
+	int				player;
 	int				pc;
 	int				live;
 	int				carry;
@@ -54,5 +56,11 @@ typedef struct		s_vm
 
 int					exec_vm(t_vm *vm);
 int					init_process(t_vm *vm);
+
+int					number_of_pro(t_vm vm);
+t_pro				*new_pro_from_champ(t_champ champ, t_vm vm);
+t_pro				*new_pro_from_pro(t_pro pro, int dir, t_vm vm);
+void				free_pro(t_vm *vm);
+
 
 #endif
