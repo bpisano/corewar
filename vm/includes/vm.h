@@ -17,13 +17,13 @@
 # include "libft.h"
 # include "op.h"
 
-typedef struct		s_proc
+typedef struct		s_pro
 {
 	char			live;
 	int				pc;
 	int				carry;
 	int				reg[REG_NUMBER];
-}					t_proc;
+}					t_pro;
 
 typedef struct		s_champ
 {
@@ -44,7 +44,7 @@ typedef struct		s_vm
 	int				ui;
 	
 	t_champ			*champs[MAX_PLAYERS + 1];
-	t_proc			**procs;
+	t_pro			**pro;
 }					t_vm;
 
 int					exec_vm(t_vm *vm);
