@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/17 16:09:18 by anamsell     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/18 18:38:52 by bpisano     ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/19 14:21:27 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -28,17 +28,23 @@ int		error(int i)
 	return (0);
 }
 
+int		init(char **argv, t_vm)
+{
+	int		i;
+	int		numb_player
+
+	i = 0;
+	while (argv[++i])
+	{
+		if (is_flag(argv[i]))
+	}
+}
+
 int		main(int argc, char **argv)
 {
-	int     i;
 	t_vm	vm;
-	i = 0;
-	if (argc == 1)
-		return (error(0));
-	if (argc > MAX_PLAYERS + 1)
-		return (error(1));
-	while (argv[++i])
-		if (!(verif_champion(argv[i])))
-			return (error(2));
-	return (0);	
+
+	(void)argc;
+	if (!init(argv, &vm))
+		return (0);	
 }

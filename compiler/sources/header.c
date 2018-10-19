@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/09/25 10:55:54 by bpisano      #+#   ##    ##    #+#       */
-/*   Updated: 2018/09/25 12:37:30 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/19 12:10:49 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -33,7 +33,6 @@ static char		*header_type(char *str, char *type)
 	{
 		free_split(&split);
 		return (NULL);
-		re
 	}
 	trim_type = ft_strtrim(split[0]);
 	if (ft_strcmp(type, trim_type) != 0)
