@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/18 15:37:11 by anamsell     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/18 18:38:23 by bpisano     ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/19 14:27:20 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -42,7 +42,5 @@ typedef struct      s_vm
 	int				max_checks;
 	t_champ			*champs[MAX_PLAYERS + 1];
 }                   t_vm;
-
-int					verif_champion(char *name);
 
 #endif
