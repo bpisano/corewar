@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/18 15:37:11 by anamsell     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/19 14:27:20 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/19 15:58:11 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -32,6 +32,7 @@ typedef struct		s_champ
 	char			player;
 	unsigned int	last_live;
 	unsigned int	cur_live;
+	unsigned int 	pc;
 }					t_champ;
 
 typedef struct		s_vm
