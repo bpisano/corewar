@@ -6,38 +6,44 @@
 #    By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/03/15 18:40:16 by bpisano      #+#   ##    ##    #+#        #
-#    Updated: 2018/10/18 18:05:48 by bpisano     ###    #+. /#+    ###.fr      #
+#    Updated: 2018/10/18 18:37:26 by bpisano     ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
 
-NAME = asm
+ASM = asm
+VM = corewar
 
-SRC = compiler/sources/main.c				\
-	  compiler/sources/free_split.c			\
-	  compiler/sources/error.c				\
-	  compiler/sources/binary_manager.c		\
-	  compiler/sources/binary_manager_2.c	\
-	  compiler/sources/file_manager.c		\
-	  compiler/sources/read_file.c			\
-	  compiler/sources/file_verification.c	\
-	  compiler/sources/file_verification_2.c\
-	  compiler/sources/str_cleaner.c		\
-	  compiler/sources/header.c				\
-	  compiler/sources/header_manager.c		\
-	  compiler/sources/core_text.c			\
-	  compiler/sources/cmd_manager.c		\
-	  compiler/sources/op_type.c			\
-	  compiler/sources/fnct.c				\
-	  compiler/sources/handle_op.c			\
-	  compiler/sources/initialisation.c		\
+SRC_COMP = compiler/sources/main.c					\
+	  	   compiler/sources/free_split.c			\
+		   compiler/sources/error.c					\
+		   compiler/sources/binary_manager.c		\
+		   compiler/sources/binary_manager_2.c		\
+		   compiler/sources/file_manager.c			\
+		   compiler/sources/read_file.c				\
+		   compiler/sources/file_verification.c		\
+		   compiler/sources/file_verification_2.c	\
+		   compiler/sources/str_cleaner.c			\
+		   compiler/sources/header.c				\
+		   compiler/sources/header_manager.c		\
+		   compiler/sources/core_text.c				\
+		   compiler/sources/cmd_manager.c			\
+		   compiler/sources/op_type.c				\
+		   compiler/sources/fnct.c					\
+		   compiler/sources/handle_op.c				\
+		   compiler/sources/initialisation.c		\
 
-OBJECTS = $(SRC:.c=.o)
+SRC_VM = vm/sources/main.c							\
+
+HEADS = -I ./compiler/includes						\
+		-I ./vm/includes							\
+		-I ./libft/includes							\
+		-I ./global									\
+
+OBJ_ASM = $(SRC_COMP:.c=.o)
+OBJ_VM = $(SRC_VM:.c=.o)
 
 LIB = libft.a
-
-HEADS = -I ./compiler/includes			\
-		-I ./libft/includes				\
 
 FLAGS = -Wall -Werror -Wextra
 
@@ -47,14 +53,18 @@ YELLOW = \033[0;33m
 BLUE = \033[0;34m
 END = \033[0m
 
-all: $(NAME)
+all: $(ASM) $(VM)
 
 $(LIB):
 	@make -C libft
 
-$(NAME): $(LIB) $(OBJECTS)
-	@gcc -o $(NAME) $(OBJECTS) libft/$(LIB)
-	@echo "$(BLUE)$(NAME)\033[500D\033[42C$(GREEN)[DONE]$(END)"
+$(ASM): $(LIB) $(OBJ_ASM)
+	@gcc -o $(ASM) $(OBJ_ASM) libft/$(LIB)
+	@echo "$(BLUE)$(ASM)\033[500D\033[42C$(GREEN)[DONE]$(END)"
+
+$(VM): $(OBJ_VM)
+	@gcc -o $(VM) $(OBJ_VM) libft/$(LIB)
+	@echo "$(BLUE)$(VM)\033[500D\033[42C$(GREEN)[DONE]$(END)"
 
 %.o : %.c
 	@echo "Compiling $(notdir $@)\033[500D\033[42C$(RED)[KO]$(END)"
@@ -62,11 +72,11 @@ $(NAME): $(LIB) $(OBJECTS)
 	@echo "\033[1A\033[500D\033[42C$(GREEN)[DONE]$(END)"
 
 clean:
-	@rm -f $(OBJECTS)
+	@rm -f $(OBJ_ASM) $(OBJ_VM)
 	@make clean -C libft
 
 fclean: clean
-	@rm -f $(NAME)
+	@rm -f $(ASM) $(VM)
 	@make fclean -C libft
 
 re: fclean all

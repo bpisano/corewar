@@ -6,13 +6,16 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/18 15:37:11 by anamsell     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/18 17:47:40 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/18 18:38:23 by bpisano     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #ifndef VM_H
-#define VM_H
+# define VM_H
+
+# include "libft.h"
+# include "op.h"
 
 typedef struct		s_proc
 {

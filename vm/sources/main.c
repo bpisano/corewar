@@ -6,13 +6,12 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/17 16:09:18 by anamsell     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/18 17:47:41 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/18 18:38:52 by bpisano     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "vm.h"
-
 
 int		error(int i)
 {
@@ -21,11 +20,12 @@ int		error(int i)
 		ft_printf("ERROR NO CHAMPS\n");
 		return (0);
 	}
-		if (i == 1)
+	if (i == 1)
 	{
 		ft_printf("ERROR T00 MANY CHAMPS\n");
 		return (0);
 	}
+	return (0);
 }
 
 int		main(int argc, char **argv)
@@ -40,5 +40,5 @@ int		main(int argc, char **argv)
 	while (argv[++i])
 		if (!(verif_champion(argv[i])))
 			return (error(2));
-	
+	return (0);	
 }

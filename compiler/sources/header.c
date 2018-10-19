@@ -33,6 +33,7 @@ static char		*header_type(char *str, char *type)
 	{
 		free_split(&split);
 		return (NULL);
+		re
 	}
 	trim_type = ft_strtrim(split[0]);
 	if (ft_strcmp(type, trim_type) != 0)
