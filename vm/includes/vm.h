@@ -32,7 +32,6 @@ typedef struct		s_champ
 	char			player;
 	unsigned int	last_live;
 	unsigned int	cur_live;
-	t_proc			**process;
 }					t_champ;
 
 typedef struct		s_vm
@@ -40,9 +39,14 @@ typedef struct		s_vm
 	char			reg[MEM_SIZE];
 	int				cycle_to_die;
 	int				max_checks;
-	t_champ			*champs[MAX_PLAYERS + 1];
+	
 	int				dump;
 	int				ui;
+	
+	t_champ			*champs[MAX_PLAYERS + 1];
+	t_proc			**procs;
 }					t_vm;
+
+int					exec_vm(t_vm *vm);
 
 #endif
