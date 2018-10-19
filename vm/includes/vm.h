@@ -19,8 +19,8 @@
 
 typedef struct		s_pro
 {
-	char			live;
 	int				pc;
+	int				live;
 	int				carry;
 	int				reg[REG_NUMBER];
 }					t_pro;
@@ -47,6 +47,11 @@ typedef struct		s_vm
 	t_pro			**pro;
 }					t_vm;
 
+/*
+ ** VM
+*/
+
 int					exec_vm(t_vm *vm);
+int					init_process(t_vm *vm);
 
 #endif

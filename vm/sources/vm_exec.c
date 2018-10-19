@@ -15,5 +15,5 @@
 
 int		exec_vm(t_vm *vm)
 {
-	
+	if (!create_processes(vm))
 }
