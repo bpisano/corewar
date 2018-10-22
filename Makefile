@@ -6,7 +6,7 @@
 #    By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/03/15 18:40:16 by bpisano      #+#   ##    ##    #+#        #
-#    Updated: 2018/10/22 11:37:08 by anamsell    ###    #+. /#+    ###.fr      #
+#    Updated: 2018/10/22 14:59:17 by bpisano     ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -36,6 +36,10 @@ SRC_COMP = compiler/sources/main.c					\
 SRC_VM = vm/sources/main.c							\
 		 vm/sources/checker.c						\
 		 vm/sources/check_champ.c					\
+		 vm/sources/vm_exec.c						\
+		 vm/sources/win_checker.c					\
+		 vm/sources/process_init.c					\
+		 vm/sources/process_manager.c				\
 
 HEADS = -I ./compiler/includes						\
 		-I ./vm/includes							\

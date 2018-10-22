@@ -36,8 +36,12 @@ typedef struct		s_pro
 	int				id;
 	int				player;
 	int				pc;
+	int				cyles;
+	
 	int				live;
+	int				active;
 	int				carry;
+	
 	int				reg[REG_NUMBER];
 }					t_pro;
 
@@ -69,18 +73,25 @@ typedef struct		s_vm
  ** VM
 */
 
-int					exec_vm(t_vm *vm);
-int					init_process(t_vm *vm);
 int					check_flag_n(char **argv, int *i, t_vm *vm);
 int					check_flag_d(char **argv, int *i, int *dump);
 int					valid_champ(char *name, t_vm *vm, char *number);
 int					count_champs(char **argv);
 int					invalid_param(char *argv);
 
+int					exec_vm(t_vm *vm);
+
+/*
+ ** Processes
+*/
+
+int					init_process(t_vm *vm);
 int					number_of_pro(t_vm vm);
 t_pro				*new_pro_from_champ(t_champ champ, t_vm vm);
 t_pro				*new_pro_from_pro(t_pro pro, int dir, t_vm vm);
 void				free_pro(t_vm *vm);
+
+int					have_winner(t_vm vm);
 
 
 #endif
