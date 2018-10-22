@@ -6,27 +6,12 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/17 16:09:18 by anamsell     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/21 23:04:48 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/22 11:33:12 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "vm.h"
-/*
-int		error(int i)
-{
-	if (i == 0)
-	{
-		ft_printf("ERROR NO CHAMPS\n");
-		return (0);
-	}
-	if (i == 1)
-	{
-		ft_printf("ERROR T00 MANY CHAMPS\n");
-		return (0);
-	}
-	return (0);
-}
 
 int		init(char **argv, t_vm *vm)
 {
@@ -58,18 +43,12 @@ int		init(char **argv, t_vm *vm)
 	}
 	return (0);
 }
-*/
+
 int		main(int argc, char **argv)
 {
-	//t_vm	vm;
+	t_vm	vm;
 
-<<<<<<< HEAD
 	(void)argc;
 	if (init(argv, &vm))
 		return (0/*free_vm_champs(vm)*/);
-=======
-	//(void)argc;
-	//if (!init(argv, &vm))
-		return (0);	
->>>>>>> 2eb0646ce3e8b43876f851fb0863d6710460a563
 }
