@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/21 15:16:52 by anamsell     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/22 00:24:48 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/10/22 11:37:30 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -52,7 +52,7 @@ int		valid_champ(char *name, t_vm *vm, char *number)
 	if (check_name(&line, vm) || check_comment(&line, vm) || check_size(&line, vm) || check_content(&line, vm))
 	{
 		free(line);
-		fd =-1
+		fd =-1;
 		while (vm->champs[++fd])
 			free(vm->champs[fd]);
 		return (1);

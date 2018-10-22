@@ -6,11 +6,7 @@
 #    By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/03/15 18:40:16 by bpisano      #+#   ##    ##    #+#        #
-<<<<<<< HEAD
-#    Updated: 2018/10/21 15:25:13 by anamsell    ###    #+. /#+    ###.fr      #
-=======
-#    Updated: 2018/10/19 16:20:03 by bpisano     ###    #+. /#+    ###.fr      #
->>>>>>> 2eb0646ce3e8b43876f851fb0863d6710460a563
+#    Updated: 2018/10/22 11:37:08 by anamsell    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -38,13 +34,8 @@ SRC_COMP = compiler/sources/main.c					\
 		   compiler/sources/initialisation.c		\
 
 SRC_VM = vm/sources/main.c							\
-<<<<<<< HEAD
 		 vm/sources/checker.c						\
 		 vm/sources/check_champ.c					\
-=======
-		 vm/sources/process_init.c					\
-		 vm/sources/process_manager.c				\
->>>>>>> 2eb0646ce3e8b43876f851fb0863d6710460a563
 
 HEADS = -I ./compiler/includes						\
 		-I ./vm/includes							\
