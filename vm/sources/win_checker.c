@@ -5,15 +5,16 @@
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: bpisano <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/10/22 14:20:46 by bpisano      #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/22 14:49:03 by bpisano     ###    #+. /#+    ###.fr     */
+/*   Created: 2018/10/22 15:00:50 by bpisano      #+#   ##    ##    #+#       */
+/*   Updated: 2018/10/22 14:57:32 by bpisano     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
+
 #include "vm.h"
 
-int		champs_len(t_champ **champs)
+int			champs_len(t_champ **champs)
 {
 	int		i;
 	
@@ -23,7 +24,7 @@ int		champs_len(t_champ **champs)
 	return (i);
 }
 
-int		have_winner(t_vm vm)
+int			have_winner(t_vm vm)
 {
 	int		i;
 	int		j;
@@ -46,4 +47,20 @@ int		have_winner(t_vm vm)
 	else if (champs_len(vm.champs) > 1 && active_champ == 1)
 		return (1);
 	return (0);
+}
+
+t_champ		*winner(t_vm vm)
+{
+	int		i;
+	int		j;
+	
+	i = -1;
+	while (vm.champs[++i])
+	{
+		j = -1;
+		while (vm.pro[++j])
+			if (vm.pro[j]->player == vm.champs[i]->player && vm.pro[j]->active)
+				return (vm.champs[i]);
+	}
+	return (NULL);
 }

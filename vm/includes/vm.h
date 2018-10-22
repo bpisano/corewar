@@ -92,6 +92,7 @@ t_pro				*new_pro_from_pro(t_pro pro, int dir, t_vm vm);
 void				free_pro(t_vm *vm);
 
 int					have_winner(t_vm vm);
+t_champ				*winner(t_vm vm);
 
 
 #endif
