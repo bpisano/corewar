@@ -33,6 +33,8 @@
 
 typedef struct		s_pro
 {
+	int				id;
+	int				player;
 	int				pc;
 	int				live;
 	int				carry;
@@ -74,5 +76,11 @@ int					check_flag_d(char **argv, int *i, int *dump);
 int					valid_champ(char *name, t_vm *vm, char *number);
 int					count_champs(char **argv);
 int					invalid_param(char *argv);
+
+int					number_of_pro(t_vm vm);
+t_pro				*new_pro_from_champ(t_champ champ, t_vm vm);
+t_pro				*new_pro_from_pro(t_pro pro, int dir, t_vm vm);
+void				free_pro(t_vm *vm);
+
 
 #endif

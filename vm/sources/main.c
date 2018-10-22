@@ -12,7 +12,7 @@
 /* ************************************************************************** */
 
 #include "vm.h"
-
+/*
 int		error(int i)
 {
 	if (i == 0)
@@ -58,12 +58,18 @@ int		init(char **argv, t_vm *vm)
 	}
 	return (0);
 }
-
+*/
 int		main(int argc, char **argv)
 {
-	t_vm	vm;
+	//t_vm	vm;
 
+<<<<<<< HEAD
 	(void)argc;
 	if (init(argv, &vm))
 		return (0/*free_vm_champs(vm)*/);
+=======
+	//(void)argc;
+	//if (!init(argv, &vm))
+		return (0);	
+>>>>>>> 2eb0646ce3e8b43876f851fb0863d6710460a563
 }

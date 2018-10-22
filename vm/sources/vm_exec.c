@@ -15,5 +15,12 @@
 
 int		exec_vm(t_vm *vm)
 {
-	if (!create_processes(vm))
+	int		i;
+	
+	if (!init_process(vm))
+		return (0);
+	i = -1;
+	while (vm->pro[++i])
+	
+	return (1);
 }
