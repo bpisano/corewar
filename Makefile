@@ -6,7 +6,7 @@
 #    By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/03/15 18:40:16 by bpisano      #+#   ##    ##    #+#        #
-#    Updated: 2018/10/18 18:37:26 by bpisano     ###    #+. /#+    ###.fr      #
+#    Updated: 2018/10/21 15:25:13 by anamsell    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -34,6 +34,8 @@ SRC_COMP = compiler/sources/main.c					\
 		   compiler/sources/initialisation.c		\
 
 SRC_VM = vm/sources/main.c							\
+		 vm/sources/checker.c						\
+		 vm/sources/check_champ.c					\
 
 HEADS = -I ./compiler/includes						\
 		-I ./vm/includes							\
