@@ -5,11 +5,12 @@
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: bpisano <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/10/22 15:00:50 by bpisano      #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/19 16:38:13 by bpisano     ###    #+. /#+    ###.fr     */
+/*   Created: 2018/10/22 18:03:29 by bpisano      #+#   ##    ##    #+#       */
+/*   Updated: 2018/10/22 17:07:25 by bpisano     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
+
 
 #include "vm.h"
 
@@ -36,10 +37,22 @@ static void		change_values_if_needed(t_vm *vm)
 static void		run_cycles(t_vm *vm)
 {
 	int		i;
+	int		j;
 	
 	i = -1;
 	while (++i < vm->cycle_to_die)
-		;//exec_pro(vm->pro);
+	{
+		j = -1;
+		while (vm->pro[++j])
+		{
+			if (vm->pro[j]->cycles > 0)
+			{
+				vm->pro[j]->cycles -= 1;
+				continue ;
+			}
+			exec_pro(vm->pro[j], vm);
+		}
+	}
 }
 
 int				exec_vm(t_vm *vm)

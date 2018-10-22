@@ -6,7 +6,7 @@
 #    By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/03/15 18:40:16 by bpisano      #+#   ##    ##    #+#        #
-#    Updated: 2018/10/22 14:59:17 by bpisano     ###    #+. /#+    ###.fr      #
+#    Updated: 2018/10/22 18:30:50 by bpisano     ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -40,6 +40,7 @@ SRC_VM = vm/sources/main.c							\
 		 vm/sources/win_checker.c					\
 		 vm/sources/process_init.c					\
 		 vm/sources/process_manager.c				\
+		 vm/sources/process_exec.c					\
 
 HEADS = -I ./compiler/includes						\
 		-I ./vm/includes							\

@@ -36,7 +36,7 @@ typedef struct		s_pro
 	int				id;
 	int				player;
 	int				pc;
-	int				cyles;
+	int				cycles;
 	
 	int				live;
 	int				active;
@@ -93,6 +93,8 @@ void				free_pro(t_vm *vm);
 
 int					have_winner(t_vm vm);
 t_champ				*winner(t_vm vm);
+int					have_active_pro(t_vm vm);
 
+void				exec_pro(t_pro *pro, t_vm *vm);
 
 #endif
