@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/18 15:37:11 by anamsell     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/23 00:31:15 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/07 23:12:53 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -30,9 +30,12 @@
 # define ERROR_FILE	"Error \"%s\" is not a file\n"
 # define ERROR_COR	"Error \"%s\" is not a .cor\n"
 # define ERROR_MALL	"Error of memory allocation\n"
-# define ERROR_0	"Error the %d octet must be 0\n"
+# define ERROR_0	"Error the first octet must be 0x00\n"
 # define ERROR_MGC	"Error the COREWAR_EXEC_MAGIC is not correct\n"
 # define ERROR_CHMP	"Error in \"%s\"\n"
+# define ERROR_NAME	"Error in the champs number %d, the name is incorrect\n"
+# define ERROR_READ	"Error, invalid file\n"
+# define ERROR_SIZE	"Error, bad content size\n"
 
 typedef struct		s_pro
 {
@@ -40,11 +43,11 @@ typedef struct		s_pro
 	int				player;
 	int				pc;
 	int				cycles;
-	
+
 	int				live;
 	int				active;
 	int				carry;
-	
+
 	int				reg[REG_NUMBER];
 }					t_pro;
 

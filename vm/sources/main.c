@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/17 16:09:18 by anamsell     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/23 00:31:20 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/07 18:37:24 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -25,7 +25,7 @@ int		init(char **argv, t_vm *vm)
 	while (argv[++i])
 		if (!argv[i][0])
 			continue;
-		if (!ft_strcmp(argv[i], "-n") || !ft_strcmp(argv[i], "-number"))
+		else if (!ft_strcmp(argv[i], "-n") || !ft_strcmp(argv[i], "-number"))
 		{
 			if (check_flag_n(argv, &i, vm))
 				return (1);
