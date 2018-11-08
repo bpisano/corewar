@@ -1,33 +1,32 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   process_exec.c                                   .::    .:/ .      .::   */
+/*   opreations_exec.c                                .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: bpisano <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/10/22 18:23:20 by bpisano      #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/22 18:23:38 by bpisano     ###    #+. /#+    ###.fr     */
+/*   Created: 2018/11/08 19:23:23 by bpisano      #+#   ##    ##    #+#       */
+/*   Updated: 2018/11/08 19:23:23 by bpisano     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-void	exec_op(int op_num, t_pro *pro, t_vm *vm)
+void	live(t_pro *pro, t_vm *vm)
 {
-	//if (op_num == 0)
-		
-}
-
-void	exec_pro(t_pro *pro, t_vm *vm)
-{
-	int		op_num;
+	int		champ;
+	int		i;
 	
-	op_num = vm->reg[pro->pc];
-	if (op_num > 15)
+	champ = num_at_reg(*vm, pro->pc + 1, 4);
+	i = -1;
+	while (vm->champs[++i])
 	{
-		increment_pc(1, pro);
-		return ;
+		if (vm->champs[i]->player == champ)
+		{
+			vm->champs[i]->cur_live += 1;
+			break ;
+		}
 	}
-	exec_op(op_num, pro, vm);
+	increment_pc(5, pro);
 }

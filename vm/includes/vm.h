@@ -102,11 +102,25 @@ int					number_of_pro(t_vm vm);
 t_pro				*new_pro_from_champ(t_champ champ, t_vm vm);
 t_pro				*new_pro_from_pro(t_pro pro, int dir, t_vm vm);
 void				free_pro(t_vm *vm);
+void				increment_pc(int increment, t_pro *pro);
 
 int					have_winner(t_vm vm);
 t_champ				*winner(t_vm vm);
 int					have_active_pro(t_vm vm);
 
 void				exec_pro(t_pro *pro, t_vm *vm);
+
+/*
+ ** REG
+*/
+
+int					num_at_reg(t_vm vm, size_t reg, size_t size);
+void				set_num_at_reg(t_vm *vm, int n, size_t reg);
+
+/*
+ ** OPERATIONS
+*/
+
+void				live(t_pro *pro, t_vm *vm);
 
 #endif

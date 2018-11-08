@@ -11,7 +11,6 @@
 /*                                                        /                   */
 /* ************************************************************************** */
 
-
 #include "vm.h"
 
 t_pro	*new_pro_from_champ(t_champ champ, t_vm vm)
@@ -52,4 +51,14 @@ void	free_pro(t_vm *vm)
 	while (vm->pro[++i])
 		free(vm->pro[i]);
 	free(vm->pro);
+}
+
+void	increment_pc(int increment, t_pro *pro)
+{
+	if (pro->pc + increment >= MEM_SIZE)
+	{
+		pro->pc = increment - (MEM_SIZE - pro->pc);
+		return;
+	}
+	pro->pc += increment;
 }
