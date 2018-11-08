@@ -6,13 +6,15 @@
 #    By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/03/15 18:40:16 by bpisano      #+#   ##    ##    #+#        #
-#    Updated: 2018/10/22 23:37:02 by anamsell    ###    #+. /#+    ###.fr      #
+#    Updated: 2018/10/24 19:09:41 by bpisano     ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
 
 ASM = asm
 VM = corewar
+
+SRC_GLOB = global/operations.c						\
 
 SRC_COMP = compiler/sources/main.c					\
 	  	   compiler/sources/free_split.c			\
@@ -48,6 +50,7 @@ HEADS = -I ./compiler/includes						\
 		-I ./libft/includes							\
 		-I ./global									\
 
+OBJ_GLOB = $(SRC_GLOB:.c=.o)
 OBJ_ASM = $(SRC_COMP:.c=.o)
 OBJ_VM = $(SRC_VM:.c=.o)
 
@@ -66,11 +69,11 @@ all: $(ASM) $(VM)
 $(LIB):
 	@make -C libft
 
-$(ASM): $(LIB) $(OBJ_ASM)
-	@gcc -o $(ASM) $(OBJ_ASM) libft/$(LIB)
+$(ASM): $(LIB) $(OBJ_GLOB) $(OBJ_ASM)
+	@gcc -o $(ASM) $(OBJ_GLOB) $(OBJ_ASM) libft/$(LIB)
 	@echo "$(BLUE)$(ASM)\033[500D\033[42C$(GREEN)[DONE]$(END)"
 
-$(VM): $(OBJ_VM)
+$(VM): $(OBJ_GLOB) $(OBJ_VM)
 	@gcc -o $(VM) $(OBJ_VM) libft/$(LIB)
 	@echo "$(BLUE)$(VM)\033[500D\033[42C$(GREEN)[DONE]$(END)"
 

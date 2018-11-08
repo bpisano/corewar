@@ -15,6 +15,7 @@
 # define VM_H
 
 # include "libft.h"
+# include "corewar.h"
 # include "op.h"
 
 # define ERROR_N1	"Bad argument : %d, need a number after -n flag\n"

@@ -15,6 +15,7 @@
 # define COMPILER_H
 
 # include "libft.h"
+# include "corewar.h"
 # include "op.h"
 
 /*
@@ -28,17 +29,6 @@ typedef struct		s_head
 	unsigned int	prog_size;
 	char			comment[COMMENT_LENGTH + 1];
 }					t_head;
-
-typedef	struct		s_op
-{
-	char			*name;
-	int				nbr_arg;
-	char			arg[3];
-	int				opcode;
-	char			codage_octal;
-	int				dir_size;
-
-}					t_op;
 
 typedef	struct		s_label
 {

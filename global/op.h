@@ -45,8 +45,6 @@
 # define NBR_LIVE				21
 # define MAX_CHECKS				10
 
-typedef char		t_arg_type;
-
 # define T_REG					1
 # define T_DIR					2
 # define T_IND					4
@@ -58,5 +56,7 @@ typedef char		t_arg_type;
 # define COREWAR_EXEC_MAGIC		0xea83f3
 
 # define LAB_NUMB				300
+
+typedef char					t_arg_type;
 
 #endif
