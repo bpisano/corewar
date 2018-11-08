@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/22 23:29:32 by anamsell     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/07 23:13:15 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/08 18:43:27 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -17,13 +17,13 @@ int		convert_hexa_int(char a, char b)
 {
 	int		i;
 
-	if (a > '9')
+	if (a <= '9')
 		i = (a - '0') * 16;
 	else
 		i = (a - 'A' + 10) * 16;
-	if (b > '9')
-		b += a - '0';
+	if (b <= '9')
+		i += b - '0';
 	else
-		b += b - 'A' + 10;
+		i += b - 'A' + 10;
 	return (i);
 }

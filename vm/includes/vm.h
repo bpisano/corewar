@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/18 15:37:11 by anamsell     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/07 23:12:53 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/08 20:06:46 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -36,7 +36,9 @@
 # define ERROR_CHMP	"Error in \"%s\"\n"
 # define ERROR_NAME	"Error in the champs number %d, the name is incorrect\n"
 # define ERROR_READ	"Error, invalid file\n"
-# define ERROR_SIZE	"Error, bad content size\n"
+# define ERROR_CONT	"Error, content is too long\n"
+# define ERROR_SIZE	"Error, bad content size %d\n"
+# define ERROR_COM	"Error, comment is too long\n"
 
 typedef struct		s_pro
 {
@@ -57,6 +59,7 @@ typedef struct		s_champ
 	char			name[PROG_NAME_LENGTH + 1];
 	char			comment[COMMENT_LENGTH + 1];
 	char			player;
+
 	unsigned int	last_live;
 	unsigned int	cur_live;
 	unsigned int	pc;

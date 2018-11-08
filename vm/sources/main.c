@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/17 16:09:18 by anamsell     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/07 18:37:24 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/08 21:12:04 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -48,5 +48,6 @@ int		main(int argc, char **argv)
 
 	(void)argc;
 	if (init(argv, &vm))
-		return (0/*free_vm_champs(vm)*/);
+		return (0);
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/21 15:16:52 by anamsell     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/07 23:12:51 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/08 21:11:09 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -18,12 +18,8 @@ int		check_magic(char *line, t_vm *vm, int *i)
 	char	*str;
 	int		j;
 
-	*i = 0;
-	if (line[*i])
-	{
-		ft_printf("%c\n",line[*i]);
+	if (line[0])
 		return (ft_printf(ERROR_0));
-	}
 	if (!(str = ft_itoa_base(COREWAR_EXEC_MAGIC, 16)))
 		return (ft_printf(ERROR_MALL));
 	if (ft_strlen(str) % 2)
@@ -31,17 +27,19 @@ int		check_magic(char *line, t_vm *vm, int *i)
 		free(str);
 		return (ft_printf(ERROR_MGC));
 	}
-	*i += 1;
+	*i = 0;
 	j = 0;
 	while (str[j])
 	{
-		if (line[*i] != (unsigned char)convert_hexa_int(str[j], str[j + 1]))
+		if ((unsigned char)line[++(*i)] != convert_hexa_int(str[j], str[j + 1]))
+		{
+			free(str);
 			return (ft_printf(ERROR_MGC));
+		}
 		j += 2;
-		*i += 1;
 	}
 	free(str);
-	return(1);
+	return (0);
 }
 
 int		check_name(char *line, t_vm *vm, int *i)
@@ -59,19 +57,41 @@ int		check_name(char *line, t_vm *vm, int *i)
 	while (line[*i])
 	{
 		if (j == PROG_NAME_LENGTH + 1)
-			return (ft_printf(ERROR_NAME), k + 1);
+			return (ft_printf(ERROR_NAME, k + 1));
 		vm->champs[k]->name[j] = line[*i];
 		j++;
 		(*i)++;
 	}
 	vm->champs[k]->name[j] = 0;
+	vm->champs[k]->last_live = 0;
+	vm->champs[k]->cur_live = 0;
+	vm->champs[k]->pc = (k * (MEM_SIZE / 64) / vm->nbr_champs) * 64;
 	return (0);
 }
 
-int		valid_champ(char *name, t_vm *vm, char *number)
+int		check_comment(char *line, t_vm *vm)
+{
+	int		i;
+	int		k;
+	int		j;
+
+	i = 0x8b;
+	k = -1;
+	j = -1;
+	while (vm->champs[++k])
+		;
+	k--;
+	while (line[++i] && j < COMMENT_LENGTH)
+		vm->champs[k]->comment[++j] = line[i];
+	if (j >= COMMENT_LENGTH)
+		return (ft_printf(ERROR_COM));
+	vm->champs[k]->comment[j + 1] = 0;
+	return (0);
+}
+
+int		init_champ(char *line, t_vm *vm, char *name)
 {
 	int		fd;
-	char	line[HEADER_SIZE + CHAMP_MAX_SIZE];
 
 	if ((fd = ft_strlen(name)) >= 2 && !ft_strcmp(name + fd - 2, ".s"))
 		return (ft_printf(ERROR_ASM, name, name));
@@ -81,19 +101,39 @@ int		valid_champ(char *name, t_vm *vm, char *number)
 		return (ft_printf(ERROR_OPEN, name));
 	if (read(fd, line, HEADER_SIZE) < HEADER_SIZE)
 		return (ft_printf(ERROR_READ));
-	if (read(fd, line + HEADER_SIZE, line[0x8a] * 256 + line[0x8b])
-	< line[0x8a] * 256 + line[0x8b])
-		return (ft_printf(ERROR_SIZE));
-	fd = 0;
-	if (check_magic(line, vm, &fd) || check_name(line, vm, &fd) ||
-	check_comment(line, vm, &fd) || check_content(line, vm, &fd))
+	if ((unsigned char)line[0x8a] * 256 + (unsigned char)line[0x8b]
+	> CHAMP_MAX_SIZE)
+		return (ft_printf(ERROR_CONT));
+	if (read(fd, line + HEADER_SIZE, (unsigned char)line[0x8a] * 256
+	+ (unsigned char)line[0x8b] + 1) !=
+	(unsigned char)line[0x8a] * 256 + (unsigned char)line[0x8b])
+		return (ft_printf(ERROR_SIZE, (unsigned char)line[0x8b]));
+	return (0);
+}
+
+int		valid_champ(char *name, t_vm *vm, int number)
+{
+	int		i;
+	int		j;
+	char	line[HEADER_SIZE + CHAMP_MAX_SIZE + 1];
+
+	if (init_champ(line, vm, name))
+		return (1);
+	if (check_magic(line, vm, &i) || check_name(line, vm, &i) ||
+	check_comment(line, vm))
 	{
-		free(line);
-		fd = -1;
-		while (vm->champs[++fd])
-			free(vm->champs[fd]);
+		i = -1;
+		while (vm->champs[++i])
+			free(vm->champs[i]);
 		return (1);
 	}
-	free(line);
+	i = -1;
+	while (vm->champs[i])
+		i++;
+	i--;
+	j = -1;
+	while (++j < (unsigned char)line[0x8a] * 256 + (unsigned char)line[0x8b])
+		vm->reg[j + (i * (MEM_SIZE / 64) / vm->nbr_champs) * 64]
+		= line[HEADER_SIZE + j];
 	return (0);
 }
