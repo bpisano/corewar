@@ -49,5 +49,7 @@ int		main(int argc, char **argv)
 	(void)argc;
 	if (init(argv, &vm))
 		return (0);
+	if (!exec_vm(&vm))
+		return (0);
 	return (0);
 }
