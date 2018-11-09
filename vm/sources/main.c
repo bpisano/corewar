@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/17 16:09:18 by anamsell     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/08 22:11:14 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/09 16:11:25 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -20,8 +20,8 @@ int		init(char **argv, t_vm *vm)
 	i = 0;
 	vm->dump = -1;
 	vm->champs[0] = 0;
-	if (!(vm->nbr_champs = count_champs(argv)))
-		return (ft_printf(ERROR_NUMB));
+	if (!(vm->nbr_champs = count_champs(argv)) || vm->nbr_champs > MAX_PLAYERS)
+		return (ft_printf(ERROR_NUMB, MAX_PLAYERS));
 	while (argv[++i])
 		if (!argv[i][0])
 			continue;

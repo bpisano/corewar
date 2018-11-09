@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/18 15:37:11 by anamsell     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/08 22:14:28 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/09 16:09:43 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -24,7 +24,7 @@
 # define ERROR_D2	"Flag -dump use several time\n"
 # define ERROR_C	"Bad argument : %d, \"%s\" is not a valid champ\n"
 # define ERROR_OPEN	"Open error, \"%s\" cannot be opened or does not exist\n"
-# define ERROR_NUMB	"Error no champs\n"
+# define ERROR_NUMB	"Error need a least 1 champ and no more then %d champs\n"
 # define ERROR_ASM	"Error \"%s\" is a .s, do \"./asm %s\" before\n"
 # define ERROR_F1	"Error nothing afer -, use -n or -dump\n"
 # define ERROR_F2	"Error \"%s\" is not handle, bpisano is the one to blame\n"
