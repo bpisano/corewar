@@ -76,11 +76,11 @@ $(ASM): $(LIB) $(OBJ_GLOB) $(OBJ_ASM)
 	@echo "$(BLUE)$(ASM)\033[500D\033[42C$(GREEN)[DONE]$(END)"
 
 $(VM): $(OBJ_GLOB) $(OBJ_VM)
-	@gcc -o $(VM) $(OBJ_VM) libft/$(LIB)
+	@gcc -o $(VM) $(OBJ_GLOB) $(OBJ_VM) libft/$(LIB)
 	@echo "$(BLUE)$(VM)\033[500D\033[42C$(GREEN)[DONE]$(END)"
 
 %.o : %.c
-	@echo "Compiling $(notdir $@)\033[500D\033[42C$(RED)[KO]$(END)"
+	@echo "$(YELLOW)Compiling$(END) $(notdir $@)\033[500D\033[42C$(RED)[KO]$(END)"
 	@gcc $(HEADS) -o $@ -c $?
 	@echo "\033[1A\033[500D\033[42C$(GREEN)[DONE]$(END)"
 
