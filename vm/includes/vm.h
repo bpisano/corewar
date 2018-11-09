@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/18 15:37:11 by anamsell     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/08 20:06:46 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/08 22:14:28 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -33,12 +33,13 @@
 # define ERROR_MALL	"Error of memory allocation\n"
 # define ERROR_0	"Error the first octet must be 0x00\n"
 # define ERROR_MGC	"Error the COREWAR_EXEC_MAGIC is not correct\n"
-# define ERROR_CHMP	"Error in \"%s\"\n"
+# define ERROR_CHMP	"Error in the parameter number %d: \"%s\"\n"
 # define ERROR_NAME	"Error in the champs number %d, the name is incorrect\n"
 # define ERROR_READ	"Error, invalid file\n"
 # define ERROR_CONT	"Error, content is too long\n"
 # define ERROR_SIZE	"Error, bad content size %d\n"
 # define ERROR_COM	"Error, comment is too long\n"
+# define ERROR_NBR	"Error, the player number (%d) is already taken\n"
 
 typedef struct		s_pro
 {
@@ -58,7 +59,7 @@ typedef struct		s_champ
 {
 	char			name[PROG_NAME_LENGTH + 1];
 	char			comment[COMMENT_LENGTH + 1];
-	char			player;
+	unsigned char	player;
 
 	unsigned int	last_live;
 	unsigned int	cur_live;
@@ -85,11 +86,12 @@ typedef struct		s_vm
 
 int					check_flag_n(char **argv, int *i, t_vm *vm);
 int					check_flag_d(char **argv, int *i, int *dump);
-int					valid_champ(char *name, t_vm *vm, char *number);
+int					invalid_champ(char *name, t_vm *vm, char *number);
 int					count_champs(char **argv);
 int					invalid_param(char *argv);
 int					convert_hexa_int(char a, char b);
-char				*ft_str_join_free(char *str1, char *str2);
+int					handle_number(t_vm *vm, char *number, int j);
+int					free_chmp(t_vm *vm);
 
 int					exec_vm(t_vm *vm);
 

@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/17 16:09:18 by anamsell     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/08 21:12:04 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/08 22:11:14 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -37,8 +37,8 @@ int		init(char **argv, t_vm *vm)
 		}
 		else if (!ft_strchr(argv[i], '.'))
 			return (invalid_param(argv[i]));
-		else if (valid_champ(argv[i], vm, ""))
-			return (ft_printf(ERROR_CHMP, argv[i]));
+		else if (invalid_champ(argv[i], vm, ""))
+			return (ft_printf(ERROR_CHMP, i, argv[i]));
 	return (0);
 }
 
