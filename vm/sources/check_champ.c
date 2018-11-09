@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/21 15:16:52 by anamsell     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/08 22:17:11 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/09 14:08:03 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -122,6 +122,5 @@ int		invalid_champ(char *name, t_vm *vm, char *number)
 		line[HEADER_SIZE + j];
 	if (handle_number(vm, number, i))
 		return (ft_printf(ERROR_NBR, ft_atoi(number)) && free_chmp(vm));
-	printf("%d\n", vm->champs[i]->player);
 	return (0);
 }
