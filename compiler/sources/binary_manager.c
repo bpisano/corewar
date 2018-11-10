@@ -1,27 +1,17 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   binary_gestion.c                                 .::    .:/ .      .::   */
+/*   binary_manager.c                                 .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/09/25 10:55:54 by bpisano      #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/03 17:38:42 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/10 09:55:43 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "compiler.h"
-
-int		**new_bin(void)
-{
-	int		**new;
-
-	if (!(new = (int **)malloc(sizeof(int *) * 2)))
-		return (NULL);
-	new[0] = NULL;
-	return (new);
-}
 
 int		bin_len(int **bin)
 {

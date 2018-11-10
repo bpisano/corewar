@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/09/25 10:48:27 by bpisano      #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/03 17:07:13 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/10 10:17:07 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -17,7 +17,7 @@ static int		write_to_files(t_head head, int ***bin, char *file_name)
 {
 	char	*comp_name;
 	int		fd;
-	
+
 	comp_name = cor_name(file_name);
 	if ((fd = open(comp_name, O_RDWR | O_CREAT | O_TRUNC, 0777)) < 0)
 	{
@@ -26,7 +26,6 @@ static int		write_to_files(t_head head, int ***bin, char *file_name)
 	}
 	write_header(head, fd);
 	write_bin(*bin, fd);
-	print_bin(*bin);
 	ft_printf("Successfuly compiled in %s\n", comp_name);
 	free(comp_name);
 	return (1);

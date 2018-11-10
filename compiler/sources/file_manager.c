@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/09/26 15:09:14 by bpisano      #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/03 16:59:13 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/10 09:54:53 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -18,7 +18,7 @@ char			*cor_name(char *str)
 	int		i;
 	int		dot_offset;
 	char	*cor;
-	
+
 	i = -1;
 	dot_offset = 0;
 	while (str[++i])
@@ -60,7 +60,7 @@ void			write_bin(int **bin, int fd)
 {
 	int		y;
 	int		x;
-	
+
 	write_int(fd, 0, 4);
 	y = -1;
 	while (bin[++y])

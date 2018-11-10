@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/09/24 17:48:29 by anamsell     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/03 17:06:52 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/10 09:53:05 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -16,7 +16,7 @@
 static int		add_line(char ***file_lines, char *line)
 {
 	int		i;
-	
+
 	i = -1;
 	while ((*file_lines)[++i])
 		;
@@ -27,7 +27,7 @@ static int		add_line(char ***file_lines, char *line)
 	return (1);
 }
 
-int		is_comment(char *str)
+int				is_comment(char *str)
 {
 	int		i;
 
@@ -39,7 +39,7 @@ int		is_comment(char *str)
 	return (str[i] == COMMENT_CHAR);
 }
 
-char	**read_file(int fd)
+char			**read_file(int fd)
 {
 	int		i;
 	char	**file_lines;

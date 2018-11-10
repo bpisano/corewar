@@ -3,15 +3,13 @@
 /*                                                              /             */
 /*   file_verification.c                              .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: bpisano <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
+/*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/16 12:07:31 by bpisano      #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/15 11:44:27 by bpisano     ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/10 09:54:37 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
-
-
 
 #include "compiler.h"
 
@@ -88,7 +86,7 @@ int			verify_syntax(char **line)
 {
 	int		i;
 	char	**split;
-	
+
 	*line = no_comment(*line);
 	if (have_only_label(*line, &i))
 		return (1);

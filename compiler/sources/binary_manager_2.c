@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/05 13:17:00 by bpisano      #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/10 12:39:16 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/10 09:55:35 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -30,10 +30,20 @@ int		bin_size(int **bin)
 {
 	int		i;
 	int		size;
-	
+
 	i = -1;
 	size = 0;
 	while (bin[++i])
 		size += bin[i][0];
 	return (size);
+}
+
+int		**new_bin(void)
+{
+	int		**new;
+
+	if (!(new = (int **)malloc(sizeof(int *) * 2)))
+		return (NULL);
+	new[0] = NULL;
+	return (new);
 }

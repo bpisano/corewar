@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/01 12:37:51 by bpisano      #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/15 11:53:29 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/10 09:54:16 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -36,7 +36,7 @@ static int		is_lab(char *op)
 static int		is_dir(char *op)
 {
 	int		i;
-	
+
 	if (ft_strlen(op) < 2)
 		return (0);
 	if ((op[1] == '+' || op[1] == '-') && ft_strlen(op) < 3)
