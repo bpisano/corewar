@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/09/27 20:06:22 by anamsell     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/15 11:59:23 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/12 18:39:34 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -50,7 +50,7 @@ int		fill_bin_lab(t_label **label, t_lab *lab, int **bin)
 			lab->oct);
 			return (0);
 		}
-	return (5);
+	return (ft_printf(ERROR_LABEL, lab->name));
 }
 
 int		add_lab_list(char *name, int pos, int **bin, t_label ***label)

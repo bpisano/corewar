@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/01 12:16:30 by anamsell     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/10 10:53:33 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/12 22:32:55 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -51,7 +51,16 @@ void	add_arg_bin(int ***bin, char *arg, int i, int oct)
 		add_bin_int(bin, ft_atoi(arg), IND_SIZE);
 }
 
-int		handle_op2(t_pos data, t_op op, int ***bin, t_lab ***lab)
+int		handle_op3(t_op op, int tot_line, int k, int ***bin)
+{
+	while (k++ < 4)
+		tot_line = tot_line << 2;
+	if (op.codage_octal)
+		bin[0][bin_len(*bin) - 1][2] = tot_line;
+	return (0);
+}
+
+int		handle_op2(t_pos d, t_op op, int ***bin, t_lab ***lab)
 {
 	int		i;
 	int		tot_line;
@@ -61,26 +70,22 @@ int		handle_op2(t_pos data, t_op op, int ***bin, t_lab ***lab)
 	k = -1;
 	add_bin_line(bin);
 	add_bin_int(bin, op.opcode, 1);
-	if (ft_tablen(&data.file[data.i][data.j + 1]) != op.nbr_arg)
-		return (ft_printf(ERROR_OP_LEN, op.nbr_arg, data.file[data.i][data.j]));
+	if (ft_tablen(&d.file[d.i][d.j + 1]) != op.nbr_arg)
+		return (ft_printf(ERROR_OP_LEN, op.nbr_arg, d.file[d.i][d.j]));
 	if (op.codage_octal)
 		add_bin_int(bin, 0, 1);
-	while (++k < op.nbr_arg && (++data.j > -1))
+	while (++k < op.nbr_arg && (++d.j > -1))
 	{
-		if (!(i = op_type(data.file[data.i][data.j]) & op.arg[k]))
-			return (ft_printf(ERROR_OP_TYPE, data.file[data.i][data.j], k + 1, data.file[data.i][data.j - k - 1]));
-		add_arg_bin(bin, data.file[data.i][data.j], i, op.dir_size);
-		if (data.file[data.i][data.j][1] == LABEL_CHAR)
-			if (add_label(data, op.dir_size, lab, bin[0][data.i +
-			data.decal][0]))
+		if (!(i = op_type(d.file[d.i][d.j]) & op.arg[k]))
+			return (ft_printf(ERROR_OP_TYPE, PARAM));
+		add_arg_bin(bin, d.file[d.i][d.j], i, op.dir_size);
+		if (d.file[d.i][d.j][1] == LABEL_CHAR)
+			if (add_label(d, op.dir_size, lab, bin[0][d.i +
+			d.decal][0]))
 				return (ft_printf(ERROR_MALL));
 		tot_line = (tot_line << 2) | param_bin(i);
 	}
-	while (k++ < 4)
-		tot_line = tot_line << 2;
-	if (op.codage_octal)
-		bin[0][bin_len(*bin) - 1][2] = tot_line;
-	return (0);
+	return (handle_op3(op, tot_line, k, bin));
 }
 
 int		handle_op(t_pos data, t_op *op_tab, int ***bin, t_lab ***lab)
@@ -91,5 +96,5 @@ int		handle_op(t_pos data, t_op *op_tab, int ***bin, t_lab ***lab)
 	while (++i <= 15)
 		if (!ft_strcmp(op_tab[i].name, data.file[data.i][data.j]))
 			return (handle_op2(data, op_tab[i], bin, lab));
-	return (ft_printf(ERROR_OP, data.file[data.i][data.j]));
+	return (ft_printf(ER_OP, data.file[data.i][data.j]));
 }

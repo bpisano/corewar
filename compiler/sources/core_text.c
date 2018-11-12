@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/09/25 17:16:20 by anamsell     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/12 14:29:51 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/12 19:30:05 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -34,12 +34,12 @@ int		handle_label(t_pos data, int **bin, t_op *op_tab, t_lab **lab)
 	pos = 0;
 	data.j = 0;
 	if (!(label = ft_memalloc(sizeof(t_label *))))
-		return (4);
+		return (ft_printf(ERROR_MALL));
 	while (data.file[++data.i])
 	{
 		if (!is_op(data.file[data.i][0], op_tab))
 			if (!(add_lab_list(data.file[data.i][0], pos, bin, &label)))
-				return (free_l(label, 4));
+				return (free_l(label, ft_printf(ERROR_MALL)));
 		if (!data.file[data.i][1])
 			data.j--;
 		else
@@ -47,9 +47,14 @@ int		handle_label(t_pos data, int **bin, t_op *op_tab, t_lab **lab)
 	}
 	data.i = -1;
 	while (lab[++data.i])
-		if ((data.j = fill_bin_lab(label, lab[data.i], bin)))
-			return (free_l(label, data.j));
+		if (fill_bin_lab(label, lab[data.i], bin))
+			return (free_l(label, 10));
 	return (free_l(label, 0));
+}
+
+char	*f(t_comp c, int i)
+{
+	return (c.data.file[c.data.i][i]);
 }
 
 int		core_text(int ***bin, char **file_lines)
@@ -65,7 +70,7 @@ int		core_text(int ***bin, char **file_lines)
 				return (free_s(c.data, c.op_tab, c.lab, 10));
 		}
 		else if (!is_label(c.data.file[c.data.i][0]))
-			return (free_s(c.data, c.op_tab, c.lab, ft_printf(ERROR_LAB)));
+			return (free_s(c.data, c.op_tab, c.lab, ft_printf(ER_LA, f(c, 0))));
 		else if (!c.data.file[c.data.i][1])
 			c.data.decal -= 1;
 		else if (is_op(c.data.file[c.data.i][1], c.op_tab))
@@ -75,8 +80,8 @@ int		core_text(int ***bin, char **file_lines)
 				return (free_s(c.data, c.op_tab, c.lab, 10));
 		}
 		else
-			return (free_s(c.data, c.op_tab, c.lab, 5));
+			return (free_s(c.data, c.op_tab, c.lab, ft_printf(ER_OP, f(c, 1))));
 	c.data.i = handle_label(c.data, *bin, c.op_tab, c.lab);
-	free_s(c.data, c.op_tab, c.lab, 5);
+	free_s(c.data, c.op_tab, c.lab, 0);
 	return (c.data.i);
 }
