@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/21 15:16:52 by anamsell     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/09 14:08:03 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/12 17:10:44 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -50,13 +50,12 @@ int		check_name(char *line, t_vm *vm, int *i, int k)
 	if (!(vm->champs[k] = malloc(sizeof(t_champ))))
 		return (ft_printf(ERROR_MALL));
 	vm->champs[k + 1] = 0;
-	while (line[*i])
+	while (line[++(*i)])
 	{
 		if (j == PROG_NAME_LENGTH + 1)
 			return (ft_printf(ERROR_NAME, k + 1));
 		vm->champs[k]->name[j] = line[*i];
 		j++;
-		(*i)++;
 	}
 	vm->champs[k]->name[j] = 0;
 	vm->champs[k]->last_live = 0;
