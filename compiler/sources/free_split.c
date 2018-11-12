@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/15 11:14:34 by bpisano      #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/15 15:30:49 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/12 15:56:01 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -25,7 +25,7 @@ void			free_split(char ***split)
 	free(*split);
 }
 
-int				free_struct(t_pos data, t_op *op, t_lab **lab, int i)
+int				free_s(t_pos data, t_op *op, t_lab **lab, int i)
 {
 	free(op);
 	data.i = -1;
@@ -43,7 +43,7 @@ int				free_struct(t_pos data, t_op *op, t_lab **lab, int i)
 	return (i);
 }
 
-int				free_struct_label(t_label **label, int i)
+int				free_l(t_label **label, int i)
 {
 	int		j;
 

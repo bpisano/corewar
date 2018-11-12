@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/09/24 17:57:34 by bpisano      #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/10 11:00:04 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/12 14:38:47 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -22,6 +22,7 @@
 # define ERROR_OP		"Error, %s is not an operator\n"
 # define ERROR_OP_LEN	"Error, %d param are needed with %s operator\n"
 # define ERROR_OP_TYPE	"Error, operator %s is not possible as arg no %d of %s"
+# define ERROR_LAB		"Error, wrong label syntax\n"
 /*
  ** STRUCTURE
 */
@@ -145,7 +146,7 @@ void				free_label(t_label *lab);
 int					is_op(char *str, t_op *op_tab);
 int					ft_str_is_number(char *str);
 t_op				*initialisation(t_lab ***lab, t_pos *data, char **lines);
-int					free_struct(t_pos data, t_op *op, t_lab **lab, int i);
-int					free_struct_label(t_label **label, int i);
+int					free_s(t_pos data, t_op *op, t_lab **lab, int i);
+int					free_l(t_label **label, int i);
 
 #endif

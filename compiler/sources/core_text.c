@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/09/25 17:16:20 by anamsell     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/10 10:34:06 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/12 14:29:51 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -39,7 +39,7 @@ int		handle_label(t_pos data, int **bin, t_op *op_tab, t_lab **lab)
 	{
 		if (!is_op(data.file[data.i][0], op_tab))
 			if (!(add_lab_list(data.file[data.i][0], pos, bin, &label)))
-				return (free_struct_label(label, 4));
+				return (free_l(label, 4));
 		if (!data.file[data.i][1])
 			data.j--;
 		else
@@ -48,35 +48,35 @@ int		handle_label(t_pos data, int **bin, t_op *op_tab, t_lab **lab)
 	data.i = -1;
 	while (lab[++data.i])
 		if ((data.j = fill_bin_lab(label, lab[data.i], bin)))
-			return (free_struct_label(label, data.j));
-	return (free_struct_label(label, 0));
+			return (free_l(label, data.j));
+	return (free_l(label, 0));
 }
 
 int		core_text(int ***bin, char **file_lines)
 {
-	t_comp	comp;
+	t_comp	c;
 
-	if (!(comp.op_tab = initialisation(&comp.lab, &comp.data, file_lines)))
+	if (!(c.op_tab = initialisation(&c.lab, &c.data, file_lines)))
 		return (ft_printf(ERROR_MALL));
-	while (comp.data.file[++comp.data.i] && !(comp.data.j = 0))
-		if (is_op(comp.data.file[comp.data.i][0], comp.op_tab))
+	while (c.data.file[++c.data.i] && !(c.data.j = 0))
+		if (is_op(c.data.file[c.data.i][0], c.op_tab))
 		{
-			if (handle_op(comp.data, comp.op_tab, bin, &comp.lab))
-				return (free_struct(comp.data, comp.op_tab, comp.lab, 10));
+			if (handle_op(c.data, c.op_tab, bin, &c.lab))
+				return (free_s(c.data, c.op_tab, c.lab, 10));
 		}
-		else if (!is_label(comp.data.file[comp.data.i][0]))
-			return (free_struct(comp.data, comp.op_tab, comp.lab, 5));
-		else if (!comp.data.file[comp.data.i][1])
-			comp.data.decal -= 1;
-		else if (is_op(comp.data.file[comp.data.i][1], comp.op_tab))
+		else if (!is_label(c.data.file[c.data.i][0]))
+			return (free_s(c.data, c.op_tab, c.lab, ft_printf(ERROR_LAB)));
+		else if (!c.data.file[c.data.i][1])
+			c.data.decal -= 1;
+		else if (is_op(c.data.file[c.data.i][1], c.op_tab))
 		{
-			comp.data.j += 1;
-			if (handle_op(comp.data, comp.op_tab, bin, &comp.lab))
-				return (free_struct(comp.data, comp.op_tab, comp.lab, 10));
+			c.data.j += 1;
+			if (handle_op(c.data, c.op_tab, bin, &c.lab))
+				return (free_s(c.data, c.op_tab, c.lab, 10));
 		}
 		else
-			return (free_struct(comp.data, comp.op_tab, comp.lab, 5));
-	comp.data.i = handle_label(comp.data, *bin, comp.op_tab, comp.lab);
-	free_struct(comp.data, comp.op_tab, comp.lab, 5);
-	return (comp.data.i);
+			return (free_s(c.data, c.op_tab, c.lab, 5));
+	c.data.i = handle_label(c.data, *bin, c.op_tab, c.lab);
+	free_s(c.data, c.op_tab, c.lab, 5);
+	return (c.data.i);
 }
