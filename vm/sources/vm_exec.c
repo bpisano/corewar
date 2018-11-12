@@ -21,7 +21,7 @@ static void		change_values_if_needed(t_vm *vm)
 	i = -1;
 	lives = 0;
 	while (vm->champs[++i])
-		lives += vm->champs[++i]->cur_live;
+		lives += vm->champs[i]->cur_live;
 	if (lives >= NBR_LIVE)
 		vm->cycle_to_die -= CYCLE_DELTA;
 	if (vm->max_checks > 0)
@@ -65,6 +65,23 @@ int				exec_vm(t_vm *vm)
 	{
 		run_cycles(vm);
 		change_values_if_needed(vm);
+		print_vm(*vm);
+		sleep(10);
 	}
 	return (1);
+}
+
+void			print_vm(t_vm vm)
+{
+	int		i;
+
+	printf("\n----------------------------------\n");
+	printf("VM\n\tcycle_to_die : %d\n\tcycle_delta : %d\n\tnbr_live : %d\n\tmax_check : %d\n\n", vm.cycle_to_die, CYCLE_DELTA, NBR_LIVE, vm.max_checks);
+	i = -1;
+	while (vm.champs[++i])
+		printf("CHAMP : %s\n\tplayer : %d\n\tcurr_live : %d\n\n", vm.champs[i]->name, vm.champs[i]->player, vm.champs[i]->cur_live);
+	i = -1;
+	while (vm.pro[++i])
+		printf("PRO : %d\n\tplayer : %d\n\tpc : %d\n\n", vm.pro[i]->id, vm.pro[i]->player, vm.pro[i]->pc);
+	printf("----------------------------------\n");
 }
