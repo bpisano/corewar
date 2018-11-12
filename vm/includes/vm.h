@@ -80,6 +80,8 @@ typedef struct		s_vm
 	t_pro			**pro;
 }					t_vm;
 
+void	print_vm(t_vm vm);
+
 /*
  ** VM
 */
