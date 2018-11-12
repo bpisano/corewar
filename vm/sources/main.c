@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/17 16:09:18 by anamsell     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/09 16:11:25 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/12 16:05:53 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -47,6 +47,8 @@ int		main(int argc, char **argv)
 	t_vm	vm;
 
 	(void)argc;
+	vm.cycle_to_die = CYCLE_TO_DIE;
+	vm.max_checks = MAX_CHECKS;
 	if (init(argv, &vm))
 		return (0);
 	if (!exec_vm(&vm))
