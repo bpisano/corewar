@@ -55,6 +55,11 @@ static int		verify_file(char *file_name, char ***file_lines, int ***bin)
 {
 	int		fd;
 
+	if ((fd = ft_strlen(file_name)) < 2 || ft_strcmp(file_name + fd - 2, ".s"))
+	{
+		display_error(3);
+		return (0);
+	}
 	if ((fd = open(file_name, O_RDWR)) < 0)
 	{
 		display_error(3);
