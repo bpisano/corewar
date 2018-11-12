@@ -20,7 +20,7 @@ int		num_at_reg(t_vm vm, size_t reg, size_t size)
 	size_t	i;
 	
 	if (reg >= MEM_SIZE)
-		return (0);
+		reg = MEM_SIZE - reg - 1;
 	size_done = size;
 	i = reg;
 	while (size_done > 0)
@@ -41,7 +41,7 @@ void	set_num_at_reg(t_vm *vm, int n, size_t reg)
 	size_t		curr_reg;
 	
 	if (reg >= MEM_SIZE)
-		return ;
+		reg = MEM_SIZE - reg - 1;
 	num = ~n;
 	curr_reg = reg;
 	while (num > 0)
@@ -53,25 +53,4 @@ void	set_num_at_reg(t_vm *vm, int n, size_t reg)
 		else
 			curr_reg = 0;
 	}
-}
-
-int		param_size(int oct_code, size_t param_index, int opcode)
-{
-	t_op	*op;
-	int		dir_size;
-	
-	oct_code = oct_code >> 2;
-	while (param_index-- > 0)
-		oct_code = oct_code >> 2;
-	if (!oct_code)
-		return (-1);
-	if (oct_code != 1)
-		return (1);
-	else if (oct_code == 3)
-		return (2);
-	if (!(op = struct_tab()))
-		return (-1);
-	dir_size = op[opcode].dir_size;
-	free(op);
-	return (dir_size);
 }

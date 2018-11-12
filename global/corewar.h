@@ -24,7 +24,7 @@ typedef	struct		s_op
 	int				opcode;
 	char			codage_octal;
 	int				dir_size;
-
+	int				cycles;
 }					t_op;
 
 t_op				*struct_tab(void);

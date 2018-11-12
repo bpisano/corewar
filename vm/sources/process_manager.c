@@ -16,13 +16,16 @@
 t_pro	*new_pro_from_champ(t_champ champ, t_vm vm)
 {
 	t_pro	*new;
+	int		op_code;
 
 	if (!(new = (t_pro *)malloc(sizeof(t_pro))))
 		return (NULL);
-	new->id = number_of_pro(vm) + 1;
+	op_code = vm.reg[champ.pc] - 1;
+	new->id = number_of_pro(vm);
 	new->player = champ.player;
 	new->active = 1;
 	new->pc = champ.pc;
+	new->cycles = op_code < 16 ? vm.op_tab[op_code].cycles : 0;
 	new->live = 0;
 	new->carry = 0;
 	return (new);
@@ -34,7 +37,7 @@ t_pro	*new_pro_from_pro(t_pro pro, int dir, t_vm vm)
 
 	if (!(new = (t_pro *)malloc(sizeof(t_pro))))
 		return (NULL);
-	new->id = number_of_pro(vm) + 1;
+	new->id = number_of_pro(vm);
 	new->player = pro.player;
 	new->pc = pro.pc + (dir % IDX_MOD);
 	new->active = pro.active;
@@ -61,4 +64,9 @@ void	increment_pc(int increment, t_pro *pro)
 		return;
 	}
 	pro->pc += increment;
+}
+
+void	goto_next_operation(t_pro *pro)
+{
+	
 }
