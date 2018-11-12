@@ -27,7 +27,7 @@ static int		add_pro(t_vm *vm, t_pro *pro)
 {
 	int		pro_number;
 	
-	pro_number = pro->id -1;
+	pro_number = pro->id;
 	if (!(vm->pro = realloc(vm->pro, sizeof(t_pro *) * (pro_number + 2))))
 		return (0);
 	vm->pro[pro_number] = pro;
@@ -43,10 +43,12 @@ int				init_process(t_vm *vm)
 		return (0);
 	i = -1;
 	while (vm->champs[++i])
+	{
 		if (!add_pro(vm, new_pro_from_champ(*(vm->champs[i]), *vm)))
 		{
 			free_pro(vm);
 			return (0);
 		}
+	}
 	return (1);
 }

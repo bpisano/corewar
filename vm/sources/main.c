@@ -49,6 +49,7 @@ int		main(int argc, char **argv)
 	(void)argc;
 	vm.cycle_to_die = CYCLE_TO_DIE;
 	vm.max_checks = MAX_CHECKS;
+	vm.op_tab = struct_tab();
 	if (init(argv, &vm))
 		return (0);
 	if (!exec_vm(&vm))

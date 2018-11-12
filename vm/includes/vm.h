@@ -78,6 +78,8 @@ typedef struct		s_vm
 
 	t_champ			*champs[MAX_PLAYERS + 1];
 	t_pro			**pro;
+
+	t_op			*op_tab;
 }					t_vm;
 
 void	print_vm(t_vm vm);
@@ -124,6 +126,9 @@ void				set_num_at_reg(t_vm *vm, int n, size_t reg);
 /*
  ** OPERATIONS
 */
+
+int					op_size(int op_code, int oct_code, t_vm vm);
+int					*params(t_pro pro, t_vm vm);
 
 void				live(t_pro *pro, t_vm *vm);
 

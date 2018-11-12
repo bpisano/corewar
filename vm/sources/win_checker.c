@@ -25,7 +25,7 @@ int			have_winner(t_vm vm)
 			active_champ++;
 	if (vm.nbr_champs == 1 && active_champ == 0)
 		return (1);
-	else if (vm.nbr_champs > 1 && active_champ == 1)
+	else if (vm.nbr_champs > 1 && active_champ <= 1)
 		return (1);
 	return (0);
 }

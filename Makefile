@@ -45,6 +45,7 @@ SRC_VM = vm/sources/main.c							\
 		 vm/sources/process_exec.c					\
 		 vm/sources/reg_manager.c					\
 		 vm/sources/operations_exec.c				\
+		 vm/sources/operations_manager.c			\
 		 vm/sources/fnc.c							\
 
 HEADS = -I ./compiler/includes						\
