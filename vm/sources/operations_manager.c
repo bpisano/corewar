@@ -18,7 +18,7 @@ static int	param_size(int op_code, int oct_code, t_vm vm)
 	if ((oct_code & 0x03) == 1)
 		return (1);
 	else if ((oct_code & 0x03) == 2)
-		return (vm.op_tab[op_code].dir_size);
+		return (vm.op_tab[op_code - 1].dir_size);
 	else if ((oct_code & 0x03) == 3)
 		return (3);
 	return (0);
