@@ -68,7 +68,7 @@ typedef struct		s_champ
 
 typedef struct		s_vm
 {
-	char			reg[MEM_SIZE];
+	unsigned char	reg[MEM_SIZE];
 	int				cycle_to_die;
 	int				max_checks;
 	int				nbr_champs;
