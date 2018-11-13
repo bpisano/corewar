@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/21 15:16:52 by anamsell     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/12 17:10:44 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/13 14:19:56 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -60,7 +60,7 @@ int		check_name(char *line, t_vm *vm, int *i, int k)
 	vm->champs[k]->name[j] = 0;
 	vm->champs[k]->last_live = 0;
 	vm->champs[k]->cur_live = 0;
-	vm->champs[k]->pc = (k * (MEM_SIZE / 64) / vm->nbr_champs) * 64;
+	vm->champs[k]->pc = k * MEM_SIZE / vm->nbr_champs;
 	return (0);
 }
 
