@@ -34,7 +34,7 @@ void	live(t_pro *pro, t_vm *vm)
 void	ld_lld(int opcode, t_pro *pro, t_vm vm)
 {
 	int		oct_code;
-	int		param[3];
+	int		**params;
 	
 	oct_code = num_at_reg(vm, pro->pc + 1, 4);
 }
