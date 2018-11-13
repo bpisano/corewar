@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/17 16:09:18 by anamsell     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/13 13:53:24 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/13 13:54:05 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -64,7 +64,7 @@ int		main(int argc, char **argv)
 	print_vm(vm);
 	if (init(argv, &vm))
 		return (0);
-/*	if (!exec_vm(&vm))
-		return (0);*/
+	if (!exec_vm(&vm))
+		return (0);
 	return (0);
 }
