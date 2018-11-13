@@ -6,20 +6,33 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/17 16:09:18 by anamsell     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/12 16:05:53 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/13 13:53:24 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "vm.h"
 
+void	init_var(t_vm *vm)
+{
+	int		i;
+
+	i = -1;
+	vm->cycle_to_die = CYCLE_TO_DIE;
+	vm->max_checks = MAX_CHECKS;
+	vm->dump = -1;
+	vm->champs[0] = 0;
+	vm->op_tab = struct_tab();
+	vm->ui = 0;
+	while (++i < MEM_SIZE)
+		vm->reg[i] = 0;
+}
+
 int		init(char **argv, t_vm *vm)
 {
 	int		i;
 
 	i = 0;
-	vm->dump = -1;
-	vm->champs[0] = 0;
 	if (!(vm->nbr_champs = count_champs(argv)) || vm->nbr_champs > MAX_PLAYERS)
 		return (ft_printf(ERROR_NUMB, MAX_PLAYERS));
 	while (argv[++i])
@@ -47,12 +60,11 @@ int		main(int argc, char **argv)
 	t_vm	vm;
 
 	(void)argc;
-	vm.cycle_to_die = CYCLE_TO_DIE;
-	vm.max_checks = MAX_CHECKS;
-	vm.op_tab = struct_tab();
+	init_var(&vm);
+	print_vm(vm);
 	if (init(argv, &vm))
 		return (0);
-	if (!exec_vm(&vm))
-		return (0);
+/*	if (!exec_vm(&vm))
+		return (0);*/
 	return (0);
 }
