@@ -79,13 +79,25 @@ int				exec_vm(t_vm *vm)
 void			print_vm(t_vm vm)
 {
 	int		i;
+	int		j;
 
-	printf("----------------------------------\n");
+	i = -1;
+	while(++i < MEM_SIZE)
+	{
+		if (i % 64 == 0 && i > 0)
+			printf("\n");
+		printf("%#04x ", vm.reg[i]);
+	}
+	printf("\n----------------------------------\n");
 	printf("VM\n\tcycle_to_die : %d\n\tcycle_delta : %d\n\tnbr_live : %d\n\tmax_check : %d\n\n", vm.cycle_to_die, CYCLE_DELTA, NBR_LIVE, vm.max_checks);
 	i = -1;
+	if (!vm.champs)
+		return ;
 	while (vm.champs[++i])
 		printf("CHAMP : %s\n\tplayer : %d\n\tcurr_live : %d\n\n", vm.champs[i]->name, vm.champs[i]->player, vm.champs[i]->cur_live);
 	i = -1;
+	if (!vm.pro)
+		return ;
 	while (vm.pro[++i])
 		printf("PRO : %d\n\tplayer : %d\n\tpc : %d\n\toperation_cycle : %d\n\n", vm.pro[i]->id, vm.pro[i]->player, vm.pro[i]->pc, vm.pro[i]->cycles);
 }
