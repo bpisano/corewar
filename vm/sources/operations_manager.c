@@ -13,17 +13,6 @@
 
 #include "vm.h"
 
-int			param_type(int oct_code, int n)
-{
-	int		i;
-
-	i = -1;
-	oct_code = oct_code >> 2;
-	while(3 - ++i > n)
-		oct_code = oct_code >> 2;
-	return (oct_code & 0x03);
-}
-
 static int	param_size(int op_code, int oct_code, t_vm vm)
 {
 	if ((oct_code & 0x03) == 1)
@@ -33,22 +22,6 @@ static int	param_size(int op_code, int oct_code, t_vm vm)
 	else if ((oct_code & 0x03) == 3)
 		return (3);
 	return (0);
-}
-
-int     op_size(int op_code, int oct_code, t_vm vm)
-{
-	int     oct_size;
-
-	if (op_code > 15)
-		return (1);
-	oct_size = 1;
-	oct_code = oct_code >> 2;
-	while (oct_code > 0)
-	{
-		oct_size += param_size(op_code, oct_code, vm);
-		oct_code = oct_code >> 2;
-	}
-	return (oct_size);
 }
 
 static int	realloc_params(int	**params, int size)
@@ -85,6 +58,33 @@ int		*params(t_pro pro, t_vm vm)
 		oct_c = oct_c >> 2;
 	}
 	return (p);
+}
+
+int			param_type(int oct_code, int n)
+{
+	int		i;
+
+	i = -1;
+	oct_code = oct_code >> 2;
+	while(3 - ++i > n)
+		oct_code = oct_code >> 2;
+	return (oct_code & 0x03);
+}
+
+int     op_size(int op_code, int oct_code, t_vm vm)
+{
+	int     oct_size;
+
+	if (op_code > 15)
+		return (1);
+	oct_size = 1;
+	oct_code = oct_code >> 2;
+	while (oct_code > 0)
+	{
+		oct_size += param_size(op_code, oct_code, vm);
+		oct_code = oct_code >> 2;
+	}
+	return (oct_size);
 }
 /*
 int		param_size(int oct_code, size_t param_index, int opcode)
