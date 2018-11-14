@@ -13,10 +13,13 @@
 
 #include "vm.h"
 
-void	exec_op(int op_num, t_pro *pro, t_vm *vm)
+void	exec_op(int op_code, t_pro *pro, t_vm *vm)
 {
-	//if (op_num == 0)
-		
+	void	(*functions[2])(t_pro *, t_vm *);
+	
+	functions[0] = live;
+	functions[1] = ld;
+	functions[op_code - 1](pro, vm);
 }	
 
 void	exec_pro(t_pro *pro, t_vm *vm)
@@ -27,5 +30,4 @@ void	exec_pro(t_pro *pro, t_vm *vm)
 	op_code = vm->reg[pro->pc];
 	if (op_code < 16 && op_code > 0)
 		exec_op(op_code, pro, vm);
-	goto_next_operation(pro, *vm);
 }

@@ -13,26 +13,18 @@
 
 #include "vm.h"
 
-int		num_at_reg(t_vm vm, size_t reg, size_t size)
+int		num_at_reg(t_vm vm, int reg, size_t size)
 {
-	int		num;
-	size_t	size_done;
-	size_t	i;
-	
-	if (reg >= MEM_SIZE)
-		reg = MEM_SIZE - reg - 1;
-	size_done = size;
-	i = reg;
-	while (size_done > 0)
+	long		n;
+
+	n = 0;
+	while (size-- > 0)
 	{
-		num = num << 8;
-		num |= vm.reg[i];
-		if (i < MEM_SIZE)
-			i++;
-		else
-			i = 0; 
+		n = n << 8;
+		n |= vm.reg[reg];
+		reg++;
 	}
-	return (num);
+	return (n);
 }
 
 void	set_num_at_reg(t_vm *vm, int n, size_t reg)

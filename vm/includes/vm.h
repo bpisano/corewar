@@ -121,7 +121,7 @@ void				goto_next_operation(t_pro *pro, t_vm vm);
  ** REG
 */
 
-int					num_at_reg(t_vm vm, size_t reg, size_t size);
+int					num_at_reg(t_vm vm, int reg, size_t size);
 void				set_num_at_reg(t_vm *vm, int n, size_t reg);
 
 /*
@@ -133,5 +133,6 @@ int					*params(t_pro pro, t_vm vm);
 int					param_type(int oct_code, int n);
 
 void				live(t_pro *pro, t_vm *vm);
+void				ld(t_pro *pro, t_vm *vm);
 
 #endif

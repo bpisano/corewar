@@ -79,11 +79,13 @@ void	goto_next_operation(t_pro *pro, t_vm vm)
 	op_code = vm.reg[pro->pc];
 	if (op_code > 15 || op_code < 1)
 		op_s = 0;
-	if (op_code == 1 || op_code == 9 || op_code == 12 || op_code == 15)
+	else if (op_code == 1 || op_code == 9 || op_code == 12 || op_code == 15)
 		op_s = vm.op_tab[op_code].dir_size;
 	else
 		op_s = op_size(op_code, vm.reg[pro->pc + 1], vm);
 	increment_pc(op_s + 1, pro);
 	op_code = vm.reg[pro->pc];
-	pro->cycles = vm.op_tab[op_code - 1].cycles;
+	pro->cycles = 0;
+	if (op_code <= 15 && op_code >= 1)
+		pro->cycles = vm.op_tab[op_code - 1].cycles;
 }
