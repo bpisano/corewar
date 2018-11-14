@@ -13,6 +13,17 @@
 
 #include "vm.h"
 
+int			param_type(int oct_code, int n)
+{
+	int		i;
+
+	i = -1;
+	oct_code = oct_code >> 2;
+	while(3 - ++i > n)
+		oct_code = oct_code >> 2;
+	return (oct_code & 0x03);
+}
+
 static int	param_size(int op_code, int oct_code, t_vm vm)
 {
 	if ((oct_code & 0x03) == 1)

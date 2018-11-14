@@ -28,13 +28,88 @@ void	live(t_pro *pro, t_vm *vm)
 			break ;
 		}
 	}
-	increment_pc(5, pro);
 }
 
-void	ld_lld(int opcode, t_pro *pro, t_vm vm)
+void	ld(t_pro *pro, t_vm vm)
 {
-	int		oct_code;
-	int		**params;
+	int		*p;
 	
-	oct_code = num_at_reg(vm, pro->pc + 1, 4);
+	if (!(p = params(*pro, vm)))
+		return ;
+	pro->reg[p[1]] = p[0] % IDX_MOD;
+	pro->carry = 1;
+	free(p);
+}
+
+void	st(t_pro *pro, t_vm *vm)
+{
+	int		*p;
+
+	if (!(p = params(*pro, *vm)))
+		return ;
+	if (param_type(vm->reg[pro->pc + 1], 1) == 1)
+		set_num_at_reg(vm, pro->reg[p[1]], REG_SIZE);
+	else
+		set_num_at_reg(vm, p[1], IND_SIZE);
+	free(p);
+}
+
+void	add(t_pro *pro, t_vm vm)
+{
+	int		*p;
+
+	if (!(p = params(*pro, vm)))
+		return ;
+	pro->reg[p[2]] = p[0] + p[1];
+	free(p);
+}
+
+void	sub(t_pro *pro, t_vm vm)
+{
+	int		*p;
+
+	if (!(p = params(*pro, vm)))
+		return ;
+	pro->reg[p[2]] = p[0] - p[1];
+	free(p);
+}
+
+void	and(t_pro *pro, t_vm vm)
+{
+	int		*p;
+	int		a;
+	int		b;
+
+	if (!(p = params(*pro, vm)))
+		return ;
+	if (param_type(vm.reg[pro->pc + 1], 0) == 1)
+		a = pro->reg[p[0]];
+	else
+		a = p[0];
+	if (param_type(vm.reg[pro->pc + 1], 1) == 1)
+		b = pro->reg[p[1]];
+	else
+		b = p[1];
+	pro->reg[p[2]] = a & b;
+	free(p);
+}
+
+void	or(t_pro *pro, t_vm vm)
+{
+	int		*p;
+	int		a;
+	int		b;
+
+	if (!(p = params(*pro, vm)))
+		return ;
+	if (param_type(vm.reg[pro->pc + 1], 0) == 1)
+		a = pro->reg[p[0]];
+	else
+		a = p[0];
+	if (param_type(vm.reg[pro->pc + 1], 1) == 1)
+		b = pro->reg[p[1]];
+	else
+		b = p[1];
+	pro->reg[p[2]] = a | b;
+	free(p);
 }

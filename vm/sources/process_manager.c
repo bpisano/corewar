@@ -17,6 +17,7 @@ t_pro	*new_pro_from_champ(t_champ champ, t_vm vm)
 {
 	t_pro	*new;
 	int		op_code;
+	int		i;
 
 	if (!(new = (t_pro *)malloc(sizeof(t_pro))))
 		return (NULL);
@@ -28,6 +29,10 @@ t_pro	*new_pro_from_champ(t_champ champ, t_vm vm)
 	new->cycles = op_code < 16 ? vm.op_tab[op_code].cycles : 0;
 	new->live = 0;
 	new->carry = 0;
+	i = -1;
+	while (++i < REG_NUMBER)
+		new->reg[i] = 0;
+	new->reg[1] = champ.player;
 	return (new);
 }
 

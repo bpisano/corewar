@@ -130,6 +130,7 @@ void				set_num_at_reg(t_vm *vm, int n, size_t reg);
 
 int					op_size(int op_code, int oct_code, t_vm vm);
 int					*params(t_pro pro, t_vm vm);
+int					param_type(int oct_code, int n);
 
 void				live(t_pro *pro, t_vm *vm);
 
