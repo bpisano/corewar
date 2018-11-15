@@ -36,7 +36,7 @@ t_pro	*new_pro_from_champ(t_champ champ, t_vm vm)
 	return (new);
 }
 
-t_pro	*new_pro_from_pro(t_pro pro, int dir, t_vm vm)
+t_pro	*new_pro_from_pro(t_pro pro, t_vm vm)
 {
 	t_pro	*new;
 
@@ -44,10 +44,12 @@ t_pro	*new_pro_from_pro(t_pro pro, int dir, t_vm vm)
 		return (NULL);
 	new->id = number_of_pro(vm);
 	new->player = pro.player;
-	new->pc = pro.pc + (dir % IDX_MOD);
+	new->pc = pro.pc;
+	new->cycles = pro.cycles;
 	new->active = pro.active;
 	new->live = pro.live;
 	new->carry = pro.carry;
+	ft_memcpy(new->reg, pro.reg, REG_NUMBER);
 	return (new);
 }
 

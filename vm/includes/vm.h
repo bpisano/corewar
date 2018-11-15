@@ -106,7 +106,7 @@ int					exec_vm(t_vm *vm);
 int					init_process(t_vm *vm);
 int					number_of_pro(t_vm vm);
 t_pro				*new_pro_from_champ(t_champ champ, t_vm vm);
-t_pro				*new_pro_from_pro(t_pro pro, int dir, t_vm vm);
+t_pro				*new_pro_from_pro(t_pro pro, t_vm vm);
 void				free_pro(t_vm *vm);
 void				increment_pc(int increment, t_pro *pro);
 
@@ -132,7 +132,21 @@ int					op_size(int op_code, int oct_code, t_vm vm);
 int					*params(t_pro pro, t_vm vm);
 int					param_type(int oct_code, int n);
 
-void				live(t_pro *pro, t_vm *vm);
-void				ld(t_pro *pro, t_vm *vm);
+void				ft_live(t_pro *pro, t_vm *vm);
+void				ft_ld(t_pro *pro, t_vm *vm);
+void				ft_st(t_pro *pro, t_vm *vm);
+void				ft_add(t_pro *pro, t_vm *vm);
+void				ft_sub(t_pro *pro, t_vm *vm);
+void				ft_and(t_pro *pro, t_vm *vm);
+void				ft_or(t_pro *pro, t_vm *vm);
+void				ft_xor(t_pro *pro, t_vm *vm);
+void				ft_zjmp(t_pro *pro, t_vm *vm);
+void				ft_ldi(t_pro *pro, t_vm *vm);
+void				ft_sti(t_pro *pro, t_vm *vm);
+void				ft_fork(t_pro *pro, t_vm *vm);
+void				ft_lld(t_pro *pro, t_vm *vm);
+void				ft_lldi(t_pro *pro, t_vm *vm);
+void				ft_lfork(t_pro *pro, t_vm *vm);
+void				ft_aff(t_pro *pro, t_vm *vm);
 
 #endif

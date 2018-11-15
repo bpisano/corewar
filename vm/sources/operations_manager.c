@@ -34,7 +34,7 @@ static int	realloc_params(int	**params, int size)
 	return (1);
 }
 
-int		*params(t_pro pro, t_vm vm)
+int			*params(t_pro pro, t_vm vm)
 {
 	int		op_c;
 	int     oct_c;
@@ -71,7 +71,7 @@ int			param_type(int oct_code, int n)
 	return (oct_code & 0x03);
 }
 
-int     op_size(int op_code, int oct_code, t_vm vm)
+int     	op_size(int op_code, int oct_code, t_vm vm)
 {
 	int     oct_size;
 
@@ -86,25 +86,3 @@ int     op_size(int op_code, int oct_code, t_vm vm)
 	}
 	return (oct_size);
 }
-/*
-int		param_size(int oct_code, size_t param_index, int opcode)
-{
-	t_op	*op;
-	int		dir_size;
-	
-	oct_code = oct_code >> 2;
-	while (param_index-- > 0)
-		oct_code = oct_code >> 2;
-	if (!oct_code)
-		return (-1);
-	if (oct_code != 1)
-		return (1);
-	else if (oct_code == 3)
-		return (2);
-	if (!(op = struct_tab()))
-		return (-1);
-	dir_size = op[opcode].dir_size;
-	free(op);
-	return (dir_size);
-}
-*/

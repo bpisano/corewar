@@ -15,10 +15,24 @@
 
 void	exec_op(int op_code, t_pro *pro, t_vm *vm)
 {
-	void	(*functions[2])(t_pro *, t_vm *);
+	void	(*functions[16])(t_pro *, t_vm *);
 	
-	functions[0] = live;
-	functions[1] = ld;
+	functions[0] = ft_live;
+	functions[1] = ft_ld;
+	functions[2] = ft_st;
+	functions[3] = ft_add;
+	functions[4] = ft_sub;
+	functions[5] = ft_and;
+	functions[6] = ft_or;
+	functions[7] = ft_xor;
+	functions[8] = ft_zjmp;
+	functions[9] = ft_ldi;
+	functions[10] = ft_sti;
+	functions[11] = ft_fork;
+	functions[12] = ft_lld;
+	functions[13] = ft_lldi;
+	functions[14] = ft_lfork;
+	functions[15] = ft_aff;
 	functions[op_code - 1](pro, vm);
 }	
 
