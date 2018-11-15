@@ -37,7 +37,7 @@ void	ft_ld(t_pro *pro, t_vm *vm)
 	
 	if (!(p = params(*pro, *vm)))
 		return ;
-	pro->reg[p[1]] = p[0] % IDX_MOD;
+	pro->reg[p[1]] = p[0];
 	pro->carry = 1;
 	free(p);
 	goto_next_operation(pro, *vm);
