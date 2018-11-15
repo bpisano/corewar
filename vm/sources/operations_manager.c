@@ -42,22 +42,17 @@ int			*params(t_pro pro, t_vm vm)
 	int		p_num;
 	int     *p;
 
-	if (!(p = (int *)ft_memalloc(sizeof(int))))
+	if (!(p = (int *)malloc(sizeof(int) * 3)))
 		return (NULL);
 	op_c = vm.reg[pro.pc];
-	oct_c = vm.reg[pro.pc + 1] >> 2;
-	size = 1;
+	oct_c = vm.reg[pro.pc + 1];
+	size = 2;
 	p_num = 0;
-	printf("oct code : %#0x\n", oct_c);
-	while (oct_c > 0)
+	while (((oct_c >> (6 - (p_num * 2))) & 0x03) > 0)
 	{
-		if (!realloc_params(&p, p_num + 1))
-			return (NULL);
-		p[p_num] = num_at_reg(vm, pro.pc + size, param_size(op_c, oct_c, vm));
-		p[++p_num] = -1;
-		size += param_size(op_c, oct_c, vm);
-		printf("size : %d\n", size);
-		oct_c = oct_c >> 2;
+		p[p_num] = num_at_reg(vm, pro.pc + size, param_size(op_c, oct_c >> (6 - (p_num * 2)), vm));
+		size += param_size(op_c, oct_c >> (6 - (p_num * 2)), vm);
+		p_num++;
 	}
 	return (p);
 }
