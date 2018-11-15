@@ -13,21 +13,22 @@
 
 #include "vm.h"
 
-int		num_at_reg(t_vm vm, int reg, size_t size)
+unsigned int	num_at_reg(t_vm vm, int pos, size_t size)
 {
-	long		n;
+	unsigned int	n;
 
 	n = 0;
 	while (size-- > 0)
 	{
 		n = n << 8;
-		n |= vm.reg[reg];
-		reg++;
+		n |= vm.reg[pos];
+		pos++;
 	}
+	printf("n = %u\n", n);
 	return (n);
 }
 
-void	set_num_at_reg(t_vm *vm, int pos, size_t reg)
+void			set_num_at_reg(t_vm *vm, int pos, size_t reg)
 {
 	int		i;
 

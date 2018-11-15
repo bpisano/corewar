@@ -121,7 +121,7 @@ void				goto_next_operation(t_pro *pro, t_vm vm);
  ** REG
 */
 
-int					num_at_reg(t_vm vm, int reg, size_t size);
+unsigned int					num_at_reg(t_vm vm, int pos, size_t size);
 void				set_num_at_reg(t_vm *vm, int pos, size_t reg);
 
 /*
