@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/18 15:37:11 by anamsell     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/09 16:09:43 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/15 15:04:14 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -59,7 +59,7 @@ typedef struct		s_champ
 {
 	char			name[PROG_NAME_LENGTH + 1];
 	char			comment[COMMENT_LENGTH + 1];
-	unsigned char	player;
+	unsigned int	player;
 
 	unsigned int	last_live;
 	unsigned int	cur_live;

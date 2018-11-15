@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/22 23:29:32 by anamsell     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/08 22:13:05 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/15 15:09:18 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -51,22 +51,25 @@ int		convert_hexa_int(char a, char b)
 
 int		handle_number(t_vm *vm, char *number, int j)
 {
-	unsigned char	i;
+	unsigned int	i;
 
 	if (number[0])
 	{
-		i = (unsigned char)ft_atoi(number);
+		i = (unsigned int) ft_atoi(number);
 		if (check_taken(i, vm))
 			return (1);
 		vm->champs[j]->player = i;
 		return (0);
 	}
-	i = 0;
-	while (--i != 0)
+	i = 0xFFFFFFFF;
+	while (i != 0)
+	{
 		if (!check_taken(i, vm))
 		{
 			vm->champs[j]->player = i;
 			return (0);
 		}
+		i--;
+	}
 	return (1);
 }
