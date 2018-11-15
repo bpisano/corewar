@@ -44,7 +44,7 @@
 typedef struct		s_pro
 {
 	int				id;
-	int				player;
+	unsigned int	player;
 	int				pc;
 	int				cycles;
 
@@ -52,7 +52,7 @@ typedef struct		s_pro
 	int				active;
 	int				carry;
 
-	int				reg[REG_NUMBER];
+	unsigned int	reg[REG_NUMBER];
 }					t_pro;
 
 typedef struct		s_champ
@@ -122,7 +122,7 @@ void				goto_next_operation(t_pro *pro, t_vm vm);
 */
 
 int					num_at_reg(t_vm vm, int reg, size_t size);
-void				set_num_at_reg(t_vm *vm, int n, size_t reg);
+void				set_num_at_reg(t_vm *vm, int pos, size_t reg);
 
 /*
  ** OPERATIONS

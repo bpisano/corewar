@@ -63,7 +63,7 @@ int			param_type(int oct_code, int n)
 
 	i = -1;
 	oct_code = oct_code >> 2;
-	while(3 - ++i > n)
+	while(2 - ++i > n)
 		oct_code = oct_code >> 2;
 	return (oct_code & 0x03);
 }

@@ -97,5 +97,5 @@ void			print_vm(t_vm vm)
 	if (vm.pro == NULL)
 		return ;
 	while (vm.pro[++i])
-		printf("PRO : %d\n\tplayer : %d\n\tpc : %d\n\toperation_cycle : %d\n\n", vm.pro[i]->id, vm.pro[i]->player, vm.pro[i]->pc, vm.pro[i]->cycles);
+		printf("PRO : %d\n\tplayer : %u\n\tpc : %d\n\toperation_cycle : %d\n\n", vm.pro[i]->id, vm.pro[i]->player, vm.pro[i]->pc, vm.pro[i]->cycles);
 }
