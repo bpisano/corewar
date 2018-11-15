@@ -14,6 +14,7 @@
 #ifndef COREWAR_H
 # define COREWAR_H
 
+# include "libft.h"
 # include "op.h"
 
 typedef	struct		s_op

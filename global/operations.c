@@ -43,8 +43,8 @@ t_op	*struct_tab(void)
 	{T_REG | T_IND | T_DIR, T_REG | T_IND | T_DIR, T_REG}, 8, 1, 4, 6};
 	op_tab[8] = (t_op){"zjmp", 1, {T_DIR, 0, 0}, 9, 0, 2, 20};
 	op_tab[9] = (t_op){"ldi", 3,
-	{T_REG | T_DIR | T_IND, T_DIR | T_REG, T_REG}, 10, 1, 2, 1};
+	{T_REG | T_DIR | T_IND, T_DIR | T_REG, T_REG}, 10, 1, 2, 25};
 	op_tab[10] = (t_op){"sti", 3,
-	{T_REG, T_REG | T_DIR | T_IND, T_DIR | T_REG}, 11, 1, 2, 25};
+	{T_REG, T_REG | T_DIR | T_IND, T_DIR | T_REG}, 11, 1, 2, 1};
 	return (struct_tab2(op_tab));
 }

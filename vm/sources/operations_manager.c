@@ -20,7 +20,7 @@ static int	param_size(int op_code, int oct_code, t_vm vm)
 	else if ((oct_code & 0x03) == 2)
 		return (vm.op_tab[op_code - 1].dir_size);
 	else if ((oct_code & 0x03) == 3)
-		return (3);
+		return (2);
 	return (0);
 }
 
@@ -42,12 +42,13 @@ int			*params(t_pro pro, t_vm vm)
 	int		p_num;
 	int     *p;
 
-	op_c = vm.reg[pro.pc];
 	if (!(p = (int *)ft_memalloc(sizeof(int))))
 		return (NULL);
+	op_c = vm.reg[pro.pc];
 	oct_c = vm.reg[pro.pc + 1] >> 2;
 	size = 1;
 	p_num = 0;
+	printf("oct code : %#0x\n", oct_c);
 	while (oct_c > 0)
 	{
 		if (!realloc_params(&p, p_num + 1))
@@ -55,6 +56,7 @@ int			*params(t_pro pro, t_vm vm)
 		p[p_num] = num_at_reg(vm, pro.pc + size, param_size(op_c, oct_c, vm));
 		p[++p_num] = -1;
 		size += param_size(op_c, oct_c, vm);
+		printf("size : %d\n", size);
 		oct_c = oct_c >> 2;
 	}
 	return (p);
