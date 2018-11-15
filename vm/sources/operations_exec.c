@@ -15,14 +15,14 @@
 
 void	ft_live(t_pro *pro, t_vm *vm)
 {
-	int		champ;
-	int		i;
+	unsigned int	champ;
+	int				i;
 	
 	champ = num_at_reg(*vm, pro->pc + 1, 4);
 	i = -1;
 	while (vm->champs[++i])
 	{
-		if (vm->champs[i]->player == (unsigned char)champ)
+		if (vm->champs[i]->player == champ)
 		{
 			vm->champs[i]->cur_live += 1;
 			break ;

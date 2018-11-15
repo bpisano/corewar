@@ -92,7 +92,7 @@ void			print_vm(t_vm vm)
 	printf("VM\n\tcycle_to_die : %d\n\tcycle_delta : %d\n\tnbr_live : %d\n\tmax_check : %d\n\n", vm.cycle_to_die, CYCLE_DELTA, NBR_LIVE, vm.max_checks);
 	i = -1;
 	while (vm.champs[++i])
-		printf("CHAMP : %s\n\tplayer : %d\n\tcurr_live : %d\n\n", vm.champs[i]->name, vm.champs[i]->player, vm.champs[i]->cur_live);
+		printf("CHAMP : %s\n\tplayer : %u\n\tcurr_live : %d\n\n", vm.champs[i]->name, vm.champs[i]->player, vm.champs[i]->cur_live);
 	i = -1;
 	if (vm.pro == NULL)
 		return ;
