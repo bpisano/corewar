@@ -61,7 +61,6 @@ int		main(int argc, char **argv)
 
 	(void)argc;
 	init_var(&vm);
-	print_vm(vm);
 	if (init(argv, &vm))
 		return (0);
 	if (!exec_vm(&vm))

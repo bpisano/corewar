@@ -81,13 +81,13 @@ void			print_vm(t_vm vm)
 	int		i;
 	int		j;
 
-	/*i = -1;
+	i = -1;
 	while(++i < MEM_SIZE)
 	{
 		if (i % 64 == 0 && i > 0)
 			printf("\n");
 		printf("%#04x ", vm.reg[i]);
-	}*/
+	}
 	printf("----------------------------------\n");
 	printf("VM\n\tcycle_to_die : %d\n\tcycle_delta : %d\n\tnbr_live : %d\n\tmax_check : %d\n\n", vm.cycle_to_die, CYCLE_DELTA, NBR_LIVE, vm.max_checks);
 	i = -1;

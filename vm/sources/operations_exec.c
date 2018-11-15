@@ -190,6 +190,7 @@ void	ft_sti(t_pro *pro, t_vm *vm)
 		b = pro->reg[p[2]];
 	else
 		b = p[2];
+	printf("%d, %d, %d, %d\n", a, b, p[1], p[2]);
 	set_num_at_reg(vm, pro->pc + (a + b) % IDX_MOD, REG_SIZE);
 	free(p);
 	goto_next_operation(pro, *vm);
