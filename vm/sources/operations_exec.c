@@ -46,13 +46,17 @@ void	ft_ld(t_pro *pro, t_vm *vm)
 void	ft_st(t_pro *pro, t_vm *vm)
 {
 	int		*p;
+	int		a;
 
 	if (!(p = params(*pro, *vm)))
 		return ;
+		a = p[0];
+	if (param_type(vm->reg[pro->pc + 1], 0) == 1)
+		a = pro->reg[p[0]];
 	if (param_type(vm->reg[pro->pc + 1], 1) == 1)
-		set_num_at_reg(vm, pro->reg[p[1]], REG_SIZE);
+		pro->reg[p[1]] = a;
 	else
-		set_num_at_reg(vm, p[1], IND_SIZE);
+		set_num_at_reg(vm, pro->pc + (p[1] % IDX_MOD), a);
 	free(p);
 	goto_next_operation(pro, *vm);
 }

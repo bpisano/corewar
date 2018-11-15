@@ -52,7 +52,7 @@ typedef struct		s_pro
 	int				active;
 	int				carry;
 
-	unsigned int	reg[REG_NUMBER];
+	unsigned int	reg[REG_NUMBER + 1];
 }					t_pro;
 
 typedef struct		s_champ
