@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   vm_exec.c                                        .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: bpisano <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
+/*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/22 18:03:29 by bpisano      #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/22 17:07:25 by bpisano     ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/16 23:43:30 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -53,7 +53,7 @@ static void		run_cycles(t_vm *vm)
 		}
 		vm->cycle_to_die -= 1;
 		print_vm(*vm);
-		sleep(1);
+		usleep(300000);
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/09/24 17:57:34 by bpisano      #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/14 16:14:54 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/17 00:02:24 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -21,7 +21,7 @@
 # define ERROR_MALL		"Error of memory allocation\n"
 # define ER_OP			"Error, %s is not an operator\n"
 # define ERROR_OP_LEN	"Error, %d param(s) is/are needed with %s operator\n"
-# define ERROR_OP_TYPE	"Error, operator %s is not possible as arg no %d of %s\n"
+# define ERROR_OP_TYPE	"Error, %s is not possible as arg no %d of %s\n"
 # define ER_LA			"Error, %s is not correct label \n"
 # define ERROR_LABEL	"Error, %s is used as label but is not declared\n"
 
