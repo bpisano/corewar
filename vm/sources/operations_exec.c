@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/08 19:23:23 by bpisano      #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/17 00:27:21 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/17 00:46:36 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -179,6 +179,8 @@ void	ft_ldi(t_pro *pro, t_vm *vm)
 	a = p[0];
 	if (param_type(vm->reg[pro->pc + 1], 0) == 1)
 		a = pro->reg[p[0]];
+	if (param_type(vm->reg[pro->pc + 1], 0) == IND_CODE)
+		a = num_at_reg(*vm, (pro->pc + p[0]) % IDX_MOD, REG_SIZE);
 	b = p[1];
 	if (param_type(vm->reg[pro->pc + 1], 1) == 1)
 		b = pro->reg[p[1]];
@@ -195,14 +197,14 @@ void	ft_sti(t_pro *pro, t_vm *vm)
 
 	if (!(p = params(*pro, *vm)))
 		return ;
+	a = p[1];
 	if (param_type(vm->reg[pro->pc + 1], 1) == 1)
 		a = pro->reg[p[1]];
-	else
-		a = p[1];
+	else if (param_type(vm->reg[pro->pc + 1], 1) == IND_CODE)
+		a = num_at_reg(*vm, (pro->pc + p[1]) % IDX_MOD, REG_SIZE);
+	b = p[2];
 	if (param_type(vm->reg[pro->pc + 1], 2) == 1)
 		b = pro->reg[p[2]];
-	else
-		b = p[2];
 	set_num_at_reg(vm, pro->pc + ((a + b) % IDX_MOD), pro->reg[p[0]]);
 	free(p);
 	goto_next_operation(pro, *vm);
@@ -224,8 +226,8 @@ void	ft_fork(t_pro *pro, t_vm *vm)
 
 void	ft_lld(t_pro *pro, t_vm *vm)
 {
-	int		*p;
-	unsigned int		a;
+	int				*p;
+	unsigned int	a;
 	
 	if (!(p = params(*pro, *vm)))
 		return ;
@@ -249,6 +251,8 @@ void	ft_lldi(t_pro *pro, t_vm *vm)
 	a = p[0];
 	if (param_type(vm->reg[pro->pc + 1], 0) == 1)
 		a = pro->reg[p[0]];
+	if (param_type(vm->reg[pro->pc + 1], 0) == IND_CODE)
+		a = num_at_reg(*vm, pro->pc + p[0], REG_SIZE);
 	b = p[1];
 	if (param_type(vm->reg[pro->pc + 1], 1) == 1)
 		b = pro->reg[p[1]];
