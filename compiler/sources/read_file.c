@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/09/24 17:48:29 by anamsell     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/10 09:53:05 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/16 17:37:54 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -57,6 +57,7 @@ char			**read_file(int fd)
 		}
 		if (!verify_syntax(&line))
 		{
+			printf("salut\n");
 			free(line);
 			free_split(&file_lines);
 			return (NULL);

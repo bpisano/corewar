@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/15 11:14:34 by bpisano      #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/10 09:53:59 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/16 17:44:47 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -29,8 +29,10 @@ char			*no_comment(char *str)
 		else if (str[i] == COMMENT_CHAR && !in_quote)
 			break ;
 	}
-	new = ft_strsub(str, 0, i);
-	trim = ft_strtrim(new);
+	if (!(new = ft_strsub(str, 0, i)))
+		return (0);
+	if (!(trim = ft_strtrim(new)))
+		return (0);
 	free(str);
 	free(new);
 	return (trim);

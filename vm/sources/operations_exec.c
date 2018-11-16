@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   opreations_exec.c                                .::    .:/ .      .::   */
+/*   operations_exec.c                                .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: bpisano <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
+/*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/08 19:23:23 by bpisano      #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/08 19:23:23 by bpisano     ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/16 17:07:53 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -40,7 +40,7 @@ void	ft_ld(t_pro *pro, t_vm *vm)
 		return ;
 	a = p[0] % IDX_MOD;
 	if (param_type(vm->reg[pro->pc + 1], 0) == IND_CODE)
-		a = num_at_reg(*vm, p[0] % IDX_MOD, REG_SIZE);
+		a = num_at_reg(*vm, (pro->pc + p[0]) % IDX_MOD, REG_SIZE);
 	pro->reg[p[1]] = a;
 	pro->carry = 1;
 	free(p);
@@ -218,10 +218,14 @@ void	ft_fork(t_pro *pro, t_vm *vm)
 void	ft_lld(t_pro *pro, t_vm *vm)
 {
 	int		*p;
+	unsigned int		a;
 	
 	if (!(p = params(*pro, *vm)))
 		return ;
-	pro->reg[p[1]] = p[0];
+	a = p[0] % IDX_MOD;
+	if (param_type(vm->reg[pro->pc + 1], 0) == IND_CODE)
+		a = num_at_reg(*vm, (pro->pc + p[0]) % IDX_MOD, REG_SIZE);
+	pro->reg[p[1]] = a;
 	pro->carry = 1;
 	free(p);
 	goto_next_operation(pro, *vm);

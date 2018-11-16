@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/09/25 10:55:54 by bpisano      #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/19 12:10:49 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/16 17:16:14 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -27,14 +27,17 @@ static char		*header_type(char *str, char *type)
 {
 	char	**split;
 	char	*trim_type;
+	char	*str1;
 
-	split = ft_strsplit(str, '\"');
+	if (!(split = ft_strsplit(str, '\"')))
+		return (NULL);
 	if (split_len(split) != 2)
 	{
 		free_split(&split);
 		return (NULL);
 	}
-	trim_type = ft_strtrim(split[0]);
+	if (!(trim_type = ft_strtrim(split[0])))
+		return (0);
 	if (ft_strcmp(type, trim_type) != 0)
 	{
 		free(trim_type);
@@ -43,8 +46,9 @@ static char		*header_type(char *str, char *type)
 	}
 	free(trim_type);
 	free(split[0]);
+	str1 = split[1];
 	free(split);
-	return (split[1]);
+	return (str1);
 }
 
 static int		handle_error(char **name, char **com)

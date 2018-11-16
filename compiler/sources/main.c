@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/09/25 10:48:27 by bpisano      #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/10 10:17:07 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/16 17:29:34 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -84,6 +84,7 @@ int				main(int argc, char **argv)
 	char	**file_lines;
 	int		**bin;
 
+	file_lines = 0;
 	if (argc < 2)
 		return (0);
 	i = 0;
@@ -100,8 +101,8 @@ int				main(int argc, char **argv)
 			free_split(&file_lines);
 			return (0);
 		}
+		free_bin(&bin);
+		free_split(&file_lines);
 	}
-	free_bin(&bin);
-	free_split(&file_lines);
 	return (0);
 }

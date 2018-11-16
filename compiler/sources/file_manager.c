@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/09/26 15:09:14 by bpisano      #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/10 09:54:53 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/16 17:19:51 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -24,7 +24,7 @@ char			*cor_name(char *str)
 	while (str[++i])
 		if (str[i] == '.')
 			dot_offset = i;
-	if (!(cor = ft_strnew(dot_offset + 3)))
+	if (!(cor = ft_strnew(dot_offset + 4)))
 		return (NULL);
 	ft_strncpy(cor, str, dot_offset);
 	ft_strcpy(cor + dot_offset, ".cor");
