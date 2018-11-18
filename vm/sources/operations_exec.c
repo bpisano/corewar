@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/08 19:23:23 by bpisano      #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/17 00:46:36 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/17 19:41:56 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -72,6 +72,9 @@ void	ft_add(t_pro *pro, t_vm *vm)
 	if (!(p = params(*pro, *vm)))
 		return ;
 	pro->reg[p[2]] = pro->reg[p[0]] + pro->reg[p[1]];
+	pro->carry = 0;
+	if (!pro->reg[p[2]])
+		pro->carry = 1;
 	free(p);
 	goto_next_operation(pro, *vm);
 }
@@ -83,6 +86,9 @@ void	ft_sub(t_pro *pro, t_vm *vm)
 	if (!(p = params(*pro, *vm)))
 		return ;
 	pro->reg[p[2]] = pro->reg[p[0]] - pro->reg[p[1]];
+	pro->carry = 0;
+	if (!pro->reg[p[2]])
+		pro->carry = 1;
 	free(p);
 	goto_next_operation(pro, *vm);
 }
@@ -105,8 +111,10 @@ void	ft_and(t_pro *pro, t_vm *vm)
 		b = pro->reg[p[1]];
 	if (param_type(vm->reg[pro->pc + 1], 1) == IND_CODE)
 		b = num_at_reg(*vm, (pro->pc + p[1]) % IDX_MOD, REG_SIZE);
-	pro->carry = 1;
 	pro->reg[p[2]] = a & b;
+	pro->carry = 0;
+	if (!pro->reg[p[2]])
+		pro->carry = 1;
 	free(p);
 	goto_next_operation(pro, *vm);
 }
@@ -130,6 +138,9 @@ void	ft_or(t_pro *pro, t_vm *vm)
 	if (param_type(vm->reg[pro->pc + 1], 1) == IND_CODE)
 		b = num_at_reg(*vm, (pro->pc + p[1]) % IDX_MOD, REG_SIZE);
 	pro->reg[p[2]] = a | b;
+	pro->carry = 0;
+	if (!pro->reg[p[2]])
+		pro->carry = 1;
 	free(p);
 	goto_next_operation(pro, *vm);
 }
@@ -153,6 +164,9 @@ void	ft_xor(t_pro *pro, t_vm *vm)
 	if (param_type(vm->reg[pro->pc + 1], 1) == IND_CODE)
 		b = num_at_reg(*vm, (pro->pc + p[1]) % IDX_MOD, REG_SIZE);
 	pro->reg[p[2]] = a ^ b;
+	pro->carry = 0;
+	if (!pro->reg[p[2]])
+		pro->carry = 1;
 	free(p);
 	goto_next_operation(pro, *vm);
 }
@@ -252,11 +266,11 @@ void	ft_lldi(t_pro *pro, t_vm *vm)
 	if (param_type(vm->reg[pro->pc + 1], 0) == 1)
 		a = pro->reg[p[0]];
 	if (param_type(vm->reg[pro->pc + 1], 0) == IND_CODE)
-		a = num_at_reg(*vm, pro->pc + p[0], REG_SIZE);
+		a = num_at_reg(*vm, (pro->pc + p[0]), REG_SIZE);
 	b = p[1];
 	if (param_type(vm->reg[pro->pc + 1], 1) == 1)
 		b = pro->reg[p[1]];
-	pro->reg[p[2]] = num_at_reg(*vm, pro->pc + a + b, REG_SIZE);
+	pro->reg[p[2]] = num_at_reg(*vm, pro->pc + ((a + b)), REG_SIZE);
 	free(p);
 	goto_next_operation(pro, *vm);
 }

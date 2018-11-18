@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   operations_manager.c                             .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: bpisano <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
+/*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/08 19:23:23 by bpisano      #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/08 19:23:23 by bpisano     ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/17 19:08:43 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -63,7 +63,7 @@ int			param_type(int oct_code, int n)
 
 	i = -1;
 	oct_code = oct_code >> 2;
-	while(2 - ++i > n)
+	while (2 - ++i > n)
 		oct_code = oct_code >> 2;
 	return (oct_code & 0x03);
 }
