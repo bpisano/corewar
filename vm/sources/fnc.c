@@ -55,7 +55,7 @@ int		handle_number(t_vm *vm, char *number, int j)
 
 	if (number[0])
 	{
-		i = (unsigned int) ft_atoi(number);
+		i = (unsigned int)ft_atoi(number);
 		if (check_taken(i, vm))
 			return (1);
 		vm->champs[j]->player = i;

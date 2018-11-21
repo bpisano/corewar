@@ -17,7 +17,7 @@ void	ft_live(t_pro *pro, t_vm *vm)
 {
 	unsigned int	champ;
 	int				i;
-	
+
 	champ = num_at_reg(*vm, pro->pc + 1, 4);
 	i = -1;
 	while (vm->champs[++i])
@@ -33,9 +33,9 @@ void	ft_live(t_pro *pro, t_vm *vm)
 
 void	ft_ld(t_pro *pro, t_vm *vm)
 {
-	int		*p;
-	unsigned int		a;
-	
+	int				*p;
+	unsigned int	a;
+
 	if (!(p = params(*pro, *vm)))
 		return ;
 	a = p[0];
@@ -54,7 +54,7 @@ void	ft_st(t_pro *pro, t_vm *vm)
 
 	if (!(p = params(*pro, *vm)))
 		return ;
-		a = p[0];
+	a = p[0];
 	if (param_type(vm->reg[pro->pc + 1], 0) == 1)
 		a = pro->reg[p[0]];
 	if (param_type(vm->reg[pro->pc + 1], 1) == 1)
@@ -246,7 +246,7 @@ void	ft_lld(t_pro *pro, t_vm *vm)
 {
 	int				*p;
 	unsigned int	a;
-	
+
 	if (!(p = params(*pro, *vm)))
 		return ;
 	a = p[0];

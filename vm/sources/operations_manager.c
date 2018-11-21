@@ -24,7 +24,7 @@ static int	param_size(int op_code, int oct_code, t_vm vm)
 	return (0);
 }
 
-static int	realloc_params(int	**params, int size)
+static int	realloc_params(int **params, int size)
 {
 	if (!(*params = (int *)realloc(*params, size)))
 	{
@@ -37,10 +37,10 @@ static int	realloc_params(int	**params, int size)
 int			*params(t_pro pro, t_vm vm)
 {
 	int		op_c;
-	int     oct_c;
-	int     size;
+	int		oct_c;
+	int		size;
 	int		p_num;
-	int     *p;
+	int		*p;
 
 	if (!(p = (int *)malloc(sizeof(int) * 3)))
 		return (NULL);
@@ -50,7 +50,8 @@ int			*params(t_pro pro, t_vm vm)
 	p_num = 0;
 	while (((oct_c >> (6 - (p_num * 2))) & 0x03) > 0)
 	{
-		p[p_num] = num_at_reg(vm, pro.pc + size, param_size(op_c, oct_c >> (6 - (p_num * 2)), vm));
+		p[p_num] = num_at_reg(vm, pro.pc + size,
+		param_size(op_c, oct_c >> (6 - (p_num * 2)), vm));
 		size += param_size(op_c, oct_c >> (6 - (p_num * 2)), vm);
 		p_num++;
 	}
@@ -68,9 +69,9 @@ int			param_type(int oct_code, int n)
 	return (oct_code & 0x03);
 }
 
-int     	op_size(int op_code, int oct_code, t_vm vm)
+int			op_size(int op_code, int oct_code, t_vm vm)
 {
-	int     oct_size;
+	int		oct_size;
 
 	if (op_code > 15)
 		return (1);

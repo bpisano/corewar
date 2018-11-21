@@ -13,7 +13,7 @@
 
 #include "vm.h"
 
-int		num_at_reg(t_vm vm, int pos, size_t size)
+int				num_at_reg(t_vm vm, int pos, size_t size)
 {
 	int		n;
 

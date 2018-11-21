@@ -72,7 +72,7 @@ void	increment_pc(int increment, t_pro *pro)
 	}
 	else if (pro->pc + increment < 0)
 	{
-		pro->pc = (increment + pro-> pc) % MEM_SIZE;
+		pro->pc = (increment + pro->pc) % MEM_SIZE;
 		if (pro->pc != 0)
 			pro->pc += MEM_SIZE;
 		return ;

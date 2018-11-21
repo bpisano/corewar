@@ -17,7 +17,7 @@ static void		change_values_if_needed(t_vm *vm)
 {
 	int		i;
 	int		lives;
-	
+
 	i = -1;
 	lives = 0;
 	while (vm->champs[++i])
@@ -37,17 +37,16 @@ static void		run_cycles(t_vm *vm)
 {
 	int		i;
 	int		j;
-	
+
 	i = -1;
 	while (++i < vm->cycle_to_die)
 	{
 		j = -1;
 		while (vm->pro[++j])
 		{
-			if (vm->pro[j]->cycles > 0)
+			if (vm->pro[j]->cycles > 1)
 			{
 				vm->pro[j]->cycles -= 1;
-				continue ;
 			}
 			exec_pro(vm->pro[j], vm);
 		}
@@ -60,16 +59,15 @@ static void		run_cycles(t_vm *vm)
 int				exec_vm(t_vm *vm)
 {
 	int		i;
-	
+
 	if (!init_process(vm))
 		return (0);
 	i = -1;
-	print_vm(*vm);
 	while (1)
 	{
 		run_cycles(vm);
 		if (have_winner(*vm))
-				break ;
+			break ;
 		change_values_if_needed(vm);
 	}
 	printf("end");
@@ -82,7 +80,7 @@ void			print_vm(t_vm vm)
 	int		j;
 
 	i = -1;
-	while(++i < MEM_SIZE)
+	while (++i < MEM_SIZE)
 	{
 		if (i % 64 == 0 && i > 0)
 			printf("\n");

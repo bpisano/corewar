@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   process_exec.c                                   .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: bpisano <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
+/*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/22 18:23:20 by bpisano      #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/22 18:23:38 by bpisano     ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/21 17:20:04 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -16,7 +16,7 @@
 void	exec_op(int op_code, t_pro *pro, t_vm *vm)
 {
 	void	(*functions[16])(t_pro *, t_vm *);
-	
+
 	functions[0] = ft_live;
 	functions[1] = ft_ld;
 	functions[2] = ft_st;
@@ -34,14 +34,20 @@ void	exec_op(int op_code, t_pro *pro, t_vm *vm)
 	functions[14] = ft_lfork;
 	functions[15] = ft_aff;
 	functions[op_code - 1](pro, vm);
-}	
+}
 
 void	exec_pro(t_pro *pro, t_vm *vm)
 {
 	int		op_code;
 	int		op_s;
-	
+
 	op_code = vm->reg[pro->pc];
 	if (op_code < 16 && op_code > 0)
 		exec_op(op_code, pro, vm);
+	else
+	{
+		pro->pc++;
+		if (pro->pc == MEM_SIZE)
+			pro->pc = 0;
+	}
 }

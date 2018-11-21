@@ -16,7 +16,7 @@
 int				number_of_pro(t_vm vm)
 {
 	int		i;
-	
+
 	i = -1;
 	while (vm.pro[++i])
 		;
@@ -26,7 +26,7 @@ int				number_of_pro(t_vm vm)
 static int		add_pro(t_vm *vm, t_pro *pro)
 {
 	int		pro_number;
-	
+
 	pro_number = pro->id;
 	if (!(vm->pro = realloc(vm->pro, sizeof(t_pro *) * (pro_number + 2))))
 		return (0);
@@ -38,7 +38,7 @@ static int		add_pro(t_vm *vm, t_pro *pro)
 int				init_process(t_vm *vm)
 {
 	int		i;
-	
+
 	if (!(vm->pro = ft_memalloc(sizeof(t_pro *))))
 		return (0);
 	i = -1;

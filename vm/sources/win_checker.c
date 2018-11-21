@@ -17,7 +17,7 @@ int			have_winner(t_vm vm)
 {
 	int		i;
 	int		active_champ;
-	
+
 	i = -1;
 	active_champ = 0;
 	while (vm.champs[++i])
@@ -33,7 +33,7 @@ int			have_winner(t_vm vm)
 t_champ		*winner(t_vm vm)
 {
 	int		i;
-	
+
 	i = -1;
 	while (vm.champs[++i])
 		if (vm.champs[i]->cur_live > 0)
@@ -44,7 +44,7 @@ t_champ		*winner(t_vm vm)
 int			have_active_pro(t_vm vm)
 {
 	int		i;
-	
+
 	i = -1;
 	while (vm.pro[++i])
 		if (vm.pro[i]->active)

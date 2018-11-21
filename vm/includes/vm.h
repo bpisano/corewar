@@ -82,7 +82,7 @@ typedef struct		s_vm
 	t_op			*op_tab;
 }					t_vm;
 
-void	print_vm(t_vm vm);
+void				print_vm(t_vm vm);
 
 /*
  ** VM
