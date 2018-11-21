@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   process_manager.c                                .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: bpisano <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
+/*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/22 14:20:46 by bpisano      #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/19 16:43:05 by bpisano     ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/20 14:48:54 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -67,8 +67,15 @@ void	increment_pc(int increment, t_pro *pro)
 {
 	if (pro->pc + increment >= MEM_SIZE)
 	{
-		pro->pc = increment - (MEM_SIZE - pro->pc);
-		return;
+		pro->pc = (increment + pro->pc) % MEM_SIZE;
+		return ;
+	}
+	else if (pro->pc + increment < 0)
+	{
+		pro->pc = (increment + pro-> pc) % MEM_SIZE;
+		if (pro->pc != 0)
+			pro->pc += MEM_SIZE;
+		return ;
 	}
 	pro->pc += increment;
 }

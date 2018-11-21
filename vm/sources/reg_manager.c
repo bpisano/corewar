@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   reg_setter.c                                     .::    .:/ .      .::   */
+/*   reg_manager.c                                    .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: bpisano <marvin@le-101.fr>                 +:+   +:    +:    +:+     */
+/*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/08 19:25:58 by bpisano      #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/08 19:25:58 by bpisano     ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/21 05:34:53 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "vm.h"
 
-unsigned int	num_at_reg(t_vm vm, int pos, size_t size)
+int		num_at_reg(t_vm vm, int pos, size_t size)
 {
-	unsigned int	n;
+	int		n;
 
 	n = 0;
 	while (size-- > 0)
@@ -24,7 +24,6 @@ unsigned int	num_at_reg(t_vm vm, int pos, size_t size)
 		n |= vm.reg[pos];
 		pos++;
 	}
-	printf("n = %u\n", n);
 	return (n);
 }
 

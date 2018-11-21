@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/18 15:37:11 by anamsell     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/15 15:04:14 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/21 05:34:41 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -121,7 +121,7 @@ void				goto_next_operation(t_pro *pro, t_vm vm);
  ** REG
 */
 
-unsigned int					num_at_reg(t_vm vm, int pos, size_t size);
+int					num_at_reg(t_vm vm, int pos, size_t size);
 void				set_num_at_reg(t_vm *vm, int pos, size_t reg);
 
 /*

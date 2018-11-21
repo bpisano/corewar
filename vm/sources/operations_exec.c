@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/08 19:23:23 by bpisano      #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/17 19:41:56 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/11/21 05:55:35 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -175,7 +175,7 @@ void	ft_zjmp(t_pro *pro, t_vm *vm)
 {
 	int		addr;
 
-	addr = num_at_reg(*vm, pro->pc + 1, 4);
+	addr = num_at_reg(*vm, pro->pc + 1, 2);
 	if (pro->carry)
 		increment_pc(addr % IDX_MOD, pro);
 	else
@@ -233,6 +233,10 @@ void	ft_fork(t_pro *pro, t_vm *vm)
 		return ;
 	new = new_pro_from_pro(*pro, *vm);
 	new->pc = (new->pc + p[0]) % IDX_MOD;
+	if (new->pc < 0)
+		new->pc += MEM_SIZE;
+	else if (new->pc >= MEM_SIZE)
+		new->pc -= MEM_SIZE;
 	new->cycles = vm->op_tab[new->pc - 1].cycles;
 	free(p);
 	goto_next_operation(pro, *vm);
@@ -284,6 +288,10 @@ void	ft_lfork(t_pro *pro, t_vm *vm)
 		return ;
 	new = new_pro_from_pro(*pro, *vm);
 	new->pc = (new->pc + p[0]);
+	if (new->pc < 0 || new->pc >= MEM_SIZE)
+		new->pc %= MEM_SIZE;
+	if (new->pc < 0)
+		new->pc += MEM_SIZE;
 	new->cycles = vm->op_tab[new->pc - 1].cycles;
 	free(p);
 	goto_next_operation(pro, *vm);
@@ -297,6 +305,8 @@ void	ft_aff(t_pro *pro, t_vm *vm)
 	if (!(p = params(*pro, *vm)))
 		return ;
 	c = p[0] % 256;
+	if (c < 0)
+		c += 256;
 	write(1, &c, 1);
 	free(p);
 	goto_next_operation(pro, *vm);
