@@ -117,7 +117,7 @@ int		invalid_champ(char *name, t_vm *vm, char *number)
 		return (free_chmp(vm));
 	j = -1;
 	while (++j < (unsigned char)line[0x8a] * 256 + (unsigned char)line[0x8b])
-		vm->reg[j + (i * (MEM_SIZE / 64) / vm->nbr_champs) * 64] =
+		vm->reg[j + (i * MEM_SIZE / vm->nbr_champs)] =
 		line[HEADER_SIZE + j];
 	if (handle_number(vm, number, i))
 		return (ft_printf(ERROR_NBR, ft_atoi(number)) && free_chmp(vm));
