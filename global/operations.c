@@ -33,7 +33,7 @@ t_op	*struct_tab(void)
 	op_tab[0] = (t_op){"live", 1, {T_DIR, 0, 0}, 1, 0, 4, 1};
 	op_tab[1] = (t_op){"ld", 2, {T_DIR | T_IND, T_REG, 0}, 2, 1, 4, 5};
 	op_tab[2] = (t_op){"st", 2, {T_REG, T_IND | T_REG, 0}, 3, 1, 0, 1};
-	op_tab[3] = (t_op){"add", 3, {T_REG, T_REG, T_REG}, 4, 1, 0, 1};
+	op_tab[3] = (t_op){"add", 3, {T_REG, T_REG, T_REG}, 4, 1, 0, 10};
 	op_tab[4] = (t_op){"sub", 3, {T_REG, T_REG, T_REG}, 5, 1, 0, 1};
 	op_tab[5] = (t_op){"and", 3, {T_REG | T_DIR | T_IND, T_REG | T_IND |
 	T_DIR, T_REG}, 6, 1, 4, 1};
@@ -41,7 +41,7 @@ t_op	*struct_tab(void)
 	T_DIR, T_REG}, 7, 1, 4, 1};
 	op_tab[7] = (t_op){"xor", 3,
 	{T_REG | T_IND | T_DIR, T_REG | T_IND | T_DIR, T_REG}, 8, 1, 4, 1};
-	op_tab[8] = (t_op){"zjmp", 1, {T_DIR, 0, 0}, 9, 0, 2, 1};
+	op_tab[8] = (t_op){"zjmp", 1, {T_DIR, 0, 0}, 9, 0, 2, 20};
 	op_tab[9] = (t_op){"ldi", 3,
 	{T_REG | T_DIR | T_IND, T_DIR | T_REG, T_REG}, 10, 1, 2, 1};
 	op_tab[10] = (t_op){"sti", 3,

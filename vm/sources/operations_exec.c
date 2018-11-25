@@ -195,6 +195,7 @@ void	ft_zjmp(t_pro *pro, t_vm *vm)
 
 	op_s = goto_next_operation(pro, *vm);
 	addr = num_at_reg(*vm, pro->pc + 1, 2);
+	printf("aaa\n");
 	if (pro->carry)
 		increment_pc(addr % IDX_MOD, pro);
 	else

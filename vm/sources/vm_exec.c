@@ -39,7 +39,7 @@ static void		run_cycles(t_vm *vm)
 	int		j;
 
 	i = 0;
-	print_vm(*vm);
+//	print_vm(*vm);
 	while (++i < vm->cycle_to_die)
 	{
 		vm->cycles_total++;
@@ -53,8 +53,8 @@ static void		run_cycles(t_vm *vm)
 			else
 				exec_pro(vm->pro[j], vm);
 		}
-		if (vm->cycles_total == 6)
-			print_vm(*vm);
+		//if (vm->cycles_total == 35)
+			//print_vm(*vm);
 	}
 }
 
@@ -63,7 +63,7 @@ int				exec_vm(t_vm *vm)
 	int		i;
 
 	i = -1;
-	print_vm(*vm);
+//	print_vm(*vm);
 	if (!init_process(vm))
 		return (0);
 	while (1)
@@ -74,7 +74,7 @@ int				exec_vm(t_vm *vm)
 			break ;
 		change_values_if_needed(vm);
 	}
-	print_vm(*vm);
+	//print_vm(*vm);
 	printf("end");
 	return (1);
 }
