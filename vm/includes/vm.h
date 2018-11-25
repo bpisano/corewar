@@ -72,13 +72,14 @@ typedef struct		s_vm
 	int				cycle_to_die;
 	int				max_checks;
 	int				nbr_champs;
+	int				cycles_total;
 
 	int				dump;
 	int				ui;
+	int				number_of_pro;
 
 	t_champ			*champs[MAX_PLAYERS + 1];
 	t_pro			**pro;
-
 	t_op			*op_tab;
 }					t_vm;
 
@@ -105,14 +106,14 @@ int					exec_vm(t_vm *vm);
 
 int					init_process(t_vm *vm);
 int					number_of_pro(t_vm vm);
-t_pro				*new_pro_from_champ(t_champ champ, t_vm vm);
+t_pro				*new_pro_from_champ(t_champ champ, t_vm vm, int di);
 t_pro				*new_pro_from_pro(t_pro pro, t_vm vm);
 void				free_pro(t_vm *vm);
 void				increment_pc(int increment, t_pro *pro);
 
 int					have_winner(t_vm vm);
 t_champ				*winner(t_vm vm);
-int					have_active_pro(t_vm vm);
+int					have_active_pro(t_vm *vm);
 
 void				exec_pro(t_pro *pro, t_vm *vm);
 int					goto_next_operation(t_pro *pro, t_vm vm);

@@ -38,21 +38,23 @@ static void		run_cycles(t_vm *vm)
 	int		i;
 	int		j;
 
-	i = -1;
+	i = 0;
+	print_vm(*vm);
 	while (++i < vm->cycle_to_die)
 	{
+		vm->cycles_total++;
 		j = -1;
-		while (vm->pro[++j])
+		while (++j < vm->number_of_pro)
 		{
+			if (!vm->pro[j])
+				continue;
 			if (vm->pro[j]->cycles > 1)
-			{
 				vm->pro[j]->cycles -= 1;
-			}
-			exec_pro(vm->pro[j], vm);
+			else
+				exec_pro(vm->pro[j], vm);
 		}
-		vm->cycle_to_die -= 1;
-		print_vm(*vm);
-		usleep(300000);
+		if (vm->cycles_total == 6)
+			print_vm(*vm);
 	}
 }
 
@@ -60,16 +62,19 @@ int				exec_vm(t_vm *vm)
 {
 	int		i;
 
+	i = -1;
+	print_vm(*vm);
 	if (!init_process(vm))
 		return (0);
-	i = -1;
 	while (1)
 	{
+
 		run_cycles(vm);
-		if (have_winner(*vm))
+		if (have_active_pro(vm))
 			break ;
 		change_values_if_needed(vm);
 	}
+	print_vm(*vm);
 	printf("end");
 	return (1);
 }
@@ -86,14 +91,20 @@ void			print_vm(t_vm vm)
 			printf("\n");
 		printf("%#04x ", vm.reg[i]);
 	}
-	printf("----------------------------------\n");
-	printf("VM\n\tcycle_to_die : %d\n\tcycle_delta : %d\n\tnbr_live : %d\n\tmax_check : %d\n\n", vm.cycle_to_die, CYCLE_DELTA, NBR_LIVE, vm.max_checks);
+	printf("\n----------------------------------\n");
+	printf("VM\n\tcycle_to_die : %d\n\tcycle_delta : %d\n\tnbr_live : %d\n\tmax_check : %d\n\tCycle : %d\n\tnbr process : %d\n\n", vm.cycle_to_die, CYCLE_DELTA, NBR_LIVE, vm.max_checks, vm.cycles_total, vm.number_of_pro);
 	i = -1;
 	while (vm.champs[++i])
 		printf("CHAMP : %s\n\tplayer : %u\n\tcurr_live : %d\n\n", vm.champs[i]->name, vm.champs[i]->player, vm.champs[i]->cur_live);
 	i = -1;
 	if (vm.pro == NULL)
 		return ;
-	while (vm.pro[++i])
-		printf("PRO : %d\n\tplayer : %u\n\tpc : %d\n\toperation_cycle : %d\n\n", vm.pro[i]->id, vm.pro[i]->player, vm.pro[i]->pc, vm.pro[i]->cycles);
+	while (++i < vm.number_of_pro)
+	{
+		if (vm.pro[i])
+			printf("PRO : %d\n\tplayer : %u\n\tpc : %d\n\toperation_cycle : %d\n\n", vm.pro[i]->id, vm.pro[i]->player, vm.pro[i]->pc, vm.pro[i]->cycles);
+		else
+			printf("PRO : %d doesnt exist anymore\n\n", i);
+	}
+	printf("----------------------------------\n");
 }

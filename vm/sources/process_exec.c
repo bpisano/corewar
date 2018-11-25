@@ -39,9 +39,9 @@ void	exec_op(int op_code, t_pro *pro, t_vm *vm)
 void	exec_pro(t_pro *pro, t_vm *vm)
 {
 	int		op_code;
-	int		op_s;
 
 	op_code = vm->reg[pro->pc];
+	printf("  %d\n",op_code );
 	if (op_code < 16 && op_code > 0)
 		exec_op(op_code, pro, vm);
 	else
@@ -50,4 +50,8 @@ void	exec_pro(t_pro *pro, t_vm *vm)
 		if (pro->pc == MEM_SIZE)
 			pro->pc = 0;
 	}
+/*	op_code = vm->reg[pro->pc];
+	sleep(1);
+	pro->cycles = op_code < 16 ? vm->op_tab[op_code].cycles : 0;
+	printf("%d\n",pro->cycles );*/
 }

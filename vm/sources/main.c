@@ -13,19 +13,25 @@
 
 #include "vm.h"
 
-void	init_var(t_vm *vm)
+void	init_var(t_vm *vm, char **argv)
 {
 	int		i;
 
 	i = -1;
+	vm->nbr_champs = count_champs(argv);
 	vm->cycle_to_die = CYCLE_TO_DIE;
 	vm->max_checks = MAX_CHECKS;
 	vm->dump = -1;
 	vm->champs[0] = 0;
 	vm->op_tab = struct_tab();
 	vm->ui = 0;
+	vm->cycles_total = 0;
+	vm->number_of_pro = vm->nbr_champs;
 	while (++i < MEM_SIZE)
 		vm->reg[i] = 0;
+	i = -1;
+	while (++i < MAX_PLAYERS + 1)
+		vm->champs[i] = 0;
 }
 
 int		init(char **argv, t_vm *vm)
@@ -33,9 +39,10 @@ int		init(char **argv, t_vm *vm)
 	int		i;
 
 	i = 0;
-	if (!(vm->nbr_champs = count_champs(argv)) || vm->nbr_champs > MAX_PLAYERS)
+	if (!vm->nbr_champs || vm->nbr_champs > MAX_PLAYERS)
 		return (ft_printf(ERROR_NUMB, MAX_PLAYERS));
 	while (argv[++i])
+	{
 		if (!argv[i][0])
 			continue;
 		else if (!ft_strcmp(argv[i], "-n") || !ft_strcmp(argv[i], "-number"))
@@ -52,6 +59,7 @@ int		init(char **argv, t_vm *vm)
 			return (invalid_param(argv[i]));
 		else if (invalid_champ(argv[i], vm, ""))
 			return (ft_printf(ERROR_CHMP, i, argv[i]));
+	}
 	return (0);
 }
 
@@ -60,7 +68,7 @@ int		main(int argc, char **argv)
 	t_vm	vm;
 
 	(void)argc;
-	init_var(&vm);
+	init_var(&vm, argv);
 	if (init(argv, &vm))
 		return (0);
 	if (!exec_vm(&vm))

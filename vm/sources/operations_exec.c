@@ -21,6 +21,7 @@ void	ft_live(t_pro *pro, t_vm *vm)
 
 	op_s = goto_next_operation(pro, *vm);
 	champ = num_at_reg(*vm, pro->pc + 1, 4);
+	pro->live = vm->cycles_total;
 	i = -1;
 	while (vm->champs[++i])
 	{
@@ -255,7 +256,8 @@ void	ft_fork(t_pro *pro, t_vm *vm)
 	op_s = goto_next_operation(pro, *vm);
 	if (!(p = params(*pro, *vm)))
 		return ;
-	new = new_pro_from_pro(*pro, *vm);
+	if (!(new = new_pro_from_pro(*pro, *vm)))
+		return ;
 	new->pc = (new->pc + p[0]) % IDX_MOD;
 	if (new->pc < 0)
 		new->pc += MEM_SIZE;
@@ -263,6 +265,7 @@ void	ft_fork(t_pro *pro, t_vm *vm)
 		new->pc -= MEM_SIZE;
 	new->cycles = vm->op_tab[new->pc - 1].cycles;
 	increment_pc(op_s + 1, pro);
+	vm->nbr_champs++;
 	free(p);
 }
 
@@ -316,7 +319,7 @@ void	ft_lfork(t_pro *pro, t_vm *vm)
 	op_s = goto_next_operation(pro, *vm);
 	if (!(p = params(*pro, *vm)))
 		return ;
-	new = new_pro_from_pro(*pro, *vm);
+	if (!(new = new_pro_from_pro(*pro, *vm)))
 	new->pc = (new->pc + p[0]);
 	if (new->pc < 0 || new->pc >= MEM_SIZE)
 		new->pc %= MEM_SIZE;
@@ -324,6 +327,7 @@ void	ft_lfork(t_pro *pro, t_vm *vm)
 		new->pc += MEM_SIZE;
 	new->cycles = vm->op_tab[new->pc - 1].cycles;
 	increment_pc(op_s + 1, pro);
+	vm->nbr_champs++;
 	free(p);
 }
 

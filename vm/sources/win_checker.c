@@ -41,13 +41,21 @@ t_champ		*winner(t_vm vm)
 	return (NULL);
 }
 
-int			have_active_pro(t_vm vm)
+int			have_active_pro(t_vm *vm)
 {
 	int		i;
+	int		j;
 
 	i = -1;
-	while (vm.pro[++i])
-		if (vm.pro[i]->active)
-			return (1);
-	return (0);
+	j = 0;
+	while (++i < vm->number_of_pro)
+	{
+		if (!vm->pro[i])
+			continue;
+		if (vm->pro[i]->live < vm->cycles_total - vm->cycle_to_die)
+			ft_memdel((void **)(&(vm->pro[i])));
+		else
+			j++;
+	}
+	return (j);
 }

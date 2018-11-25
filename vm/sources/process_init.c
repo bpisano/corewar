@@ -23,32 +23,22 @@ int				number_of_pro(t_vm vm)
 	return (i);
 }
 
-static int		add_pro(t_vm *vm, t_pro *pro)
-{
-	int		pro_number;
-
-	pro_number = pro->id;
-	if (!(vm->pro = realloc(vm->pro, sizeof(t_pro *) * (pro_number + 2))))
-		return (0);
-	vm->pro[pro_number] = pro;
-	vm->pro[pro_number + 1] = 0;
-	return (1);
-}
-
 int				init_process(t_vm *vm)
 {
 	int		i;
+	t_pro	*new;
 
-	if (!(vm->pro = ft_memalloc(sizeof(t_pro *))))
+	if (!(vm->pro = malloc(sizeof(t_pro *) * vm->nbr_champs)))
 		return (0);
 	i = -1;
 	while (vm->champs[++i])
 	{
-		if (!add_pro(vm, new_pro_from_champ(*(vm->champs[i]), *vm)))
+		if (!(new = new_pro_from_champ(*(vm->champs[i]), *vm, i)))
 		{
 			free_pro(vm);
 			return (0);
 		}
+		vm->pro[i] = new;
 	}
 	return (1);
 }

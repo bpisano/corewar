@@ -31,7 +31,7 @@ t_op	*struct_tab(void)
 	if (!(op_tab = malloc(16 * sizeof(t_op))))
 		return (0);
 	op_tab[0] = (t_op){"live", 1, {T_DIR, 0, 0}, 1, 0, 4, 1};
-	op_tab[1] = (t_op){"ld", 2, {T_DIR | T_IND, T_REG, 0}, 2, 1, 4, 1};
+	op_tab[1] = (t_op){"ld", 2, {T_DIR | T_IND, T_REG, 0}, 2, 1, 4, 5};
 	op_tab[2] = (t_op){"st", 2, {T_REG, T_IND | T_REG, 0}, 3, 1, 0, 1};
 	op_tab[3] = (t_op){"add", 3, {T_REG, T_REG, T_REG}, 4, 1, 0, 1};
 	op_tab[4] = (t_op){"sub", 3, {T_REG, T_REG, T_REG}, 5, 1, 0, 1};
