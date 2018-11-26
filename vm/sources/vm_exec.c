@@ -44,17 +44,20 @@ static void		run_cycles(t_vm *vm)
 	{
 		vm->cycles_total++;
 		j = -1;
-		while (++j < vm->number_of_pro)
+		int abc = vm->number_of_pro;
+		while (++j < abc)
 		{
+			//printf("start loop\n");
 			if (!vm->pro[j])
 				continue;
 			if (vm->pro[j]->cycles > 1)
 				vm->pro[j]->cycles -= 1;
 			else
 				exec_pro(vm->pro[j], vm);
+			//printf("end loop\n");
 		}
 		//usleep(400000);
-		if (vm->cycles_total == 117)
+		if (vm->cycles_total == 904)
 		print_vm(*vm);
 	}
 }
@@ -103,7 +106,7 @@ void			print_vm(t_vm vm)
 	while (++i < vm.number_of_pro)
 	{
 		if (vm.pro[i])
-			printf("PRO : %d\n\tplayer : %u\n\tpc : %d\n\toperation_cycle : %d\n\n", vm.pro[i]->id, vm.pro[i]->player, vm.pro[i]->pc, vm.pro[i]->cycles);
+			printf("PRO : %d\n\tplayer : %u\n\tpc : %d\n\toperation_cycle : %d\n\n", i, vm.pro[i]->player, vm.pro[i]->pc, vm.pro[i]->cycles);
 		else
 			printf("PRO : %d doesnt exist anymore\n\n", i);
 	}

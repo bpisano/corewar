@@ -41,7 +41,8 @@ void	exec_pro(t_pro *pro, t_vm *vm)
 	int		op_code;
 
 	op_code = vm->reg[pro->pc];
-	if (op_code < 16 && op_code > 0)
+	//printf("op code : %d\n", op_code);
+	if (op_code < 17 && op_code > 0)
 		exec_op(op_code, pro, vm);
 	else
 	{

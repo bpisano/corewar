@@ -13,7 +13,7 @@
 
 #include "vm.h"
 
-t_pro	*new_pro_from_champ(t_champ champ, t_vm vm, int id)
+t_pro	*new_pro_from_champ(t_champ champ, t_vm vm)
 {
 	t_pro	*new;
 	int		op_code;
@@ -22,9 +22,7 @@ t_pro	*new_pro_from_champ(t_champ champ, t_vm vm, int id)
 	if (!(new = (t_pro *)malloc(sizeof(t_pro))))
 		return (NULL);
 	op_code = vm.reg[champ.pc] - 1;
-	new->id = id;
 	new->player = champ.player;
-	new->active = 1;
 	new->pc = champ.pc;
 	new->cycles = op_code < 16 ? vm.op_tab[op_code].cycles : 0;
 	new->live = 0;
@@ -42,13 +40,11 @@ t_pro	*new_pro_from_pro(t_pro pro, t_vm vm)
 
 	if (!(new = (t_pro *)malloc(sizeof(t_pro))))
 		return (NULL);
-	new->id = number_of_pro(vm);
 	new->player = pro.player;
 	new->pc = pro.pc;
 	new->cycles = pro.cycles;
-	new->active = pro.active;
-	new->live = 0;
-	new->carry = 0;
+	new->live = pro.live;
+	new->carry = pro.carry;
 	ft_memcpy(new->reg, pro.reg, REG_NUMBER);
 	return (new);
 }

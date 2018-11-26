@@ -43,16 +43,14 @@
 
 typedef struct		s_pro
 {
-	int				id;
 	unsigned int	player;
 	int				pc;
 	int				cycles;
 
 	int				live;
-	int				active;
 	int				carry;
 
-	unsigned int	reg[REG_NUMBER + 1];
+	unsigned int	reg[REG_NUMBER];
 }					t_pro;
 
 typedef struct		s_champ
@@ -106,7 +104,7 @@ int					exec_vm(t_vm *vm);
 
 int					init_process(t_vm *vm);
 int					number_of_pro(t_vm vm);
-t_pro				*new_pro_from_champ(t_champ champ, t_vm vm, int di);
+t_pro				*new_pro_from_champ(t_champ champ, t_vm vm);
 t_pro				*new_pro_from_pro(t_pro pro, t_vm vm);
 void				free_pro(t_vm *vm);
 void				increment_pc(int increment, t_pro *pro);
@@ -132,6 +130,7 @@ void				set_num_at_reg(t_vm *vm, int pos, size_t reg);
 int					op_size(int op_code, int oct_code, t_vm vm);
 int					*params(t_pro pro, t_vm vm);
 int					param_type(int oct_code, int n);
+int     			ft_mod(int a, int b);
 
 void				ft_live(t_pro *pro, t_vm *vm);
 void				ft_ld(t_pro *pro, t_vm *vm);

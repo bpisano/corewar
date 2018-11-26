@@ -15,7 +15,7 @@
 
 t_op	*struct_tab2(t_op *op_tab)
 {
-	op_tab[11] = (t_op){"fork", 1, {T_DIR, 0, 0}, 12, 0, 2, 1};
+	op_tab[11] = (t_op){"fork", 1, {T_DIR, 0, 0}, 12, 0, 2, 800};
 	op_tab[12] = (t_op){"lld", 2, {T_DIR | T_IND, T_REG, 0}, 13, 1, 4, 1};
 	op_tab[13] = (t_op){"lldi", 3,
 	{T_REG | T_DIR | T_IND, T_DIR | T_REG, T_REG}, 14, 1, 2, 1};
