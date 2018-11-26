@@ -33,7 +33,6 @@ void	exec_op(int op_code, t_pro *pro, t_vm *vm)
 	functions[13] = ft_lldi;
 	functions[14] = ft_lfork;
 	functions[15] = ft_aff;
-	printf("%d\n",op_code-1);
 	functions[op_code - 1](pro, vm);
 }
 
@@ -50,6 +49,4 @@ void	exec_pro(t_pro *pro, t_vm *vm)
 		if (pro->pc == MEM_SIZE)
 			pro->pc = 0;
 	}
-	op_code = vm->reg[pro->pc];
-	pro->cycles = op_code < 16 ? vm->op_tab[op_code - 1].cycles : 0;
 }

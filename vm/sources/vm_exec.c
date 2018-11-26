@@ -48,13 +48,19 @@ static void		run_cycles(t_vm *vm)
 		{
 			if (!vm->pro[j])
 				continue;
-			if (vm->pro[j]->cycles > 1)
+			if (vm->reg[vm->pro[j]->pc] > 16 || vm->reg[vm->pro[j]->pc] <= 0)
+			{
+				vm->pro[j]->pc++;
+				if (vm->pro[j]->pc == MEM_SIZE)
+					vm->pro[j]->pc = 0;
+			}
+			else if (vm->pro[j]->cycles > 1)
 				vm->pro[j]->cycles -= 1;
 			else
 				exec_pro(vm->pro[j], vm);
 		}
-		//if (vm->cycles_total == 35)
-			//print_vm(*vm);
+		if (vm->cycles_total == 1360)
+			print_vm(*vm);
 	}
 }
 
@@ -74,7 +80,7 @@ int				exec_vm(t_vm *vm)
 			break ;
 		change_values_if_needed(vm);
 	}
-	//print_vm(*vm);
+	print_vm(*vm);
 	printf("end");
 	return (1);
 }

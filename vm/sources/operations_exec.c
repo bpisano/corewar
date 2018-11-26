@@ -84,8 +84,8 @@ void	ft_add(t_pro *pro, t_vm *vm)
 	pro->carry = 0;
 	if (!pro->reg[p[2]])
 		pro->carry = 1;
+	increment_pc(op_s + 1, pro);
 	free(p);
-	goto_next_operation(pro, *vm);
 }
 
 void	ft_sub(t_pro *pro, t_vm *vm)
