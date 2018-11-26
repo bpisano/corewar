@@ -116,7 +116,7 @@ t_champ				*winner(t_vm vm);
 int					have_active_pro(t_vm *vm);
 
 void				exec_pro(t_pro *pro, t_vm *vm);
-int					goto_next_operation(t_pro *pro, t_vm vm);
+void				goto_next_operation(t_pro *pro, t_vm vm, int op_size);
 
 /*
  ** REG

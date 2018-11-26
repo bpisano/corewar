@@ -73,8 +73,10 @@ int			op_size(int op_code, int oct_code, t_vm vm)
 {
 	int		oct_size;
 
-	if (op_code > 15)
-		return (1);
+	if (op_code > 15 || op_code < 1)
+		return (0);
+	if (op_code == 1 || op_code == 9 || op_code == 12 || op_code == 15)
+		return (vm.op_tab[op_code - 1].dir_size);
 	oct_size = 1;
 	oct_code = oct_code >> 2;
 	while (oct_code > 0)

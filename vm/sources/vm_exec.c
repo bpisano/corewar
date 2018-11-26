@@ -48,19 +48,14 @@ static void		run_cycles(t_vm *vm)
 		{
 			if (!vm->pro[j])
 				continue;
-			if (vm->reg[vm->pro[j]->pc] > 16 || vm->reg[vm->pro[j]->pc] <= 0)
-			{
-				vm->pro[j]->pc++;
-				if (vm->pro[j]->pc == MEM_SIZE)
-					vm->pro[j]->pc = 0;
-			}
-			else if (vm->pro[j]->cycles > 1)
+			if (vm->pro[j]->cycles > 1)
 				vm->pro[j]->cycles -= 1;
 			else
 				exec_pro(vm->pro[j], vm);
 		}
-		if (vm->cycles_total == 1360)
-			print_vm(*vm);
+		//usleep(400000);
+		if (vm->cycles_total == 117)
+		print_vm(*vm);
 	}
 }
 

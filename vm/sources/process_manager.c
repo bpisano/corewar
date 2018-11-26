@@ -65,31 +65,19 @@ void	free_pro(t_vm *vm)
 
 void	increment_pc(int increment, t_pro *pro)
 {
-	if (pro->pc + increment >= MEM_SIZE)
-	{
-		pro->pc = (increment + pro->pc) % MEM_SIZE;
-		return ;
-	}
-	else if (pro->pc + increment < 0)
-	{
-		pro->pc = (increment + pro->pc) % MEM_SIZE;
-		if (pro->pc != 0)
-			pro->pc += MEM_SIZE;
-		return ;
-	}
-	pro->pc += increment;
+	if (increment + pro->pc < 0)
+		pro->pc = pro->pc + increment + MEM_SIZE;
+	pro->pc = (pro->pc + increment) % MEM_SIZE;
 }
 
-int		goto_next_operation(t_pro *pro, t_vm vm)
+void	goto_next_operation(t_pro *pro, t_vm vm, int op_size)
 {
 	int		op_code;
-	int		op_s;
 
+	pro->pc = (pro->pc + op_size + 1) % MEM_SIZE;
 	op_code = vm.reg[pro->pc];
-	if (op_code == 1 || op_code == 9 || op_code == 12 || op_code == 15)
-		op_s = vm.op_tab[op_code].dir_size;
+	if (op_code < 1 || op_code > 16)
+		pro->cycles = 0;
 	else
-		op_s = op_size(op_code, vm.reg[pro->pc + 1], vm);
-	pro->cycles = vm.op_tab[op_code - 1].cycles;
-	return (op_s);
+		pro->cycles = vm.op_tab[op_code - 1].cycles;
 }

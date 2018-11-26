@@ -45,6 +45,6 @@ t_op	*struct_tab(void)
 	op_tab[9] = (t_op){"ldi", 3,
 	{T_REG | T_DIR | T_IND, T_DIR | T_REG, T_REG}, 10, 1, 2, 1};
 	op_tab[10] = (t_op){"sti", 3,
-	{T_REG, T_REG | T_DIR | T_IND, T_DIR | T_REG}, 11, 1, 2, 1};
+	{T_REG, T_REG | T_DIR | T_IND, T_DIR | T_REG}, 11, 1, 2, 25};
 	return (struct_tab2(op_tab));
 }
