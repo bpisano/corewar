@@ -13,32 +13,21 @@
 
 #include "vm.h"
 
-int			have_winner(t_vm vm)
-{
-	int		i;
-	int		active_champ;
-
-	i = -1;
-	active_champ = 0;
-	while (vm.champs[++i])
-		if (vm.champs[i]->cur_live > 0)
-			active_champ++;
-	if (vm.nbr_champs == 1 && active_champ == 0)
-		return (1);
-	else if (vm.nbr_champs > 1 && active_champ <= 1)
-		return (1);
-	return (0);
-}
-
 t_champ		*winner(t_vm vm)
 {
 	int		i;
+	int		live_max;
+	t_champ	*champ_max;
 
 	i = -1;
+	live_max = 0;
 	while (vm.champs[++i])
-		if (vm.champs[i]->cur_live > 0)
-			return (vm.champs[i]);
-	return (NULL);
+		if (vm.champs[i]->live >= live_max)
+		{
+			live_max = vm.champs[i]->live;
+			champ_max = vm.champs[i];
+		}
+	return (champ_max);
 }
 
 int			have_active_pro(t_vm *vm)
@@ -51,11 +40,15 @@ int			have_active_pro(t_vm *vm)
 	while (++i < vm->number_of_pro)
 	{
 		if (!vm->pro[i])
-			continue;
-		if (vm->pro[i]->live < vm->cycles_total - vm->cycle_to_die)
+			continue ;
+		if (!vm->pro[i]->live)
 			ft_memdel((void **)(&(vm->pro[i])));
 		else
+		{
+			vm->pro[i]->live = 0;
+			printf("live pro : %d\n", vm->pro[i]->live);
 			j++;
+		}
 	}
 	return (j);
 }

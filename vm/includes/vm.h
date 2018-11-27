@@ -61,6 +61,7 @@ typedef struct		s_champ
 
 	unsigned int	last_live;
 	unsigned int	cur_live;
+	unsigned int	live;
 	unsigned int	pc;
 }					t_champ;
 

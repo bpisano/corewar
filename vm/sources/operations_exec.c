@@ -19,15 +19,17 @@ void	ft_live(t_pro *pro, t_vm *vm)
 	int				i;
 	int				op_s;
 
+	printf("live !\n");
 	op_s = op_size(vm->reg[pro->pc], vm->reg[pro->pc + 1], *vm);
 	num_at_reg(*vm, pro->pc + 1, 4);
-	pro->live = vm->cycles_total;
+	pro->live++;
 	i = -1;
 	while (vm->champs[++i])
 	{
 		if (vm->champs[i]->player == champ)
 		{
 			vm->champs[i]->cur_live += 1;
+			vm->champs[i]->live = vm->cycles_total;
 			break ;
 		}
 	}
@@ -313,7 +315,7 @@ void	ft_lfork(t_pro *pro, t_vm *vm)
 	if (!(params(*pro, *vm, p)))
 		return ;
 	if (!(new = new_pro_from_pro(*pro, *vm)))
-	new->pc = ft_mod(new->pc + p[0], MEM_SIZE);
+		new->pc = ft_mod(new->pc + p[0], MEM_SIZE);
 	new->cycles = vm->op_tab[new->pc - 1].cycles;
 	goto_next_operation(pro, *vm, op_s);
 	vm->number_of_pro++;

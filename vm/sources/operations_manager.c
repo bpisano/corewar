@@ -40,7 +40,7 @@ int			*params(t_pro pro, t_vm vm, int *p)
 	int		oct_c;
 	int		size;
 	int		p_num;
-	
+
 	op_c = vm.reg[pro.pc];
 	oct_c = vm.reg[pro.pc + 1];
 	size = 2;

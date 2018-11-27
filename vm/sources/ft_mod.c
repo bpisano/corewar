@@ -13,10 +13,10 @@
 
 #include "vm.h"
 
-int     ft_mod(int a, int b)
+int		ft_mod(int a, int b)
 {
-    a %= b;
-    if (a < 0)
-        a += b;
-    return (a);
+	a %= b;
+	if (a < 0)
+		a += b;
+	return (a);
 }

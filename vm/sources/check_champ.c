@@ -61,6 +61,7 @@ int		check_name(char *line, t_vm *vm, int *i, int k)
 	vm->champs[k]->last_live = 0;
 	vm->champs[k]->cur_live = 0;
 	vm->champs[k]->pc = k * MEM_SIZE / vm->nbr_champs;
+	vm->champs[k]->live = 0;
 	return (0);
 }
 
