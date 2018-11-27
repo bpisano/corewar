@@ -39,15 +39,17 @@ void	exec_op(int op_code, t_pro *pro, t_vm *vm)
 void	exec_pro(t_pro *pro, t_vm *vm)
 {
 	int		op_code;
+	int		oct_code;
 
 	op_code = vm->reg[pro->pc];
-	//printf("op code : %d\n", op_code);
+	oct_code = vm->reg[(pro->pc + 1) % MEM_SIZE];
 	if (op_code < 17 && op_code > 0)
-		exec_op(op_code, pro, vm);
-	else
 	{
-		pro->pc++;
-		if (pro->pc == MEM_SIZE)
-			pro->pc = 0;
+		if (!incorrect_param(*pro, *vm, op_code))
+			exec_op(op_code, pro, vm);
+		else
+			goto_next_operation(pro, *vm, op_size(op_code, oct_code, *vm));
 	}
+	else
+		goto_next_operation(pro, *vm, 0);
 }

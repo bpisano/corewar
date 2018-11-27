@@ -128,8 +128,9 @@ void				set_num_at_reg(t_vm *vm, int pos, size_t reg);
 */
 
 int					op_size(int op_code, int oct_code, t_vm vm);
-int					*params(t_pro pro, t_vm vm);
+int					*params(t_pro pro, t_vm vm, int *p);
 int					param_type(int oct_code, int n);
+int     			incorrect_param(t_pro pro, t_vm vm, int op_code);
 int     			ft_mod(int a, int b);
 
 void				ft_live(t_pro *pro, t_vm *vm);

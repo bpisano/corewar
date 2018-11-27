@@ -46,6 +46,7 @@ SRC_VM = vm/sources/main.c							\
 		 vm/sources/reg_manager.c					\
 		 vm/sources/operations_exec.c				\
 		 vm/sources/operations_manager.c			\
+		 vm/sources/operation_checker.c				\
 		 vm/sources/fnc.c							\
 		 vm/sources/ft_mod.c						\
 

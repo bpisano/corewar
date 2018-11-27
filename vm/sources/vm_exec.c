@@ -57,8 +57,11 @@ static void		run_cycles(t_vm *vm)
 			//printf("end loop\n");
 		}
 		//usleep(400000);
-		if (vm->cycles_total == 904)
-		print_vm(*vm);
+		//sleep(1);
+		if (vm->cycles_total == 1101)
+		{
+			print_vm(*vm);
+		}
 	}
 }
 
