@@ -61,20 +61,14 @@ static void		run_cycles(t_vm *vm)
 		j = -1;
 		number_of_pro = vm->number_of_pro;
 		while (++j < number_of_pro)
-		{
-			//printf("start loop\n");
 			if (!vm->pro[j])
 				continue ;
-			if (vm->pro[j]->cycles > 1)
+			else if (vm->pro[j]->cycles > 1)
 				vm->pro[j]->cycles -= 1;
 			else
 				exec_pro(vm->pro[j], vm);
-			//printf("end loop\n");
-		}
-		//usleep(400000);
-		//sleep(1);
-		if (vm->cycles_total == 1101)
-			print_vm(*vm);
+		//if (vm->cycles_total == 1101)
+			//print_vm(*vm);
 	}
 }
 
@@ -88,16 +82,11 @@ int				exec_vm(t_vm *vm)
 	while (1)
 	{
 		run_cycles(vm);
-		printf("finished run cycle\n");
 		if (!have_active_pro(vm))
-		{
-			printf("No pro\n");
 			break ;
-		}
 		change_values_if_needed(vm);
 	}
 	print_vm(*vm);
-	printf("end\n");
 	printf("Winner : %s\n", winner(*vm)->name);
 	free_vm(vm);
 	return (1);
