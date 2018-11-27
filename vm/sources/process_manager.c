@@ -41,8 +41,6 @@ t_pro	*new_pro_from_pro(t_pro pro, t_vm vm)
 	if (!(new = (t_pro *)malloc(sizeof(t_pro))))
 		return (NULL);
 	new->player = pro.player;
-	new->pc = pro.pc;
-	new->cycles = pro.cycles;
 	new->live = pro.live;
 	new->carry = pro.carry;
 	ft_memcpy(new->reg, pro.reg, REG_NUMBER);

@@ -43,7 +43,7 @@
 
 typedef struct		s_pro
 {
-	unsigned int	player;
+//	unsigned int	player;
 	int				pc;
 	int				cycles;
 
