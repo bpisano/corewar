@@ -13,6 +13,17 @@
 
 #include "vm.h"
 
+static void		free_vm(t_vm *vm)
+{
+	int		i;
+
+	i = -1;
+	while (++i < MAX_PLAYERS)
+		ft_memdel((void **)&(vm->champs[i]));
+	free_pro(vm);
+	free(vm->op_tab);
+}
+
 static void		change_values_if_needed(t_vm *vm)
 {
 	int		i;
@@ -88,6 +99,7 @@ int				exec_vm(t_vm *vm)
 	print_vm(*vm);
 	printf("end\n");
 	printf("Winner : %s\n", winner(*vm)->name);
+	free_vm(vm);
 	return (1);
 }
 

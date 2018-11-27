@@ -30,7 +30,7 @@ void	init_var(t_vm *vm, char **argv)
 	while (++i < MEM_SIZE)
 		vm->reg[i] = 0;
 	i = -1;
-	while (++i < MAX_PLAYERS + 1)
+	while (++i < MAX_PLAYERS)
 		vm->champs[i] = 0;
 }
 

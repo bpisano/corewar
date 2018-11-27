@@ -52,8 +52,8 @@ void	free_pro(t_vm *vm)
 	int		i;
 
 	i = -1;
-	while (vm->pro[++i])
-		free(vm->pro[i]);
+	while (++i < vm->number_of_pro)
+		ft_memdel((void **)&(vm->pro[i]));
 	free(vm->pro);
 }
 

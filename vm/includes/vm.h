@@ -43,7 +43,7 @@
 
 typedef struct		s_pro
 {
-//	unsigned int	player;
+	unsigned int	player;
 	int				pc;
 	int				cycles;
 
@@ -77,7 +77,7 @@ typedef struct		s_vm
 	int				ui;
 	int				number_of_pro;
 
-	t_champ			*champs[MAX_PLAYERS + 1];
+	t_champ			*champs[MAX_PLAYERS];
 	t_pro			**pro;
 	t_op			*op_tab;
 }					t_vm;
