@@ -67,7 +67,10 @@ static void		run_cycles(t_vm *vm)
 				vm->pro[j]->cycles -= 1;
 			else
 				exec_pro(vm->pro[j], vm);
+		wrefresh(vm->ui->reg_win->win);
 		getch();
+		mvprintw(0, 200, "Test %d", i);
+		display_pro(vm);
 		//if (vm->cycles_total == 1101)
 			//print_vm(*vm);
 	}

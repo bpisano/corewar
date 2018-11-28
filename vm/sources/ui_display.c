@@ -13,40 +13,62 @@
 
 #include "vm.h"
 
-void	display_reg(t_vm vm, t_champ *champ, int reg_pos)
+static void		set_reg_coord(t_vm vm, int reg_pos, int *x, int *y)
+{
+	*y = (reg_pos / 64) + 1;
+	*x = ((reg_pos % 64) * 3) + 1;
+}
+
+static void		display_reg(t_vm *vm, int color, int reg_pos, int inverted)
 {
 	WINDOW	*reg_win;
 	int		x;
 	int		y;
 
-	reg_win = vm.ui->reg_win->win;
-	y = (reg_pos / 64) + 1;
-	x = ((reg_pos % 64) * 3) + 1;
+	reg_win = vm->ui->reg_win->win;
+	set_reg_coord(*vm, reg_pos, &x, &y);
 	wmove(reg_win, y, x);
-	if (champ)
-		wattron(reg_win, COLOR_PAIR(champ->color));
-	wprintw(reg_win, "%02x", vm.reg[reg_pos]);
-	if (champ)
-		wattroff(reg_win, COLOR_PAIR(champ->color));
-	wrefresh(reg_win);
+	vm->ui->colors[reg_pos] = color;
+	color = inverted ? color + vm->nbr_champs + 1 : color;
+	wattron(reg_win, COLOR_PAIR(color));
+	wprintw(reg_win, "%02x", vm->reg[reg_pos]);
+	wattroff(reg_win, COLOR_PAIR(color));
 }
 
-void	print_vm_win(t_vm vm)
+void			display_pro(t_vm *vm)
+{
+	int		i;
+
+	i = -1;
+	while (++i < vm->number_of_pro)
+		if (vm->pro[i])
+			display_reg(vm, vm->ui->colors[vm->pro[i]->last_pc],
+			vm->pro[i]->last_pc, 0);
+	i = -1;
+	while (++i < vm->number_of_pro)
+		if (vm->pro[i])
+		{
+			mvprintw(1, 200, "Color %d", vm->ui->colors[vm->pro[i]->pc]);
+			display_reg(vm, vm->ui->colors[vm->pro[i]->pc], vm->pro[i]->pc, 1);
+		}
+}
+
+void	display_reg_win(t_vm *vm)
 {
 	WINDOW	*reg_win;
 	int		i;
 	int		j;
 
-	reg_win = vm.ui->reg_win->win;
+	reg_win = vm->ui->reg_win->win;
 	wmove(reg_win, 1, 1);
 	i = -1;
 	while (++i < MEM_SIZE)
-		display_reg(vm, NULL, i);
+		display_reg(vm, 1, i, 0);
 	j = -1;
-	while (++j < vm.nbr_champs)
+	while (++j < vm->nbr_champs)
 	{
 		i = -1;
-		while (++i < vm.champs[j]->size)
-			display_reg(vm, vm.champs[j], vm.champs[j]->pc + i);
+		while (++i < vm->champs[j]->size)
+			display_reg(vm, vm->champs[j]->color, vm->champs[j]->pc + i, 0);
 	}
 }

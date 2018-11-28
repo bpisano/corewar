@@ -46,10 +46,7 @@ void	exec_pro(t_pro *pro, t_vm *vm)
 	if (op_code < 17 && op_code > 0)
 	{
 		if (!incorrect_param(*pro, *vm, op_code))
-		{
-			printf("corect param\n");
 			exec_op(op_code, pro, vm);
-		}
 		else
 			goto_next_operation(pro, *vm, op_size(op_code, oct_code, *vm));
 	}

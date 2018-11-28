@@ -19,7 +19,6 @@ void	ft_live(t_pro *pro, t_vm *vm)
 	int				i;
 	int				op_s;
 
-	printf("live !\n");
 	op_s = op_size(vm->reg[pro->pc], vm->reg[pro->pc + 1], *vm);
 	champ = num_at_reg(*vm, pro->pc + 1, 4);
 	pro->live++;
@@ -251,6 +250,7 @@ void	ft_fork(t_pro *pro, t_vm *vm)
 	if (!(new = new_pro_from_pro(*pro, *vm)))
 		return ;
 	new->pc = ft_mod(pro->pc + (addr % IDX_MOD), MEM_SIZE);
+	new->last_pc = new->pc;
 	new->cycles = vm->op_tab[new->pc - 1].cycles;
 	if (!(vm->pro = realloc(vm->pro, sizeof(t_pro) * (vm->number_of_pro + 1))))
 		return ;
@@ -313,7 +313,9 @@ void	ft_lfork(t_pro *pro, t_vm *vm)
 	if (!(params(*pro, *vm, p)))
 		return ;
 	if (!(new = new_pro_from_pro(*pro, *vm)))
-		new->pc = ft_mod(pro->pc + p[0], MEM_SIZE);
+		return ;
+	new->pc = ft_mod(pro->pc + p[0], MEM_SIZE);
+	new->last_pc = new->pc;
 	new->cycles = vm->op_tab[new->pc - 1].cycles;
 	goto_next_operation(pro, *vm, op_s);
 	vm->number_of_pro++;

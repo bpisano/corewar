@@ -46,7 +46,6 @@ int			have_active_pro(t_vm *vm)
 		else
 		{
 			vm->pro[i]->live = 0;
-			printf("live pro : %d\n", vm->pro[i]->live);
 			j++;
 		}
 	}

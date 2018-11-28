@@ -57,12 +57,15 @@ typedef struct		s_ui
 	int				width;
 	int				height;
 
+	int				colors[MEM_SIZE];
+
 	t_win			*reg_win;
 }					t_ui;
 
 typedef struct		s_pro
 {
 	unsigned int	player;
+	int				last_pc;
 	int				pc;
 	int				cycles;
 
@@ -178,9 +181,12 @@ void				ft_aff(t_pro *pro, t_vm *vm);
  ** UI
 */
 
+# define COLOR_GRAY 8
+
 int					init_ui(t_vm *vm);
 void				end_ui();
 
-void				print_vm_win(t_vm vm);
+void				display_reg_win(t_vm *vm);
+void				display_pro(t_vm *vm);
 
 #endif

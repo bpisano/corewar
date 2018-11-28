@@ -24,6 +24,7 @@ t_pro	*new_pro_from_champ(t_champ champ, t_vm vm)
 	op_code = vm.reg[champ.pc] - 1;
 	new->player = champ.player;
 	new->pc = champ.pc;
+	new->last_pc = new->pc;
 	new->cycles = op_code < 16 ? vm.op_tab[op_code].cycles : 0;
 	new->live = 0;
 	new->carry = 0;
@@ -59,6 +60,7 @@ void	free_pro(t_vm *vm)
 
 void	increment_pc(int increment, t_pro *pro)
 {
+	pro->last_pc = pro->pc;
 	if (increment + pro->pc < 0)
 		pro->pc = pro->pc + increment + MEM_SIZE;
 	pro->pc = (pro->pc + increment) % MEM_SIZE;
@@ -68,7 +70,7 @@ void	goto_next_operation(t_pro *pro, t_vm vm, int op_size)
 {
 	int		op_code;
 
-	pro->pc = (pro->pc + op_size + 1) % MEM_SIZE;
+	increment_pc(op_size + 1, pro);
 	op_code = vm.reg[pro->pc];
 	if (op_code < 1 || op_code > 16)
 		pro->cycles = 0;
