@@ -47,6 +47,8 @@ SRC_VM = vm/sources/main.c							\
 		 vm/sources/operations_exec.c				\
 		 vm/sources/operations_manager.c			\
 		 vm/sources/operation_checker.c				\
+		 vm/sources/ui_init.c						\
+		 vm/sources/ui_display.c					\
 		 vm/sources/fnc.c							\
 		 vm/sources/ft_mod.c						\
 
@@ -79,7 +81,7 @@ $(ASM): $(LIB) $(OBJ_GLOB) $(OBJ_ASM)
 	@echo "$(BLUE)$(ASM)\033[500D\033[42C$(GREEN)[DONE]$(END)"
 
 $(VM): $(OBJ_GLOB) $(OBJ_VM)
-	@gcc -o $(VM) $(OBJ_GLOB) $(OBJ_VM) libft/$(LIB)
+	@gcc -o $(VM) $(OBJ_GLOB) $(OBJ_VM) libft/$(LIB) -lncurses
 	@echo "$(BLUE)$(VM)\033[500D\033[42C$(GREEN)[DONE]$(END)"
 
 %.o : %.c

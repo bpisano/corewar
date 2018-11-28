@@ -79,6 +79,8 @@ int				exec_vm(t_vm *vm)
 	i = -1;
 	if (!init_process(vm))
 		return (0);
+	if (!init_ui(vm))
+		return (0);
 	while (1)
 	{
 		run_cycles(vm);
@@ -89,11 +91,12 @@ int				exec_vm(t_vm *vm)
 	print_vm(*vm);
 	printf("Winner : %s\n", winner(*vm)->name);
 	free_vm(vm);
+	end_ui();
 	return (1);
 }
 
 void			print_vm(t_vm vm)
-{
+{/*
 	int		i;
 	int		j;
 
@@ -119,5 +122,5 @@ void			print_vm(t_vm vm)
 		else
 			printf("PRO : %d doesnt exist anymore\n\n", i);
 	}
-	printf("----------------------------------\n");
+	printf("----------------------------------\n");*/
 }

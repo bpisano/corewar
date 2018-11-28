@@ -17,6 +17,7 @@
 # include "libft.h"
 # include "corewar.h"
 # include "op.h"
+# include <ncurses.h>
 
 # define ERROR_N1	"Bad argument : %d, need a number after -n flag\n"
 # define ERROR_N2	"Bad argument : %d, need a a valid champion after -n numb\n"
@@ -40,6 +41,24 @@
 # define ERROR_SIZE	"Error, bad content size %d\n"
 # define ERROR_COM	"Error, comment is too long\n"
 # define ERROR_NBR	"Error, the player number (%d) is already taken\n"
+
+typedef	struct		s_win
+{
+	WINDOW			*win;
+
+	int				x;
+	int				y;
+	int				width;
+	int				height;
+}					t_win;
+
+typedef struct		s_ui
+{
+	int				width;
+	int				height;
+
+	t_win			*reg_win;
+}					t_ui;
 
 typedef struct		s_pro
 {
@@ -74,12 +93,13 @@ typedef struct		s_vm
 	int				cycles_total;
 
 	int				dump;
-	int				ui;
+	int				use_ui;
 	int				number_of_pro;
 
 	t_champ			*champs[MAX_PLAYERS];
 	t_pro			**pro;
 	t_op			*op_tab;
+	t_ui			*ui;
 }					t_vm;
 
 void				print_vm(t_vm vm);
@@ -150,5 +170,14 @@ void				ft_lld(t_pro *pro, t_vm *vm);
 void				ft_lldi(t_pro *pro, t_vm *vm);
 void				ft_lfork(t_pro *pro, t_vm *vm);
 void				ft_aff(t_pro *pro, t_vm *vm);
+
+/*
+ ** UI
+*/
+
+int					init_ui(t_vm *vm);
+void				end_ui();
+
+void				print_vm_win(t_vm vm);
 
 #endif

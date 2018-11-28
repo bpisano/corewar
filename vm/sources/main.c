@@ -24,7 +24,7 @@ void	init_var(t_vm *vm, char **argv)
 	vm->dump = -1;
 	vm->champs[0] = 0;
 	vm->op_tab = struct_tab();
-	vm->ui = 0;
+	vm->use_ui = 0;
 	vm->cycles_total = 0;
 	vm->number_of_pro = vm->nbr_champs;
 	while (++i < MEM_SIZE)
