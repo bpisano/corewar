@@ -24,9 +24,10 @@ void	display_reg(t_vm vm, t_champ *champ, int reg_pos)
 	x = ((reg_pos % 64) * 3) + 1;
 	wmove(reg_win, y, x);
 	if (champ)
-		wattron(reg_win, COLOR_PAIR(1));
+		wattron(reg_win, COLOR_PAIR(champ->color));
 	wprintw(reg_win, "%02x", vm.reg[reg_pos]);
-	wattroff(reg_win, COLOR_PAIR(1));
+	if (champ)
+		wattroff(reg_win, COLOR_PAIR(champ->color));
 	wrefresh(reg_win);
 }
 
@@ -45,7 +46,7 @@ void	print_vm_win(t_vm vm)
 	while (++j < vm.nbr_champs)
 	{
 		i = -1;
-		while (++i < 10)
+		while (++i < vm.champs[j]->size)
 			display_reg(vm, vm.champs[j], vm.champs[j]->pc + i);
 	}
 }

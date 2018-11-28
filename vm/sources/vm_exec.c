@@ -67,6 +67,7 @@ static void		run_cycles(t_vm *vm)
 				vm->pro[j]->cycles -= 1;
 			else
 				exec_pro(vm->pro[j], vm);
+		getch();
 		//if (vm->cycles_total == 1101)
 			//print_vm(*vm);
 	}

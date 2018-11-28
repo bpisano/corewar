@@ -37,7 +37,7 @@ static t_ui		*new_ui()
 	if (!(new = (t_ui *)malloc(sizeof(t_ui))))
 		return (NULL);
 	getmaxyx(stdscr, new->height, new->width);
-	if (!(new->reg_win = new_win(0, 1, (MEM_SIZE / 64 * 3 - 1) + 2, (MEM_SIZE / 64 * 3 - 1) + 2)))
+	if (!(new->reg_win = new_win(0, 1, (MEM_SIZE / 64 * 3 - 1) + 2, 64 + 2)))
 	{
 		ft_memdel((void **)&new);
 		return (NULL);
@@ -45,19 +45,30 @@ static t_ui		*new_ui()
 	return (new);
 }
 
+static void		init_colors(t_vm *vm)
+{
+	int		i;
+
+	start_color();
+	use_default_colors();
+	i = -1;
+	while (++i < vm->nbr_champs)
+	{
+		vm->champs[i]->color = i + 1;
+		init_pair(i + 1, i + 1, -1);
+	}
+}
+
 int				init_ui(t_vm *vm)
 {
 	initscr();
 	curs_set(0);
-	start_color();
-	use_default_colors();
-	init_pair(1, COLOR_GREEN, -1);
+	init_colors(vm);
 	refresh();
 	if (!(vm->ui = new_ui()))
 		return (0);
 	mvprintw(0, (vm->ui->width - 7) / 2, "COREWAR");
 	print_vm_win(*vm);
-	getch();
 	return (1);
 }
 

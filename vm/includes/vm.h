@@ -82,6 +82,9 @@ typedef struct		s_champ
 	unsigned int	cur_live;
 	unsigned int	live;
 	unsigned int	pc;
+
+	int				color;
+	unsigned int	size;			
 }					t_champ;
 
 typedef struct		s_vm
