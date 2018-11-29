@@ -13,7 +13,7 @@
 
 #include "vm.h"
 
-void	init_var(t_vm *vm, char **argv)
+int		init_var(t_vm *vm, char **argv)
 {
 	int		i;
 
@@ -23,7 +23,9 @@ void	init_var(t_vm *vm, char **argv)
 	vm->max_checks = MAX_CHECKS;
 	vm->dump = -1;
 	vm->champs[0] = 0;
-	vm->op_tab = struct_tab();
+	if (!(vm->op_tab = struct_tab()))
+		return (0);
+	vm->pro = 0;
 	vm->use_ui = 0;
 	vm->cycles_total = 0;
 	vm->nbr_pro = vm->nbr_champs;
@@ -32,6 +34,7 @@ void	init_var(t_vm *vm, char **argv)
 	i = -1;
 	while (++i < MAX_PLAYERS)
 		vm->champs[i] = 0;
+	return (1);
 }
 
 int		init(char **argv, t_vm *vm)
@@ -70,9 +73,13 @@ int		main(int argc, char **argv)
 	t_vm	vm;
 
 	(void)argc;
-	init_var(&vm, argv);
-	if (init(argv, &vm))
+	if (!init_var(&vm, argv))
 		return (0);
+	if (init(argv, &vm))
+	{
+		free_vm(&vm);
+		return (0);
+	}
 	if (!exec_vm(&vm))
 		return (0);
 	return (0);
