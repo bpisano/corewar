@@ -13,7 +13,7 @@
 
 #include "vm.h"
 
-static void		free_vm(t_vm *vm)
+void		free_vm(t_vm *vm)
 {
 	int		i;
 
