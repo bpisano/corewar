@@ -47,3 +47,28 @@ void	ui_update_info(t_vm vm)
 	ui_print_right_center(vm.ui->info_win, 9, "%d", MAX_CHECKS);
 	wrefresh(vm.ui->info_win->win);
 }
+
+void	ui_update_champs(t_vm vm)
+{
+	int		i;
+	int		offset;
+
+	i = -1;
+	while (++i < vm.nbr_champs)
+	{
+		offset = i * 4 + CHAMPS_LINE;
+		wattron(vm.ui->info_win->win, COLOR_PAIR(vm.champs[i]->color));
+		ui_print_right_center(vm.ui->info_win, offset + 2, "%s", vm.champs[i]->name);
+		wattroff(vm.ui->info_win->win, COLOR_PAIR(vm.champs[i]->color));
+		ui_print_right_center(vm.ui->info_win, offset + 3, "%d", vm.champs[i]->cur_live);
+		ui_print_right_center(vm.ui->info_win, offset + 4, "%s", vm.champs[i]->last_live);
+	}
+	wrefresh(vm.ui->info_win->win);
+}
+
+void	ui_update_champs_if_needed(t_vm *vm)
+{
+	if (vm->ui->need_cha_disp)
+		ui_update_champs(*vm);
+	vm->ui->need_cha_disp = 0;
+}

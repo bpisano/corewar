@@ -59,6 +59,7 @@ typedef struct		s_ui
 	int				colors[MEM_SIZE];
 
 	int				need_pro_disp;
+	int				need_cha_disp;
 
 	t_win			*reg_win;
 	t_win			*info_win;
@@ -185,6 +186,9 @@ void				ft_aff(t_pro *pro, t_vm *vm);
 */
 
 # define 			COLOR_GRAY 8
+# define			INFO_LINE 2
+# define			CHAMPS_LINE INFO_LINE + 10
+
 
 int					init_ui(t_vm *vm);
 void				end_ui(void);
@@ -193,10 +197,13 @@ void				ui_draw_reg(t_vm *vm, int color, int reg_pos, int inverted);
 void				ui_display_reg(t_vm *vm);
 void				ui_display_pro(t_vm *vm);
 void				ui_display_infos(t_vm vm);
+void				ui_display_champs(t_vm vm);
 
 void				ui_update_reg(t_vm *vm, t_pro pro, int reg_pos);
 void				ui_update_pro_if_needed(t_vm *vm);
 void				ui_update_info(t_vm vm);
+void				ui_update_champs(t_vm vm);
+void				ui_update_champs_if_needed(t_vm *vm);
 
 void				ui_print_left_center(t_win *w, int line, int len, char *f, ...);
 void				ui_print_right_center(t_win *w, int line, char *f, ...);

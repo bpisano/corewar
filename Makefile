@@ -51,6 +51,7 @@ SRC_VM = vm/sources/main.c							\
 		 vm/sources/ui_display.c					\
 		 vm/sources/ui_update.c						\
 		 vm/sources/ui_print.c						\
+		 vm/sources/ui_reg_manager.c				\
 		 vm/sources/fnc.c							\
 		 vm/sources/ft_mod.c						\
 

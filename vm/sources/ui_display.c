@@ -13,28 +13,6 @@
 
 #include "vm.h"
 
-static void		set_reg_coord(t_vm vm, int reg_pos, int *x, int *y)
-{
-	*y = (reg_pos / 64) + 1;
-	*x = ((reg_pos % 64) * 3) + 1;
-}
-
-void			ui_draw_reg(t_vm *vm, int color, int reg_pos, int inverted)
-{
-	WINDOW	*reg_win;
-	int		x;
-	int		y;
-
-	reg_win = vm->ui->reg_win->win;
-	set_reg_coord(*vm, reg_pos, &x, &y);
-	wmove(reg_win, y, x);
-	vm->ui->colors[reg_pos] = color;
-	color = inverted ? color + vm->nbr_champs + 1 : color;
-	wattron(reg_win, COLOR_PAIR(color));
-	wprintw(reg_win, "%02x", vm->reg[reg_pos]);
-	wattroff(reg_win, COLOR_PAIR(color));
-}
-
 void			ui_display_pro(t_vm *vm)
 {
 	int		i;
@@ -74,14 +52,32 @@ void			ui_display_reg(t_vm *vm)
 
 void			ui_display_infos(t_vm vm)
 {
-	ui_print_title(vm.ui->info_win, 2, "INFOS");
+	ui_print_title(vm.ui->info_win, INFO_LINE, "INFOS");
 	wattron(vm.ui->info_win->win, COLOR_PAIR(1));
-	ui_print_left_center(vm.ui->info_win, 4, 6, "CYCLES ");
-	ui_print_left_center(vm.ui->info_win, 6, 13, "CYCLES_TO_DIE ");
-	ui_print_left_center(vm.ui->info_win, 7, 12, "CYCLES_DELTA ");
-	ui_print_left_center(vm.ui->info_win, 8, 8, "NBR_LIVE ");
-	ui_print_left_center(vm.ui->info_win, 9, 10, "MAX_CHECKS ");
+	ui_print_left_center(vm.ui->info_win, INFO_LINE + 2, 6, "CYCLES ");
+	ui_print_left_center(vm.ui->info_win, INFO_LINE + 4, 13, "CYCLES_TO_DIE ");
+	ui_print_left_center(vm.ui->info_win, INFO_LINE + 5, 12, "CYCLES_DELTA ");
+	ui_print_left_center(vm.ui->info_win, INFO_LINE + 6, 8, "NBR_LIVE ");
+	ui_print_left_center(vm.ui->info_win, INFO_LINE + 7, 10, "MAX_CHECKS ");
 	wattroff(vm.ui->info_win->win, COLOR_PAIR(1));
-	ui_print_title(vm.ui->info_win, 12, "CHAMPS");
 	ui_update_info(vm);
+}
+
+void	ui_display_champs(t_vm vm)
+{
+	int		i;
+	int		offset;
+
+	ui_print_title(vm.ui->info_win, CHAMPS_LINE, "PLAYERS");
+	wattron(vm.ui->info_win->win, COLOR_PAIR(1));
+	i = -1;
+	while (++i < vm.nbr_champs)
+	{
+		offset = i * 4 + CHAMPS_LINE;
+		ui_print_left_center(vm.ui->info_win, offset + 2, 5, "NAME ");
+		ui_print_left_center(vm.ui->info_win, offset + 3, 14, "CURRENT_LIVES ");
+		ui_print_left_center(vm.ui->info_win, offset + 4, 11, "LAST_LIVES ");
+	}
+	wattroff(vm.ui->info_win->win, COLOR_PAIR(1));
+	ui_update_champs(vm);
 }
