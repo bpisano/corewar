@@ -55,6 +55,8 @@ int		init(char **argv, t_vm *vm)
 			if (check_flag_d(argv, &i, &vm->dump))
 				return (1);
 		}
+		else if (!ft_strcmp(argv[i], "-i"))
+			vm->use_ui = 1;
 		else if (!ft_strchr(argv[i], '.'))
 			return (invalid_param(argv[i]));
 		else if (invalid_champ(argv[i], vm, 0))
