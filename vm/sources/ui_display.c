@@ -71,3 +71,16 @@ void			ui_display_reg(t_vm *vm)
 	}
 	wrefresh(vm->ui->reg_win->win);
 }
+
+void			ui_display_infos(t_vm vm)
+{
+	ui_print_title(vm.ui->info_win, 2, "INFOS");
+	ui_print_left_center(vm.ui->info_win, 4, 6, "CYCLES ");
+	ui_print_left_center(vm.ui->info_win, 6, 13, "CYCLES_TO_DIE ");
+	ui_print_left_center(vm.ui->info_win, 7, 12, "CYCLES_DELTA ");
+	ui_print_left_center(vm.ui->info_win, 8, 8, "NBR_LIVE ");
+	ui_print_left_center(vm.ui->info_win, 9, 10, "MAX_CHECKS ");
+	ui_print_right_center(vm.ui->info_win, 4, "%d", vm.cycle_to_die);
+	wrefresh(vm.ui->info_win->win);
+	//wrefresh(vm.ui->info_win->win);
+}

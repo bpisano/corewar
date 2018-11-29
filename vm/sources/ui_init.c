@@ -44,6 +44,12 @@ static t_ui		*new_ui(void)
 		ft_memdel((void **)&new);
 		return (NULL);
 	}
+	if (!(new->info_win = new_win(new->reg_win->width, 1, 40, 64 + 2)))
+	{
+		ft_memdel((void **)new->reg_win);
+		ft_memdel((void **)&new);
+		return (NULL);
+	}
 	return (new);
 }
 
@@ -56,7 +62,11 @@ static void		init_pro_colors(t_vm *vm)
 	while (++i < vm->nbr_pro && (j = -1))
 		while (++j < vm->nbr_champs)
 			if (vm->pro[i]->player == vm->champs[j]->player)
+			{
+				static int l = 0;
+				mvprintw(l++, 300, "player : %d, %d", vm->pro[i]->player, vm->champs[j]->color);
 				vm->pro[i]->color = vm->champs[j]->color;
+			}
 }
 
 static void		init_colors(t_vm *vm)
@@ -89,6 +99,7 @@ int				init_ui(t_vm *vm)
 	mvprintw(0, (vm->ui->reg_win->width - 7) / 2, "COREWAR");
 	ui_display_reg(vm);
 	ui_display_pro(vm);
+	ui_display_infos(*vm);
 	return (1);
 }
 
