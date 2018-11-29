@@ -57,7 +57,7 @@ int		init(char **argv, t_vm *vm)
 		}
 		else if (!ft_strchr(argv[i], '.'))
 			return (invalid_param(argv[i]));
-		else if (invalid_champ(argv[i], vm, ""))
+		else if (invalid_champ(argv[i], vm, 0))
 			return (ft_printf(ERROR_CHMP, i, argv[i]));
 	}
 	return (0);

@@ -23,12 +23,12 @@ int		free_chmp(t_vm *vm)
 	return (1);
 }
 
-int		check_taken(unsigned char i, t_vm *vm)
+int		check_taken(unsigned int i, t_vm *vm)
 {
 	int		j;
 
 	j = -1;
-	while (vm->champs[++j + 1])
+	while (vm->champs[++j])
 		if (vm->champs[j]->player == i)
 			return (1);
 	return (0);
@@ -53,7 +53,7 @@ int		handle_number(t_vm *vm, char *number, int j)
 {
 	unsigned int	i;
 
-	if (number[0])
+	if (number)
 	{
 		i = (unsigned int)ft_atoi(number);
 		if (check_taken(i, vm))
@@ -61,7 +61,8 @@ int		handle_number(t_vm *vm, char *number, int j)
 		vm->champs[j]->player = i;
 		return (0);
 	}
-	i = 0xFFFFFFFF;
+	i = 0xffffffff;
+	vm->champs[j]->player = 0;
 	while (i != 0)
 	{
 		if (!check_taken(i, vm))
