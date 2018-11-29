@@ -68,7 +68,7 @@ void	ft_st(t_pro *pro, t_vm *vm)
 	if (param_type(vm->reg[pro->pc + 1], 1) == REG_CODE)
 		pro->reg[p[1]] = a;
 	else
-		set_num_at_reg(vm, *pro, pro->pc + (p[1] % IDX_MOD), a);
+		set_num_at_reg(vm, *pro, (pro->pc + (short)p[1] % IDX_MOD), a);
 	goto_next_operation(pro, vm, op_s);
 }
 
