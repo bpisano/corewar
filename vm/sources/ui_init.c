@@ -87,7 +87,7 @@ static void		init_colors(t_vm *vm)
 
 int				init_ui(t_vm *vm)
 {
-	if (vm->use_ui)
+	if (!vm->use_ui)
 		return (1);
 	initscr();
 	curs_set(0);

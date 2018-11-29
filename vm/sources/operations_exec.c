@@ -29,7 +29,7 @@ void	ft_live(t_pro *pro, t_vm *vm)
 		{
 			vm->champs[i]->cur_live += 1;
 			vm->champs[i]->live = vm->cycles_total;
-			vm->ui->need_cha_disp = 1;
+			need_champ_display(vm);
 			break ;
 		}
 	}
@@ -253,7 +253,7 @@ void	ft_fork(t_pro *pro, t_vm *vm)
 	new->pc = ft_mod(pro->pc + (addr % IDX_MOD), MEM_SIZE);
 	new->last_pc = new->pc;
 	new->cycles = vm->op_tab[vm->reg[new->pc] - 1].cycles;
-	vm->ui->need_pro_disp = 1;
+	need_pro_display(vm);
 	if (!(vm->pro = realloc(vm->pro, sizeof(t_pro) * (vm->nbr_pro + 1))))
 		return ;
 	vm->pro[vm->nbr_pro] = new;

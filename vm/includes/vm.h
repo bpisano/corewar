@@ -208,4 +208,7 @@ void				ui_print_left_center(t_win *w, int line, int len, char *f, ...);
 void				ui_print_right_center(t_win *w, int line, char *f, ...);
 void				ui_print_title(t_win *w, int line, char *f, ...);
 
+void				need_pro_display(t_vm *vm);
+void				need_champ_display(t_vm *vm);
+
 #endif

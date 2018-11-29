@@ -66,7 +66,7 @@ void	increment_pc(int increment, t_pro *pro, t_vm *vm)
 	if (increment + pro->pc < 0)
 		pro->pc = pro->pc + increment + MEM_SIZE;
 	pro->pc = (pro->pc + increment) % MEM_SIZE;
-	vm->ui->need_pro_disp = 1;
+	need_pro_display(vm);
 }
 
 void	goto_next_operation(t_pro *pro, t_vm *vm, int op_size)

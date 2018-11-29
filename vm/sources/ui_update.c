@@ -18,6 +18,8 @@ void	ui_update_reg(t_vm *vm, t_pro pro, int reg_pos)
 	int		i;
 	int		inverted;
 
+	if (!vm->use_ui)
+		return ;
 	i = -1;
 	inverted = 0;
 	while (++i < vm->nbr_pro)
