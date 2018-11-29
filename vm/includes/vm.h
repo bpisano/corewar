@@ -72,12 +72,11 @@ typedef struct		s_pro
 	int				pc;
 	int				cycles;
 
+	int				color;
 	int				live;
 	int				carry;
 
-	unsigned int	reg[REG_NUMBER];
-
-	int				color;
+	unsigned int	reg[REG_NUMBER + 1];
 }					t_pro;
 
 typedef struct		s_champ
