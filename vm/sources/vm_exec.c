@@ -36,6 +36,7 @@ static void		change_values_if_needed(t_vm *vm)
 		lives += vm->champs[i]->cur_live;
 		vm->champs[i]->last_live = vm->champs[i]->cur_live;
 		vm->champs[i]->cur_live = 0;
+		vm->ui->need_cha_disp = 1;
 	}
 	if (lives >= NBR_LIVE)
 		vm->cycle_to_die -= CYCLE_DELTA;
