@@ -43,12 +43,21 @@ void	exec_pro(t_pro *pro, t_vm *vm)
 
 	op_code = vm->reg[pro->pc];
 	oct_code = vm->reg[(pro->pc + 1) % MEM_SIZE];
+	printf("op_code : %d\n", op_code);
 	if (op_code < 17 && op_code > 0)
 	{
 		if (!incorrect_param(*pro, *vm, op_code))
+		{
+			printf("Correct params\n");
 			exec_op(op_code, pro, vm);
+		}
 		else
-			goto_next_operation(pro, vm, op_size(op_code, oct_code, *vm));
+		{
+			printf("NICE\n");
+			int		k = op_size(op_code, oct_code, *vm);
+			printf("NICE encore plus\n");
+			goto_next_operation(pro, vm, k);
+		}
 	}
 	else
 		goto_next_operation(pro, vm, 0);

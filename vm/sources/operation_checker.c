@@ -34,5 +34,6 @@ int		incorrect_param(t_pro pro, t_vm vm, int op_code)
 		|| param[i] > REG_NUMBER))
 			return (1);
 	}
-	return (0);
+	printf("END INCORRECT PARAMS\n");
+	return (1);
 }

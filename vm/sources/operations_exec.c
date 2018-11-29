@@ -257,8 +257,8 @@ void	ft_fork(t_pro *pro, t_vm *vm)
 	if (!(vm->pro = realloc(vm->pro, sizeof(t_pro) * (vm->nbr_pro + 1))))
 		return ;
 	vm->pro[vm->nbr_pro] = new;
-	goto_next_operation(pro, vm, op_s);
 	vm->nbr_pro++;
+	goto_next_operation(pro, vm, op_s);
 }
 
 void	ft_lld(t_pro *pro, t_vm *vm)
@@ -307,20 +307,23 @@ void	ft_lldi(t_pro *pro, t_vm *vm)
 
 void	ft_lfork(t_pro *pro, t_vm *vm)
 {
-	int		p[3];
+	int		addr;
 	t_pro	*new;
 	int		op_s;
 
 	op_s = op_size(vm->reg[pro->pc], vm->reg[pro->pc + 1], *vm);
-	if (!(params(*pro, *vm, p)))
-		return ;
+	addr = num_at_reg(*vm, pro->pc + 1, 2);
 	if (!(new = new_pro_from_pro(*pro, *vm)))
 		return ;
-	new->pc = ft_mod(pro->pc + p[0], MEM_SIZE);
+	new->pc = ft_mod(pro->pc + addr, MEM_SIZE);
 	new->last_pc = new->pc;
-	new->cycles = vm->op_tab[new->pc - 1].cycles;
-	goto_next_operation(pro, vm, op_s);
+	new->cycles = vm->op_tab[vm->reg[new->pc] - 1].cycles;
+	need_pro_display(vm);
+	if (!(vm->pro = realloc(vm->pro, sizeof(t_pro) * (vm->nbr_pro + 1))))
+		return ;
+	vm->pro[vm->nbr_pro] = new;
 	vm->nbr_pro++;
+	goto_next_operation(pro, vm, op_s);
 }
 
 void	ft_aff(t_pro *pro, t_vm *vm)
