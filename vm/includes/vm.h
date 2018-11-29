@@ -196,6 +196,7 @@ void				ui_display_infos(t_vm vm);
 
 void				ui_update_reg(t_vm *vm, t_pro pro, int reg_pos);
 void				ui_update_pro_if_needed(t_vm *vm);
+void				ui_update_info(t_vm vm);
 
 void				ui_print_left_center(t_win *w, int line, int len, char *f, ...);
 void				ui_print_right_center(t_win *w, int line, char *f, ...);

@@ -62,11 +62,7 @@ static void		init_pro_colors(t_vm *vm)
 	while (++i < vm->nbr_pro && (j = -1))
 		while (++j < vm->nbr_champs)
 			if (vm->pro[i]->player == vm->champs[j]->player)
-			{
-				static int l = 0;
-				mvprintw(l++, 300, "player : %d, %d", vm->pro[i]->player, vm->champs[j]->color);
 				vm->pro[i]->color = vm->champs[j]->color;
-			}
 }
 
 static void		init_colors(t_vm *vm)
@@ -92,11 +88,13 @@ int				init_ui(t_vm *vm)
 {
 	initscr();
 	curs_set(0);
+	noecho();
 	init_colors(vm);
 	refresh();
 	if (!(vm->ui = new_ui()))
 		return (0);
 	mvprintw(0, (vm->ui->reg_win->width - 7) / 2, "COREWAR");
+	refresh();
 	ui_display_reg(vm);
 	ui_display_pro(vm);
 	ui_display_infos(*vm);
