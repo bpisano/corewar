@@ -39,6 +39,7 @@ static t_ui		*new_ui(void)
 	getmaxyx(stdscr, new->height, new->width);
 	ft_memset(new->colors, 1, MEM_SIZE);
 	new->need_pro_disp = 0;
+	new->need_cha_disp = 0;
 	if (!(new->reg_win = new_win(0, 1, (MEM_SIZE / 64 * 3 - 1) + 2, 64 + 2)))
 	{
 		ft_memdel((void **)&new);
