@@ -120,7 +120,8 @@ int		invalid_champ(char *name, t_vm *vm, char *number)
 	while (++j < (unsigned char)line[0x8a] * 256 + (unsigned char)line[0x8b])
 		vm->reg[j + (i * MEM_SIZE / vm->nbr_champs)] =
 		line[HEADER_SIZE + j];
-	vm->champs[i]->size = (unsigned char)line[0x8a] * 256 + (unsigned char)line[0x8b];
+	vm->champs[i]->size = (unsigned char)line[0x8a] * 256
+	+ (unsigned char)line[0x8b];
 	if (handle_number(vm, number, i))
 		return (ft_printf(ERROR_NBR, ft_atoi(number)) && free_chmp(vm));
 	return (0);

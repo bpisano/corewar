@@ -37,7 +37,7 @@ int			have_active_pro(t_vm *vm)
 
 	i = -1;
 	j = 0;
-	while (++i < vm->number_of_pro)
+	while (++i < vm->nbr_pro)
 	{
 		if (!vm->pro[i])
 			continue ;

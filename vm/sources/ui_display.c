@@ -19,7 +19,7 @@ static void		set_reg_coord(t_vm vm, int reg_pos, int *x, int *y)
 	*x = ((reg_pos % 64) * 3) + 1;
 }
 
-static void		display_reg(t_vm *vm, int color, int reg_pos, int inverted)
+void			ui_draw_reg(t_vm *vm, int color, int reg_pos, int inverted)
 {
 	WINDOW	*reg_win;
 	int		x;
@@ -35,25 +35,23 @@ static void		display_reg(t_vm *vm, int color, int reg_pos, int inverted)
 	wattroff(reg_win, COLOR_PAIR(color));
 }
 
-void			display_pro(t_vm *vm)
+void			ui_display_pro(t_vm *vm)
 {
 	int		i;
 
 	i = -1;
-	while (++i < vm->number_of_pro)
+	while (++i < vm->nbr_pro)
 		if (vm->pro[i])
-			display_reg(vm, vm->ui->colors[vm->pro[i]->last_pc],
+			ui_draw_reg(vm, vm->ui->colors[vm->pro[i]->last_pc],
 			vm->pro[i]->last_pc, 0);
 	i = -1;
-	while (++i < vm->number_of_pro)
+	while (++i < vm->nbr_pro)
 		if (vm->pro[i])
-		{
-			mvprintw(1, 200, "Color %d", vm->ui->colors[vm->pro[i]->pc]);
-			display_reg(vm, vm->ui->colors[vm->pro[i]->pc], vm->pro[i]->pc, 1);
-		}
+			ui_draw_reg(vm, vm->ui->colors[vm->pro[i]->pc], vm->pro[i]->pc, 1);
+	wrefresh(vm->ui->reg_win->win);
 }
 
-void	display_reg_win(t_vm *vm)
+void			ui_display_reg(t_vm *vm)
 {
 	WINDOW	*reg_win;
 	int		i;
@@ -63,12 +61,13 @@ void	display_reg_win(t_vm *vm)
 	wmove(reg_win, 1, 1);
 	i = -1;
 	while (++i < MEM_SIZE)
-		display_reg(vm, 1, i, 0);
+		ui_draw_reg(vm, 1, i, 0);
 	j = -1;
 	while (++j < vm->nbr_champs)
 	{
 		i = -1;
 		while (++i < vm->champs[j]->size)
-			display_reg(vm, vm->champs[j]->color, vm->champs[j]->pc + i, 0);
+			ui_draw_reg(vm, vm->champs[j]->color, vm->champs[j]->pc + i, 0);
 	}
+	wrefresh(vm->ui->reg_win->win);
 }

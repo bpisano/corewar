@@ -29,24 +29,34 @@ static t_win	*new_win(int x, int y, int width, int height)
 	return (win);
 }
 
-static t_ui		*new_ui()
+static t_ui		*new_ui(void)
 {
 	t_ui	*new;
 	t_win	*win_reg;
 
 	if (!(new = (t_ui *)malloc(sizeof(t_ui))))
 		return (NULL);
-	int		j = -1;
-	while (++j < MEM_SIZE)
-		new->colors[j] = 1;
-	//ft_memset(new->colors, 1, MEM_SIZE);
 	getmaxyx(stdscr, new->height, new->width);
+	ft_memset(new->colors, 1, MEM_SIZE);
+	new->need_pro_disp = 0;
 	if (!(new->reg_win = new_win(0, 1, (MEM_SIZE / 64 * 3 - 1) + 2, 64 + 2)))
 	{
 		ft_memdel((void **)&new);
 		return (NULL);
 	}
 	return (new);
+}
+
+static void		init_pro_colors(t_vm *vm)
+{
+	int		i;
+	int		j;
+
+	i = -1;
+	while (++i < vm->nbr_pro && (j = -1))
+		while (++j < vm->nbr_champs)
+			if (vm->pro[i]->player == vm->champs[j]->player)
+				vm->pro[i]->color = vm->champs[j]->color;
 }
 
 static void		init_colors(t_vm *vm)
@@ -63,8 +73,9 @@ static void		init_colors(t_vm *vm)
 	{
 		vm->champs[i]->color = i + 2;
 		init_pair(i + 2, i + 1, -1);
-		init_pair(i + 3 + vm->nbr_champs, COLOR_WHITE, i + 1);
+		init_pair(i + 3 + vm->nbr_champs, COLOR_BLACK, i + 1);
 	}
+	init_pro_colors(vm);
 }
 
 int				init_ui(t_vm *vm)
@@ -76,13 +87,12 @@ int				init_ui(t_vm *vm)
 	if (!(vm->ui = new_ui()))
 		return (0);
 	mvprintw(0, (vm->ui->reg_win->width - 7) / 2, "COREWAR");
-	display_reg_win(vm);
-	display_pro(vm);
-	wrefresh(vm->ui->reg_win->win);
+	ui_display_reg(vm);
+	ui_display_pro(vm);
 	return (1);
 }
 
-void			end_ui()
+void			end_ui(void)
 {
 	endwin();
 }

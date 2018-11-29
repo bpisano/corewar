@@ -56,8 +56,9 @@ typedef struct		s_ui
 {
 	int				width;
 	int				height;
-
 	int				colors[MEM_SIZE];
+
+	int				need_pro_disp;
 
 	t_win			*reg_win;
 }					t_ui;
@@ -73,6 +74,8 @@ typedef struct		s_pro
 	int				carry;
 
 	unsigned int	reg[REG_NUMBER];
+
+	int				color;
 }					t_pro;
 
 typedef struct		s_champ
@@ -100,7 +103,7 @@ typedef struct		s_vm
 
 	int				dump;
 	int				use_ui;
-	int				number_of_pro;
+	int				nbr_pro;
 
 	t_champ			*champs[MAX_PLAYERS];
 	t_pro			**pro;
@@ -130,25 +133,24 @@ int					exec_vm(t_vm *vm);
 */
 
 int					init_process(t_vm *vm);
-int					number_of_pro(t_vm vm);
 t_pro				*new_pro_from_champ(t_champ champ, t_vm vm);
 t_pro				*new_pro_from_pro(t_pro pro, t_vm vm);
 void				free_pro(t_vm *vm);
-void				increment_pc(int increment, t_pro *pro);
+void				increment_pc(int increment, t_pro *pro, t_vm *vm);
 
 int					have_winner(t_vm vm);
 t_champ				*winner(t_vm vm);
 int					have_active_pro(t_vm *vm);
 
 void				exec_pro(t_pro *pro, t_vm *vm);
-void				goto_next_operation(t_pro *pro, t_vm vm, int op_size);
+void				goto_next_operation(t_pro *pro, t_vm *vm, int op_size);
 
 /*
  ** REG
 */
 
 int					num_at_reg(t_vm vm, int pos, size_t size);
-void				set_num_at_reg(t_vm *vm, int pos, size_t reg);
+void				set_num_at_reg(t_vm *vm, t_pro pro, int reg_pos, size_t reg);
 
 /*
  ** OPERATIONS
@@ -181,12 +183,16 @@ void				ft_aff(t_pro *pro, t_vm *vm);
  ** UI
 */
 
-# define COLOR_GRAY 8
+# define 			COLOR_GRAY 8
 
 int					init_ui(t_vm *vm);
-void				end_ui();
+void				end_ui(void);
 
-void				display_reg_win(t_vm *vm);
-void				display_pro(t_vm *vm);
+void				ui_draw_reg(t_vm *vm, int color, int reg_pos, int inverted);
+void				ui_display_reg(t_vm *vm);
+void				ui_display_pro(t_vm *vm);
+
+void				ui_update_reg(t_vm *vm, t_pro pro, int reg_pos);
+void				ui_update_pro_if_needed(t_vm *vm);
 
 #endif

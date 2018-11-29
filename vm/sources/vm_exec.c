@@ -59,7 +59,7 @@ static void		run_cycles(t_vm *vm)
 	{
 		vm->cycles_total++;
 		j = -1;
-		number_of_pro = vm->number_of_pro;
+		number_of_pro = vm->nbr_pro;
 		while (++j < number_of_pro)
 			if (!vm->pro[j])
 				continue ;
@@ -67,10 +67,9 @@ static void		run_cycles(t_vm *vm)
 				vm->pro[j]->cycles -= 1;
 			else
 				exec_pro(vm->pro[j], vm);
-		wrefresh(vm->ui->reg_win->win);
 		getch();
+		ui_update_pro_if_needed(vm);
 		mvprintw(0, 200, "Test %d", i);
-		display_pro(vm);
 		//if (vm->cycles_total == 1101)
 			//print_vm(*vm);
 	}

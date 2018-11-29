@@ -28,6 +28,7 @@ t_pro	*new_pro_from_champ(t_champ champ, t_vm vm)
 	new->cycles = op_code < 16 ? vm.op_tab[op_code].cycles : 0;
 	new->live = 0;
 	new->carry = 0;
+	new->color = champ.color;
 	i = -1;
 	while (++i < REG_NUMBER)
 		new->reg[i] = 0;
@@ -44,6 +45,7 @@ t_pro	*new_pro_from_pro(t_pro pro, t_vm vm)
 	new->player = pro.player;
 	new->live = pro.live;
 	new->carry = pro.carry;
+	new->color = pro.color;
 	ft_memcpy(new->reg, pro.reg, REG_NUMBER);
 	return (new);
 }
@@ -53,27 +55,28 @@ void	free_pro(t_vm *vm)
 	int		i;
 
 	i = -1;
-	while (++i < vm->number_of_pro)
+	while (++i < vm->nbr_pro)
 		ft_memdel((void **)&(vm->pro[i]));
 	free(vm->pro);
 }
 
-void	increment_pc(int increment, t_pro *pro)
+void	increment_pc(int increment, t_pro *pro, t_vm *vm)
 {
 	pro->last_pc = pro->pc;
 	if (increment + pro->pc < 0)
 		pro->pc = pro->pc + increment + MEM_SIZE;
 	pro->pc = (pro->pc + increment) % MEM_SIZE;
+	vm->ui->need_pro_disp = 1;
 }
 
-void	goto_next_operation(t_pro *pro, t_vm vm, int op_size)
+void	goto_next_operation(t_pro *pro, t_vm *vm, int op_size)
 {
 	int		op_code;
 
-	increment_pc(op_size + 1, pro);
-	op_code = vm.reg[pro->pc];
+	increment_pc(op_size + 1, pro, vm);
+	op_code = vm->reg[pro->pc];
 	if (op_code < 1 || op_code > 16)
 		pro->cycles = 0;
 	else
-		pro->cycles = vm.op_tab[op_code - 1].cycles;
+		pro->cycles = vm->op_tab[op_code - 1].cycles;
 }

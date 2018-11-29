@@ -48,8 +48,8 @@ void	exec_pro(t_pro *pro, t_vm *vm)
 		if (!incorrect_param(*pro, *vm, op_code))
 			exec_op(op_code, pro, vm);
 		else
-			goto_next_operation(pro, *vm, op_size(op_code, oct_code, *vm));
+			goto_next_operation(pro, vm, op_size(op_code, oct_code, *vm));
 	}
 	else
-		goto_next_operation(pro, *vm, 0);
+		goto_next_operation(pro, vm, 0);
 }
