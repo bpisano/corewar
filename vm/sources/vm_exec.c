@@ -69,9 +69,7 @@ static void		run_cycles(t_vm *vm)
 			else
 				exec_pro(vm->pro[j], vm);
 		getch();
-		ui_update_pro_if_needed(vm);
-		ui_update_champs_if_needed(vm);
-		ui_update_info(*vm);
+		ui_update_if_needed(vm);
 		//if (vm->cycles_total == 1101)
 			//print_vm(*vm);
 	}

@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   ui_reg_manager.c                                 .::    .:/ .      .::   */
+/*   ui_setter.c                                      .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
@@ -13,26 +13,16 @@
 
 #include "vm.h"
 
-static void		set_reg_coord(t_vm vm, int reg_pos, int *x, int *y)
+void	need_pro_display(t_vm *vm)
 {
-	*y = (reg_pos / 64) + 1;
-	*x = ((reg_pos % 64) * 3) + 1;
-}
-
-void			ui_draw_reg(t_vm *vm, int color, int reg_pos, int inverted)
-{
-	WINDOW	*reg_win;
-	int		x;
-	int		y;
-
 	if (!vm->use_ui)
 		return ;
-	reg_win = vm->ui->reg_win->win;
-	set_reg_coord(*vm, reg_pos, &x, &y);
-	wmove(reg_win, y, x);
-	vm->ui->colors[reg_pos] = color;
-	color = inverted ? color + vm->nbr_champs + 1 : color;
-	wattron(reg_win, COLOR_PAIR(color));
-	wprintw(reg_win, "%02x", vm->reg[reg_pos]);
-	wattroff(reg_win, COLOR_PAIR(color));
+	vm->ui->need_pro_disp = 1;
+}
+
+void	need_champ_display(t_vm *vm)
+{
+	if (!vm->use_ui)
+		return ;
+	vm->ui->need_cha_disp = 1;
 }

@@ -13,13 +13,6 @@
 
 #include "vm.h"
 
-void	ui_update_pro_if_needed(t_vm *vm)
-{
-	if (vm->ui->need_pro_disp)
-		ui_display_pro(vm);
-	vm->ui->need_pro_disp = 0;
-}
-
 void	ui_update_reg(t_vm *vm, t_pro pro, int reg_pos)
 {
 	int		i;
@@ -66,9 +59,15 @@ void	ui_update_champs(t_vm vm)
 	wrefresh(vm.ui->info_win->win);
 }
 
-void	ui_update_champs_if_needed(t_vm *vm)
+void	ui_update_if_needed(t_vm *vm)
 {
+	if (!vm->use_ui)
+		return ;
+	if (vm->ui->need_pro_disp)
+		ui_display_pro(vm);
 	if (vm->ui->need_cha_disp)
 		ui_update_champs(*vm);
+	ui_update_info(*vm);
+	vm->ui->need_pro_disp = 0;
 	vm->ui->need_cha_disp = 0;
 }
