@@ -57,8 +57,8 @@ static void		change_values_if_needed(t_vm *vm)
 
 static void		run_cycles(t_vm *vm)
 {
-	int		i;
-	int		j;
+	register int		i;
+	register int		j;
 	int		number_of_pro;
 
 	i = -1;

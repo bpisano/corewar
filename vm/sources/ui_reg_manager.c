@@ -15,8 +15,8 @@
 
 static void		set_reg_coord(t_vm vm, int reg_pos, int *x, int *y)
 {
-	*y = (reg_pos / 64) + 1;
-	*x = ((reg_pos % 64) * 3) + 1;
+	*y = ((reg_pos % MEM_SIZE) / 64) + 1;
+	*x = (((reg_pos % MEM_SIZE) % 64) * 3) + 1;
 }
 
 void			ui_draw_reg(t_vm *vm, int color, int reg_pos, int inverted)

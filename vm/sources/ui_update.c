@@ -24,6 +24,8 @@ void	ui_update_reg(t_vm *vm, t_pro pro, int reg_pos)
 	inverted = 0;
 	while (++i < vm->nbr_pro)
 	{
+		if (!vm->pro[i])
+			continue ;
 		if (vm->pro[i]->pc == reg_pos)
 		{
 			inverted = 1;
@@ -40,7 +42,6 @@ void	ui_update_info(t_vm vm)
 	ui_print_right_center(vm.ui->info_win, 7, "%d", CYCLE_DELTA);
 	ui_print_right_center(vm.ui->info_win, 8, "%d", NBR_LIVE);
 	ui_print_right_center(vm.ui->info_win, 9, "%d", MAX_CHECKS);
-	wrefresh(vm.ui->info_win->win);
 }
 
 void	ui_update_champs(t_vm vm)
@@ -55,10 +56,11 @@ void	ui_update_champs(t_vm vm)
 		wattron(vm.ui->info_win->win, COLOR_PAIR(vm.champs[i]->color));
 		ui_print_right_center(vm.ui->info_win, offset + 2, "%s", vm.champs[i]->name);
 		wattroff(vm.ui->info_win->win, COLOR_PAIR(vm.champs[i]->color));
+		ui_print_right_center(vm.ui->info_win, offset + 3, "         ");
+		ui_print_right_center(vm.ui->info_win, offset + 4, "         ");
 		ui_print_right_center(vm.ui->info_win, offset + 3, "%d", vm.champs[i]->cur_live);
 		ui_print_right_center(vm.ui->info_win, offset + 4, "%d", vm.champs[i]->last_live);
 	}
-	wrefresh(vm.ui->info_win->win);
 }
 
 void	ui_update_if_needed(t_vm *vm)
@@ -66,10 +68,14 @@ void	ui_update_if_needed(t_vm *vm)
 	if (!vm->use_ui)
 		return ;
 	if (vm->ui->need_pro_disp)
+	{
 		ui_display_pro(vm);
+		wrefresh(vm->ui->reg_win->win);
+	}
 	if (vm->ui->need_cha_disp)
 		ui_update_champs(*vm);
 	ui_update_info(*vm);
+	wrefresh(vm->ui->info_win->win);
 	vm->ui->need_pro_disp = 0;
 	vm->ui->need_cha_disp = 0;
 }
