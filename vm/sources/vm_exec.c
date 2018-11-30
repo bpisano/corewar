@@ -64,20 +64,17 @@ static void		run_cycles(t_vm *vm)
 	i = -1;
 	while (++i < vm->cycle_to_die)
 	{
-		printf("cycle : %d\n", vm->cycles_total);
 		(vm->cycles_total)++;
 		j = -1;
 		number_of_pro = vm->nbr_pro;
 		while (++j < number_of_pro)
 		{
-			printf("enter %d, %d\n", j, vm->nbr_pro); 
 			if (!vm->pro[j])
 				continue ;
 			else if (vm->pro[j]->cycles > 1)
 				vm->pro[j]->cycles -= 1;
 			else
 				exec_pro(vm->pro[j], vm);
-			printf("Executed\n");
 		}
 		ui_update_if_needed(vm);
 		getch();

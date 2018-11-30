@@ -20,10 +20,10 @@ int		incorrect_param(t_pro pro, t_vm vm, int op_code)
 	int		p;
 	int		param[3];
 
+	i = -1;
 	if (!vm.op_tab[op_code - 1].codage_octal)
 		return (0);
 	oct_code = vm.reg[(pro.pc + 1) % MEM_SIZE];
-	i = -1;
 	params(pro, vm, param);
 	while (++i < vm.op_tab[op_code - 1].nbr_arg)
 	{
@@ -34,6 +34,5 @@ int		incorrect_param(t_pro pro, t_vm vm, int op_code)
 		|| param[i] > REG_NUMBER))
 			return (1);
 	}
-	printf("END INCORRECT PARAMS\n");
 	return (1);
 }
