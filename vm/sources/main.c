@@ -77,7 +77,7 @@ int		main(int argc, char **argv)
 		return (0);
 	if (init(argv, &vm))
 	{
-		free_vm(&vm);
+		free_vm(&vm, 0);
 		return (0);
 	}
 	if (!exec_vm(&vm))

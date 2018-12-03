@@ -128,7 +128,7 @@ int					handle_number(t_vm *vm, char *number, int j);
 int					free_chmp(t_vm *vm);
 
 int					exec_vm(t_vm *vm);
-void				free_vm(t_vm *vm);
+void				free_vm(t_vm *vm, int ui);
 
 /*
  ** Processes

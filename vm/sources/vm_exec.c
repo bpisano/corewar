@@ -13,7 +13,7 @@
 
 #include "vm.h"
 
-void		free_vm(t_vm *vm)
+void		free_vm(t_vm *vm, int ui)
 {
 	int		i;
 
@@ -22,7 +22,7 @@ void		free_vm(t_vm *vm)
 		ft_memdel((void **)&(vm->champs[i]));
 	free_pro(vm);
 	free(vm->op_tab);
-	if (vm->use_ui)
+	if (vm->use_ui && ui)
 	{
 		free(vm->ui->reg_win);
 		free(vm->ui->info_win);
@@ -101,7 +101,7 @@ int				exec_vm(t_vm *vm)
 	}
 	print_vm(*vm);
 	printf("Winner : %s\n", winner(*vm)->name);
-	free_vm(vm);
+	free_vm(vm, 1);
 	end_ui();
 	return (1);
 }
