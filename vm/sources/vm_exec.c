@@ -45,7 +45,7 @@ static void		change_values_if_needed(t_vm *vm)
 		need_champ_display(vm);
 	}
 	if (lives >= NBR_LIVE)
-		vm->cycle_to_die -= CYCLE_DELTA;
+		vm->cycle_to_die = vm->cycle_to_die - CYCLE_DELTA;
 	if (vm->max_checks > 0)
 		vm->max_checks -= 1;
 	else
@@ -81,6 +81,7 @@ static void		run_cycles(t_vm *vm)
 		//if (vm->cycles_total == 1101)
 			//print_vm(*vm);
 	}
+	//printf("%d\n", vm->cycle_to_die);
 }
 
 int				exec_vm(t_vm *vm)

@@ -39,7 +39,7 @@ void	ft_live(t_pro *pro, t_vm *vm)
 void	ft_ld(t_pro *pro, t_vm *vm)
 {
 	int				p[3];
-	unsigned int	a;
+	int				a;
 	int				op_s;
 
 	op_s = op_size(vm->reg[pro->pc], vm->reg[pro->pc + 1], *vm);
@@ -47,10 +47,10 @@ void	ft_ld(t_pro *pro, t_vm *vm)
 		return ;
 	a = p[0];
 	if (param_type(vm->reg[pro->pc + 1], 0) == IND_CODE)
-		a = num_at_reg(*vm, (pro->pc + p[0]) % IDX_MOD, REG_SIZE);
+		a = (short)num_at_reg(*vm, (pro->pc + p[0]) % IDX_MOD, IND_SIZE);
 	pro->reg[p[1]] = a;
 	pro->carry = 0;
-	if (a)
+	if (!a)
 		pro->carry = 1;
 	goto_next_operation(pro, vm, op_s);
 }
@@ -116,12 +116,12 @@ void	ft_and(t_pro *pro, t_vm *vm)
 	if (param_type(vm->reg[pro->pc + 1], 0) == REG_CODE)
 		a = pro->reg[p[0]];
 	else if (param_type(vm->reg[pro->pc + 1], 0) == IND_CODE)
-		a = num_at_reg(*vm, (pro->pc + p[0]) % IDX_MOD, REG_SIZE);
+		a = (short)num_at_reg(*vm, (pro->pc + p[0]) % IDX_MOD, IND_SIZE);
 	b = p[1];
 	if (param_type(vm->reg[pro->pc + 1], 1) == REG_CODE)
 		b = pro->reg[p[1]];
 	else if (param_type(vm->reg[pro->pc + 1], 1) == IND_CODE)
-		b = num_at_reg(*vm, (pro->pc + p[1]) % IDX_MOD, REG_SIZE);
+		b = (short)num_at_reg(*vm, (pro->pc + p[1]) % IDX_MOD, IND_SIZE);
 	pro->reg[p[2]] = a & b;
 	pro->carry = 0;
 	if (!pro->reg[p[2]])
@@ -143,12 +143,12 @@ void	ft_or(t_pro *pro, t_vm *vm)
 	if (param_type(vm->reg[pro->pc + 1], 0) == REG_CODE)
 		a = pro->reg[p[0]];
 	else if (param_type(vm->reg[pro->pc + 1], 0) == IND_CODE)
-		a = num_at_reg(*vm, (pro->pc + p[0]) % IDX_MOD, REG_SIZE);
+		a = (short)num_at_reg(*vm, (pro->pc + p[0]) % IDX_MOD, IND_SIZE);
 	b = p[1];
 	if (param_type(vm->reg[pro->pc + 1], 1) == REG_CODE)
 		b = pro->reg[p[1]];
 	else if (param_type(vm->reg[pro->pc + 1], 1) == IND_CODE)
-		b = num_at_reg(*vm, (pro->pc + p[1]) % IDX_MOD, REG_SIZE);
+		b = (short)num_at_reg(*vm, (pro->pc + p[1]) % IDX_MOD, IND_SIZE);
 	pro->reg[p[2]] = a | b;
 	pro->carry = 0;
 	if (!pro->reg[p[2]])
@@ -170,12 +170,12 @@ void	ft_xor(t_pro *pro, t_vm *vm)
 	if (param_type(vm->reg[pro->pc + 1], 0) == REG_CODE)
 		a = pro->reg[p[0]];
 	else if (param_type(vm->reg[pro->pc + 1], 0) == IND_CODE)
-		a = num_at_reg(*vm, (pro->pc + p[0]) % IDX_MOD, REG_SIZE);
+		a = (short)num_at_reg(*vm, (pro->pc + p[0]) % IDX_MOD, IND_SIZE);
 	b = p[1];
 	if (param_type(vm->reg[pro->pc + 1], 1) == REG_CODE)
 		b = pro->reg[p[1]];
 	else if (param_type(vm->reg[pro->pc + 1], 1) == IND_CODE)
-		b = num_at_reg(*vm, (pro->pc + p[1]) % IDX_MOD, REG_SIZE);
+		b = (short)num_at_reg(*vm, (pro->pc + p[1]) % IDX_MOD, IND_SIZE);
 	pro->reg[p[2]] = a ^ b;
 	pro->carry = 0;
 	if (!pro->reg[p[2]])
@@ -185,7 +185,7 @@ void	ft_xor(t_pro *pro, t_vm *vm)
 
 void	ft_zjmp(t_pro *pro, t_vm *vm)
 {
-	int		addr;
+	short	addr;
 	int		op_s;
 
 	op_s = op_size(vm->reg[pro->pc], vm->reg[pro->pc + 1], *vm);
@@ -206,15 +206,15 @@ void	ft_ldi(t_pro *pro, t_vm *vm)
 	op_s = op_size(vm->reg[pro->pc], vm->reg[pro->pc + 1], *vm);
 	if (!(params(*pro, *vm, p)))
 		return ;
-	a = p[0];
+	a = (short)p[0];
 	if (param_type(vm->reg[pro->pc + 1], 0) == REG_CODE)
 		a = pro->reg[p[0]];
 	else if (param_type(vm->reg[pro->pc + 1], 0) == IND_CODE)
-		a = num_at_reg(*vm, (pro->pc + p[0]) % IDX_MOD, REG_SIZE);
-	b = p[1];
+		a = (short)num_at_reg(*vm, (pro->pc + p[0]) % IDX_MOD, IND_SIZE);
+	b = (short)p[1];
 	if (param_type(vm->reg[pro->pc + 1], 1) == REG_CODE)
 		b = pro->reg[p[1]];
-	pro->reg[p[2]] = num_at_reg(*vm, pro->pc + ((a + b) % IDX_MOD), REG_SIZE);
+	pro->reg[p[2]] = num_at_reg(*vm, pro->pc + ((a + b) % IDX_MOD), 2);
 	goto_next_operation(pro, vm, op_s);
 }
 
@@ -228,12 +228,12 @@ void	ft_sti(t_pro *pro, t_vm *vm)
 	op_s = op_size(vm->reg[pro->pc], vm->reg[pro->pc + 1], *vm);
 	if (!(params(*pro, *vm, p)))
 		return ;
-	a = p[1];
+	a = (short)p[1];
 	if (param_type(vm->reg[pro->pc + 1], 1) == REG_CODE)
 		a = pro->reg[p[1]];
 	else if (param_type(vm->reg[pro->pc + 1], 1) == IND_CODE)
-		a = num_at_reg(*vm, (pro->pc + p[1]) % IDX_MOD, REG_SIZE);
-	b = p[2];
+		a = (short)num_at_reg(*vm, (pro->pc + p[1]) % IDX_MOD, IND_SIZE);
+	b = (short)p[2];
 	if (param_type(vm->reg[pro->pc + 1], 2) == REG_CODE)
 		b = pro->reg[p[2]];
 	set_num_at_reg(vm, *pro, pro->pc + ((a + b) % IDX_MOD), pro->reg[p[0]]);
@@ -242,7 +242,7 @@ void	ft_sti(t_pro *pro, t_vm *vm)
 
 void	ft_fork(t_pro *pro, t_vm *vm)
 {
-	int		addr;
+	short	addr;
 	t_pro	*new;
 	int		op_s;
 
@@ -272,10 +272,10 @@ void	ft_lld(t_pro *pro, t_vm *vm)
 		return ;
 	a = p[0];
 	if (param_type(vm->reg[pro->pc + 1], 0) == IND_CODE)
-		a = num_at_reg(*vm, pro->pc + p[0], REG_SIZE);
+		a = (short)num_at_reg(*vm, pro->pc + p[0], IND_SIZE);
 	pro->reg[p[1]] = a;
 	pro->carry = 0;
-	if (a)
+	if (!a)
 		pro->carry = 1;
 	goto_next_operation(pro, vm, op_s);
 }
@@ -290,16 +290,16 @@ void	ft_lldi(t_pro *pro, t_vm *vm)
 	op_s = op_size(vm->reg[pro->pc], vm->reg[pro->pc + 1], *vm);
 	if (!(params(*pro, *vm, p)))
 		return ;
-	a = p[0];
+	a = (short)p[0];
 	if (param_type(vm->reg[pro->pc + 1], 0) == REG_CODE)
 		a = pro->reg[p[0]];
 	else if (param_type(vm->reg[pro->pc + 1], 0) == IND_CODE)
-		a = num_at_reg(*vm, (pro->pc + p[0]), REG_SIZE);
-	b = p[1];
+		a = (short)num_at_reg(*vm, (pro->pc + p[0]), IND_SIZE);
+	b = (short)p[1];
 	if (param_type(vm->reg[pro->pc + 1], 1) == REG_CODE)
 		b = pro->reg[p[1]];
 	pro->carry = 0;
-	if (a + b)
+	if (!(a + b))
 		pro->carry = 1;
 	pro->reg[p[2]] = num_at_reg(*vm, pro->pc + ((a + b)), REG_SIZE);
 	goto_next_operation(pro, vm, op_s);
@@ -307,7 +307,7 @@ void	ft_lldi(t_pro *pro, t_vm *vm)
 
 void	ft_lfork(t_pro *pro, t_vm *vm)
 {
-	int		addr;
+	short	addr;
 	t_pro	*new;
 	int		op_s;
 
