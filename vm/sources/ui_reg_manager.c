@@ -36,3 +36,20 @@ void			ui_draw_reg(t_vm *vm, int color, int reg_pos, int inverted)
 	wprintw(reg_win, "%02x", vm->reg[reg_pos]);
 	wattroff(reg_win, COLOR_PAIR(color));
 }
+
+void			ui_die_pro(t_vm *vm, t_pro *pro, int pro_index)
+{
+	int		i;
+
+	if (!vm->use_ui)
+		return ;
+	i = -1;
+	while (++i < vm->nbr_pro)
+	{
+		if (!vm->pro[i])
+			continue ;
+		if (i != pro_index && vm->pro[i]->pc == pro->pc)
+			return ;
+	}
+	ui_draw_reg(vm, vm->ui->colors[pro->pc], pro->pc, 0);
+}

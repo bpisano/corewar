@@ -43,8 +43,7 @@ int			have_active_pro(t_vm *vm)
 			continue ;
 		if (!vm->pro[i]->live)
 		{
-			if (vm->use_ui)
-				ui_draw_reg(vm, vm->ui->colors[vm->pro[i]->pc], vm->pro[i]->pc, 0);
+			ui_die_pro(vm, vm->pro[i], i);
 			ft_memdel((void **)(&(vm->pro[i])));
 		}
 		else
