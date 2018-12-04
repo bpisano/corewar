@@ -190,8 +190,15 @@ void	ft_zjmp(t_pro *pro, t_vm *vm)
 
 	op_s = op_size(vm->reg[pro->pc], vm->reg[pro->pc + 1], *vm);
 	addr = num_at_reg(*vm, pro->pc + 1, 2);
+	/*move(0, 0);
+	printw("         ");
+	move(0, 0);
+	printw("zjmp : %d, %d, %d", addr, addr % IDX_MOD, pro->pc);*/
 	if (pro->carry)
+	{
 		increment_pc(addr % IDX_MOD, pro, vm);
+		pro->cycles = vm->op_tab[vm->reg[pro->pc] - 1].cycles;
+	}
 	else
 		goto_next_operation(pro, vm, op_s);
 }
