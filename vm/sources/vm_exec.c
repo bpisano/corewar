@@ -59,15 +59,13 @@ static void		run_cycles(t_vm *vm)
 {
 	register int		i;
 	register int		j;
-	int		number_of_pro;
 
 	i = -1;
 	while (++i < vm->cycle_to_die)
 	{
 		(vm->cycles_total)++;
-		j = -1;
-		number_of_pro = vm->nbr_pro;
-		while (++j < number_of_pro)
+		j = vm->nbr_pro;
+		while (--j >= 0)
 		{
 			if (!vm->pro[j])
 				continue ;
