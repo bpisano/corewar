@@ -41,7 +41,7 @@ void			set_num_at_reg(t_vm *vm, t_pro pro, int reg_pos, size_t reg)
 	while (--i >= 0)
 	{
 		vm->reg[reg_pos % MEM_SIZE] = (reg >> (i * 8)) & 0xff;
-		ui_update_reg(vm, pro, reg_pos);
+		ui_update_reg(vm, pro, reg_pos % MEM_SIZE);
 		reg_pos++;
 	}
 }

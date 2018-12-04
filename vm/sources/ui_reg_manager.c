@@ -30,12 +30,12 @@ void			ui_draw_reg(t_vm *vm, int color, int reg_pos, int inverted)
 	reg_win = vm->ui->reg_win->win;
 	set_reg_coord(*vm, reg_pos, &x, &y);
 	wmove(reg_win, y, x);
-	vm->ui->colors[reg_pos] = color;
+	vm->ui->colors[reg_pos % MEM_SIZE] = color;
 	color = inverted ? color + vm->nbr_champs + 1 : color;
 	wattron(reg_win, COLOR_PAIR(color));
-	if (vm->ui->bold[reg_pos] > 0)
+	if (vm->ui->bold[reg_pos % MEM_SIZE] > 0)
 		wattron(reg_win, COLOR_PAIR(color) | A_BOLD);
-	wprintw(reg_win, "%02x", vm->reg[reg_pos]);
+	wprintw(reg_win, "%02x", vm->reg[reg_pos % MEM_SIZE]);
 	wattroff(reg_win, COLOR_PAIR(color) | A_BOLD);
 }
 

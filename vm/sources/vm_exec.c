@@ -40,13 +40,16 @@ static void		change_values_if_needed(t_vm *vm)
 	while (vm->champs[++i])
 	{
 		lives += vm->champs[i]->cur_live;
-		vm->champs[i]->last_live = vm->champs[i]->cur_live;
+		vm->champs[i]->last_live += vm->champs[i]->cur_live;
 		vm->champs[i]->cur_live = 0;
 		need_champ_display(vm);
 	}
 	if (lives >= NBR_LIVE)
+	{
+		vm->max_checks = MAX_CHECKS;
 		vm->cycle_to_die = vm->cycle_to_die - CYCLE_DELTA;
-	if (vm->max_checks > 0)
+	}
+	else if (vm->max_checks > 0)
 		vm->max_checks -= 1;
 	else
 	{
@@ -76,8 +79,13 @@ static void		run_cycles(t_vm *vm)
 		}
 		ui_update_if_needed(vm);
 		getch();
-		//if (vm->cycles_total == 1101)
-			//print_vm(*vm);
+		if (vm->cycles_total == vm->dump)
+		{
+			print_vm(*vm);
+			free_vm(vm, 1);
+			exit(0);
+		}
+		//printf("-----------------------------------------------------\n");
 	}
 	//printf("%d\n", vm->cycle_to_die);
 }
@@ -98,7 +106,6 @@ int				exec_vm(t_vm *vm)
 			break ;
 		change_values_if_needed(vm);
 	}
-	print_vm(*vm);
 	printf("Winner : %s\n", winner(*vm)->name);
 	free_vm(vm, 1);
 	end_ui();
@@ -106,7 +113,7 @@ int				exec_vm(t_vm *vm)
 }
 
 void			print_vm(t_vm vm)
-{/*
+{
 	int		i;
 	int		j;
 
@@ -115,22 +122,11 @@ void			print_vm(t_vm vm)
 	{
 		if (i % 64 == 0 && i > 0)
 			printf("\n");
-		printf("%#04x ", vm.reg[i]);
+		if (i % 64 == 0 && i == 0)
+			printf("0x0000 : ");
+		else if (i % 64 == 0)
+			printf("%#06x : ", i);
+		printf("%02x ", vm.reg[i]);
 	}
-	printf("\n----------------------------------\n");
-	printf("VM\n\tcycle_to_die : %d\n\tcycle_delta : %d\n\tnbr_live : %d\n\tmax_check : %d\n\tcurrent_cycle : %d\n\tnbr process : %d\n\n", vm.cycle_to_die, CYCLE_DELTA, NBR_LIVE, vm.max_checks, vm.cycles_total, vm.number_of_pro);
-	i = -1;
-	while (vm.champs[++i])
-		printf("CHAMP : %s\n\tplayer : %u\n\tcurr_live : %d\n\n", vm.champs[i]->name, vm.champs[i]->player, vm.champs[i]->cur_live);
-	i = -1;
-	if (vm.pro == NULL)
-		return ;
-	while (++i < vm.number_of_pro)
-	{
-		if (vm.pro[i])
-			printf("PRO : %d\n\tplayer : %u\n\tpc : %d\n\toperation_cycle : %d\n\tlives : %d\n\n", i, vm.pro[i]->player, vm.pro[i]->pc, vm.pro[i]->cycles, vm.pro[i]->live);
-		else
-			printf("PRO : %d doesnt exist anymore\n\n", i);
-	}
-	printf("----------------------------------\n");*/
+	printf("\n");
 }
