@@ -33,8 +33,10 @@ void			ui_draw_reg(t_vm *vm, int color, int reg_pos, int inverted)
 	vm->ui->colors[reg_pos] = color;
 	color = inverted ? color + vm->nbr_champs + 1 : color;
 	wattron(reg_win, COLOR_PAIR(color));
+	if (vm->ui->bold[reg_pos] > 0)
+		wattron(reg_win, COLOR_PAIR(color) | A_BOLD);
 	wprintw(reg_win, "%02x", vm->reg[reg_pos]);
-	wattroff(reg_win, COLOR_PAIR(color));
+	wattroff(reg_win, COLOR_PAIR(color) | A_BOLD);
 }
 
 void			ui_die_pro(t_vm *vm, t_pro *pro, int pro_index)
@@ -52,4 +54,36 @@ void			ui_die_pro(t_vm *vm, t_pro *pro, int pro_index)
 			return ;
 	}
 	ui_draw_reg(vm, vm->ui->colors[pro->pc], pro->pc, 0);
+}
+
+static int		is_inverted(t_vm vm, int reg_pos)
+{
+	int		i;
+
+	i = -1;
+	while (++i < vm.nbr_pro)
+	{
+		if (!vm.pro[i])
+			continue ;
+		if (vm.pro[i]->pc == reg_pos)
+			return (1);
+	}
+	return (0);
+}
+
+void			ui_update_reg_bold(t_vm *vm)
+{
+	int		i;
+
+	i = -1;
+	while (++i < MEM_SIZE)
+	{
+		if (vm->ui->bold[i] == 1)
+		{
+			vm->ui->bold[i] = 0;
+			ui_draw_reg(vm, vm->ui->colors[i], i, is_inverted(*vm, i));
+		}
+		else
+			vm->ui->bold[i] = vm->ui->bold[i] - 1;
+	}
 }

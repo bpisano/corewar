@@ -32,6 +32,7 @@ void	ui_update_reg(t_vm *vm, t_pro pro, int reg_pos)
 			break ;
 		}
 	}
+	vm->ui->bold[reg_pos] = 50;
 	ui_draw_reg(vm, pro.color, reg_pos, inverted);
 }
 
@@ -75,6 +76,7 @@ void	ui_update_if_needed(t_vm *vm)
 	if (vm->ui->need_cha_disp)
 		ui_update_champs(*vm);
 	ui_update_info(*vm);
+	ui_update_reg_bold(vm);
 	wrefresh(vm->ui->info_win->win);
 	vm->ui->need_pro_disp = 0;
 	vm->ui->need_cha_disp = 0;

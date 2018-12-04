@@ -57,6 +57,7 @@ typedef struct		s_ui
 	int				width;
 	int				height;
 	int				colors[MEM_SIZE];
+	int				bold[MEM_SIZE];
 
 	int				need_pro_disp;
 	int				need_cha_disp;
@@ -198,12 +199,13 @@ void				ui_display_reg(t_vm *vm);
 void				ui_display_pro(t_vm *vm);
 void				ui_display_infos(t_vm vm);
 void				ui_display_champs(t_vm vm);
+void				ui_die_pro(t_vm *vm, t_pro *pro, int pro_index);
 
 void				ui_update_if_needed(t_vm *vm);
 void				ui_update_reg(t_vm *vm, t_pro pro, int reg_pos);
 void				ui_update_info(t_vm vm);
 void				ui_update_champs(t_vm vm);
-void				ui_die_pro(t_vm *vm, t_pro *pro, int pro_index);
+void				ui_update_reg_bold(t_vm *vm);
 
 void				ui_print_left_center(t_win *w, int line, int len, char *f, ...);
 void				ui_print_right_center(t_win *w, int line, char *f, ...);
