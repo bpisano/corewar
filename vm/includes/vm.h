@@ -42,6 +42,8 @@
 # define ERROR_COM	"Error, comment is too long\n"
 # define ERROR_NBR	"Error, the player number (%d) is already taken\n"
 
+# define NEW_OP 256
+
 typedef	struct		s_win
 {
 	WINDOW			*win;
@@ -73,6 +75,7 @@ typedef struct		s_pro
 	int				pc;
 	int				op_size;
 	int				cycles;
+	unsigned short	op_code;
 
 	int				color;
 	int				live;
@@ -165,6 +168,7 @@ int					*params(t_pro pro, t_vm vm, int *p);
 int					param_type(int oct_code, int n);
 int     			incorrect_param(t_pro pro, t_vm vm, int op_code);
 int     			ft_mod(int a, int b);
+void				new_op(t_pro *pro, t_vm *vm);
 
 void				ft_live(t_pro *pro, t_vm *vm);
 void				ft_ld(t_pro *pro, t_vm *vm);

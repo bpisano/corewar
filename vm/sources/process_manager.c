@@ -24,11 +24,10 @@ t_pro	*new_pro_from_champ(t_champ champ, t_vm vm)
 	new->player = champ.player;
 	new->pc = champ.pc;
 	new->last_pc = new->pc;
-	new->cycles = op_code < 16 ? vm.op_tab[op_code].cycles : 0;
-	new->op_size = op_size(op_code + 1, vm.reg[(new->pc + 1) % MEM_SIZE], vm);
 	new->live = 0;
 	new->carry = 0;
 	new->color = champ.color;
+	new->op_code = NEW_OP;
 	ft_memset(new->reg, 0, (REG_NUMBER + 1) * sizeof(int));
 	new->reg[1] = champ.player;
 	return (new);
@@ -74,13 +73,5 @@ void	goto_next_operation(t_pro *pro, t_vm *vm)
 	int		op_code;
 
 	increment_pc(pro->op_size + 1, pro, vm);
-	op_code = vm->reg[pro->pc];
-	pro->op_size = 0;
-	if (op_code < 1 || op_code > 16)
-		pro->cycles = 0;
-	else
-	{
-		pro->cycles = vm->op_tab[op_code - 1].cycles;
-		pro->op_size = op_size(op_code, vm->reg[(pro->pc + 1) % MEM_SIZE], *vm);
-	}
+	pro->op_code = NEW_OP;
 }

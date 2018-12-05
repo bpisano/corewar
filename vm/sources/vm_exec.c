@@ -72,7 +72,9 @@ static void		run_cycles(t_vm *vm)
 		{
 			if (!vm->pro[j])
 				continue ;
-			else if (vm->pro[j]->cycles > 1)
+			if (vm->pro[j]->op_code == NEW_OP)
+				new_op(vm->pro[j], vm);
+			if (vm->pro[j]->cycles > 1)
 				vm->pro[j]->cycles -= 1;
 			else
 				exec_pro(vm->pro[j], vm);
@@ -85,9 +87,7 @@ static void		run_cycles(t_vm *vm)
 			free_vm(vm, 1);
 			exit(0);
 		}
-		//printf("-----------------------------------------------------\n");
 	}
-	//printf("%d\n", vm->cycle_to_die);
 }
 
 int				exec_vm(t_vm *vm)

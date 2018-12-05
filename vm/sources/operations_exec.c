@@ -168,13 +168,7 @@ void	ft_zjmp(t_pro *pro, t_vm *vm)
 	if (pro->carry)
 	{
 		increment_pc(addr % IDX_MOD, pro, vm);
-		pro->cycles = 0;
-		pro->op_size = 0;
-		if (vm->reg[pro->pc] > 0 && vm->reg[pro->pc] < 17)
-		{
-			pro->op_size = op_size(vm->reg[pro->pc], vm->reg[(pro->pc + 1) % MEM_SIZE], *vm);
-			pro->cycles = vm->op_tab[vm->reg[pro->pc] - 1].cycles;
-		}
+		pro->op_code = NEW_OP;
 	}
 	else
 		goto_next_operation(pro, vm);
@@ -228,13 +222,7 @@ void	ft_fork(t_pro *pro, t_vm *vm)
 		return ;
 	new->pc = ft_mod(pro->pc + (addr % IDX_MOD), MEM_SIZE);
 	new->last_pc = new->pc;
-	new->cycles = 0;
-	new->op_size = 0;
-	if (vm->reg[new->pc] > 0 && vm->reg[new->pc] < 17)
-	{
-		new->cycles = vm->op_tab[vm->reg[new->pc] - 1].cycles;
-		new->op_size = op_size(vm->reg[new->pc], vm->reg[(new->pc + 1) % MEM_SIZE], *vm);
-	}
+	new->op_code = NEW_OP;
 	need_pro_display(vm);
 	if (!(vm->pro = realloc(vm->pro, sizeof(t_pro) * (vm->nbr_pro + 1))))
 		return ;
@@ -291,13 +279,7 @@ void	ft_lfork(t_pro *pro, t_vm *vm)
 		return ;
 	new->pc = ft_mod(pro->pc + addr, MEM_SIZE);
 	new->last_pc = new->pc;
-	new->cycles = 0;
-	new->op_size = 0;
-	if (vm->reg[new->pc] > 0 && vm->reg[new->pc] < 17)
-	{
-		new->cycles = vm->op_tab[vm->reg[new->pc] - 1].cycles;
-		new->op_size = op_size(vm->reg[new->pc], vm->reg[(new->pc + 1) % MEM_SIZE], *vm);
-	}
+	new->op_code = NEW_OP;
 	need_pro_display(vm);
 	if (!(vm->pro = realloc(vm->pro, sizeof(t_pro) * (vm->nbr_pro + 1))))
 		return ;
