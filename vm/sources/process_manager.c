@@ -25,6 +25,7 @@ t_pro	*new_pro_from_champ(t_champ champ, t_vm vm)
 	new->pc = champ.pc;
 	new->last_pc = new->pc;
 	new->cycles = op_code < 16 ? vm.op_tab[op_code].cycles : 0;
+	new->op_size = op_size(op_code, vm.reg[(new->pc + 1) % MEM_SIZE], vm);
 	new->live = 0;
 	new->carry = 0;
 	new->color = champ.color;
@@ -68,14 +69,18 @@ void	increment_pc(int increment, t_pro *pro, t_vm *vm)
 	need_pro_display(vm);
 }
 
-void	goto_next_operation(t_pro *pro, t_vm *vm, int op_size)
+void	goto_next_operation(t_pro *pro, t_vm *vm)
 {
 	int		op_code;
 
-	increment_pc(op_size + 1, pro, vm);
+	increment_pc(pro->op_size + 1, pro, vm);
 	op_code = vm->reg[pro->pc];
+	pro->op_size = 0;
 	if (op_code < 1 || op_code > 16)
 		pro->cycles = 0;
 	else
+	{
 		pro->cycles = vm->op_tab[op_code - 1].cycles;
+		pro->op_size = op_size(op_code, vm->reg[(pro->pc + 1) % MEM_SIZE], *vm);
+	}
 }
