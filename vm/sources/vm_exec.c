@@ -33,18 +33,13 @@ void		free_vm(t_vm *vm, int ui)
 static void		change_values_if_needed(t_vm *vm)
 {
 	int		i;
-	int		lives;
 
 	i = -1;
-	lives = 0;
 	while (vm->champs[++i])
-	{
-		lives += vm->champs[i]->cur_live;
-		vm->champs[i]->last_live += vm->champs[i]->cur_live;
-		vm->champs[i]->cur_live = 0;
+	{		vm->champs[i]->cur_live = 0;
 		need_champ_display(vm);
 	}
-	if (lives >= NBR_LIVE)
+	if (vm->total_live >= NBR_LIVE)
 	{
 		vm->max_checks = MAX_CHECKS;
 		vm->cycle_to_die = vm->cycle_to_die - CYCLE_DELTA;

@@ -28,6 +28,7 @@ int		init_var(t_vm *vm, char **argv)
 	vm->pro = 0;
 	vm->use_ui = 0;
 	vm->cycles_total = 0;
+	vm->total_live = 0;
 	vm->nbr_pro = vm->nbr_champs;
 	while (++i < MEM_SIZE)
 		vm->reg[i] = 0;

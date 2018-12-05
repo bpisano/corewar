@@ -106,6 +106,7 @@ typedef struct		s_vm
 	int				max_checks;
 	int				nbr_champs;
 	int				cycles_total;
+	unsigned int	total_live;
 
 	int				dump;
 	int				use_ui;
@@ -157,7 +158,7 @@ void				goto_next_operation(t_pro *pro, t_vm *vm);
 */
 
 int					num_at_reg(t_vm vm, int pos, size_t size);
-void				set_num_at_reg(t_vm *vm, t_pro pro, int reg_pos, size_t reg);
+void				set_num_at_reg(t_vm *vm, t_pro pro, int reg_pos, unsigned int reg);
 
 /*
  ** OPERATIONS
