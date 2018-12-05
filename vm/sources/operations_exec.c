@@ -19,7 +19,7 @@ void	ft_live(t_pro *pro, t_vm *vm)
 	int				i;
 	int				op_s;
 
-	op_s = op_size(vm->reg[pro->pc], vm->reg[pro->pc + 1], *vm);
+	op_s = op_size(vm->reg[pro->pc], vm->reg[(pro->pc + 1) % MEM_SIZE], *vm);
 	champ = num_at_reg(*vm, pro->pc + 1, 4);
 	pro->live++;
 	i = -1;
@@ -42,11 +42,11 @@ void	ft_ld(t_pro *pro, t_vm *vm)
 	int				a;
 	int				op_s;
 
-	op_s = op_size(vm->reg[pro->pc], vm->reg[pro->pc + 1], *vm);
+	op_s = op_size(vm->reg[pro->pc], vm->reg[(pro->pc + 1) % MEM_SIZE], *vm);
 	if (!(params(*pro, *vm, p)))
 		return ;
 	a = p[0];
-	if (param_type(vm->reg[pro->pc + 1], 0) == IND_CODE)
+	if (param_type(vm->reg[(pro->pc + 1) % MEM_SIZE], 0) == IND_CODE)
 		a = num_at_reg(*vm, pro->pc + ((short)p[0] % IDX_MOD), IND_SIZE);
 	pro->reg[p[1]] = a;
 	pro->carry = 0;
@@ -61,11 +61,11 @@ void	ft_st(t_pro *pro, t_vm *vm)
 	int		a;
 	int		op_s;
 
-	op_s = op_size(vm->reg[pro->pc], vm->reg[pro->pc + 1], *vm);
+	op_s = op_size(vm->reg[pro->pc], vm->reg[(pro->pc + 1) % MEM_SIZE], *vm);
 	if (!(params(*pro, *vm, p)))
 		return ;
 	a = pro->reg[p[0]];
-	if (param_type(vm->reg[pro->pc + 1], 1) == REG_CODE)
+	if (param_type(vm->reg[(pro->pc + 1) % MEM_SIZE], 1) == REG_CODE)
 		pro->reg[p[1]] = a;
 	else
 		set_num_at_reg(vm, *pro, (pro->pc + ((short)p[1] % IDX_MOD)), a);
@@ -77,7 +77,7 @@ void	ft_add(t_pro *pro, t_vm *vm)
 	int		p[3];
 	int		op_s;
 
-	op_s = op_size(vm->reg[pro->pc], vm->reg[pro->pc + 1], *vm);
+	op_s = op_size(vm->reg[pro->pc], vm->reg[(pro->pc + 1) % MEM_SIZE], *vm);
 	if (!(params(*pro, *vm, p)))
 		return ;
 	pro->reg[p[2]] = pro->reg[p[0]] + pro->reg[p[1]];
@@ -92,7 +92,7 @@ void	ft_sub(t_pro *pro, t_vm *vm)
 	int		p[3];
 	int		op_s;
 
-	op_s = op_size(vm->reg[pro->pc], vm->reg[pro->pc + 1], *vm);
+	op_s = op_size(vm->reg[pro->pc], vm->reg[(pro->pc + 1) % MEM_SIZE], *vm);
 	if (!(params(*pro, *vm, p)))
 		return ;
 	pro->reg[p[2]] = pro->reg[p[0]] - pro->reg[p[1]];
@@ -109,18 +109,18 @@ void	ft_and(t_pro *pro, t_vm *vm)
 	int		b;
 	int		op_s;
 
-	op_s = op_size(vm->reg[pro->pc], vm->reg[pro->pc + 1], *vm);
+	op_s = op_size(vm->reg[pro->pc], vm->reg[(pro->pc + 1) % MEM_SIZE], *vm);
 	if (!(params(*pro, *vm, p)))
 		return ;
 	a = p[0];
-	if (param_type(vm->reg[pro->pc + 1], 0) == REG_CODE)
+	if (param_type(vm->reg[(pro->pc + 1) % MEM_SIZE], 0) == REG_CODE)
 		a = pro->reg[p[0]];
-	else if (param_type(vm->reg[pro->pc + 1], 0) == IND_CODE)
+	else if (param_type(vm->reg[(pro->pc + 1) % MEM_SIZE], 0) == IND_CODE)
 		a = num_at_reg(*vm, pro->pc + ((short)p[0] % IDX_MOD), IND_SIZE);
 	b = p[1];
-	if (param_type(vm->reg[pro->pc + 1], 1) == REG_CODE)
+	if (param_type(vm->reg[(pro->pc + 1) % MEM_SIZE], 1) == REG_CODE)
 		b = pro->reg[p[1]];
-	else if (param_type(vm->reg[pro->pc + 1], 1) == IND_CODE)
+	else if (param_type(vm->reg[(pro->pc + 1) % MEM_SIZE], 1) == IND_CODE)
 		b = num_at_reg(*vm, pro->pc + ((short)p[1] % IDX_MOD), IND_SIZE);
 	pro->reg[p[2]] = a & b;
 	pro->carry = 0;
@@ -136,18 +136,18 @@ void	ft_or(t_pro *pro, t_vm *vm)
 	int		b;
 	int		op_s;
 
-	op_s = op_size(vm->reg[pro->pc], vm->reg[pro->pc + 1], *vm);
+	op_s = op_size(vm->reg[pro->pc], vm->reg[(pro->pc + 1) % MEM_SIZE], *vm);
 	if (!(params(*pro, *vm, p)))
 		return ;
 	a = p[0];
-	if (param_type(vm->reg[pro->pc + 1], 0) == REG_CODE)
+	if (param_type(vm->reg[(pro->pc + 1) % MEM_SIZE], 0) == REG_CODE)
 		a = pro->reg[p[0]];
-	else if (param_type(vm->reg[pro->pc + 1], 0) == IND_CODE)
+	else if (param_type(vm->reg[(pro->pc + 1) % MEM_SIZE], 0) == IND_CODE)
 		a = num_at_reg(*vm, pro->pc + ((short)p[0] % IDX_MOD), IND_SIZE);
 	b = p[1];
-	if (param_type(vm->reg[pro->pc + 1], 1) == REG_CODE)
+	if (param_type(vm->reg[(pro->pc + 1) % MEM_SIZE], 1) == REG_CODE)
 		b = pro->reg[p[1]];
-	else if (param_type(vm->reg[pro->pc + 1], 1) == IND_CODE)
+	else if (param_type(vm->reg[(pro->pc + 1) % MEM_SIZE], 1) == IND_CODE)
 		b = num_at_reg(*vm, pro->pc + ((short)p[1] % IDX_MOD), IND_SIZE);
 	pro->reg[p[2]] = a | b;
 	pro->carry = 0;
@@ -163,18 +163,18 @@ void	ft_xor(t_pro *pro, t_vm *vm)
 	int		b;
 	int		op_s;
 
-	op_s = op_size(vm->reg[pro->pc], vm->reg[pro->pc + 1], *vm);
+	op_s = op_size(vm->reg[pro->pc], vm->reg[(pro->pc + 1) % MEM_SIZE], *vm);
 	if (!(params(*pro, *vm, p)))
 		return ;
 	a = p[0];
-	if (param_type(vm->reg[pro->pc + 1], 0) == REG_CODE)
+	if (param_type(vm->reg[(pro->pc + 1) % MEM_SIZE], 0) == REG_CODE)
 		a = pro->reg[p[0]];
-	else if (param_type(vm->reg[pro->pc + 1], 0) == IND_CODE)
+	else if (param_type(vm->reg[(pro->pc + 1) % MEM_SIZE], 0) == IND_CODE)
 		a = num_at_reg(*vm, pro->pc + ((short)p[0] % IDX_MOD), IND_SIZE);
 	b = p[1];
-	if (param_type(vm->reg[pro->pc + 1], 1) == REG_CODE)
+	if (param_type(vm->reg[(pro->pc + 1) % MEM_SIZE], 1) == REG_CODE)
 		b = pro->reg[p[1]];
-	else if (param_type(vm->reg[pro->pc + 1], 1) == IND_CODE)
+	else if (param_type(vm->reg[(pro->pc + 1) % MEM_SIZE], 1) == IND_CODE)
 		b = num_at_reg(*vm, pro->pc + ((short)p[1] % IDX_MOD), IND_SIZE);
 	pro->reg[p[2]] = a ^ b;
 	pro->carry = 0;
@@ -188,12 +188,14 @@ void	ft_zjmp(t_pro *pro, t_vm *vm)
 	short	addr;
 	int		op_s;
 
-	op_s = op_size(vm->reg[pro->pc], vm->reg[pro->pc + 1], *vm);
+	op_s = op_size(vm->reg[pro->pc], vm->reg[(pro->pc + 1) % MEM_SIZE], *vm);
 	addr = num_at_reg(*vm, pro->pc + 1, 2);
 	if (pro->carry)
 	{
 		increment_pc(addr % IDX_MOD, pro, vm);
-		pro->cycles = vm->op_tab[vm->reg[pro->pc] - 1].cycles;
+		pro->cycles = 0;
+		if (vm->reg[pro->pc] > 0 && vm->reg[pro->pc] < 17)
+			pro->cycles = vm->op_tab[vm->reg[pro->pc] - 1].cycles;
 	}
 	else
 		goto_next_operation(pro, vm, op_s);
@@ -206,16 +208,16 @@ void	ft_ldi(t_pro *pro, t_vm *vm)
 	int		b;
 	int		op_s;
 
-	op_s = op_size(vm->reg[pro->pc], vm->reg[pro->pc + 1], *vm);
+	op_s = op_size(vm->reg[pro->pc], vm->reg[(pro->pc + 1) % MEM_SIZE], *vm);
 	if (!(params(*pro, *vm, p)))
 		return ;
 	a = (short)p[0];
-	if (param_type(vm->reg[pro->pc + 1], 0) == REG_CODE)
+	if (param_type(vm->reg[(pro->pc + 1) % MEM_SIZE], 0) == REG_CODE)
 		a = pro->reg[p[0]];
-	else if (param_type(vm->reg[pro->pc + 1], 0) == IND_CODE)
+	else if (param_type(vm->reg[(pro->pc + 1) % MEM_SIZE], 0) == IND_CODE)
 		a = num_at_reg(*vm, (pro->pc + p[0]) % IDX_MOD, IND_SIZE);
 	b = (short)p[1];
-	if (param_type(vm->reg[pro->pc + 1], 1) == REG_CODE)
+	if (param_type(vm->reg[(pro->pc + 1) % MEM_SIZE], 1) == REG_CODE)
 		b = pro->reg[p[1]];
 	pro->reg[p[2]] = num_at_reg(*vm, pro->pc + ((a + b) % IDX_MOD), 4);
 	goto_next_operation(pro, vm, op_s);
@@ -228,16 +230,16 @@ void	ft_sti(t_pro *pro, t_vm *vm)
 	int		b;
 	int		op_s;
 
-	op_s = op_size(vm->reg[pro->pc], vm->reg[pro->pc + 1], *vm);
+	op_s = op_size(vm->reg[pro->pc], vm->reg[(pro->pc + 1) % MEM_SIZE], *vm);
 	if (!(params(*pro, *vm, p)))
 		return ;
 	a = (short)p[1];
-	if (param_type(vm->reg[pro->pc + 1], 1) == REG_CODE)
+	if (param_type(vm->reg[(pro->pc + 1) % MEM_SIZE], 1) == REG_CODE)
 		a = pro->reg[p[1]];
-	else if (param_type(vm->reg[pro->pc + 1], 1) == IND_CODE)
+	else if (param_type(vm->reg[(pro->pc + 1) % MEM_SIZE], 1) == IND_CODE)
 		a = num_at_reg(*vm, (pro->pc + (short)p[1]) % IDX_MOD, IND_SIZE);
 	b = (short)p[2];
-	if (param_type(vm->reg[pro->pc + 1], 2) == REG_CODE)
+	if (param_type(vm->reg[(pro->pc + 1) % MEM_SIZE], 2) == REG_CODE)
 		b = pro->reg[p[2]];
 	set_num_at_reg(vm, *pro, pro->pc + ((a + b) % IDX_MOD), pro->reg[p[0]]);
 	goto_next_operation(pro, vm, op_s);
@@ -249,7 +251,7 @@ void	ft_fork(t_pro *pro, t_vm *vm)
 	t_pro	*new;
 	int		op_s;
 
-	op_s = op_size(vm->reg[pro->pc], vm->reg[pro->pc + 1], *vm);
+	op_s = op_size(vm->reg[pro->pc], vm->reg[(pro->pc + 1) % MEM_SIZE], *vm);
 	addr = num_at_reg(*vm, pro->pc + 1, 2);
 	if (!(new = new_pro_from_pro(*pro, *vm)))
 		return ;
@@ -272,11 +274,11 @@ void	ft_lld(t_pro *pro, t_vm *vm)
 	unsigned int	a;
 	int				op_s;
 
-	op_s = op_size(vm->reg[pro->pc], vm->reg[pro->pc + 1], *vm);
+	op_s = op_size(vm->reg[pro->pc], vm->reg[(pro->pc + 1) % MEM_SIZE], *vm);
 	if (!(params(*pro, *vm, p)))
 		return ;
 	a = p[0];
-	if (param_type(vm->reg[pro->pc + 1], 0) == IND_CODE)
+	if (param_type(vm->reg[(pro->pc + 1) % MEM_SIZE], 0) == IND_CODE)
 		a = num_at_reg(*vm, pro->pc + (short)p[0], IND_SIZE);
 	pro->reg[p[1]] = a;
 	pro->carry = 0;
@@ -292,16 +294,16 @@ void	ft_lldi(t_pro *pro, t_vm *vm)
 	int		b;
 	int		op_s;
 
-	op_s = op_size(vm->reg[pro->pc], vm->reg[pro->pc + 1], *vm);
+	op_s = op_size(vm->reg[pro->pc], vm->reg[(pro->pc + 1) % MEM_SIZE], *vm);
 	if (!(params(*pro, *vm, p)))
 		return ;
 	a = (short)p[0];
-	if (param_type(vm->reg[pro->pc + 1], 0) == REG_CODE)
+	if (param_type(vm->reg[(pro->pc + 1) % MEM_SIZE], 0) == REG_CODE)
 		a = pro->reg[p[0]];
-	else if (param_type(vm->reg[pro->pc + 1], 0) == IND_CODE)
+	else if (param_type(vm->reg[(pro->pc + 1) % MEM_SIZE], 0) == IND_CODE)
 		a = num_at_reg(*vm, (pro->pc + (short)p[0]), IND_SIZE);
 	b = (short)p[1];
-	if (param_type(vm->reg[pro->pc + 1], 1) == REG_CODE)
+	if (param_type(vm->reg[(pro->pc + 1) % MEM_SIZE], 1) == REG_CODE)
 		b = pro->reg[p[1]];
 	pro->carry = 0;
 	if (!(a + b))
@@ -316,13 +318,15 @@ void	ft_lfork(t_pro *pro, t_vm *vm)
 	t_pro	*new;
 	int		op_s;
 
-	op_s = op_size(vm->reg[pro->pc], vm->reg[pro->pc + 1], *vm);
+	op_s = op_size(vm->reg[pro->pc], vm->reg[(pro->pc + 1) % MEM_SIZE], *vm);
 	addr = num_at_reg(*vm, pro->pc + 1, 2);
 	if (!(new = new_pro_from_pro(*pro, *vm)))
 		return ;
 	new->pc = ft_mod(pro->pc + addr, MEM_SIZE);
 	new->last_pc = new->pc;
-	new->cycles = vm->op_tab[vm->reg[new->pc] - 1].cycles;
+	new->cycles = 0;
+	if (vm->reg[new->pc] > 0 && vm->reg[new->pc] < 17)
+		new->cycles = vm->op_tab[vm->reg[new->pc] - 1].cycles;
 	need_pro_display(vm);
 	if (!(vm->pro = realloc(vm->pro, sizeof(t_pro) * (vm->nbr_pro + 1))))
 		return ;
@@ -337,7 +341,7 @@ void	ft_aff(t_pro *pro, t_vm *vm)
 	char	c;
 	int		op_s;
 
-	op_s = op_size(vm->reg[pro->pc], vm->reg[pro->pc + 1], *vm);
+	op_s = op_size(vm->reg[pro->pc], vm->reg[(pro->pc + 1) % MEM_SIZE], *vm);
 	if (!(params(*pro, *vm, p)))
 		return ;
 	c = p[0] % 256;
