@@ -25,7 +25,7 @@ t_pro	*new_pro_from_champ(t_champ champ, t_vm vm)
 	new->pc = champ.pc;
 	new->last_pc = new->pc;
 	new->cycles = op_code < 16 ? vm.op_tab[op_code].cycles : 0;
-	new->op_size = op_size(op_code, vm.reg[(new->pc + 1) % MEM_SIZE], vm);
+	new->op_size = op_size(op_code + 1, vm.reg[(new->pc + 1) % MEM_SIZE], vm);
 	new->live = 0;
 	new->carry = 0;
 	new->color = champ.color;
@@ -65,7 +65,7 @@ void	increment_pc(int increment, t_pro *pro, t_vm *vm)
 	pro->last_pc = pro->pc;
 	pro->pc = (pro->pc + increment) % MEM_SIZE;
 	if (pro->pc < 0)
-		pro->pc = pro->pc + increment + MEM_SIZE;
+		pro->pc = pro->pc + MEM_SIZE;
 	need_pro_display(vm);
 }
 
