@@ -78,8 +78,7 @@ void	ft_add(t_pro *pro, t_vm *vm)
 	int		op_s;
 
 	op_s = op_size(vm->reg[pro->pc], vm->reg[(pro->pc + 1) % MEM_SIZE], *vm);
-	if (!(params(*pro, *vm, p)))
-		return ;
+	params(*pro, *vm, p);
 	pro->reg[p[2]] = pro->reg[p[0]] + pro->reg[p[1]];
 	pro->carry = 0;
 	if (!pro->reg[p[2]])
@@ -231,8 +230,7 @@ void	ft_sti(t_pro *pro, t_vm *vm)
 	int		op_s;
 
 	op_s = op_size(vm->reg[pro->pc], vm->reg[(pro->pc + 1) % MEM_SIZE], *vm);
-	if (!(params(*pro, *vm, p)))
-		return ;
+	params(*pro, *vm, p);
 	a = (short)p[1];
 	if (param_type(vm->reg[(pro->pc + 1) % MEM_SIZE], 1) == REG_CODE)
 		a = pro->reg[p[1]];

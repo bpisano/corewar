@@ -77,7 +77,10 @@ int		handle_op2(t_pos d, t_op op, int ***bin, t_lab ***lab)
 	while (++k < op.nbr_arg && (++d.j > -1))
 	{
 		if (!(i = op_type(d.file[d.i][d.j]) & op.arg[k]))
+		{
+			printf("%d, %d\n", op_type(d.file[d.i][d.j]), op.arg[k]);
 			return (ft_printf(ERROR_OP_TYPE, PARAM));
+		}
 		add_arg_bin(bin, d.file[d.i][d.j], i, op.dir_size);
 		if (d.file[d.i][d.j][1] == LABEL_CHAR)
 			if (add_label(d, op.dir_size, lab, bin[0][d.i +

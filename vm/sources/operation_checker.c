@@ -27,8 +27,10 @@ int		incorrect_param(t_pro pro, t_vm vm, int op_code)
 	params(pro, vm, param);
 	while (++i < vm.op_tab[op_code - 1].nbr_arg)
 	{
-		p = oct_code >> (2 * (3 - i));
-		if ((p & vm.op_tab[op_code - 1].arg[i]) == 0)
+		p = (oct_code >> (2 * (3 - i))) & 0x03;
+		if (p == 0x03)
+			p++;
+		if (!(p & vm.op_tab[op_code - 1].arg[i]))
 			return (1);
 		if ((p & 0x03) == REG_CODE && (param[i] < 1
 		|| param[i] > REG_NUMBER))

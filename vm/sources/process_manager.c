@@ -17,7 +17,6 @@ t_pro	*new_pro_from_champ(t_champ champ, t_vm vm)
 {
 	t_pro	*new;
 	int		op_code;
-	int		i;
 
 	if (!(new = (t_pro *)malloc(sizeof(t_pro))))
 		return (NULL);
@@ -29,9 +28,7 @@ t_pro	*new_pro_from_champ(t_champ champ, t_vm vm)
 	new->live = 0;
 	new->carry = 0;
 	new->color = champ.color;
-	i = -1;
-	while (++i < REG_NUMBER)
-		new->reg[i] = 0;
+	ft_memset(new->reg, 0, (REG_NUMBER + 1) * sizeof(int));
 	new->reg[1] = champ.player;
 	return (new);
 }
@@ -46,7 +43,7 @@ t_pro	*new_pro_from_pro(t_pro pro, t_vm vm)
 	new->live = pro.live;
 	new->carry = pro.carry;
 	new->color = pro.color;
-	ft_memcpy(new->reg, pro.reg, REG_NUMBER);
+	ft_memcpy(new->reg, pro.reg, (REG_NUMBER + 1) * sizeof(int));
 	return (new);
 }
 
