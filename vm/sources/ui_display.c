@@ -17,6 +17,7 @@ void			ui_display_pro(t_vm *vm)
 {
 	int		i;
 
+	ft_memset(vm->ui->inverted, 0, sizeof(char) * MEM_SIZE);
 	i = -1;
 	while (++i < vm->nbr_pro)
 		if (vm->pro[i])
@@ -25,7 +26,10 @@ void			ui_display_pro(t_vm *vm)
 	i = -1;
 	while (++i < vm->nbr_pro)
 		if (vm->pro[i])
+		{
+			vm->ui->inverted[vm->pro[i]->pc] = 1;
 			ui_draw_reg(vm, vm->ui->colors[vm->pro[i]->pc], vm->pro[i]->pc, 1);
+		}
 	wrefresh(vm->ui->reg_win->win);
 }
 

@@ -44,7 +44,7 @@ int			have_active_pro(t_vm *vm)
 		if (!vm->pro[i]->live)
 		{
 			vm->nbr_pro_alive--;
-			ui_die_pro(vm, vm->pro[i], i);
+			ui_die_pro(vm, vm->pro[i]);
 			ft_memdel((void **)(&(vm->pro[i])));
 		}
 		else
