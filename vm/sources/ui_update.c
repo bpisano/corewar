@@ -39,10 +39,13 @@ void	ui_update_reg(t_vm *vm, t_pro pro, int reg_pos)
 void	ui_update_info(t_vm vm)
 {
 	ui_print_right_center(vm.ui->info_win, 4, "%d", vm.cycles_total);
+	ui_print_right_center(vm.ui->info_win, 6, "         ");
 	ui_print_right_center(vm.ui->info_win, 6, "%d", vm.cycle_to_die);
 	ui_print_right_center(vm.ui->info_win, 7, "%d", CYCLE_DELTA);
 	ui_print_right_center(vm.ui->info_win, 8, "%d", NBR_LIVE);
 	ui_print_right_center(vm.ui->info_win, 9, "%d", MAX_CHECKS);
+	ui_print_right_center(vm.ui->info_win, 11, "         ");
+	ui_print_right_center(vm.ui->info_win, 11, "%d", vm.nbr_pro_alive);
 }
 
 void	ui_update_champs(t_vm vm)

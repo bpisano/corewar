@@ -195,7 +195,7 @@ void				ft_aff(t_pro *pro, t_vm *vm);
 
 # define 			COLOR_GRAY 8
 # define			INFO_LINE 2
-# define			CHAMPS_LINE INFO_LINE + 10
+# define			CHAMPS_LINE INFO_LINE + 12
 
 
 int					init_ui(t_vm *vm);

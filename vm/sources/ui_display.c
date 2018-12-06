@@ -59,6 +59,7 @@ void			ui_display_infos(t_vm vm)
 	ui_print_left_center(vm.ui->info_win, INFO_LINE + 5, 12, "CYCLES_DELTA ");
 	ui_print_left_center(vm.ui->info_win, INFO_LINE + 6, 8, "NBR_LIVE ");
 	ui_print_left_center(vm.ui->info_win, INFO_LINE + 7, 10, "MAX_CHECKS ");
+	ui_print_left_center(vm.ui->info_win, INFO_LINE + 9, 10, "PROCESSES ");
 	wattroff(vm.ui->info_win->win, COLOR_PAIR(1));
 	ui_update_info(vm);
 }
