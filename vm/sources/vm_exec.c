@@ -43,6 +43,7 @@ static void		change_values_if_needed(t_vm *vm)
 	{
 		vm->max_checks = MAX_CHECKS;
 		vm->cycle_to_die = vm->cycle_to_die - CYCLE_DELTA;
+		vm->total_live = 0;
 	}
 	else if (vm->max_checks > 0)
 		vm->max_checks -= 1;
@@ -76,12 +77,9 @@ static void		run_cycles(t_vm *vm)
 		}
 		ui_update_if_needed(vm);
 		getch();
-		if (vm->cycles_total == vm->dump)
-		{
+		if (vm->cycles_total == vm->dump && !(i + 1 == vm->cycle_to_die
+		&& !have_active_pro(vm)))
 			print_vm(*vm);
-			free_vm(vm, 1);
-			exit(0);
-		}
 	}
 }
 
@@ -124,4 +122,6 @@ void			print_vm(t_vm vm)
 		printf("%02x ", vm.reg[i]);
 	}
 	printf("\n");
+	free_vm(&vm, 1);
+	exit(0);
 }

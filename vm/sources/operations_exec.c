@@ -21,11 +21,11 @@ void	ft_live(t_pro *pro, t_vm *vm)
 	champ = num_at_reg(*vm, pro->pc + 1, 4);
 	i = -1;
 	pro->live++;
+	vm->total_live++;
 	while (vm->champs[++i])
 	{
 		if (vm->champs[i]->player == champ)
 		{
-			vm->total_live++;
 			vm->champs[i]->cur_live += 1;
 			vm->champs[i]->live = vm->cycles_total;
 			need_champ_display(vm);
