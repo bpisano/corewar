@@ -110,7 +110,8 @@ typedef struct		s_vm
 
 	int				dump;
 	int				use_ui;
-	int				nbr_pro;
+	unsigned int	nbr_pro;
+	unsigned int	nbr_pro_alive;
 
 	t_champ			*champs[MAX_PLAYERS];
 	t_pro			**pro;

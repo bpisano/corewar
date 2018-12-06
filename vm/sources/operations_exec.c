@@ -229,6 +229,7 @@ void	ft_fork(t_pro *pro, t_vm *vm)
 		return ;
 	vm->pro[vm->nbr_pro] = new;
 	vm->nbr_pro++;
+	vm->nbr_pro_alive++;
 	goto_next_operation(pro, vm);
 }
 
@@ -286,6 +287,7 @@ void	ft_lfork(t_pro *pro, t_vm *vm)
 		return ;
 	vm->pro[vm->nbr_pro] = new;
 	vm->nbr_pro++;
+	vm->nbr_pro_alive++;
 	goto_next_operation(pro, vm);
 }
 

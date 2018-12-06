@@ -30,6 +30,7 @@ int		init_var(t_vm *vm, char **argv)
 	vm->cycles_total = 0;
 	vm->total_live = 0;
 	vm->nbr_pro = vm->nbr_champs;
+	vm->nbr_pro_alive = vm->nbr_champs;
 	while (++i < MEM_SIZE)
 		vm->reg[i] = 0;
 	i = -1;
