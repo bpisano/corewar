@@ -48,9 +48,16 @@ void			ui_die_pro(t_vm *vm, t_pro *pro)
 {
 	if (!vm->use_ui)
 		return ;
-	if (is_inverted(*vm, pro->pc))
-		return ;
-	ui_draw_reg(vm, vm->ui->colors[pro->pc], pro->pc, 0);
+	if (vm->ui->inverted[pro->pc % MEM_SIZE] > 1)
+	{
+		vm->ui->inverted[pro->pc % MEM_SIZE] -= 1;
+		ui_draw_reg(vm, vm->ui->colors[pro->pc], pro->pc, 1);
+	}
+	else
+	{
+		vm->ui->inverted[pro->pc % MEM_SIZE] = 0;
+		ui_draw_reg(vm, vm->ui->colors[pro->pc], pro->pc, 0);
+	}
 }
 
 void			ui_update_reg_bold(t_vm *vm)

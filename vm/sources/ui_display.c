@@ -27,7 +27,7 @@ void			ui_display_pro(t_vm *vm)
 	while (++i < vm->nbr_pro)
 		if (vm->pro[i])
 		{
-			vm->ui->inverted[vm->pro[i]->pc] = 1;
+			vm->ui->inverted[vm->pro[i]->pc] += 1;
 			ui_draw_reg(vm, vm->ui->colors[vm->pro[i]->pc], vm->pro[i]->pc, 1);
 		}
 	wrefresh(vm->ui->reg_win->win);
