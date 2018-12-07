@@ -39,14 +39,22 @@ void	exec_op(int op_code, t_pro *pro, t_vm *vm)
 void	exec_pro(t_pro *pro, t_vm *vm)
 {
 	int		op_code;
+	int		oct_code;
 
+	oct_code = vm->reg[(pro->pc + 1) % MEM_SIZE];
 	op_code = pro->op_code;
 	if (op_code < 17 && op_code > 0)
 	{
 		if (!incorrect_param(*pro, *vm, op_code))
+		{
+			pro->op_size = op_size(op_code, oct_code, *vm);
 			exec_op(op_code, pro, vm);
+		}
 		else
+		{
+			pro->op_size = op_size(op_code, oct_code, *vm);
 			goto_next_operation(pro, vm);
+		}
 	}
 	else
 		goto_next_operation(pro, vm);
@@ -64,6 +72,5 @@ void	new_op(t_pro *pro, t_vm *vm)
 	{
 		pro->op_code = op_code;
 		pro->cycles = vm->op_tab[op_code - 1].cycles;
-		pro->op_size = op_size(op_code, vm->reg[(pro->pc + 1) % MEM_SIZE], *vm);
 	}
 }

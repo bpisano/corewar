@@ -70,8 +70,6 @@ void	increment_pc(int increment, t_pro *pro, t_vm *vm)
 
 void	goto_next_operation(t_pro *pro, t_vm *vm)
 {
-	int		op_code;
-
 	increment_pc(pro->op_size + 1, pro, vm);
 	pro->op_code = NEW_OP;
 }

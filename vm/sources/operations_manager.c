@@ -72,8 +72,6 @@ int			op_size(int op_code, int oct_code, t_vm vm)
 	int		nbr_arg;
 	int		i;
 
-	if (op_code > 15 || op_code < 1)
-		return (0);
 	if (vm.op_tab[op_code - 1].codage_octal == 0)
 		return (vm.op_tab[op_code - 1].dir_size);
 	oct_size = 1;

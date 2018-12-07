@@ -34,7 +34,7 @@ void			set_num_at_reg(t_vm *vm, t_pro pro, int reg_pos, unsigned int reg)
 {
 	int		i;
 
-	i = REG_SIZE;
+	i = DIR_SIZE;
 	reg_pos = reg_pos % MEM_SIZE;
 	if (reg_pos < 0)
 		reg_pos += MEM_SIZE;
