@@ -60,7 +60,7 @@ void			ui_update_reg_bold(t_vm *vm)
 	i = -1;
 	while (++i < MEM_SIZE)
 	{
-		if (vm->ui->bold[i] == 1)
+		if (vm->ui->bold[i] == 2)
 		{
 			vm->ui->bold[i] = 0;
 			ui_draw_reg(vm, vm->ui->colors[i], i, is_inverted(*vm, i));
