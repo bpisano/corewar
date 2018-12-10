@@ -22,6 +22,7 @@ int		init_var(t_vm *vm, char **argv)
 	vm->cycle_to_die = CYCLE_TO_DIE;
 	vm->max_checks = MAX_CHECKS;
 	vm->dump = -1;
+	ft_bzero(vm->champs, sizeof(vm->champs));
 	if (!(vm->op_tab = struct_tab()))
 		return (0);
 	vm->last_champ = 0;

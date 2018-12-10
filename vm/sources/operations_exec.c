@@ -293,11 +293,11 @@ void	ft_lfork(t_pro *pro, t_vm *vm)
 
 void	ft_aff(t_pro *pro, t_vm *vm)
 {
-	int		p[3];
-	char	c;
+	int				p[3];
+	unsigned		c;
 
 	params(*pro, *vm, p);
-	c = p[0] % 256;
+	c = pro->reg[p[0]] % 256;
 	write(1, &c, 1);
 	goto_next_operation(pro, vm);
 }
