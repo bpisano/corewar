@@ -22,12 +22,12 @@ void	ft_live(t_pro *pro, t_vm *vm)
 	i = -1;
 	pro->live++;
 	vm->total_live++;
-	while (vm->champs[++i])
+	while (++i < vm->nbr_champs)
 	{
-		if (vm->champs[i]->player == champ)
+		if (vm->champs[i].player == champ)
 		{
-			vm->champs[i]->cur_live += 1;
-			vm->champs[i]->live = vm->cycles_total;
+			vm->champs[i].cur_live += 1;
+			vm->champs[i].live = vm->cycles_total;
 			need_champ_display(vm);
 			break ;
 		}

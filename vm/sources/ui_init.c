@@ -62,8 +62,8 @@ static void		init_pro_colors(t_vm *vm)
 	i = -1;
 	while (++i < vm->nbr_pro && (j = -1))
 		while (++j < vm->nbr_champs)
-			if (vm->pro[i]->player == vm->champs[j]->player)
-				vm->pro[i]->color = vm->champs[j]->color;
+			if (vm->pro[i]->player == vm->champs[j].player)
+				vm->pro[i]->color = vm->champs[j].color;
 }
 
 static void		init_colors(t_vm *vm)
@@ -78,7 +78,7 @@ static void		init_colors(t_vm *vm)
 	init_pair(2 + vm->nbr_champs, COLOR_BLACK, COLOR_WHITE);
 	while (++i < vm->nbr_champs)
 	{
-		vm->champs[i]->color = i + 2;
+		vm->champs[i].color = i + 2;
 		init_pair(i + 2, i + 1, -1);
 		init_pair(i + 3 + vm->nbr_champs, COLOR_BLACK, i + 1);
 	}

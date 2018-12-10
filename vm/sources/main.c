@@ -22,9 +22,9 @@ int		init_var(t_vm *vm, char **argv)
 	vm->cycle_to_die = CYCLE_TO_DIE;
 	vm->max_checks = MAX_CHECKS;
 	vm->dump = -1;
-	vm->champs[0] = 0;
 	if (!(vm->op_tab = struct_tab()))
 		return (0);
+	vm->last_champ = 0;
 	vm->pro = 0;
 	vm->use_ui = 0;
 	vm->cycles_total = 0;
@@ -34,8 +34,6 @@ int		init_var(t_vm *vm, char **argv)
 	while (++i < MEM_SIZE)
 		vm->reg[i] = 0;
 	i = -1;
-	while (++i < MAX_PLAYERS)
-		vm->champs[i] = 0;
 	return (1);
 }
 

@@ -21,9 +21,9 @@ int				init_process(t_vm *vm)
 	if (!(vm->pro = malloc(sizeof(t_pro *) * vm->nbr_champs)))
 		return (0);
 	i = -1;
-	while (vm->champs[++i])
+	while (++i < vm->nbr_champs)
 	{
-		if (!(new = new_pro_from_champ(*(vm->champs[i]), *vm)))
+		if (!(new = new_pro_from_champ(vm->champs[i], *vm)))
 		{
 			free_pro(vm);
 			return (0);

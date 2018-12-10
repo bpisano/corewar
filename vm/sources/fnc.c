@@ -13,23 +13,13 @@
 
 #include "vm.h"
 
-int		free_chmp(t_vm *vm)
-{
-	int		i;
-
-	i = -1;
-	while (vm->champs[++i])
-		free(vm->champs[i]);
-	return (1);
-}
-
 int		check_taken(unsigned int i, t_vm *vm)
 {
 	int		j;
 
 	j = -1;
-	while (vm->champs[++j])
-		if (vm->champs[j]->player == i)
+	while (++j < vm->nbr_champs)
+		if (vm->champs[j].player == i)
 			return (1);
 	return (0);
 }
@@ -58,16 +48,16 @@ int		handle_number(t_vm *vm, char *number, int j)
 		i = (unsigned int)ft_atoi(number);
 		if (check_taken(i, vm))
 			return (1);
-		vm->champs[j]->player = i;
+		vm->champs[j].player = i;
 		return (0);
 	}
 	i = 0xffffffff;
-	vm->champs[j]->player = 0;
+	vm->champs[j].player = 0;
 	while (i != 0)
 	{
 		if (!check_taken(i, vm))
 		{
-			vm->champs[j]->player = i;
+			vm->champs[j].player = i;
 			return (0);
 		}
 		i--;

@@ -48,8 +48,8 @@ void			ui_display_reg(t_vm *vm)
 	while (++j < vm->nbr_champs)
 	{
 		i = -1;
-		while (++i < vm->champs[j]->size)
-			ui_draw_reg(vm, vm->champs[j]->color, vm->champs[j]->pc + i, 0);
+		while (++i < vm->champs[j].size)
+			ui_draw_reg(vm, vm->champs[j].color, vm->champs[j].pc + i, 0);
 	}
 	wrefresh(vm->ui->reg_win->win);
 }

@@ -47,21 +47,18 @@ int		check_name(char *line, t_vm *vm, int *i, int k)
 	int		j;
 
 	j = 0;
-	if (!(vm->champs[k] = malloc(sizeof(t_champ))))
-		return (ft_printf(ERROR_MALL));
-	vm->champs[k + 1] = 0;
 	while (line[++(*i)])
 	{
 		if (j == PROG_NAME_LENGTH + 1)
 			return (ft_printf(ERROR_NAME, k + 1));
-		vm->champs[k]->name[j] = line[*i];
+		vm->champs[k].name[j] = line[*i];
 		j++;
 	}
-	vm->champs[k]->name[j] = 0;
-	vm->champs[k]->last_live = 0;
-	vm->champs[k]->cur_live = 0;
-	vm->champs[k]->pc = k * MEM_SIZE / vm->nbr_champs;
-	vm->champs[k]->live = 0;
+	vm->champs[k].name[j] = 0;
+	vm->champs[k].last_live = 0;
+	vm->champs[k].cur_live = 0;
+	vm->champs[k].pc = k * MEM_SIZE / vm->nbr_champs;
+	vm->champs[k].live = 0;
 	return (0);
 }
 
@@ -73,10 +70,10 @@ int		check_comment(char *line, t_vm *vm, int k)
 	i = 0x8b;
 	j = -1;
 	while (line[++i] && j < COMMENT_LENGTH)
-		vm->champs[k]->comment[++j] = line[i];
+		vm->champs[k].comment[++j] = line[i];
 	if (j >= COMMENT_LENGTH)
 		return (ft_printf(ERROR_COM));
-	vm->champs[k]->comment[j + 1] = 0;
+	vm->champs[k].comment[j + 1] = 0;
 	return (0);
 }
 
@@ -104,25 +101,22 @@ int		init_champ(char *line, t_vm *vm, char *name)
 
 int		invalid_champ(char *name, t_vm *vm, char *number)
 {
-	int		i;
 	int		j;
 	char	line[HEADER_SIZE + CHAMP_MAX_SIZE + 1];
 
-	i = -1;
-	while (vm->champs[++i])
-		;
 	if (init_champ(line, vm, name))
-		return (free_chmp(vm));
-	if (check_magic(line, vm, &j) || check_name(line, vm, &j, i) ||
-	check_comment(line, vm, i))
-		return (free_chmp(vm));
+		return (1);
+	if (check_magic(line, vm, &j) || check_name(line, vm, &j, vm->last_champ) ||
+	check_comment(line, vm, vm->last_champ))
+		return (1);
 	j = -1;
 	while (++j < (unsigned char)line[0x8a] * 256 + (unsigned char)line[0x8b])
-		vm->reg[j + (i * MEM_SIZE / vm->nbr_champs)] =
+		vm->reg[j + (vm->last_champ * MEM_SIZE / vm->nbr_champs)] =
 		line[HEADER_SIZE + j];
-	vm->champs[i]->size = (unsigned char)line[0x8a] * 256
+	vm->champs[vm->last_champ].size = (unsigned char)line[0x8a] * 256
 	+ (unsigned char)line[0x8b];
-	if (handle_number(vm, number, i))
-		return (ft_printf(ERROR_NBR, ft_atoi(number)) && free_chmp(vm));
+	if (handle_number(vm, number, vm->last_champ))
+		return (ft_printf(ERROR_NBR, ft_atoi(number)));
+	vm->last_champ++;
 	return (0);
 }

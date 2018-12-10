@@ -13,18 +13,18 @@
 
 #include "vm.h"
 
-t_champ		*winner(t_vm vm)
+t_champ		winner(t_vm vm)
 {
 	int		i;
 	int		live_max;
-	t_champ	*champ_max;
+	t_champ	champ_max;
 
 	i = -1;
 	live_max = 0;
-	while (vm.champs[++i])
-		if (vm.champs[i]->live >= live_max)
+	while (++i < vm.nbr_champs)
+		if (vm.champs[i].live >= live_max)
 		{
-			live_max = vm.champs[i]->live;
+			live_max = vm.champs[i].live;
 			champ_max = vm.champs[i];
 		}
 	return (champ_max);

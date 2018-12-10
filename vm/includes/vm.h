@@ -108,13 +108,14 @@ typedef struct		s_vm
 	int				nbr_champs;
 	int				cycles_total;
 	unsigned int	total_live;
+	unsigned char	last_champ;
 
 	int				dump;
 	int				use_ui;
 	unsigned int	nbr_pro;
 	unsigned int	nbr_pro_alive;
 
-	t_champ			*champs[MAX_PLAYERS];
+	t_champ			champs[MAX_PLAYERS];
 	t_pro			**pro;
 	t_op			*op_tab;
 	t_ui			*ui;
@@ -133,7 +134,6 @@ int					count_champs(char **argv);
 int					invalid_param(char *argv);
 int					convert_hexa_int(char a, char b);
 int					handle_number(t_vm *vm, char *number, int j);
-int					free_chmp(t_vm *vm);
 
 int					exec_vm(t_vm *vm);
 void				free_vm(t_vm *vm, int ui);
@@ -149,7 +149,7 @@ void				free_pro(t_vm *vm);
 void				increment_pc(int increment, t_pro *pro, t_vm *vm);
 
 int					have_winner(t_vm vm);
-t_champ				*winner(t_vm vm);
+t_champ				winner(t_vm vm);
 int					have_active_pro(t_vm *vm);
 
 void				exec_pro(t_pro *pro, t_vm *vm);

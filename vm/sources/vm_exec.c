@@ -15,11 +15,6 @@
 
 void		free_vm(t_vm *vm, int ui)
 {
-	int		i;
-
-	i = -1;
-	while (++i < MAX_PLAYERS)
-		ft_memdel((void **)&(vm->champs[i]));
 	free_pro(vm);
 	free(vm->op_tab);
 	if (vm->use_ui && ui)
@@ -35,8 +30,9 @@ static void		change_values_if_needed(t_vm *vm)
 	int		i;
 
 	i = -1;
-	while (vm->champs[++i])
-	{		vm->champs[i]->cur_live = 0;
+	while (++i < vm->nbr_champs)
+	{		
+		vm->champs[i].cur_live = 0;
 		need_champ_display(vm);
 	}
 	if (vm->total_live >= NBR_LIVE)
@@ -99,7 +95,7 @@ int				exec_vm(t_vm *vm)
 			break ;
 		change_values_if_needed(vm);
 	}
-	printf("Winner : %s\n", winner(*vm)->name);
+	printf("Winner : %s\n", winner(*vm).name);
 	free_vm(vm, 1);
 	end_ui();
 	return (1);
