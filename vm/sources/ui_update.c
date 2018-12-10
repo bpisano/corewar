@@ -56,14 +56,15 @@ void	ui_update_champs(t_vm vm)
 	i = -1;
 	while (++i < vm.nbr_champs)
 	{
-		offset = i * 4 + CHAMPS_LINE;
+		offset = i * 5 + CHAMPS_LINE;
 		wattron(vm.ui->info_win->win, COLOR_PAIR(vm.champs[i].color));
 		ui_print_right_center(vm.ui->info_win, offset + 2, "%s", vm.champs[i].name);
 		wattroff(vm.ui->info_win->win, COLOR_PAIR(vm.champs[i].color));
-		ui_print_right_center(vm.ui->info_win, offset + 3, "         ");
+		ui_print_right_center(vm.ui->info_win, offset + 3, "%d", vm.champs[i].player);
 		ui_print_right_center(vm.ui->info_win, offset + 4, "         ");
-		ui_print_right_center(vm.ui->info_win, offset + 3, "%d", vm.champs[i].cur_live);
-		ui_print_right_center(vm.ui->info_win, offset + 4, "%d", vm.champs[i].last_live);
+		ui_print_right_center(vm.ui->info_win, offset + 5, "         ");
+		ui_print_right_center(vm.ui->info_win, offset + 4, "%d", vm.champs[i].cur_live);
+		ui_print_right_center(vm.ui->info_win, offset + 5, "%d", vm.champs[i].last_live);
 	}
 }
 

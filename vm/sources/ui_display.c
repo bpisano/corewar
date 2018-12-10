@@ -78,10 +78,11 @@ void	ui_display_champs(t_vm vm)
 	i = -1;
 	while (++i < vm.nbr_champs)
 	{
-		offset = i * 4 + CHAMPS_LINE;
+		offset = i * 5 + CHAMPS_LINE;
 		ui_print_left_center(vm.ui->info_win, offset + 2, 5, "NAME ");
-		ui_print_left_center(vm.ui->info_win, offset + 3, 14, "CURRENT_LIVES ");
-		ui_print_left_center(vm.ui->info_win, offset + 4, 11, "LAST_LIVES ");
+		ui_print_left_center(vm.ui->info_win, offset + 3, 7, "NUMBER ");
+		ui_print_left_center(vm.ui->info_win, offset + 4, 14, "CURRENT_LIVES ");
+		ui_print_left_center(vm.ui->info_win, offset + 5, 11, "LAST_LIVES ");
 	}
 	wattroff(vm.ui->info_win->win, COLOR_PAIR(1));
 	ui_update_champs(vm);
