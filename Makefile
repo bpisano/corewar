@@ -85,7 +85,7 @@ $(ASM): $(LIB) $(OBJ_GLOB) $(OBJ_ASM)
 	@echo "$(BLUE)$(ASM)\033[500D\033[42C$(GREEN)[DONE]$(END)"
 
 $(VM): $(OBJ_GLOB) $(OBJ_VM)
-	@gcc -o $(VM) $(OBJ_GLOB) $(OBJ_VM) libft/$(LIB) -lncurses 
+	@gcc -o $(VM) $(OBJ_GLOB) $(OBJ_VM) libft/$(LIB) -lncurses
 	@echo "$(BLUE)$(VM)\033[500D\033[42C$(GREEN)[DONE]$(END)"
 
 %.o : %.c

@@ -21,6 +21,7 @@ int		incorrect_param(t_pro pro, t_vm vm, int op_code)
 	int		param[3];
 
 	i = -1;
+	ft_bzero(param, sizeof(param));
 	if (!vm.op_tab[op_code - 1].codage_octal)
 		return (0);
 	oct_code = vm.reg[(pro.pc + 1) % MEM_SIZE];

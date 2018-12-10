@@ -41,6 +41,7 @@ int			*params(t_pro pro, t_vm vm, int *p)
 	int		size;
 	int		p_num;
 
+	ft_bzero(p, sizeof(int) * 3);
 	op_c = pro.op_code;;
 	oct_c = vm.reg[pro.pc + 1];
 	size = 2;
