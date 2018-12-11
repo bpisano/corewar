@@ -13,16 +13,16 @@
 
 #include "compiler.h"
 
-void			free_split(char ***split)
+void			free_split(char **split)
 {
 	int		i;
 
-	if (!(*split))
+	if (!split)
 		return ;
 	i = -1;
-	while ((*split)[++i])
-		free((*split)[i]);
-	free(*split);
+	while (split[++i])
+		free(split[i]);
+	free(split);
 }
 
 int				free_s(t_pos data, t_op *op, t_lab **lab, int i)

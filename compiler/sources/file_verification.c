@@ -68,17 +68,17 @@ int			arguments_are_correct_formatted(char *line)
 	split = ft_strsplit(line, SEPARATOR_CHAR);
 	if (ft_tablen(split) == 0)
 	{
-		free_split(&split);
+		free_split(split);
 		return (0);
 	}
 	i = -1;
 	while (split[++i])
 		if (!match_pattern(split[i]))
 		{
-			free_split(&split);
+			free_split(split);
 			return (0);
 		}
-	free_split(&split);
+	free_split(split);
 	return (1);
 }
 

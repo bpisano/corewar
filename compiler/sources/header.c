@@ -31,9 +31,9 @@ static char		*header_type(char *str, char *type)
 
 	if (!(split = ft_strsplit(str, '\"')))
 		return (NULL);
-	if (split_len(split) != 2)
+	if (split_len(split) > 2 || split_len(split) == 0)
 	{
-		free_split(&split);
+		free_split(split);
 		return (NULL);
 	}
 	if (!(trim_type = ft_strtrim(split[0])))
@@ -41,12 +41,12 @@ static char		*header_type(char *str, char *type)
 	if (ft_strcmp(type, trim_type) != 0)
 	{
 		free(trim_type);
-		free_split(&split);
+		free_split(split);
 		return (NULL);
 	}
 	free(trim_type);
 	free(split[0]);
-	str1 = split[1];
+	str1 = split[1] == NULL ? ft_strdup("") : split[1];
 	free(split);
 	return (str1);
 }

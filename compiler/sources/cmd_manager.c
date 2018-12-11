@@ -43,7 +43,7 @@ int				add_cmd_line(char ****cmd_lines, char *line)
 	len = cmd_len(*cmd_lines);
 	if (!(*cmd_lines = realloc(*cmd_lines, sizeof(char **) * (len + 2))))
 	{
-		free_split(&split);
+		free_split(split);
 		return (0);
 	}
 	(*cmd_lines)[len] = split;
@@ -59,6 +59,6 @@ void			free_cmd(char ****cmd)
 		return ;
 	i = -1;
 	while ((*cmd)[++i])
-		free_split(&((*cmd)[i]));
+		free_split((*cmd)[i]);
 	free(*cmd);
 }

@@ -57,9 +57,8 @@ char			**read_file(int fd)
 		}
 		if (!verify_syntax(&line))
 		{
-			printf("salut\n");
 			free(line);
-			free_split(&file_lines);
+			free_split(file_lines);
 			return (NULL);
 		}
 		add_line(&file_lines, line);

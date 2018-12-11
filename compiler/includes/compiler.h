@@ -81,7 +81,7 @@ void				display_error(int error);
  ** MEMORY
 */
 
-void				free_split(char ***split);
+void				free_split(char **split);
 
 /*
  ** BINARY
