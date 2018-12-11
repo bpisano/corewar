@@ -20,7 +20,7 @@ t_op	*struct_tab2(t_op *op_tab)
 	op_tab[13] = (t_op){"lldi", 3,
 	{T_REG | T_DIR | T_IND, T_DIR | T_REG, T_REG}, 14, 1, 2, 50};
 	op_tab[14] = (t_op){"lfork", 1, {T_DIR, 0, 0}, 15, 0, 2, 1000};
-	op_tab[15] = (t_op){"aff", 1, {T_REG, 0, 0}, 16, 1, 0, 2};
+	op_tab[15] = (t_op){"aff", 1, {T_REG, 0, 0}, 16, 1, 4, 2};
 	return (op_tab);
 }
 
@@ -32,9 +32,9 @@ t_op	*struct_tab(void)
 		return (0);
 	op_tab[0] = (t_op){"live", 1, {T_DIR, 0, 0}, 1, 0, 4, 10};
 	op_tab[1] = (t_op){"ld", 2, {T_DIR | T_IND, T_REG, 0}, 2, 1, 4, 5};
-	op_tab[2] = (t_op){"st", 2, {T_REG, T_IND | T_REG, 0}, 3, 1, 0, 5};
-	op_tab[3] = (t_op){"add", 3, {T_REG, T_REG, T_REG}, 4, 1, 0, 10};
-	op_tab[4] = (t_op){"sub", 3, {T_REG, T_REG, T_REG}, 5, 1, 0, 10};
+	op_tab[2] = (t_op){"st", 2, {T_REG, T_IND | T_REG, 0}, 3, 1, 4, 5};
+	op_tab[3] = (t_op){"add", 3, {T_REG, T_REG, T_REG}, 4, 1, 4, 10};
+	op_tab[4] = (t_op){"sub", 3, {T_REG, T_REG, T_REG}, 5, 1, 4, 10};
 	op_tab[5] = (t_op){"and", 3, {T_REG | T_DIR | T_IND, T_REG | T_IND |
 	T_DIR, T_REG}, 6, 1, 4, 6};
 	op_tab[6] = (t_op){"or", 3, {T_REG | T_IND | T_DIR, T_REG | T_IND |
