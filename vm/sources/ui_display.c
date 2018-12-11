@@ -80,7 +80,7 @@ void	ui_display_champs(t_vm vm)
 	{
 		offset = i * 5 + CHAMPS_LINE;
 		ui_print_left_center(vm.ui->info_win, offset + 2, 5, "NAME ");
-		ui_print_left_center(vm.ui->info_win, offset + 3, 7, "NUMBER ");
+		ui_print_left_center(vm.ui->info_win, offset + 3, 3, "ID ");
 		ui_print_left_center(vm.ui->info_win, offset + 4, 14, "CURRENT_LIVES ");
 		ui_print_left_center(vm.ui->info_win, offset + 5, 11, "LAST_LIVES ");
 	}
