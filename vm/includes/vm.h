@@ -218,6 +218,7 @@ void				ui_display_pro(t_vm *vm);
 void				ui_display_infos(t_vm vm);
 void				ui_display_champs(t_vm vm);
 void				ui_display_settings(t_vm vm);
+void				ui_display_winner(t_vm vm);
 void				ui_die_pro(t_vm *vm, t_pro *pro);
 
 void				ui_update_if_needed(t_vm *vm);

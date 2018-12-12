@@ -95,7 +95,10 @@ int				exec_vm(t_vm *vm)
 			break ;
 		change_values_if_needed(vm);
 	}
-	ft_printf("Winner : %s\n", winner(*vm).name);
+	if (vm->use_ui)
+		ui_display_winner(*vm);
+	else
+		ft_printf("Winner : %s\n", winner(*vm).name);
 	free_vm(vm, 1);
 	end_ui();
 	return (1);

@@ -39,3 +39,19 @@ void			ui_display_run_title(t_vm vm)
 	"[RUNNING] Corewar");
 	attroff(A_BOLD | A_BLINK);
 }
+
+void			ui_display_winner(t_vm vm)
+{
+	t_champ		win;
+	int			len;
+
+	win = winner(vm);
+	len = ft_strlen(win.name) + 10;
+	clear_title(vm);
+	mvprintw(0, (vm.ui->reg_win->width - len) / 2, "Winner is ");
+	attron(COLOR_PAIR(win.color) | A_BLINK);
+	mvprintw(0, (vm.ui->reg_win->width - len) / 2 + 10, "%s", win.name);
+	attroff(COLOR_PAIR(win.color) | A_BLINK);
+	timeout(-1);
+	getch();
+}
