@@ -41,6 +41,7 @@
 # define ERROR_SIZE	"Error, bad content size %d\n"
 # define ERROR_COM	"Error, comment is too long\n"
 # define ERROR_NBR	"Error, the player number (%d) is already taken\n"
+# define ERROR_UIAF "Error, cannot use -i and -a\n"
 
 # define NEW_OP 256
 
@@ -115,7 +116,8 @@ typedef struct		s_vm
 	unsigned char	last_champ;
 
 	int				dump;
-	int				use_ui;
+	char			use_ui;
+	char			aff;
 	unsigned int	nbr_pro;
 	unsigned int	nbr_pro_alive;
 

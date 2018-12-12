@@ -22,6 +22,7 @@ int		init_var(t_vm *vm, char **argv)
 	vm->cycle_to_die = CYCLE_TO_DIE;
 	vm->max_checks = MAX_CHECKS;
 	vm->dump = -1;
+	vm->aff = 0;
 	ft_bzero(vm->champs, sizeof(vm->champs));
 	if (!(vm->op_tab = struct_tab()))
 		return (0);
@@ -38,6 +39,29 @@ int		init_var(t_vm *vm, char **argv)
 	return (1);
 }
 
+int		init2(char **argv, t_vm *vm, int *i)
+{
+	if (!ft_strcmp(argv[*i], "-n") || !ft_strcmp(argv[*i], "-number"))
+	{
+		if (check_flag_n(argv, i, vm))
+			return (1);
+	}
+	else if (!ft_strcmp(argv[*i], "-d") || !ft_strcmp(argv[*i], "-dump"))
+	{
+		if (check_flag_d(argv, i, &vm->dump))
+			return (1);
+	}
+	else if (!ft_strcmp(argv[*i], "-a") || !ft_strcmp(argv[*i], "-aff"))
+		vm->aff = 1;
+	else if (!ft_strcmp(argv[*i], "-i") || !ft_strcmp(argv[*i], "-ui"))
+		vm->use_ui = 1;
+	else if (!ft_strchr(argv[*i], '.'))
+		return (invalid_param(argv[*i]));
+	else if (invalid_champ(argv[*i], vm, 0))
+		return (ft_error(ERROR_CHMP, *i, argv[*i]));
+	return (0);
+}
+
 int		init(char **argv, t_vm *vm)
 {
 	int		i;
@@ -47,26 +71,13 @@ int		init(char **argv, t_vm *vm)
 		return (ft_error(ERROR_NUMB, MAX_PLAYERS));
 	while (argv[++i])
 	{
-		
 		if (!argv[i][0])
 			continue;
-		else if (!ft_strcmp(argv[i], "-n") || !ft_strcmp(argv[i], "-number"))
-		{
-			if (check_flag_n(argv, &i, vm))
-				return (1);
-		}
-		else if (!ft_strcmp(argv[i], "-d") || !ft_strcmp(argv[i], "-dump"))
-		{
-			if (check_flag_d(argv, &i, &vm->dump))
-				return (1);
-		}
-		else if (!ft_strcmp(argv[i], "-i"))
-			vm->use_ui = 1;
-		else if (!ft_strchr(argv[i], '.'))
-			return (invalid_param(argv[i]));
-		else if (invalid_champ(argv[i], vm, 0))
-			return (ft_error(ERROR_CHMP, i, argv[i]));
+		if (init2(argv, vm, &i))
+			return (1);
 	}
+	if (vm->use_ui && vm->aff)
+		return (ft_error(ERROR_UIAF));
 	return (0);
 }
 
