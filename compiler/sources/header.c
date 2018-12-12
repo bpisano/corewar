@@ -31,7 +31,7 @@ static char		*header_type(char *str, char *type)
 
 	if (!(split = ft_strsplit(str, '\"')))
 		return (NULL);
-	if (split_len(split) > 2 || split_len(split) == 0)
+	if (split_len(split) != 2)
 	{
 		free_split(split);
 		return (NULL);
@@ -46,7 +46,7 @@ static char		*header_type(char *str, char *type)
 	}
 	free(trim_type);
 	free(split[0]);
-	str1 = split[1] == NULL ? ft_strdup("") : split[1];
+	str1 = split[1];
 	free(split);
 	return (str1);
 }
