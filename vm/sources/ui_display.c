@@ -87,3 +87,12 @@ void	ui_display_champs(t_vm vm)
 	wattroff(vm.ui->info_win->win, COLOR_PAIR(1));
 	ui_update_champs(vm);
 }
+
+void	ui_display_settings(t_vm vm)
+{
+	ui_print_title(vm.ui->info_win, SETTINGS_LINE, "SETTINGS");
+	wattron(vm.ui->info_win->win, COLOR_PAIR(1));
+	ui_print_left_center(vm.ui->info_win, SETTINGS_LINE + 2, 10, "CYCLES/SEC ");
+	wattroff(vm.ui->info_win->win, COLOR_PAIR(1));
+	ui_update_settings(vm);
+}

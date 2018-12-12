@@ -22,7 +22,7 @@ static void		clear_title(t_vm vm)
 		mvprintw(0, i, " ");
 }
 
-void			display_pause_title(t_vm vm)
+void			ui_display_pause_title(t_vm vm)
 {
 	clear_title(vm);
 	attron(A_BOLD | A_BLINK);
@@ -31,7 +31,7 @@ void			display_pause_title(t_vm vm)
 	attroff(A_BOLD | A_BLINK);
 }
 
-void			display_run_title(t_vm vm)
+void			ui_display_run_title(t_vm vm)
 {
 	clear_title(vm);
 	attron(A_BOLD);

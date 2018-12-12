@@ -41,6 +41,7 @@ static t_ui		*new_ui(void)
 	new->need_pro_disp = 0;
 	new->need_cha_disp = 0;
 	new->paused = 1;
+	new->cycle_sec = 50;
 	if (!(new->reg_win = new_win(0, 1, (MEM_SIZE / 64 * 3 - 1) + 2, 64 + 2)))
 	{
 		ft_memdel((void **)&new);
@@ -98,8 +99,9 @@ int				init_ui(t_vm *vm)
 	refresh();
 	if (!(vm->ui = new_ui()))
 		return (0);
-	display_pause_title(*vm);
+	ui_display_pause_title(*vm);
 	refresh();
+	ui_display_settings(*vm);
 	ui_display_reg(vm);
 	ui_display_pro(vm);
 	ui_display_infos(*vm);
