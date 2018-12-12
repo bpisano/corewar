@@ -58,7 +58,7 @@ int		fill_bin_lab(t_label **label, t_lab *lab, int **bin)
 			return (0);
 		}
 	}
-	return (ft_printf(ERROR_LABEL, lab->name));
+	return (ft_error(ERROR_LABEL, lab->name));
 }
 
 char	add_lab_list(char *name, int pos, int **bin, t_label ***label)

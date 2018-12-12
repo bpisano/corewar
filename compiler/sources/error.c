@@ -15,7 +15,7 @@
 
 static void		error_desc(char *desc)
 {
-	ft_printf("ERROR: %s\n", desc);
+	ft_error("ERROR: %s\n", desc);
 }
 
 void			display_error(int error)

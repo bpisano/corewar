@@ -44,7 +44,7 @@ int		init(char **argv, t_vm *vm)
 
 	i = 0;
 	if (!vm->nbr_champs || vm->nbr_champs > MAX_PLAYERS)
-		return (ft_printf(ERROR_NUMB, MAX_PLAYERS));
+		return (ft_error(ERROR_NUMB, MAX_PLAYERS));
 	while (argv[++i])
 	{
 		if (!argv[i][0])
@@ -64,7 +64,7 @@ int		init(char **argv, t_vm *vm)
 		else if (!ft_strchr(argv[i], '.'))
 			return (invalid_param(argv[i]));
 		else if (invalid_champ(argv[i], vm, 0))
-			return (ft_printf(ERROR_CHMP, i, argv[i]));
+			return (ft_error(ERROR_CHMP, i, argv[i]));
 	}
 	return (0);
 }

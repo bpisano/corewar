@@ -34,12 +34,12 @@ int		handle_label(t_pos data, int **bin, t_op *op_tab, t_lab **lab)
 	pos = 0;
 	data.j = 0;
 	if (!(label = ft_memalloc(sizeof(t_label *))))
-		return (ft_printf(ERROR_MALL));
+		return (ft_error(ERROR_MALL));
 	while (data.file[++data.i])
 	{
 		if (!is_op(data.file[data.i][0], op_tab))
 			if (!(add_lab_list(data.file[data.i][0], pos, bin, &label)))
-				return (free_l(label, ft_printf(ERROR_MALL)));
+				return (free_l(label, ft_error(ERROR_MALL)));
 		if (!data.file[data.i][1])
 			data.j--;
 		else
@@ -62,7 +62,7 @@ int		core_text(int ***bin, char **file_lines)
 	t_comp	c;
 
 	if (!(c.op_tab = initialisation(&c.lab, &c.data, file_lines)))
-		return (ft_printf(ERROR_MALL));
+		return (ft_error(ERROR_MALL));
 	while (c.data.file[++c.data.i] && !(c.data.j = 0))
 		if (is_op(c.data.file[c.data.i][0], c.op_tab))
 		{
@@ -70,7 +70,7 @@ int		core_text(int ***bin, char **file_lines)
 				return (free_s(c.data, c.op_tab, c.lab, 10));
 		}
 		else if (!is_label(c.data.file[c.data.i][0]))
-			return (free_s(c.data, c.op_tab, c.lab, ft_printf(ER_LA, f(c, 0))));
+			return (free_s(c.data, c.op_tab, c.lab, ft_error(ER_LA, f(c, 0))));
 		else if (!c.data.file[c.data.i][1])
 			c.data.decal -= 1;
 		else if (is_op(c.data.file[c.data.i][1], c.op_tab))
@@ -80,7 +80,7 @@ int		core_text(int ***bin, char **file_lines)
 				return (free_s(c.data, c.op_tab, c.lab, 10));
 		}
 		else
-			return (free_s(c.data, c.op_tab, c.lab, ft_printf(ER_OP, f(c, 1))));
+			return (free_s(c.data, c.op_tab, c.lab, ft_error(ER_OP, f(c, 1))));
 	c.data.i = handle_label(c.data, *bin, c.op_tab, c.lab);
 	free_s(c.data, c.op_tab, c.lab, 0);
 	return (c.data.i);

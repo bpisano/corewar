@@ -19,13 +19,13 @@ int		check_magic(char *line, t_vm *vm, int *i)
 	int		j;
 
 	if (line[0])
-		return (ft_printf(ERROR_0));
+		return (ft_error(ERROR_0));
 	if (!(str = ft_itoa_base(COREWAR_EXEC_MAGIC, 16)))
-		return (ft_printf(ERROR_MALL));
+		return (ft_error(ERROR_MALL));
 	if (ft_strlen(str) % 2)
 	{
 		free(str);
-		return (ft_printf(ERROR_MGC));
+		return (ft_error(ERROR_MGC));
 	}
 	*i = 0;
 	j = 0;
@@ -34,7 +34,7 @@ int		check_magic(char *line, t_vm *vm, int *i)
 		if ((unsigned char)line[++(*i)] != convert_hexa_int(str[j], str[j + 1]))
 		{
 			free(str);
-			return (ft_printf(ERROR_MGC));
+			return (ft_error(ERROR_MGC));
 		}
 		j += 2;
 	}
@@ -50,7 +50,7 @@ int		check_name(char *line, t_vm *vm, int *i, int k)
 	while (line[++(*i)])
 	{
 		if (j == PROG_NAME_LENGTH + 1)
-			return (ft_printf(ERROR_NAME, k + 1));
+			return (ft_error(ERROR_NAME, k + 1));
 		vm->champs[k].name[j] = line[*i];
 		j++;
 	}
@@ -72,7 +72,7 @@ int		check_comment(char *line, t_vm *vm, int k)
 	while (line[++i] && j < COMMENT_LENGTH)
 		vm->champs[k].comment[++j] = line[i];
 	if (j >= COMMENT_LENGTH)
-		return (ft_printf(ERROR_COM));
+		return (ft_error(ERROR_COM));
 	vm->champs[k].comment[j + 1] = 0;
 	return (0);
 }
@@ -82,20 +82,20 @@ int		init_champ(char *line, t_vm *vm, char *name)
 	int		fd;
 
 	if ((fd = ft_strlen(name)) >= 2 && !ft_strcmp(name + fd - 2, ".s"))
-		return (ft_printf(ERROR_ASM, name, name));
+		return (ft_error(ERROR_ASM, name, name));
 	if ((fd = ft_strlen(name)) < 4 || ft_strcmp(name + fd - 4, ".cor"))
-		return (ft_printf(ERROR_COR, name));
+		return (ft_error(ERROR_COR, name));
 	if ((fd = open(name, O_RDONLY)) == -1)
-		return (ft_printf(ERROR_OPEN, name));
+		return (ft_error(ERROR_OPEN, name));
 	if (read(fd, line, HEADER_SIZE) < HEADER_SIZE)
-		return (ft_printf(ERROR_READ));
+		return (ft_error(ERROR_READ));
 	if ((unsigned char)line[0x8a] * 256 + (unsigned char)line[0x8b]
 	> CHAMP_MAX_SIZE)
-		return (ft_printf(ERROR_CONT));
+		return (ft_error(ERROR_CONT));
 	if (read(fd, line + HEADER_SIZE, (unsigned char)line[0x8a] * 256
 	+ (unsigned char)line[0x8b] + 1) !=
 	(unsigned char)line[0x8a] * 256 + (unsigned char)line[0x8b])
-		return (ft_printf(ERROR_SIZE, (unsigned char)line[0x8b]));
+		return (ft_error(ERROR_SIZE, (unsigned char)line[0x8b]));
 	return (0);
 }
 
@@ -116,7 +116,7 @@ int		invalid_champ(char *name, t_vm *vm, char *number)
 	vm->champs[vm->last_champ].size = (unsigned char)line[0x8a] * 256
 	+ (unsigned char)line[0x8b];
 	if (handle_number(vm, number, vm->last_champ))
-		return (ft_printf(ERROR_NBR, ft_atoi(number)));
+		return (ft_error(ERROR_NBR, ft_atoi(number)));
 	vm->last_champ++;
 	return (0);
 }

@@ -73,19 +73,19 @@ int		handle_op2(t_pos d, t_op op, int ***bin, t_lab ***lab)
 	add_bin_line(bin);
 	add_bin_int(bin, op.opcode, 1);
 	if (ft_tablen(&d.file[d.i][d.j + 1]) != op.nbr_arg)
-		return (ft_printf(ERROR_OP_LEN, op.nbr_arg, d.file[d.i][d.j]));
+		return (ft_error(ERROR_OP_LEN, op.nbr_arg, d.file[d.i][d.j]));
 	if (op.codage_octal)
 		add_bin_int(bin, 0, 1);
 	while (++k < op.nbr_arg && (++d.j > -1))
 	{
 		if (!(i = op_type(d.file[d.i][d.j]) & op.arg[k]))
-			return (ft_printf(ERROR_OP_TYPE, PARAM));
+			return (ft_error(ERROR_OP_TYPE, PARAM));
 		add_arg_bin(bin, d.file[d.i][d.j], i, op.dir_size);
 		if (d.file[d.i][d.j][1] == LABEL_CHAR ||
 		d.file[d.i][d.j][0] == LABEL_CHAR)
 			if (add_label(d, op.dir_size, lab, bin[0][d.i +
 			d.decal][0]))
-				return (ft_printf(ERROR_MALL));
+				return (ft_error(ERROR_MALL));
 		tot_line = (tot_line << 2) | param_bin(i);
 	}
 	return (handle_op3(op, tot_line, k, bin));
@@ -99,5 +99,5 @@ int		handle_op(t_pos data, t_op *op_tab, int ***bin, t_lab ***lab)
 	while (++i <= 15)
 		if (!ft_strcmp(op_tab[i].name, data.file[data.i][data.j]))
 			return (handle_op2(data, op_tab[i], bin, lab));
-	return (ft_printf(ER_OP, data.file[data.i][data.j]));
+	return (ft_error(ER_OP, data.file[data.i][data.j]));
 }
