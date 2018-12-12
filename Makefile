@@ -3,10 +3,10 @@
 #                                                               /              #
 #    Makefile                                         .::    .:/ .      .::    #
 #                                                  +:+:+   +:    +:  +:+:+     #
-#    By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+      #
+#    By: bpisano <bpisano@student.le-101.fr>        +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/03/15 18:40:16 by bpisano      #+#   ##    ##    #+#        #
-#    Updated: 2018/10/24 19:09:41 by bpisano     ###    #+. /#+    ###.fr      #
+#    Updated: 2018/12/12 23:15:01 by bpisano     ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -45,7 +45,6 @@ SRC_VM = vm/sources/main.c							\
 		 vm/sources/process_manager.c				\
 		 vm/sources/process_exec.c					\
 		 vm/sources/reg_manager.c					\
-		 vm/sources/operations_exec.c				\
 		 vm/sources/operations_manager.c			\
 		 vm/sources/operation_checker.c				\
 		 vm/sources/ui_init.c						\
@@ -57,7 +56,24 @@ SRC_VM = vm/sources/main.c							\
 		 vm/sources/ui_key_event.c					\
 		 vm/sources/ui_reg_manager.c				\
 		 vm/sources/fnc.c							\
+		 vm/sources/functions/ft_add.c				\
+		 vm/sources/functions/ft_aff.c				\
+		 vm/sources/functions/ft_and.c				\
+		 vm/sources/functions/ft_fork.c				\
+		 vm/sources/functions/ft_ld.c				\
+		 vm/sources/functions/ft_ldi.c				\
+		 vm/sources/functions/ft_lfork.c			\
+		 vm/sources/functions/ft_live.c				\
+		 vm/sources/functions/ft_lld.c				\
+		 vm/sources/functions/ft_lldi.c				\
+		 vm/sources/functions/ft_or.c				\
+		 vm/sources/functions/ft_st.c				\
+		 vm/sources/functions/ft_sti.c				\
+		 vm/sources/functions/ft_sub.c				\
+		 vm/sources/functions/ft_xor.c				\
+		 vm/sources/functions/ft_zjmp.c				\
 		 vm/sources/ft_mod.c						\
+
 
 HEADS = -I ./compiler/includes						\
 		-I ./vm/includes							\
