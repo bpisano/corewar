@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   vm.h                                             .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*   By: bpisano <bpisano@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/18 15:37:11 by anamsell     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/21 05:34:41 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/12 23:25:00 by bpisano     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -44,6 +44,11 @@
 # define ERROR_UIAF "Error, cannot use -i and -a\n"
 
 # define NEW_OP 256
+
+# define COLOR_GRAY 8
+# define SETTINGS_LINE 2
+# define INFO_LINE SETTINGS_LINE + 5
+# define CHAMPS_LINE INFO_LINE + 12
 
 typedef	struct		s_win
 {
@@ -102,7 +107,7 @@ typedef struct		s_champ
 	unsigned int	pc;
 
 	int				color;
-	unsigned int	size;			
+	unsigned int	size;
 }					t_champ;
 
 typedef struct		s_vm
@@ -166,7 +171,8 @@ void				goto_next_operation(t_pro *pro, t_vm *vm);
 */
 
 int					num_at_reg(t_vm vm, int pos, size_t size);
-void				set_num_at_reg(t_vm *vm, t_pro pro, int reg_pos, unsigned int reg);
+void				set_num_at_reg(t_vm *vm, t_pro pro, int reg_pos,
+									unsigned int reg);
 
 /*
  ** OPERATIONS
@@ -175,8 +181,8 @@ void				set_num_at_reg(t_vm *vm, t_pro pro, int reg_pos, unsigned int reg);
 int					op_size(int op_code, int oct_code, t_vm vm);
 int					*params(t_pro pro, t_vm vm, int *p);
 int					param_type(int oct_code, int n);
-int     			incorrect_param(t_pro pro, t_vm vm, int op_code);
-int     			ft_mod(int a, int b);
+int					incorrect_param(t_pro pro, t_vm vm, int op_code);
+int					ft_mod(int a, int b);
 void				new_op(t_pro *pro, t_vm *vm);
 
 void				ft_live(t_pro *pro, t_vm *vm);
@@ -200,19 +206,12 @@ void				ft_aff(t_pro *pro, t_vm *vm);
  ** UI
 */
 
-# define 			COLOR_GRAY 8
-# define			SETTINGS_LINE 2
-# define			INFO_LINE SETTINGS_LINE + 5
-# define			CHAMPS_LINE INFO_LINE + 12
-
-
 int					init_ui(t_vm *vm);
 void				end_ui(void);
 
 void				wait_key_event(t_vm *vm);
 void				ui_display_pause_title(t_vm vm);
 void				ui_display_run_title(t_vm vm);
-
 
 void				ui_draw_reg(t_vm *vm, int color, int reg_pos, int inverted);
 void				ui_display_reg(t_vm *vm);
@@ -230,7 +229,8 @@ void				ui_update_champs(t_vm vm);
 void				ui_update_settings(t_vm vm);
 void				ui_update_reg_bold(t_vm *vm);
 
-void				ui_print_left_center(t_win *w, int line, int len, char *f, ...);
+void				ui_print_left_center(t_win *w, int line, int len,
+											char *f, ...);
 void				ui_print_right_center(t_win *w, int line, char *f, ...);
 void				ui_print_title(t_win *w, int line, char *f, ...);
 
