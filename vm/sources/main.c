@@ -38,46 +38,34 @@ int		init_var(t_vm *vm, char **argv)
 	return (1);
 }
 
-int		check_flag(char *argv, int *i, t_vm *vm)
-{
-	if (!argv[0])
-		return (-1);
-	else if (!ft_strcmp(argv, "-n") || !ft_strcmp(argv, "-number"))
-	{
-		if (check_flag_n(&argv, i, vm))
-			return (1);
-	}
-	else if (!ft_strcmp(argv, "-d") || !ft_strcmp(argv, "-dump"))
-	{
-		if (check_flag_d(&argv, i, &vm->dump))
-			return (1);
-	}
-	else if (!ft_strcmp(argv, "-i"))
-		vm->use_ui = 1;
-	else if (!ft_strchr(argv, '.'))
-		return (invalid_param(argv));
-	else if (invalid_champ(argv, vm, 0))
-		return (ft_error(ERROR_CHMP, *i, argv));
-	return (0);
-}
-
 int		init(char **argv, t_vm *vm)
 {
 	int		i;
-	int		flag_ret;
 
 	i = 0;
 	if (!vm->nbr_champs || vm->nbr_champs > MAX_PLAYERS)
 		return (ft_error(ERROR_NUMB, MAX_PLAYERS));
 	while (argv[++i])
 	{
-		flag_ret = check_flag(argv[i], &i, vm);
-		if (flag_ret == -1)
+		
+		if (!argv[i][0])
 			continue;
-		else if (flag_ret == 1)
-			return (1);
-		else if (flag_ret != 0)
-			return (flag_ret);
+		else if (!ft_strcmp(argv[i], "-n") || !ft_strcmp(argv[i], "-number"))
+		{
+			if (check_flag_n(argv, &i, vm))
+				return (1);
+		}
+		else if (!ft_strcmp(argv[i], "-d") || !ft_strcmp(argv[i], "-dump"))
+		{
+			if (check_flag_d(argv, &i, &vm->dump))
+				return (1);
+		}
+		else if (!ft_strcmp(argv[i], "-i"))
+			vm->use_ui = 1;
+		else if (!ft_strchr(argv[i], '.'))
+			return (invalid_param(argv[i]));
+		else if (invalid_champ(argv[i], vm, 0))
+			return (ft_error(ERROR_CHMP, i, argv[i]));
 	}
 	return (0);
 }
