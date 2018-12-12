@@ -52,6 +52,8 @@ void	exec_pro(t_pro *pro, t_vm *vm)
 		}
 		else
 		{
+			if (vm->op_tab[op_code - 1].carry)
+				pro->carry = 1;
 			pro->op_size = op_size(op_code, oct_code, *vm);
 			goto_next_operation(pro, vm);
 		}
