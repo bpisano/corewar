@@ -13,7 +13,7 @@
 
 #include "vm.h"
 
-void		free_vm(t_vm *vm, int ui)
+void			free_vm(t_vm *vm, int ui)
 {
 	free_pro(vm);
 	free(vm->op_tab);
@@ -28,9 +28,10 @@ void		free_vm(t_vm *vm, int ui)
 static void		change_values_if_needed(t_vm *vm)
 {
 	int		i;
+
 	i = -1;
 	while (++i < vm->nbr_champs)
-	{		
+	{
 		vm->champs[i].cur_live = 0;
 		need_champ_display(vm);
 	}
@@ -99,7 +100,7 @@ int				exec_vm(t_vm *vm)
 	else
 		ft_printf("Winner : %s\n", winner(*vm).name);
 	free_vm(vm, 1);
-	end_ui();
+	endwin();
 	return (1);
 }
 

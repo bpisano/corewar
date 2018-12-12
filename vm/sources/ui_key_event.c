@@ -36,6 +36,22 @@ static void		increment_cycle_sec(t_vm *vm, int increment)
 	ui_update_settings(*vm);
 }
 
+static void		handle_key(char c, t_vm *vm)
+{
+	if (c == ' ' && vm->ui->paused)
+		set_unpause(vm);
+	else if (c == ' ' && !vm->ui->paused)
+		set_pause(vm);
+	else if (c == 'e')
+		increment_cycle_sec(vm, 1);
+	else if (c == 'w')
+		increment_cycle_sec(vm, -1);
+	else if (c == 'r')
+		increment_cycle_sec(vm, 10);
+	else if (c == 'q')
+		increment_cycle_sec(vm, -10);
+}
+
 void			wait_key_event(t_vm *vm)
 {
 	char	c;
@@ -50,19 +66,8 @@ void			wait_key_event(t_vm *vm)
 			continue ;
 		else if (!vm->ui->paused && c < 0)
 			break ;
-		else if (c == ' ' && vm->ui->paused)
-			set_unpause(vm);
-		else if (c == ' ' && !vm->ui->paused)
-			set_pause(vm);
-		else if (c == 'e')
-			increment_cycle_sec(vm, 1);
-		else if (c == 'w')
-			increment_cycle_sec(vm, -1);
-		else if (c == 'r')
-			increment_cycle_sec(vm, 10);
-		else if (c == 'q')
-			increment_cycle_sec(vm, -10);
 		else if (c == 's')
 			break ;
+		handle_key(c, vm);
 	}
 }

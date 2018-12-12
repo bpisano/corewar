@@ -26,10 +26,10 @@ static void		set_reg_coord(t_vm vm, int reg_pos, int *x, int *y)
 
 void			ui_draw_reg(t_vm *vm, int color, int reg_pos, int inverted)
 {
-	WINDOW	*reg_win;
 	int		x;
 	int		y;
 
+	WINDOW * reg_win;
 	if (!vm->use_ui)
 		return ;
 	reg_win = vm->ui->reg_win->win;

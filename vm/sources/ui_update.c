@@ -38,14 +38,17 @@ void	ui_update_reg(t_vm *vm, t_pro pro, int reg_pos)
 
 void	ui_update_info(t_vm vm)
 {
-	ui_print_right_center(vm.ui->info_win, INFO_LINE + 2, "%d", vm.cycles_total);
+	ui_print_right_center(vm.ui->info_win, INFO_LINE + 2, "%d",
+							vm.cycles_total);
 	ui_print_right_center(vm.ui->info_win, INFO_LINE + 4, "         ");
-	ui_print_right_center(vm.ui->info_win, INFO_LINE + 4, "%d", vm.cycle_to_die);
+	ui_print_right_center(vm.ui->info_win, INFO_LINE + 4, "%d",
+							vm.cycle_to_die);
 	ui_print_right_center(vm.ui->info_win, INFO_LINE + 5, "%d", CYCLE_DELTA);
 	ui_print_right_center(vm.ui->info_win, INFO_LINE + 6, "%d", NBR_LIVE);
 	ui_print_right_center(vm.ui->info_win, INFO_LINE + 7, "%d", MAX_CHECKS);
 	ui_print_right_center(vm.ui->info_win, INFO_LINE + 9, "         ");
-	ui_print_right_center(vm.ui->info_win, INFO_LINE + 9, "%d", vm.nbr_pro_alive);
+	ui_print_right_center(vm.ui->info_win, INFO_LINE + 9, "%d",
+							vm.nbr_pro_alive);
 }
 
 void	ui_update_champs(t_vm vm)
@@ -58,13 +61,17 @@ void	ui_update_champs(t_vm vm)
 	{
 		offset = i * 5 + CHAMPS_LINE;
 		wattron(vm.ui->info_win->win, COLOR_PAIR(vm.champs[i].color));
-		ui_print_right_center(vm.ui->info_win, offset + 2, "%s", vm.champs[i].name);
+		ui_print_right_center(vm.ui->info_win, offset + 2, "%s",
+								vm.champs[i].name);
 		wattroff(vm.ui->info_win->win, COLOR_PAIR(vm.champs[i].color));
-		ui_print_right_center(vm.ui->info_win, offset + 3, "%d", vm.champs[i].player);
+		ui_print_right_center(vm.ui->info_win, offset + 3, "%d",
+								vm.champs[i].player);
 		ui_print_right_center(vm.ui->info_win, offset + 4, "         ");
 		ui_print_right_center(vm.ui->info_win, offset + 5, "         ");
-		ui_print_right_center(vm.ui->info_win, offset + 4, "%d", vm.champs[i].cur_live);
-		ui_print_right_center(vm.ui->info_win, offset + 5, "%d", vm.champs[i].last_live);
+		ui_print_right_center(vm.ui->info_win, offset + 4, "%d",
+								vm.champs[i].cur_live);
+		ui_print_right_center(vm.ui->info_win, offset + 5, "%d",
+								vm.champs[i].last_live);
 	}
 }
 
@@ -91,6 +98,7 @@ void	ui_update_settings(t_vm vm)
 	if (!vm.use_ui)
 		return ;
 	ui_print_right_center(vm.ui->info_win, SETTINGS_LINE + 2, "         ");
-	ui_print_right_center(vm.ui->info_win, SETTINGS_LINE + 2, "%d", vm.ui->cycle_sec);
+	ui_print_right_center(vm.ui->info_win, SETTINGS_LINE + 2, "%d",
+							vm.ui->cycle_sec);
 	wrefresh(vm.ui->info_win->win);
 }

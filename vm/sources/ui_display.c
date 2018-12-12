@@ -13,7 +13,7 @@
 
 #include "vm.h"
 
-void			ui_display_pro(t_vm *vm)
+void	ui_display_pro(t_vm *vm)
 {
 	int		i;
 
@@ -33,12 +33,12 @@ void			ui_display_pro(t_vm *vm)
 	wrefresh(vm->ui->reg_win->win);
 }
 
-void			ui_display_reg(t_vm *vm)
+void	ui_display_reg(t_vm *vm)
 {
-	WINDOW	*reg_win;
 	int		i;
 	int		j;
 
+	WINDOW * reg_win;
 	reg_win = vm->ui->reg_win->win;
 	wmove(reg_win, 1, 1);
 	i = -1;
@@ -54,7 +54,7 @@ void			ui_display_reg(t_vm *vm)
 	wrefresh(vm->ui->reg_win->win);
 }
 
-void			ui_display_infos(t_vm vm)
+void	ui_display_infos(t_vm vm)
 {
 	ui_print_title(vm.ui->info_win, INFO_LINE, "INFOS");
 	wattron(vm.ui->info_win->win, COLOR_PAIR(1));

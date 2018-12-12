@@ -30,7 +30,8 @@ int				num_at_reg(t_vm vm, int pos, size_t size)
 	return (n);
 }
 
-void			set_num_at_reg(t_vm *vm, t_pro pro, int reg_pos, unsigned int reg)
+void			set_num_at_reg(t_vm *vm, t_pro pro, int reg_pos,
+								unsigned int reg)
 {
 	int		i;
 

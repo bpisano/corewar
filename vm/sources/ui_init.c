@@ -108,8 +108,3 @@ int				init_ui(t_vm *vm)
 	ui_display_champs(*vm);
 	return (1);
 }
-
-void			end_ui(void)
-{
-	endwin();
-}
