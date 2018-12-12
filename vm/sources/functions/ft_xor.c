@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   ft_xor.c                                         .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: bpisano <bpisano@student.le-101.fr>        +:+   +:    +:    +:+     */
+/*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/12/12 22:56:52 by bpisano      #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/12 22:57:01 by bpisano     ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/12 23:38:34 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -34,4 +34,5 @@ void	ft_xor(t_pro *pro, t_vm *vm)
 	pro->carry = 0;
 	if (!pro->reg[p[2]])
 		pro->carry = 1;
+	goto_next_operation(pro, vm);
 }
