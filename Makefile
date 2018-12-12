@@ -34,6 +34,7 @@ SRC_COMP = compiler/sources/main.c					\
 		   compiler/sources/fnct.c					\
 		   compiler/sources/handle_op.c				\
 		   compiler/sources/initialisation.c		\
+		   compiler/sources/param_bin.c				\
 
 SRC_VM = vm/sources/main.c							\
 		 vm/sources/checker.c						\

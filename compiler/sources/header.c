@@ -51,7 +51,7 @@ static char		*header_type(char *str, char *type)
 	return (str1);
 }
 
-static int		handle_error(char **name, char **com)
+static char		handle_error(char **name, char **com)
 {
 	int		error;
 

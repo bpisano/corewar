@@ -13,7 +13,7 @@
 
 #include "compiler.h"
 
-static int		add_line(char ***file_lines, char *line)
+static char		add_line(char ***file_lines, char *line)
 {
 	int		i;
 
@@ -27,7 +27,7 @@ static int		add_line(char ***file_lines, char *line)
 	return (1);
 }
 
-int				is_comment(char *str)
+char			is_comment(char *str)
 {
 	int		i;
 

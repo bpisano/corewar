@@ -29,7 +29,7 @@ static int	match_pattern(char *str)
 	return (str[i] == 0);
 }
 
-int			have_only_label(char *line, int *i)
+char		have_only_label(char *line, int *i)
 {
 	if (str_start_by(line, NAME_CMD_STRING)
 		|| str_start_by(line, COMMENT_CMD_STRING))
@@ -44,7 +44,7 @@ int			have_only_label(char *line, int *i)
 	return (0);
 }
 
-int			have_separator_at_last(char *line)
+char		have_separator_at_last(char *line)
 {
 	char	*trim;
 	int		last_char;
@@ -61,7 +61,7 @@ int			have_separator_at_last(char *line)
 	return (0);
 }
 
-int			arguments_are_correct_formatted(char *line)
+char		arguments_are_correct_formatted(char *line)
 {
 	int		i;
 	char	**split;
@@ -84,7 +84,7 @@ int			arguments_are_correct_formatted(char *line)
 	return (1);
 }
 
-int			verify_syntax(char **line)
+char		verify_syntax(char **line)
 {
 	int		i;
 	char	**split;

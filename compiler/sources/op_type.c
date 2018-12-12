@@ -17,7 +17,7 @@ static char		is_reg(char *op)
 {
 	if (op[0] != 'r' || ft_strlen(op) < 2)
 		return (0);
-	if (!ft_str_is_numeric(op + 1) || op[1] == '0')
+	if (!ft_str_is_numeric(op + 1))
 		return (0);
 	return (ft_atoi(op + 1) > 0 && ft_atoi(op + 1) <= REG_NUMBER);
 }
@@ -59,7 +59,7 @@ static char		is_ind_lab(char *op)
 	return (1);
 }
 
-int				op_type(char *op)
+char			op_type(char *op)
 {
 	if (is_reg(op))
 		return (T_REG);
@@ -69,16 +69,5 @@ int				op_type(char *op)
 		return (T_IND);
 	else if (is_lab(op))
 		return (T_DIR);
-	return (0);
-}
-
-int				param_bin(int op_code)
-{
-	if (op_code == T_REG)
-		return (REG_CODE);
-	else if (op_code == T_DIR || op_code == T_LAB)
-		return (DIR_CODE);
-	else if (op_code == T_IND)
-		return (IND_CODE);
 	return (0);
 }

@@ -13,7 +13,7 @@
 
 #include "compiler.h"
 
-static int		write_to_files(t_head head, int ***bin, char *file_name)
+static char		write_to_files(t_head head, int ***bin, char *file_name)
 {
 	char	*comp_name;
 	int		fd;
@@ -32,7 +32,7 @@ static int		write_to_files(t_head head, int ***bin, char *file_name)
 	return (1);
 }
 
-static int		compile_lines(char **file_lines, int ***bin, char *name)
+static char		compile_lines(char **file_lines, int ***bin, char *name)
 {
 	int		prog_start;
 	int		comp_error;
@@ -52,10 +52,9 @@ static int		compile_lines(char **file_lines, int ***bin, char *name)
 	return (write_to_files(head, bin, name));
 }
 
-static int		verify_file(char *file_name, char ***file_lines, int ***bin)
+static char		verify_file(char *file_name, char ***file_lines,
+int ***bin, int fd)
 {
-	int		fd;
-
 	if ((fd = ft_strlen(file_name)) < 2 || ft_strcmp(file_name + fd - 2, ".s"))
 	{
 		display_error(3);
@@ -95,7 +94,7 @@ int				main(int argc, char **argv)
 	i = 0;
 	while (++i < argc)
 	{
-		if (!verify_file(argv[i], &file_lines, &bin))
+		if (!verify_file(argv[i], &file_lines, &bin, i))
 		{
 			free_split(file_lines);
 			return (0);

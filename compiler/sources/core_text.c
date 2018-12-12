@@ -13,7 +13,7 @@
 
 #include "compiler.h"
 
-int		is_op(char *str, t_op *op_tab)
+char	is_op(char *str, t_op *op_tab)
 {
 	int		i;
 

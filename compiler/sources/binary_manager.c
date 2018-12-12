@@ -23,7 +23,7 @@ int		bin_len(int **bin)
 	return (i);
 }
 
-int		add_bin_line(int ***bin)
+char	add_bin_line(int ***bin)
 {
 	int		len;
 	int		*line;
@@ -40,7 +40,7 @@ int		add_bin_line(int ***bin)
 	return (1);
 }
 
-int		add_bin_int(int ***bin, int n, size_t oct)
+char	add_bin_int(int ***bin, int n, size_t oct)
 {
 	int		col;
 	int		old_size;
@@ -72,4 +72,3 @@ void	free_bin(int ***bin)
 		free((*bin)[i]);
 	free(*bin);
 }
-

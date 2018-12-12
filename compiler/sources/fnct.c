@@ -13,7 +13,7 @@
 
 #include "compiler.h"
 
-int		ft_str_is_number(char *str)
+char	ft_str_is_number(char *str)
 {
 	if (*str == '+' || *str == '-')
 		str++;
@@ -22,7 +22,7 @@ int		ft_str_is_number(char *str)
 	return (!(*str));
 }
 
-int		ft_somestrchr(char *str1, char *str2)
+char	ft_somestrchr(char *str1, char *str2)
 {
 	int		i;
 
@@ -61,7 +61,7 @@ int		fill_bin_lab(t_label **label, t_lab *lab, int **bin)
 	return (ft_printf(ERROR_LABEL, lab->name));
 }
 
-int		add_lab_list(char *name, int pos, int **bin, t_label ***label)
+char	add_lab_list(char *name, int pos, int **bin, t_label ***label)
 {
 	int		i;
 
@@ -79,7 +79,7 @@ int		add_lab_list(char *name, int pos, int **bin, t_label ***label)
 	return (1);
 }
 
-int		is_label(char *str)
+char	is_label(char *str)
 {
 	int		i;
 

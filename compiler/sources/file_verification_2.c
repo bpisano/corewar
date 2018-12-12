@@ -13,12 +13,12 @@
 
 #include "compiler.h"
 
-int		corewar_alpha(char c)
+char	corewar_alpha(char c)
 {
 	return (c == LABEL_CHAR || c == DIRECT_CHAR || ft_strchr(LABEL_CHARS, c));
 }
 
-int		str_start_by(char *str, char *start)
+char	str_start_by(char *str, char *start)
 {
 	int		i;
 
@@ -44,7 +44,7 @@ int		label_offset(char *str)
 	return (0);
 }
 
-int		have_two_separator(char *line)
+char	have_two_separator(char *line)
 {
 	int		i;
 

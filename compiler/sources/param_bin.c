@@ -1,30 +1,25 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   initialisation.c                                 .::    .:/ .      .::   */
+/*   param_bin.c                                      .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2018/10/12 11:48:00 by anamsell     #+#   ##    ##    #+#       */
-/*   Updated: 2018/10/12 14:40:58 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Created: 2018/10/01 12:37:51 by bpisano      #+#   ##    ##    #+#       */
+/*   Updated: 2018/11/10 09:54:16 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include "compiler.h"
 
-t_op	*initialisation(t_lab ***lab, t_pos *data, char **file_lines)
+char		param_bin(int op_code)
 {
-	if (!(*lab = malloc(sizeof(t_lab *))))
-		return (0);
-	**lab = NULL;
-	data->decal = 0;
-	data->i = -1;
-	if (!(data->file = new_cmd_lines()))
-		return (0);
-	while (file_lines[++data->i])
-		if (!add_cmd_line(&(data->file), file_lines[data->i]))
-			return (0);
-	data->i = -1;
-	return (struct_tab());
+	if (op_code == T_REG)
+		return (REG_CODE);
+	else if (op_code == T_DIR || op_code == T_LAB)
+		return (DIR_CODE);
+	else if (op_code == T_IND)
+		return (IND_CODE);
+	return (0);
 }

@@ -53,7 +53,7 @@ void	add_arg_bin(int ***bin, char *arg, int i, int oct)
 		add_bin_int(bin, ft_atoi(arg), IND_SIZE);
 }
 
-int		handle_op3(t_op op, int tot_line, int k, int ***bin)
+char	handle_op3(t_op op, int tot_line, int k, int ***bin)
 {
 	while (k++ < 4)
 		tot_line = tot_line << 2;
@@ -81,7 +81,8 @@ int		handle_op2(t_pos d, t_op op, int ***bin, t_lab ***lab)
 		if (!(i = op_type(d.file[d.i][d.j]) & op.arg[k]))
 			return (ft_printf(ERROR_OP_TYPE, PARAM));
 		add_arg_bin(bin, d.file[d.i][d.j], i, op.dir_size);
-		if (d.file[d.i][d.j][1] == LABEL_CHAR || d.file[d.i][d.j][0] == LABEL_CHAR)
+		if (d.file[d.i][d.j][1] == LABEL_CHAR ||
+		d.file[d.i][d.j][0] == LABEL_CHAR)
 			if (add_label(d, op.dir_size, lab, bin[0][d.i +
 			d.decal][0]))
 				return (ft_printf(ERROR_MALL));
