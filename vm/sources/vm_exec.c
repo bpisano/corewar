@@ -28,7 +28,6 @@ void		free_vm(t_vm *vm, int ui)
 static void		change_values_if_needed(t_vm *vm)
 {
 	int		i;
-
 	i = -1;
 	while (++i < vm->nbr_champs)
 	{		
@@ -39,7 +38,6 @@ static void		change_values_if_needed(t_vm *vm)
 	{
 		vm->max_checks = MAX_CHECKS;
 		vm->cycle_to_die = vm->cycle_to_die - CYCLE_DELTA;
-		vm->total_live = 0;
 	}
 	else if (vm->max_checks > 0)
 		vm->max_checks -= 1;
@@ -48,6 +46,7 @@ static void		change_values_if_needed(t_vm *vm)
 		vm->cycle_to_die -= CYCLE_DELTA;
 		vm->max_checks = MAX_CHECKS;
 	}
+	vm->total_live = 0;
 }
 
 static void		run_cycles(t_vm *vm)

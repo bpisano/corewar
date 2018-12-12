@@ -24,7 +24,7 @@ int				num_at_reg(t_vm vm, int pos, size_t size)
 	while (size-- > 0)
 	{
 		n = n << 8;
-		n |= vm.reg[pos];
+		n |= vm.reg[pos % MEM_SIZE];
 		pos++;
 	}
 	return (n);
