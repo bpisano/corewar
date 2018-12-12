@@ -62,7 +62,7 @@ void	ft_st(t_pro *pro, t_vm *vm)
 	if (param_type(vm->reg[(pro->pc + 1) % MEM_SIZE], 1) == REG_CODE)
 		pro->reg[p[1]] = a;
 	else
-		set_num_at_reg(vm, *pro, (pro->pc + ((short)p[1] % IDX_MOD)), a);
+		set_num_at_reg(vm, *pro, pro->pc + ((short)p[1] % IDX_MOD), a);
 	goto_next_operation(pro, vm);
 }
 
@@ -265,10 +265,10 @@ void	ft_lldi(t_pro *pro, t_vm *vm)
 	b = (short)p[1];
 	if (param_type(vm->reg[(pro->pc + 1) % MEM_SIZE], 1) == REG_CODE)
 		b = pro->reg[p[1]];
+	pro->reg[p[2]] = num_at_reg(*vm, pro->pc + (a + b), 4);
 	pro->carry = 0;
-	if (!(a + b))
+	if (!pro->reg[p[2]])
 		pro->carry = 1;
-	pro->reg[p[2]] = num_at_reg(*vm, pro->pc + ((a + b)), 4);
 	goto_next_operation(pro, vm);
 }
 
