@@ -62,7 +62,7 @@ static void		run_cycles(t_vm *vm)
 		&& !have_active_pro(vm)))
 			print_vm(*vm);
 		ui_update_if_needed(vm);
-		getch();
+		wait_key_event(vm);
 		(vm->cycles_total)++;
 		j = vm->nbr_pro;
 		while (--j >= 0)

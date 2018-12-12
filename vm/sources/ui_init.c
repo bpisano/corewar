@@ -40,6 +40,7 @@ static t_ui		*new_ui(void)
 	ft_memset(new->colors, 1, MEM_SIZE);
 	new->need_pro_disp = 0;
 	new->need_cha_disp = 0;
+	new->paused = 1;
 	if (!(new->reg_win = new_win(0, 1, (MEM_SIZE / 64 * 3 - 1) + 2, 64 + 2)))
 	{
 		ft_memdel((void **)&new);
@@ -92,11 +93,12 @@ int				init_ui(t_vm *vm)
 	initscr();
 	curs_set(0);
 	noecho();
+	cbreak();
 	init_colors(vm);
 	refresh();
 	if (!(vm->ui = new_ui()))
 		return (0);
-	mvprintw(0, (vm->ui->reg_win->width - 7) / 2, "COREWAR");
+	display_pause_title(*vm);
 	refresh();
 	ui_display_reg(vm);
 	ui_display_pro(vm);

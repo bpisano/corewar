@@ -58,12 +58,15 @@ typedef struct		s_ui
 {
 	int				width;
 	int				height;
+
 	int				colors[MEM_SIZE];
 	int				bold[MEM_SIZE];
 	char			inverted[MEM_SIZE];
 
 	int				need_pro_disp;
 	int				need_cha_disp;
+
+	char			paused;
 
 	t_win			*reg_win;
 	t_win			*info_win;
@@ -201,6 +204,11 @@ void				ft_aff(t_pro *pro, t_vm *vm);
 
 int					init_ui(t_vm *vm);
 void				end_ui(void);
+
+void				wait_key_event(t_vm *vm);
+void				display_pause_title(t_vm vm);
+void				display_run_title(t_vm vm);
+
 
 void				ui_draw_reg(t_vm *vm, int color, int reg_pos, int inverted);
 void				ui_display_reg(t_vm *vm);
