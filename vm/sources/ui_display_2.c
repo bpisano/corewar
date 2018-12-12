@@ -27,7 +27,7 @@ void			ui_display_pause_title(t_vm vm)
 	clear_title(vm);
 	attron(A_BOLD | A_BLINK);
 	mvprintw(0, (vm.ui->reg_win->width - 27) / 2,
-	"[PAUSED] Press start to run");
+	"[PAUSED] Press space to run");
 	attroff(A_BOLD | A_BLINK);
 }
 
