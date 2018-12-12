@@ -27,7 +27,8 @@ void	ft_live(t_pro *pro, t_vm *vm)
 		if (vm->champs[i].player == champ)
 		{
 			vm->champs[i].cur_live += 1;
-			vm->champs[i].live = vm->cycles_total; 
+			vm->champs[i].live = vm->cycles_total;
+			vm->champs[i].last_live = vm->cycles_total;
 			need_champ_display(vm);
 			break ;
 		}
