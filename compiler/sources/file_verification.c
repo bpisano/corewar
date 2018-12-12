@@ -49,7 +49,8 @@ int			have_separator_at_last(char *line)
 	char	*trim;
 	int		last_char;
 
-	trim = ft_strtrim(line);
+	if (!(trim = ft_strtrim(line)))
+		return (1);
 	last_char = ft_strlen(trim) - 1;
 	if (trim[last_char] == SEPARATOR_CHAR)
 	{
@@ -65,7 +66,8 @@ int			arguments_are_correct_formatted(char *line)
 	int		i;
 	char	**split;
 
-	split = ft_strsplit(line, SEPARATOR_CHAR);
+	if (!(split = ft_strsplit(line, SEPARATOR_CHAR)))
+		return (0);
 	if (ft_tablen(split) == 0)
 	{
 		free_split(split);
