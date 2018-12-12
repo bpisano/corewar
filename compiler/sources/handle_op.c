@@ -18,20 +18,22 @@ char	add_label(t_pos data, int size, t_lab ***lab, int pos)
 	int		i;
 	char	*name;
 
-	name = &data.file[data.i][data.j][2];
+	name = data.file[data.i][data.j];
 	i = -1;
 	while (lab[0][++i])
 		;
 	if (!(lab[0] = realloc(*lab, (i + 2) * sizeof(t_lab *))))
-		return (-1);
+		return (1);
 	if (!(lab[0][i] = malloc(sizeof(t_lab))))
-		return (0);
+		return (1);
 	lab[0][i]->name = name;
 	lab[0][i]->oct = size;
+	if (name[0] == LABEL_CHAR)
+		lab[0][i]->oct = IND_SIZE;
 	lab[0][i]->i = data.i;
 	lab[0][i]->i_for_bin = data.i + data.decal;
 	lab[0][i]->j = data.j;
-	lab[0][i]->pos = pos - size + 1;
+	lab[0][i]->pos = pos - lab[0][i]->oct + 1;
 	lab[0][i + 1] = 0;
 	return (0);
 }
@@ -77,12 +79,9 @@ int		handle_op2(t_pos d, t_op op, int ***bin, t_lab ***lab)
 	while (++k < op.nbr_arg && (++d.j > -1))
 	{
 		if (!(i = op_type(d.file[d.i][d.j]) & op.arg[k]))
-		{
-			printf("%d, %d\n", op_type(d.file[d.i][d.j]), op.arg[k]);
 			return (ft_printf(ERROR_OP_TYPE, PARAM));
-		}
 		add_arg_bin(bin, d.file[d.i][d.j], i, op.dir_size);
-		if (d.file[d.i][d.j][1] == LABEL_CHAR)
+		if (d.file[d.i][d.j][1] == LABEL_CHAR || d.file[d.i][d.j][0] == LABEL_CHAR)
 			if (add_label(d, op.dir_size, lab, bin[0][d.i +
 			d.decal][0]))
 				return (ft_printf(ERROR_MALL));

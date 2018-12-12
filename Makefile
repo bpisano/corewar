@@ -81,11 +81,11 @@ $(LIB):
 	@make -C libft
 
 $(ASM): $(LIB) $(OBJ_GLOB) $(OBJ_ASM)
-	@gcc -o $(ASM) $(OBJ_GLOB) $(OBJ_ASM) libft/$(LIB)
+	@gcc $(FLAGS) -o $(ASM) $(OBJ_GLOB) $(OBJ_ASM) libft/$(LIB)
 	@echo "$(BLUE)$(ASM)\033[500D\033[42C$(GREEN)[DONE]$(END)"
 
 $(VM): $(OBJ_GLOB) $(OBJ_VM)
-	@gcc -o $(VM) $(OBJ_GLOB) $(OBJ_VM) libft/$(LIB) -lncurses
+	@gcc $(FLAGS) -o $(VM) $(OBJ_GLOB) $(OBJ_VM) libft/$(LIB) -lncurses
 	@echo "$(BLUE)$(VM)\033[500D\033[42C$(GREEN)[DONE]$(END)"
 
 %.o : %.c

@@ -73,17 +73,3 @@ void	free_bin(int ***bin)
 	free(*bin);
 }
 
-void	print_bin(int **bin)
-{
-	int		y;
-	int		x;
-
-	y = -1;
-	while (bin[++y])
-	{
-		x = 0;
-		while (++x < bin[y][0] + 1)
-			printf("%0#4x ", bin[y][x]);
-		printf("\n");
-	}
-}

@@ -39,7 +39,7 @@ int		check_flag_d(char **argv, int *i, int *dump)
 	if (!ft_str_is_number(argv[*i + 1]))
 		return (ft_printf(ERROR_D1, *i + 1));
 	if (*dump != -1)
-		return (printf(ERROR_D2));
+		return (ft_printf(ERROR_D2));
 	*dump = ft_atoi(argv[*i + 1]);
 	(*i)++;
 	return (0);

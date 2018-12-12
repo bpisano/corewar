@@ -44,12 +44,20 @@ int		fill_bin_lab(t_label **label, t_lab *lab, int **bin)
 		tot += bin[i][0];
 	i = -1;
 	while (label[++i])
-		if (!ft_strcmp(label[i]->name, lab->name))
+	{
+		if (!ft_strcmp(label[i]->name, lab->name + 2))
 		{
 			add_bin_pos(&bin[lab->i_for_bin][lab->pos], label[i]->pos - tot,
 			lab->oct);
 			return (0);
 		}
+		else if (!ft_strcmp(label[i]->name, lab->name + 1))
+		{
+			add_bin_pos(&bin[lab->i_for_bin][lab->pos], label[i]->pos - tot,
+			2);
+			return (0);
+		}
+	}
 	return (ft_printf(ERROR_LABEL, lab->name));
 }
 

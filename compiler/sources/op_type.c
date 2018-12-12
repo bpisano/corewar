@@ -13,7 +13,7 @@
 
 #include "compiler.h"
 
-static int		is_reg(char *op)
+static char		is_reg(char *op)
 {
 	if (op[0] != 'r' || ft_strlen(op) < 2)
 		return (0);
@@ -22,7 +22,7 @@ static int		is_reg(char *op)
 	return (ft_atoi(op + 1) > 0 && ft_atoi(op + 1) <= REG_NUMBER);
 }
 
-static int		is_lab(char *op)
+static char		is_lab(char *op)
 {
 	if (ft_strlen(op) < 3)
 		return (0);
@@ -33,7 +33,7 @@ static int		is_lab(char *op)
 	return (1);
 }
 
-static int		is_dir(char *op)
+static char		is_dir(char *op)
 {
 	int		i;
 
@@ -48,13 +48,24 @@ static int		is_dir(char *op)
 	return (op[0] == DIRECT_CHAR && ft_str_is_numeric(op + i));
 }
 
+static char		is_ind_lab(char *op)
+{
+	if (ft_strlen(op) < 2)
+		return (0);
+	if (op[0] != LABEL_CHAR)
+		return (0);
+	if (!ft_somestrchr(op + 1, LABEL_CHARS))
+		return (0);
+	return (1);
+}
+
 int				op_type(char *op)
 {
 	if (is_reg(op))
 		return (T_REG);
 	else if (is_dir(op))
 		return (T_DIR);
-	else if (ft_str_is_number(op))
+	else if (ft_str_is_number(op) || is_ind_lab(op))
 		return (T_IND);
 	else if (is_lab(op))
 		return (T_DIR);

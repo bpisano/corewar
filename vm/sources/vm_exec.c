@@ -95,7 +95,7 @@ int				exec_vm(t_vm *vm)
 			break ;
 		change_values_if_needed(vm);
 	}
-	printf("Winner : %s\n", winner(*vm).name);
+	ft_printf("Winner : %s\n", winner(*vm).name);
 	free_vm(vm, 1);
 	end_ui();
 	return (1);
@@ -110,14 +110,14 @@ void			print_vm(t_vm vm)
 	while (++i < MEM_SIZE)
 	{
 		if (i % 64 == 0 && i > 0)
-			printf("\n");
+			ft_printf("\n");
 		if (i % 64 == 0 && i == 0)
-			printf("0x0000 : ");
+			ft_printf("0x0000 : ");
 		else if (i % 64 == 0)
-			printf("%#06x : ", i);
-		printf("%02x ", vm.reg[i]);
+			ft_printf("%#06x : ", i);
+		ft_printf("%02x ", vm.reg[i]);
 	}
-	printf("\n");
+	ft_printf("\n");
 	free_vm(&vm, 1);
 	exit(0);
 }
