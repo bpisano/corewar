@@ -30,7 +30,7 @@ void			ui_draw_reg(t_vm *vm, int color, int reg_pos, int inverted)
 	int		y;
 
 	WINDOW * reg_win;
-	if (!vm->use_ui)
+	if (!vm->use_ui && reg_pos > 0)
 		return ;
 	reg_win = vm->ui->reg_win->win;
 	set_reg_coord(*vm, reg_pos, &x, &y);
@@ -48,15 +48,17 @@ void			ui_die_pro(t_vm *vm, t_pro *pro)
 {
 	if (!vm->use_ui)
 		return ;
-	if (vm->ui->inverted[pro->pc % MEM_SIZE] > 1)
+	if (vm->ui->inverted[(pro->pc - 1) % MEM_SIZE] > 1)
 	{
-		vm->ui->inverted[pro->pc % MEM_SIZE] -= 1;
-		ui_draw_reg(vm, vm->ui->colors[pro->pc], pro->pc, 1);
+		vm->ui->inverted[(pro->pc - 1) % MEM_SIZE] -= 1;
+		ui_draw_reg(vm, vm->ui->colors[(pro->pc - 1) % MEM_SIZE],
+					pro->pc - 1, 1);
 	}
 	else
 	{
-		vm->ui->inverted[pro->pc % MEM_SIZE] = 0;
-		ui_draw_reg(vm, vm->ui->colors[pro->pc], pro->pc, 0);
+		vm->ui->inverted[(pro->pc - 1) % MEM_SIZE] = 0;
+		ui_draw_reg(vm, vm->ui->colors[(pro->pc - 1) % MEM_SIZE],
+					pro->pc - 1, 0);
 	}
 }
 
