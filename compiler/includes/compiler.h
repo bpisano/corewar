@@ -108,7 +108,7 @@ char				corewar_alpha(char c);
 char				str_start_by(char *str, char *start);
 int					label_offset(char *str);
 char				have_two_separator(char *line);
-char				verify_syntax(char **line);
+char				verify_syntax(char **line, int l);
 
 /*
  ** WRITE

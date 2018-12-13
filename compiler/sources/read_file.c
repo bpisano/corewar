@@ -50,12 +50,13 @@ char			**read_file(int fd)
 		return (0);
 	while (get_next_line(fd, &line) > 0)
 	{
+		++i;
 		if (ft_str_is_empty(line) || is_comment(line))
 		{
 			free(line);
 			continue ;
 		}
-		if (!verify_syntax(&line))
+		if (!verify_syntax(&line, i))
 		{
 			free(line);
 			free_split(file_lines);
