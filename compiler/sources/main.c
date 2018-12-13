@@ -97,13 +97,13 @@ int				main(int argc, char **argv)
 		if (!verify_file(argv[i], &file_lines, &bin, i))
 		{
 			free_split(file_lines);
-			return (0);
+			continue ;
 		}
 		if (!compile_lines(file_lines, &bin, argv[i]))
 		{
 			free_bin(&bin);
 			free_split(file_lines);
-			return (0);
+			continue ;
 		}
 		free_bin(&bin);
 		free_split(file_lines);
