@@ -101,7 +101,7 @@ char		verify_syntax(char **line, int l)
 		return (ft_error("ERROR line %d : Separator at end of line\n~~~ %s ~~~\n",
 				l, *line) & 0);
 	if (!arguments_are_correct_formatted(*line + i))
-		return (ft_error("ERROR line %d : Argument are badly formated\n~~~%s~~~\n",
+		return (ft_error("ERROR line %d : Argument are badly formated\n~~~ %s ~~~\n",
 				l, *line) & 0);
 	str_replace(line, SEPARATOR_CHAR, ' ');
 	str_replace(line, '\t', ' ');
