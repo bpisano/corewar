@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/22 18:23:20 by bpisano      #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/21 17:20:04 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/13 21:14:54 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -25,8 +25,6 @@ int		incorrect_param(t_pro pro, t_vm vm, int op_code)
 	if (!vm.op_tab[op_code - 1].codage_octal)
 		return (0);
 	oct_code = vm.reg[(pro.pc + 1) % MEM_SIZE];
-	if (oct_code & 0x03)
-		return (1);
 	params(pro, vm, param);
 	while (++i < vm.op_tab[op_code - 1].nbr_arg)
 	{
