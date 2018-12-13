@@ -69,7 +69,6 @@ int ***bin, int fd)
 	}
 	if (!(*file_lines = read_file(fd)))
 	{
-		display_error(5);
 		close(fd);
 		return (0);
 	}

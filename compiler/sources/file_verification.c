@@ -90,15 +90,15 @@ char		verify_syntax(char **line)
 	char	**split;
 
 	if (!(*line = no_comment(*line)))
-		return (0);
+		return (ft_error("ERROR : Malloc errror\n") & 0);
 	if (have_only_label(*line, &i))
 		return (1);
 	if (have_two_separator(*line))
-		return (0);
+		return (ft_error("ERROR : Separator error\n") & 0);
 	if (have_separator_at_last(*line + i))
-		return (0);
+		return (ft_error("ERROR : Separator at end of line\n") & 0);
 	if (!arguments_are_correct_formatted(*line + i))
-		return (0);
+		return (ft_error("ERROR : Argument are badly formated\n") & 0);
 	str_replace(line, SEPARATOR_CHAR, ' ');
 	str_replace(line, '\t', ' ');
 	return (1);
