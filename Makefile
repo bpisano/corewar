@@ -3,10 +3,10 @@
 #                                                               /              #
 #    Makefile                                         .::    .:/ .      .::    #
 #                                                  +:+:+   +:    +:  +:+:+     #
-#    By: bpisano <bpisano@student.le-101.fr>        +:+   +:    +:    +:+      #
+#    By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+      #
 #                                                  #+#   #+    #+    #+#       #
 #    Created: 2018/03/15 18:40:16 by bpisano      #+#   ##    ##    #+#        #
-#    Updated: 2018/12/12 23:15:01 by bpisano     ###    #+. /#+    ###.fr      #
+#    Updated: 2018/12/13 18:42:34 by anamsell    ###    #+. /#+    ###.fr      #
 #                                                          /                   #
 #                                                         /                    #
 # **************************************************************************** #
@@ -107,13 +107,13 @@ $(VM): $(OBJ_GLOB) $(OBJ_VM)
 	@gcc $(FLAGS) -o $(VM) $(OBJ_GLOB) $(OBJ_VM) libft/$(LIB) -lncurses
 	@echo "$(BLUE)$(VM)\033[500D\033[42C$(GREEN)[DONE]$(END)"
 
-%.o : %.c
+%.o : %.c global/op.h global/corewar.h vm/includes/vm.h compiler/includes/compiler.h
 	@echo "$(YELLOW)Compiling$(END) $(notdir $@)\033[500D\033[42C$(RED)[KO]$(END)"
-	@gcc $(HEADS) -o $@ -c $?
+	@gcc $(HEADS) -o $@ -c $<
 	@echo "\033[1A\033[500D\033[42C$(GREEN)[DONE]$(END)"
 
 clean:
-	@rm -f $(OBJ_ASM) $(OBJ_VM)
+	@rm -f $(OBJ_ASM) $(OBJ_VM) $(OBJ_GLOB)
 	@make clean -C libft
 
 fclean: clean
