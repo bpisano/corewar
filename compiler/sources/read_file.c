@@ -45,7 +45,7 @@ char			**read_file(int fd)
 	char	**file_lines;
 	char	*line;
 
-	i = -1;
+	i = 0;
 	if (!(file_lines = (char **)ft_memalloc(sizeof(char *))))
 		return (0);
 	while (get_next_line(fd, &line) > 0)
