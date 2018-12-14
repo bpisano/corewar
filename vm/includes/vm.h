@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   vm.h                                             .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: bpisano <bpisano@student.le-101.fr>        +:+   +:    +:    +:+     */
+/*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/18 15:37:11 by anamsell     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/12 23:25:00 by bpisano     ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/14 19:41:36 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -21,6 +21,7 @@
 
 # define ERROR_N1	"ERROR : Number needed after -n flag\n"
 # define ERROR_D1	"ERROR : Number needed after -d flag\n"
+# define ERROR_N2	"ERROR : Champs needed after -n flag\n"
 # define ERROR_D2	"ERROR : Cannot use multiple -d flag\n"
 # define ERROR_OPEN	"ERROR : \"%s\" cannot be opened or does not exist\n"
 # define ERROR_NUMB	"ERROR : 1 to %d champions needed\n"

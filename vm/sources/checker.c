@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/20 15:50:34 by anamsell     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/08 22:11:07 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/14 19:40:51 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -28,6 +28,8 @@ int		check_flag_n(char **argv, int *i, t_vm *vm)
 {
 	if (!ft_str_is_number(argv[*i + 1]))
 		return (ft_error(ERROR_N1));
+	if (!argv[*i + 2])
+		return (ft_error(ERROR_N2));
 	if (invalid_champ(argv[*i + 2], vm, argv[*i + 1]))
 		return (ft_error(ERROR_CHMP, *i + 2, argv[*i + 2]));
 	*i += 2;
