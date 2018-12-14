@@ -99,7 +99,7 @@ int				exec_vm(t_vm *vm)
 	if (vm->use_ui)
 		ui_display_winner(*vm);
 	else
-		ft_printf("Winner : %s\n", winner(*vm).name);
+		ft_printf(WIN_TXT, winner(*vm).player, winner(*vm).name);
 	free_vm(vm, 1);
 	endwin();
 	return (1);

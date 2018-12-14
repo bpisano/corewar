@@ -42,6 +42,9 @@
 # define ERROR_NBR	"ERROR : Player number %d is already used\n"
 # define ERROR_UIAF "ERROR : Cannot use both -i and -a\n"
 
+# define LIVE_TXT	"un processus dit que le joueur %d(%s) est en vie\n"
+# define WIN_TXT	"le joueur %d(%s) a gagne\n"
+
 # define NEW_OP 256
 
 # define COLOR_GRAY 8
