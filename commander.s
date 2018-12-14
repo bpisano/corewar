@@ -2,18 +2,16 @@
 .comment "Space commander coming from a galaxy far far away..."
 
 init:
-	ld		%0, r2
-
+	st		r1, 8
+	ld      %0, r1
 	sti		r1, %:wall, %1
 	sti		r1, %:farmer, %1
 
-	fork	%:init_wall
-
-farmer:	
+	fork	%:farmer
 	live	%1
-
-	ld		%0, r2
-	zjmp	%:farmer
+	fork	%:farmer_live
+	live	%1
+	fork	%:init
 
 init_wall:
 	ld		%0, r2
@@ -21,7 +19,6 @@ init_wall:
 wall:
 	live	%1
 
-	st		r2, -55
 	st		r2, -64
 	st		r2, -73
 	st		r2, -82
@@ -85,3 +82,35 @@ wall:
 	st		r2, -504
 
 	zjmp	%:wall
+
+farmer:	
+	live	%1
+
+	st		r1, 6
+	live	%1
+	st		r1, 6
+	live	%1
+	st		r1, 6
+	live	%1
+	st		r1, 6
+	live	%1
+
+	ld		%0, r2
+	zjmp	%:farmer
+
+farmer_live:
+	live	%1
+	live	%1
+	live	%1
+	live	%1
+	live	%1
+	live	%1
+	live	%1
+	live	%1
+	live	%1
+	live	%1
+	live	%1
+	live	%1
+
+	ld		%0, r2
+	zjmp	%:farmer_live

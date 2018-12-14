@@ -41,8 +41,11 @@ void	ui_update_info(t_vm vm)
 	ui_print_right_center(vm.ui->info_win, INFO_LINE + 2, "%d",
 							vm.cycles_total);
 	ui_print_right_center(vm.ui->info_win, INFO_LINE + 4, "         ");
-	ui_print_right_center(vm.ui->info_win, INFO_LINE + 4, "%d",
-							vm.cycle_to_die);
+	if (vm.cycle_to_die > 0)
+		ui_print_right_center(vm.ui->info_win, INFO_LINE + 4, "%d",
+								vm.cycle_to_die);
+	else
+		ui_print_right_center(vm.ui->info_win, INFO_LINE + 4, "0");
 	ui_print_right_center(vm.ui->info_win, INFO_LINE + 5, "%d", CYCLE_DELTA);
 	ui_print_right_center(vm.ui->info_win, INFO_LINE + 6, "%d", NBR_LIVE);
 	ui_print_right_center(vm.ui->info_win, INFO_LINE + 7, "%d", MAX_CHECKS);
