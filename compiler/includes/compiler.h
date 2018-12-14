@@ -18,12 +18,16 @@
 # include "corewar.h"
 # include "op.h"
 
-# define ERROR_MALL		"Error of memory allocation\n"
-# define ER_OP			"Error, %s is not an operator\n"
-# define ERROR_OP_LEN	"Error, %d param(s) is/are needed with %s operator\n"
-# define ERROR_OP_TYPE	"Error, %s is not possible as arg no %d of %s\n"
-# define ER_LA			"Error, %s is not correct label \n"
-# define ERROR_LABEL	"Error, %s is used as label but is not declared\n"
+# define ERROR_SEP		"ERROR line %d : Separator error\n~~~ %s ~~~\n"
+# define ERROR_END_SEP	"ERROR line %d : Separator at end of line\n~~~ %s ~~~\n"
+# define ERROR_ARG		"ERROR line %d : Wrong argument format\n~~~ %s ~~~\n"
+
+# define ERROR_MALL		"ERROR : Memory allocation\n"
+# define ER_OP			"ERROR : Invalid operator\n~~~ %s ~~~\n"
+# define ERROR_OP_LEN	"ERROR : %d parameters are needed with %s operator\n"
+# define ERROR_OP_TYPE	"ERROR : %s is not possible as arg no %d of %s\n"
+# define ER_LA			"ERROR : Invalid label\n~~~ %s ~~~~\n"
+# define ERROR_LABEL	"ERROR : Use of undeclared label\n~~~ %s ~~~\n"
 
 # define PARAM		 	d.file[d.i][d.j], k + 1, d.file[d.i][d.j - k - 1]
 
@@ -76,6 +80,7 @@ typedef	struct		s_comp
 */
 
 void				display_error(int error);
+void				compiler_usage(void);
 
 /*
  ** MEMORY

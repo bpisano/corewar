@@ -87,10 +87,10 @@ int				main(int argc, char **argv)
 	char	**file_lines;
 	int		**bin;
 
-	file_lines = 0;
 	if (argc < 2)
-		return (0);
+		compiler_usage();
 	i = 0;
+	file_lines = 0;
 	while (++i < argc)
 	{
 		if (!verify_file(argv[i], &file_lines, &bin, i))

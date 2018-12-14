@@ -35,6 +35,7 @@ SRC_COMP = compiler/sources/main.c					\
 		   compiler/sources/handle_op.c				\
 		   compiler/sources/initialisation.c		\
 		   compiler/sources/param_bin.c				\
+		   compiler/sources/usage.c					\
 
 SRC_VM = vm/sources/main.c							\
 		 vm/sources/checker.c						\
@@ -73,6 +74,7 @@ SRC_VM = vm/sources/main.c							\
 		 vm/sources/functions/ft_xor.c				\
 		 vm/sources/functions/ft_zjmp.c				\
 		 vm/sources/ft_mod.c						\
+		 vm/sources/usage.c							\
 
 
 HEADS = -I ./compiler/includes						\

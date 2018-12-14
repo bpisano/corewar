@@ -19,29 +19,27 @@
 # include "op.h"
 # include <ncurses.h>
 
-# define ERROR_N1	"Bad argument : %d, need a number after -n flag\n"
-# define ERROR_N2	"Bad argument : %d, need a a valid champion after -n numb\n"
-# define ERROR_D1	"Bad argument : %d, need a number after -dump flag\n"
-# define ERROR_D2	"Flag -dump use several time\n"
-# define ERROR_C	"Bad argument : %d, \"%s\" is not a valid champ\n"
-# define ERROR_OPEN	"Open error, \"%s\" cannot be opened or does not exist\n"
-# define ERROR_NUMB	"Error need a least 1 champ and no more then %d champs\n"
-# define ERROR_ASM	"Error \"%s\" is a .s, do \"./asm %s\" before\n"
-# define ERROR_F1	"Error nothing afer -, use -n or -dump\n"
-# define ERROR_F2	"Error \"%s\" is not handle, bpisano is the one to blame\n"
-# define ERROR_FILE	"Error \"%s\" is not a file\n"
-# define ERROR_COR	"Error \"%s\" is not a .cor\n"
-# define ERROR_MALL	"Error of memory allocation\n"
-# define ERROR_0	"Error the first octet must be 0x00\n"
-# define ERROR_MGC	"Error the COREWAR_EXEC_MAGIC is not correct\n"
-# define ERROR_CHMP	"Error in the parameter number %d: \"%s\"\n"
-# define ERROR_NAME	"Error in the champs number %d, the name is incorrect\n"
-# define ERROR_READ	"Error, invalid file\n"
-# define ERROR_CONT	"Error, content is too long\n"
-# define ERROR_SIZE	"Error, bad content size %d\n"
-# define ERROR_COM	"Error, comment is too long\n"
-# define ERROR_NBR	"Error, the player number (%d) is already taken\n"
-# define ERROR_UIAF "Error, cannot use -i and -a\n"
+# define ERROR_N1	"ERROR : Number needed after -n flag\n"
+# define ERROR_D1	"ERROR : Number needed after -d flag\n"
+# define ERROR_D2	"ERROR : Cannot use multiple -d flag\n"
+# define ERROR_OPEN	"ERROR : \"%s\" cannot be opened or does not exist\n"
+# define ERROR_NUMB	"ERROR : 1 to %d champions needed\n"
+# define ERROR_ASM	"ERROR : Cannot run .s file. Execute \"./asm %s\" first\n"
+# define ERROR_F1	"ERROR : Missing flag. Use -a, -d, -i or -n\n"
+# define ERROR_F2	"ERROR : flag \"%s\" is not handle\n"
+# define ERROR_FILE	"ERROR : \"%s\" is not a file\n"
+# define ERROR_COR	"ERROR : \"%s\" is not a .cor\n"
+# define ERROR_MALL	"ERROR : Memory allocation\n"
+# define ERROR_0	"ERROR : First byte must be 0x00\n"
+# define ERROR_MGC	"ERROR : Invalid COREWAR_EXEC_MAGIC\n"
+# define ERROR_CHMP	"ERROR : Invalid parameter number %d: \"%s\"\n"
+# define ERROR_NAME	"ERROR : Champion number %d name's is incorrect\n"
+# define ERROR_READ	"ERROR : Invalid file\n"
+# define ERROR_CONT	"ERROR : Too large content\n"
+# define ERROR_SIZE	"ERROR : Bad content size %d\n"
+# define ERROR_COM	"ERROR : Comment is too long\n"
+# define ERROR_NBR	"ERROR : Player number %d is already used\n"
+# define ERROR_UIAF "ERROR : Cannot use both -i and -a\n"
 
 # define NEW_OP 256
 
@@ -132,7 +130,11 @@ typedef struct		s_vm
 	t_ui			*ui;
 }					t_vm;
 
-void				print_vm(t_vm vm);
+/*
+ ** ERROR
+*/
+
+void				vm_usage(void);
 
 /*
  ** VM
@@ -148,6 +150,7 @@ int					handle_number(t_vm *vm, char *number, int j);
 
 int					exec_vm(t_vm *vm);
 void				free_vm(t_vm *vm, int ui);
+void				print_vm(t_vm vm);
 
 /*
  ** Processes

@@ -82,7 +82,7 @@ int		init_champ(char *line, t_vm *vm, char *name)
 	int		fd;
 
 	if ((fd = ft_strlen(name)) >= 2 && !ft_strcmp(name + fd - 2, ".s"))
-		return (ft_error(ERROR_ASM, name, name));
+		return (ft_error(ERROR_ASM, name));
 	if ((fd = ft_strlen(name)) < 4 || ft_strcmp(name + fd - 4, ".cor"))
 		return (ft_error(ERROR_COR, name));
 	if ((fd = open(name, O_RDONLY)) == -1)

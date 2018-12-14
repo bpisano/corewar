@@ -27,7 +27,7 @@ int		ft_str_is_number(char *str)
 int		check_flag_n(char **argv, int *i, t_vm *vm)
 {
 	if (!ft_str_is_number(argv[*i + 1]))
-		return (ft_error(ERROR_N1, *i + 1));
+		return (ft_error(ERROR_N1));
 	if (invalid_champ(argv[*i + 2], vm, argv[*i + 1]))
 		return (ft_error(ERROR_CHMP, *i + 2, argv[*i + 2]));
 	*i += 2;
@@ -37,7 +37,7 @@ int		check_flag_n(char **argv, int *i, t_vm *vm)
 int		check_flag_d(char **argv, int *i, int *dump)
 {
 	if (!ft_str_is_number(argv[*i + 1]))
-		return (ft_error(ERROR_D1, *i + 1));
+		return (ft_error(ERROR_D1));
 	if (*dump != -1)
 		return (ft_error(ERROR_D2));
 	*dump = ft_atoi(argv[*i + 1]);

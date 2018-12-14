@@ -56,7 +56,6 @@ static void		run_cycles(t_vm *vm)
 	register int		j;
 
 	i = -1;
-	ui_update_if_needed(vm);
 	while (++i < vm->cycle_to_die)
 	{
 		if (vm->cycles_total == vm->dump && !(i + 1 == vm->cycle_to_die
@@ -91,6 +90,7 @@ int				exec_vm(t_vm *vm)
 		return (0);
 	while (1)
 	{
+		ui_update_if_needed(vm);
 		run_cycles(vm);
 		if (!have_active_pro(vm))
 			break ;

@@ -48,7 +48,7 @@ int			*params(t_pro pro, t_vm vm, int *p)
 	p_num = 0;
 	while (((oct_c >> (6 - (p_num * 2))) & 0x03) > 0 && p_num < 3)
 	{
-		p[p_num] = num_at_reg(vm, (pro.pc + size),
+		p[p_num] = num_at_reg(vm, pro.pc + size,
 		param_size(op_c, oct_c >> (6 - (p_num * 2)), vm));
 		size += param_size(op_c, oct_c >> (6 - (p_num * 2)), vm);
 		p_num++;

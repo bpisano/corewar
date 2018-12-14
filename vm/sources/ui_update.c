@@ -3,10 +3,10 @@
 /*                                                              /             */
 /*   ui_update.c                                      .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
+/*   By: bpisano <bpisano@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/22 14:20:46 by bpisano      #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/20 14:48:54 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/14 13:41:59 by bpisano     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -61,7 +61,11 @@ void	ui_update_champs(t_vm vm)
 	{
 		offset = i * 5 + CHAMPS_LINE;
 		wattron(vm.ui->info_win->win, COLOR_PAIR(vm.champs[i].color));
-		ui_print_right_center(vm.ui->info_win, offset + 2, "%s",
+		if (ft_strlen(vm.champs[i].name) <= 18)
+			ui_print_right_center(vm.ui->info_win, offset + 2, "%s",
+								vm.champs[i].name);
+		else
+			ui_print_right_center(vm.ui->info_win, offset + 2, "%.15s...",
 								vm.champs[i].name);
 		wattroff(vm.ui->info_win->win, COLOR_PAIR(vm.champs[i].color));
 		ui_print_right_center(vm.ui->info_win, offset + 3, "%d",

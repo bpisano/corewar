@@ -85,7 +85,8 @@ int		main(int argc, char **argv)
 {
 	t_vm	vm;
 
-	(void)argc;
+	if (argc < 2)
+		vm_usage();
 	if (!init_var(&vm, argv))
 		return (0);
 	if (init(argv, &vm))
