@@ -85,6 +85,8 @@ int				set_header(t_head *head, char **file_lines)
 			return (handle_error(&name, &com));
 	}
 	head->magic = COREWAR_EXEC_MAGIC;
+	if (!name || !com)
+		return (handle_error(&name, &com));
 	set_head_name(head, name);
 	set_head_comment(head, com);
 	free(name);
