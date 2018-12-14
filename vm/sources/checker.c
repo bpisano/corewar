@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/20 15:50:34 by anamsell     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/14 19:40:51 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/14 20:17:24 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -43,6 +43,8 @@ int		check_flag_d(char **argv, int *i, int *dump)
 	if (*dump != -1)
 		return (ft_error(ERROR_D2));
 	*dump = ft_atoi(argv[*i + 1]);
+	if (*dump < 0)
+		return (ft_error(ERROR_D3, *dump));
 	(*i)++;
 	return (0);
 }
