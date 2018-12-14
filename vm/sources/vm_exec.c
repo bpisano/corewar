@@ -58,8 +58,8 @@ static void		run_cycles(t_vm *vm)
 	i = -1;
 	while (++i < vm->cycle_to_die)
 	{
-		if (vm->cycles_total == vm->dump && !(i + 1 == vm->cycle_to_die
-		&& !have_active_pro(vm)))
+		if (!vm->use_ui && vm->cycles_total == vm->dump
+			&& !(i + 1 == vm->cycle_to_die && !have_active_pro(vm)))
 			print_vm(*vm);
 		wait_key_event(vm);
 		(vm->cycles_total)++;
@@ -110,6 +110,8 @@ void			print_vm(t_vm vm)
 	int		i;
 	int		j;
 
+	if (vm.use_ui)
+		return ;
 	i = -1;
 	while (++i < MEM_SIZE)
 	{

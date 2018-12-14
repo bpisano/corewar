@@ -21,6 +21,7 @@ static char		write_to_files(t_head head, int ***bin, char *file_name)
 	comp_name = cor_name(file_name);
 	if ((fd = open(comp_name, O_RDWR | O_CREAT | O_TRUNC, 0777)) < 0)
 	{
+		close(fd);
 		display_error(3);
 		return (0);
 	}
@@ -53,18 +54,16 @@ static char		compile_lines(char **file_lines, int ***bin, char *name)
 }
 
 static char		verify_file(char *file_name, char ***file_lines,
-int ***bin, int fd)
+							int ***bin, int fd)
 {
 	if ((fd = ft_strlen(file_name)) < 2 || ft_strcmp(file_name + fd - 2, ".s"))
 	{
 		display_error(3);
-		close(fd);
 		return (0);
 	}
-	if ((fd = open(file_name, O_RDWR)) < 0)
+	if ((fd = open(file_name, O_RDWR)) <= 0)
 	{
 		display_error(3);
-		close(fd);
 		return (0);
 	}
 	if (!(*file_lines = read_file(fd)))
@@ -91,7 +90,7 @@ int				main(int argc, char **argv)
 		compiler_usage();
 	i = 0;
 	file_lines = 0;
-	while (++i < argc)
+	while (++i < argc && !(file_lines = NULL))
 	{
 		if (!verify_file(argv[i], &file_lines, &bin, i))
 		{
