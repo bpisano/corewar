@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/11/08 19:23:23 by bpisano      #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/17 19:08:43 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/14 04:22:46 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -43,12 +43,12 @@ int			*params(t_pro pro, t_vm vm, int *p)
 
 	ft_bzero(p, sizeof(int) * 3);
 	op_c = pro.op_code;
-	oct_c = vm.reg[pro.pc + 1];
+	oct_c = vm.reg[(pro.pc + 1) % MEM_SIZE];
 	size = 2;
 	p_num = 0;
 	while (((oct_c >> (6 - (p_num * 2))) & 0x03) > 0 && p_num < 3)
 	{
-		p[p_num] = num_at_reg(vm, pro.pc + size,
+		p[p_num] = num_at_reg(vm, (pro.pc + size),
 		param_size(op_c, oct_c >> (6 - (p_num * 2)), vm));
 		size += param_size(op_c, oct_c >> (6 - (p_num * 2)), vm);
 		p_num++;
