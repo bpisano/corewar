@@ -36,6 +36,7 @@
 # define ERROR_NAME	"ERROR : Champion number %d name's is incorrect\n"
 # define ERROR_READ	"ERROR : Invalid file\n"
 # define ERROR_CONT	"ERROR : Too large content\n"
+# define ERROR_EMPT "ERROR : Empty content\n"
 # define ERROR_SIZE	"ERROR : Bad content size %d\n"
 # define ERROR_COM	"ERROR : Comment is too long\n"
 # define ERROR_NBR	"ERROR : Player number %d is already used\n"

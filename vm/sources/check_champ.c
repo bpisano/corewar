@@ -92,6 +92,9 @@ int		init_champ(char *line, t_vm *vm, char *name)
 	if ((unsigned char)line[0x8a] * 256 + (unsigned char)line[0x8b]
 	> CHAMP_MAX_SIZE)
 		return (ft_error(ERROR_CONT));
+	if ((unsigned char)line[0x8a] * 256 + (unsigned char)line[0x8b]
+	== 0)
+		return (ft_error(ERROR_EMPT));
 	if (read(fd, line + HEADER_SIZE, (unsigned char)line[0x8a] * 256
 	+ (unsigned char)line[0x8b] + 1) !=
 	(unsigned char)line[0x8a] * 256 + (unsigned char)line[0x8b])
