@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/17 16:09:18 by anamsell     #+#   ##    ##    #+#       */
-/*   Updated: 2018/11/13 13:54:05 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/17 18:01:20 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -62,19 +62,40 @@ int		init2(char **argv, t_vm *vm, int *i)
 	return (0);
 }
 
+void	swap_reg(t_vm *vm, unsigned int c)
+{
+	int				i;
+	int				max;
+	unsigned char	swp;
+
+	max = CHAMP_MAX_SIZE;
+	i = -1;
+	while (++i < max)
+	{
+		swp = vm->reg[vm->champs[c].pc + i];
+		vm->reg[vm->champs[c].pc + i] = vm->reg[vm->champs[c + 1].pc + i];
+		vm->reg[vm->champs[c + 1].pc + i] = swp;
+	}
+}
+
 void	order(t_vm *vm)
 {
 	t_champ	swp;
 	int		i;
+	int		j;
 
 	i = -1;
 	while (++i < vm->nbr_champs - 1)
 	{
 		if (vm->champs[i].player < vm->champs[i + 1].player)
 		{
+			swap_reg(vm, i);
 			swp = vm->champs[i];
 			vm->champs[i] = vm->champs[i + 1];
 			vm->champs[i + 1] = swp;
+			j = vm->champs[i].pc;
+			vm->champs[i].pc = vm->champs[i + 1].pc;
+			vm->champs[i + 1].pc = j;
 			i = -1;
 		}
 	}

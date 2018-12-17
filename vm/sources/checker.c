@@ -28,6 +28,8 @@ int		check_flag_n(char **argv, int *i, t_vm *vm)
 {
 	if (!ft_str_is_number(argv[*i + 1]))
 		return (ft_error(ERROR_N1));
+	if (ft_atoi(argv[*i + 1]) < 0)
+		return (ft_error(ERROR_N3, ft_atoi(argv[*i + 1])));
 	if (!argv[*i + 2])
 		return (ft_error(ERROR_N2));
 	if (invalid_champ(argv[*i + 2], vm, argv[*i + 1]))

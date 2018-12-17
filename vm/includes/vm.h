@@ -6,7 +6,7 @@
 /*   By: anamsell <anamsell@student.le-101.fr>      +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2018/10/18 15:37:11 by anamsell     #+#   ##    ##    #+#       */
-/*   Updated: 2018/12/14 20:18:28 by anamsell    ###    #+. /#+    ###.fr     */
+/*   Updated: 2018/12/17 17:50:16 by anamsell    ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -22,6 +22,7 @@
 # define ERROR_N1	"ERROR : Number needed after -n flag\n"
 # define ERROR_D1	"ERROR : Number needed after -d flag\n"
 # define ERROR_N2	"ERROR : Champs needed after -n flag\n"
+# define ERROR_N3	"ERROR : Number after -n (%d) flag must be positive or nul\n"
 # define ERROR_D2	"ERROR : Cannot use multiple -d flag\n"
 # define ERROR_D3	"ERROR : Cannot use -d flag with a negative number\n"	
 # define ERROR_OPEN	"ERROR : \"%s\" cannot be opened or does not exist\n"

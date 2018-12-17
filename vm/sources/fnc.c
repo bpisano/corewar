@@ -18,7 +18,7 @@ int		check_taken(unsigned int i, t_vm *vm)
 	int		j;
 
 	j = -1;
-	while (++j < vm->nbr_champs)
+	while (++j < vm->last_champ)
 		if (vm->champs[j].player == i)
 			return (1);
 	return (0);
@@ -45,7 +45,7 @@ int		handle_number(t_vm *vm, char *number, int j)
 
 	if (number)
 	{
-		i = (unsigned int)ft_atoi(number);
+		i = -(unsigned int)ft_atoi(number);
 		if (check_taken(i, vm))
 			return (1);
 		vm->champs[j].player = i;
