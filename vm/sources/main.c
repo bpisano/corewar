@@ -62,6 +62,24 @@ int		init2(char **argv, t_vm *vm, int *i)
 	return (0);
 }
 
+void	order(t_vm *vm)
+{
+	t_champ	swp;
+	int		i;
+
+	i = -1;
+	while (++i < vm->nbr_champs - 1)
+	{
+		if (vm->champs[i].player < vm->champs[i + 1].player)
+		{
+			swp = vm->champs[i];
+			vm->champs[i] = vm->champs[i + 1];
+			vm->champs[i + 1] = swp;
+			i = -1;
+		}
+	}
+}
+
 int		init(char **argv, t_vm *vm)
 {
 	int		i;
@@ -94,6 +112,7 @@ int		main(int argc, char **argv)
 		free_vm(&vm, 0);
 		return (0);
 	}
+	order(&vm);
 	if (!exec_vm(&vm))
 		return (0);
 	return (0);

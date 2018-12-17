@@ -21,6 +21,6 @@ void	ft_aff(t_pro *pro, t_vm *vm)
 	params(*pro, *vm, p);
 	c = pro->reg[p[0]] % 256;
 	if (vm->aff)
-		write(1, &c, 1);
+		ft_printf("aff : %c\n", c);
 	goto_next_operation(pro, vm);
 }
