@@ -22,9 +22,9 @@
 # define ERROR_N1	"ERROR : Number needed after -n flag\n"
 # define ERROR_D1	"ERROR : Number needed after -d flag\n"
 # define ERROR_N2	"ERROR : Champs needed after -n flag\n"
-# define ERROR_N3	"ERROR : Number after -n (%d) flag must be positive or nul\n"
+# define ERROR_N3	"ERROR : Number after -n (%d) flag must be greater than 0\n"
 # define ERROR_D2	"ERROR : Cannot use multiple -d flag\n"
-# define ERROR_D3	"ERROR : Cannot use -d flag with a negative number\n"	
+# define ERROR_D3	"ERROR : Cannot use -d flag with a negative number\n"
 # define ERROR_OPEN	"ERROR : \"%s\" cannot be opened or does not exist\n"
 # define ERROR_NUMB	"ERROR : 1 to %d champions needed\n"
 # define ERROR_ASM	"ERROR : Cannot run .s file. Execute \"./asm %s\" first\n"
@@ -154,6 +154,7 @@ int					count_champs(char **argv);
 int					invalid_param(char *argv);
 int					convert_hexa_int(char a, char b);
 int					handle_number(t_vm *vm, char *number, int j);
+void				swap_reg(t_vm *vm, unsigned int c);
 
 int					exec_vm(t_vm *vm);
 void				free_vm(t_vm *vm, int ui);

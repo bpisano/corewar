@@ -40,6 +40,7 @@ SRC_COMP = compiler/sources/main.c					\
 SRC_VM = vm/sources/main.c							\
 		 vm/sources/checker.c						\
 		 vm/sources/check_champ.c					\
+		 vm/sources/swap_reg.c						\
 		 vm/sources/vm_exec.c						\
 		 vm/sources/win_checker.c					\
 		 vm/sources/process_init.c					\

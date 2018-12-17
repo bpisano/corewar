@@ -31,7 +31,7 @@ void	ft_live(t_pro *pro, t_vm *vm)
 			vm->champs[i].last_live = vm->cycles_total;
 			need_champ_display(vm);
 			if (!vm->use_ui)
-				ft_printf(LIVE_TXT, vm->champs[i].player, vm->champs[i].name);
+				ft_printf(LIVE_TXT, -vm->champs[i].player, vm->champs[i].name);
 			break ;
 		}
 	}

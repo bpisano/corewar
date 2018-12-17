@@ -62,22 +62,6 @@ int		init2(char **argv, t_vm *vm, int *i)
 	return (0);
 }
 
-void	swap_reg(t_vm *vm, unsigned int c)
-{
-	int				i;
-	int				max;
-	unsigned char	swp;
-
-	max = CHAMP_MAX_SIZE;
-	i = -1;
-	while (++i < max)
-	{
-		swp = vm->reg[vm->champs[c].pc + i];
-		vm->reg[vm->champs[c].pc + i] = vm->reg[vm->champs[c + 1].pc + i];
-		vm->reg[vm->champs[c + 1].pc + i] = swp;
-	}
-}
-
 void	order(t_vm *vm)
 {
 	t_champ	swp;
