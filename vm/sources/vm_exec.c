@@ -87,7 +87,10 @@ int				exec_vm(t_vm *vm)
 	if (!init_process(vm))
 		return (0);
 	if (!init_ui(vm))
+	{
+		endwin();
 		return (0);
+	}
 	while (1)
 	{
 		ui_update_if_needed(vm);

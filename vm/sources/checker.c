@@ -30,6 +30,8 @@ int		check_flag_n(char **argv, int *i, t_vm *vm)
 		return (ft_error(ERROR_N1));
 	if (ft_atoi(argv[*i + 1]) < 0)
 		return (ft_error(ERROR_N3, ft_atoi(argv[*i + 1])));
+	if (ft_atoi(argv[*i + 1]) > 1000)
+		return (ft_error(ERROR_N4, ft_atoi(argv[*i + 1])));
 	if (!argv[*i + 2])
 		return (ft_error(ERROR_N2));
 	if (invalid_champ(argv[*i + 2], vm, argv[*i + 1]))

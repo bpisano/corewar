@@ -23,7 +23,8 @@ static t_win	*new_win(int x, int y, int width, int height)
 	win->y = y;
 	win->width = width;
 	win->height = height;
-	win->win = newwin(height, width, y, x);
+	if (!(win->win = newwin(height, width, y, x)))
+		return (NULL);
 	box(win->win, 0, 0);
 	wrefresh(win->win);
 	return (win);
