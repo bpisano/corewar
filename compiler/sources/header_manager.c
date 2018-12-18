@@ -19,7 +19,7 @@ void	set_head_name(t_head *head, char *name)
 
 	ft_bzero(head->prog_name, PROG_NAME_LENGTH);
 	i = -1;
-	while (name[++i])
+	while (name[++i] && i < PROG_NAME_LENGTH)
 		head->prog_name[i] = name[i];
 }
 
@@ -29,6 +29,6 @@ void	set_head_comment(t_head *head, char *com)
 
 	ft_bzero(head->comment, COMMENT_LENGTH);
 	i = -1;
-	while (com[++i])
+	while (com[++i] && i < COMMENT_LENGTH)
 		head->comment[i] = com[i];
 }

@@ -31,7 +31,7 @@ static char		*header_type(char *str, char *type)
 
 	if (!(split = ft_strsplit(str, '\"')))
 		return (NULL);
-	if (split_len(split) != 2)
+	if (split_len(split) != 2 || !(str[ft_strlen(str) - 1] == '\"'))
 	{
 		free_split(split);
 		return (NULL);
