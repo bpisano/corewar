@@ -52,8 +52,10 @@
 
 # define PROG_NAME_LENGTH		(128)
 # define COMMENT_LENGTH			(2048)
-# define HEADER_SIZE			2192
+# define HEADER_SIZE			PROG_NAME_LENGTH + COMMENT_LENGTH + 4 + 12
 # define COREWAR_EXEC_MAGIC		0xea83f3
+
+# define SIZE_CHAMP				4 + PROG_NAME_LENGTH + 6
 
 # define LAB_NUMB				300
 

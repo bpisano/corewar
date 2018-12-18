@@ -89,16 +89,16 @@ int		init_champ(char *line, t_vm *vm, char *name)
 		return (ft_error(ERROR_OPEN, name));
 	if (read(fd, line, HEADER_SIZE) < HEADER_SIZE)
 		return (ft_error(ERROR_READ));
-	if ((unsigned char)line[0x8a] * 256 + (unsigned char)line[0x8b]
-	> CHAMP_MAX_SIZE)
+	if ((unsigned char)line[SIZE_CHAMP] * 256 +
+	(unsigned char)line[SIZE_CHAMP + 1] > CHAMP_MAX_SIZE)
 		return (ft_error(ERROR_CONT));
-	if ((unsigned char)line[0x8a] * 256 + (unsigned char)line[0x8b]
-	== 0)
+	if ((unsigned char)line[SIZE_CHAMP] * 256 +
+	(unsigned char)line[SIZE_CHAMP + 1] == 0)
 		return (ft_error(ERROR_EMPT));
-	if (read(fd, line + HEADER_SIZE, (unsigned char)line[0x8a] * 256
-	+ (unsigned char)line[0x8b] + 1) !=
-	(unsigned char)line[0x8a] * 256 + (unsigned char)line[0x8b])
-		return (ft_error(ERROR_SIZE, (unsigned char)line[0x8b]));
+	if (read(fd, line + HEADER_SIZE, (unsigned char)line[SIZE_CHAMP]
+	* 256 + (unsigned char)line[SIZE_CHAMP + 1] + 1) !=
+	(unsigned char)line[SIZE_CHAMP] * 256 + (unsigned char)line[SIZE_CHAMP + 1])
+		return (ft_error(ERROR_SIZE));
 	return (0);
 }
 
@@ -113,11 +113,12 @@ int		invalid_champ(char *name, t_vm *vm, char *number)
 	check_comment(line, vm, vm->last_champ))
 		return (1);
 	j = -1;
-	while (++j < (unsigned char)line[0x8a] * 256 + (unsigned char)line[0x8b])
+	while (++j < (unsigned char)line[SIZE_CHAMP] * 256 +
+		(unsigned char)line[SIZE_CHAMP + 1])
 		vm->reg[j + (vm->last_champ * MEM_SIZE / vm->nbr_champs)] =
 		line[HEADER_SIZE + j];
-	vm->champs[vm->last_champ].size = (unsigned char)line[0x8a] * 256
-	+ (unsigned char)line[0x8b];
+	vm->champs[vm->last_champ].size = (unsigned char)line[SIZE_CHAMP] * 256
+	+ (unsigned char)line[SIZE_CHAMP + 1];
 	if (handle_number(vm, number, vm->last_champ))
 		return (ft_error(ERROR_NBR, ft_atoi(number)));
 	vm->last_champ++;
